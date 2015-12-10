@@ -1,9 +1,8 @@
 /* Custom Stylesheet */
-/**
- * Use this file to override Materialize files so you can update
- * the core Materialize files in the future
+/*
+ * One nice thing custom css
  *
- * Made By MaterializeCSS.com
+
  */
 
 nav ul a,
@@ -16,7 +15,7 @@ p {
 }
 
 .button-collapse {
-  color: #26a69a;
+  color: #fff;
 }
 
 .parallax-container {
