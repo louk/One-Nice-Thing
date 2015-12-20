@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        {% block head %}
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-        <title>One Nice Thing</title>
+        <title>One Nice Thing {{ title }}</title>
         <!-- CSS  -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        {% endblock %}
     </head>
     <body>
         <header>
@@ -35,55 +37,9 @@
                 </div>
             </nav>
         </header>
-        <div id="index-banner" class="parallax-container">
-            <div class="section no-pad-bot">
-                <div class="container">
-                    <br><br>
-                    <h1 class="header center white-text ">One Nice Thing</h1>
-                    <div class="row center">
-                        <h4 class="header col s12 light">One nice thing. one nice thing. one nice thing. one nice thing</h4>
-                    </div>
-                    <div class="row center">
-                        <a href="login.html" id="signup-button" class="btn-large waves-effect waves-light  green darken-1">Get Started</a>
-                    </div>
-                    <br><br>
-                </div>
-            </div>
-            <div class="parallax"><img src="img/background1.jpg" alt="Unsplashed background img 1"></div>
-        </div>
-        <div class="container">
-            <div class="section">
-                <!--   Icon Section   -->
-                <div class="row">
-                    <div class="col s12 m6">
-                        <div class="icon-block">
-                            <h2 class="center green-text"><i class="material-icons">flash_on</i></h2>
-                            <h5 class="center">Daily Quotos</h5>
-                            <p class="light justified">Lorem ipsum dolor sit amet, in per choro nonumes sententiae, est et graecis adipiscing. Est in vitae gloriatur. Ei nisl vidit dicit sit, in oratio debitis deserunt vis. No stet nominati sed, ne sit erat consequat. Est quidam pertinax eu, his ad quodsi fabellas reprimique. Perpetua partiendo cu vel, sed movet facete ocurreret ei. Te ferri quando pri, laoreet conceptam pri ex.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col s12 m6">
-                        <div class="icon-block">
-                            <h2 class="center green-text"><i class="material-icons">group</i></h2>
-                            <h5 class="center">User testimonials</h5>
-                            <p class="light justified">Lorem ipsum dolor sit amet, in per choro nonumes sententiae, est et graecis adipiscing. Est in vitae gloriatur. Ei nisl vidit dicit sit, in oratio debitis deserunt vis. No stet nominati sed, ne sit erat consequat. Est quidam pertinax eu, his ad quodsi fabellas reprimique. Perpetua partiendo cu vel, sed movet facete ocurreret ei. Te ferri quando pri, laoreet conceptam pri ex.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="parallax-container valign-wrapper">
-            <div class="section no-pad-bot">
-                <div class="container">
-                    <div class="row center">
-                        <h1 class="header col s12 white-text  z-depth-5-text">Lets do nice things</h1>
-                    </div>
-                </div>
-            </div>
-            <div class="parallax"><img src="img/background2.jpg" alt="Unsplashed background img 3"></div>
-        </div>
+        {% block content %}
+
+        {% endblock %}
         <footer class="page-footer green">
             <div class="container">
                 <div class="row">
@@ -120,8 +76,10 @@
             </div>
         </footer>
         <!--  Scripts-->
+        {% block scripting %}
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="js/materialize.js"></script>
         <script src="js/init.js"></script>
+        {% endblock %}
     </body>
 </html>
