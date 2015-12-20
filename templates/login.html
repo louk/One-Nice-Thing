@@ -1,133 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-        <title>One Nice Thing</title>
-        <!-- CSS  -->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-        <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-    </head>
-    <body>
-        <header>
-            <nav class="green lighten-1" role="navigation">
-                <div class="nav-wrapper container" >
-                    <a id="logo-container" href="index.html" class="brand-logo" 
-                        > One nice thing</a>
-                    <ul class="right hide-on-med-and-down ">
-                        <li><a href="login.html">Login | Sign up</a></li>
-                        <li><a href="help.html">Help</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li>
-                            <a  href="add.html" class="btn-floating btn-large waves-effect waves-light yellow"><i class="mdi-content-add"></i></a>
-                        </li>
-                    </ul>
-                    <ul id="nav-mobile" class="side-nav ">
-                        <li><a href="login.html">Login | Sign up</a></li>
-                        <li><a href="help.html">Help</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li>
-                            <a href="add.html" class="btn-floating btn-large waves-effect waves-light yellow"><i class="mdi-content-add"></i></a>
-                        </li>
-                    </ul>
-                    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-                </div>
-            </nav>
-        </header>
-        <div class="container">
-            <h2 class="green-text">Register</h2>
-            <div class="section">
-                <div class="row center">
-                    <form >
-                        <div class="row">
-                            <div class="input-field col s12 m12 l6">
-                                <i class="material-icons prefix">account_circle</i>
-                                <input  id="first_name" type="text" class="validate">
-                                <label for="first_name">User Name</label>
-                            </div>
-                            <div class="input-field col s12 m12 l6">
-                                <i class="material-icons prefix">account_circle</i>
-                                <input id="last_name" type="text" class="validate">
-                                <label for="last_name">Refer ID</label>
-                            </div>
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <h2 class="green-text">Register</h2>
+        <div class="section">
+            <div class="row center">
+                <form >
+                    <div class="row">
+                        <div class="input-field col s12 m12 l6">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input  id="first_name" type="text" class="validate">
+                            <label for="first_name">User Name</label>
                         </div>
-                        <div class="row center">
-                            <div class="input-field col s12 m12 l6">
-                                <i class="material-icons prefix">account_circle</i>
-                                <input  id="first_name" type="text" class="validate">
-                                <label for="first_name">First Name</label>
-                            </div>
-                            <div class="input-field col s12 m12 l6">
-                                <i class="material-icons prefix">account_circle</i>
-                                <input id="last_name" type="text" class="validate">
-                                <label for="last_name">Last Name</label>
-                            </div>
+                        <div class="input-field col s12 m12 l6">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input id="last_name" type="text" class="validate">
+                            <label for="last_name">Refer ID</label>
                         </div>
-                        <div class="row">
-                            <div class="input-field col s12 m12 l6">
-                                <i class="material-icons prefix">lock</i>
-                                <input id="password" type="password" class="validate">
-                                <label for="password">Password</label>
-                            </div>
-                            <div class="input-field col s12 m12 l6">
-                                <i class="material-icons prefix">lock</i>
-                                <input id="password" type="password" class="validate">
-                                <label for="password">Password Verify</label>
-                            </div>
+                    </div>
+                    <div class="row center">
+                        <div class="input-field col s12 m12 l6">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input  id="first_name" type="text" class="validate">
+                            <label for="first_name">First Name</label>
                         </div>
-                        <div class="row">
-                            <div class="input-field col s12 m12 l6">
-                                <i class="material-icons prefix">email</i>
-                                <input id="email" type="email" class="validate">
-                                <label for="email">Email</label>
-                            </div>
+                        <div class="input-field col s12 m12 l6">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input id="last_name" type="text" class="validate">
+                            <label for="last_name">Last Name</label>
                         </div>
-                        <div class="row center">
-                            <a href="#" id="signup-button" class="btn-large waves-effect waves-light  green darken-1">Sign up</a>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12 m12 l6">
+                            <i class="material-icons prefix">lock</i>
+                            <input id="password" type="password" class="validate">
+                            <label for="password">Password</label>
                         </div>
-                    </form>
-                </div>
+                        <div class="input-field col s12 m12 l6">
+                            <i class="material-icons prefix">lock</i>
+                            <input id="password" type="password" class="validate">
+                            <label for="password">Password Verify</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12 m12 l6">
+                            <i class="material-icons prefix">email</i>
+                            <input id="email" type="email" class="validate">
+                            <label for="email">Email</label>
+                        </div>
+                    </div>
+                    <div class="row center">
+                        <a href="#" id="signup-button" class="btn-large waves-effect waves-light  green darken-1">Sign up</a>
+                    </div>
+                </form>
             </div>
         </div>
-        <footer class="page-footer green">
-            <div class="container">
-                <div class="row">
-                    <div class="col l6 s12">
-                        <h5 class="yellow-text text-darken-1">One nice thing</h5>
-                        <p class="grey-text text-lighten-4">About one nice thing. one nice thing. one nice thing. one nice thing.
-                            one nice thing. one nice thing. one nice thing. one nice thing. one nice thing. one nice thing. 
-                        </p>
-                    </div>
-                    <div class="col l3 s12">
-                        <h5 class="yellow-text text-darken-1">Help</h5>
-                        <ul>
-                            <li><a class="white-text" href="#!">How to use</a></li>
-                            <li><a class="white-text" href="#!">Faq</a></li>
-                            <li><a class="white-text" href="#!">Privacy Policy</a></li>
-                            <li><a class="white-text" href="#!">Contact us</a></li>
-                        </ul>
-                    </div>
-                    <div class="col l3 s12">
-                        <h5 class="yellow-text text-darken-1">Social media</h5>
-                        <ul>
-                            <li><a class="white-text" href="#!">Facebook</a></li>
-                            <li><a class="white-text" href="#!">Twitter</a></li>
-                            <li><a class="white-text" href="#!">Instagram</a></li>
-                            <li><a class="white-text" href="#!">Youtube</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-copyright">
-                <div class="container">
-                    Copyright 2015. <a class="yellow-text text-darken-1" href="http://onenicething.net">One nice thing</a>
-                </div>
-            </div>
-        </footer>
-        <!--  Scripts-->
-        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script src="js/materialize.js"></script>
-        <script src="js/init.js"></script>
-    </body>
-</html>
+    </div>
+{% endblock %}

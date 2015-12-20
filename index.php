@@ -18,8 +18,24 @@
     //load template file
     $twig->setCache(false);
 
-    $template = $twig->loadTemplate('main.html');
-    //render a template
-    echo $template->render(array('title' => 'Start'));
+    if(isset($_SESSION['user'])){
+    }
+    else{
+        if(isset($_GET['login'])){
+            $template = $twig->loadTemplate('login.html');
+            echo $template->render(array('title' => 'Login')); 
+        }else if(isset($_GET['add'])){
+            $template = $twig->loadTemplate('add.html');
+            echo $template->render(array('title' => 'Add')); 
+        }
+        else{
+            $template = $twig->loadTemplate('main.html');
+            echo $template->render(array('title' => 'Start')); 
+        }
+        
+    }
+    
+
+
 ?>
 
