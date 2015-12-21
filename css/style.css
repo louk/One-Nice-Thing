@@ -7,14 +7,12 @@
 
 nav ul a,
 nav .brand-logo {
-  color: green;
-  max-height: 100px;
-}
 
-p {
- 
-}
+  color: black;
+  margin-top: 20px;
+  
 
+}
 
 .home-help-block{
   margin-left: 100px;
@@ -25,7 +23,7 @@ p {
 }
 
 .home-banner{
-  margin-top: 40px;
+  margin-top: 100px;
 }
 
 .home-bottom{
