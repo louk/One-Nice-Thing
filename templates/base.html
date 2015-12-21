@@ -13,67 +13,60 @@
     </head>
     <body>
         <header>
-            <div class="navbar-fixed">
-                <nav class="green lighten-1" role="navigation">
-                    <div class="nav-wrapper container" >
-                        <a id="logo-container" href="index.php" class="brand-logo" 
-                            > One ice thing</a>
-                        <ul class="right hide-on-med-and-down ">
-                            <li><a href="index.php?login">Login | Sign up</a></li>
-                            <li><a href="#">Help</a></li>
-                            <li><a href="#">About</a></li>
-                            <li>
-                                <a  href="index.php?add" class="btn-floating btn-large waves-effect waves-light yellow">
-                                <i class="mdi-content-add"></i></a>
-                            </li>
+            <div class="navbar z-depth-0">
+                <nav class="white" role="navigation" >
+                    <div class="nav-wrapper container ">
+
+                        <a class="brand-logo" id="logo-container" rel="home" href="#" title="One nice thing">
+                            <img style="max-width:100px;" src="./img/logo.png">
+                        </a>
+
+                        <ul class="right hide-on-med-and-down">
+                            <li ><a class="green-text" href="index.php?login">Login | Sign up</a></li>
+                            <li><a  class="green-text" href="#">Help</a></li>
+                            <li><a  class="green-text" href="#">About</a></li>
+                            
                         </ul>
-                        <ul id="nav-mobile" class="side-nav ">
+
+                        <ul id="nav-mobile" class="side-nav green white-text">
                             <li><a href="index.php?login">Login</a></li>
                             <li><a href="#">Sign up</a></li>
                             <li><a href="#">Help</a></li>
                             <li><a href="#">About</a></li>
                         </ul>
-                        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-                        <i class="mdi-content-add"></i></a>
+
+                        <a href="#" data-activates="nav-mobile" class="button-collapse green-text"><i class="material-icons">menu</i></a>
+                        
                     </div>
                 </nav>
             </div>
         </header>
+
         {% block content %}
 
         {% endblock %}
         <footer class="page-footer green">
             <div class="container">
                 <div class="row">
-                    <div class="col l6 s12">
-                        <h5 class="yellow-text text-darken-1">One nice thing</h5>
-                        <p class="grey-text text-lighten-4">About one nice thing. one nice thing. one nice thing. one nice thing.
-                            one nice thing. one nice thing. one nice thing. one nice thing. one nice thing. one nice thing. 
-                        </p>
+                    
+                    <div class="col l3 s12">
+                        <h6 class="yellow-text text-darken-1">ABOUT US</h5>  
                     </div>
                     <div class="col l3 s12">
-                        <h5 class="yellow-text text-darken-1">Help</h5>
-                        <ul>
-                            <li><a class="white-text" href="#!">How to use</a></li>
-                            <li><a class="white-text" href="#!">Faq</a></li>
-                            <li><a class="white-text" href="#!">Privacy Policy</a></li>
-                            <li><a class="white-text" href="#!">Contact us</a></li>
-                        </ul>
+                        <h6 class="yellow-text text-darken-1">HELP</h5>
                     </div>
                     <div class="col l3 s12">
-                        <h5 class="yellow-text text-darken-1">Social media</h5>
-                        <ul>
-                            <li><a class="white-text" href="#!">Facebook</a></li>
-                            <li><a class="white-text" href="#!">Twitter</a></li>
-                            <li><a class="white-text" href="#!">Instagram</a></li>
-                            <li><a class="white-text" href="#!">Youtube</a></li>
-                        </ul>
+                        <h6 class="yellow-text text-darken-1">CONTACT US</h5>  
                     </div>
+                    <div class="col l3 s12">
+                        <h6 class="yellow-text text-darken-1">PRIVACY POLICY</h5>
+                    </div>
+
                 </div>
             </div>
             <div class="footer-copyright">
                 <div class="container">
-                    Copyright 2015. <a class="yellow-text text-darken-1" href="http://onenicething.net">One nice thing</a>
+                    Copyright 2015. <a class="yellow-text text-darken-1" href="http://onenicething.net">One nice thing</a>  
                 </div>
             </div>
         </footer>

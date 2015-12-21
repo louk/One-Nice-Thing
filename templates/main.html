@@ -1,53 +1,113 @@
 {% extends "base.html" %}
 
 {% block content %}
-	<div id="index-banner" class="parallax-container">
-	    <div class="section no-pad-bot">
-	        <div class="container">
-	            <br><br>
-	            <h1 class="header center white-text ">One Nice Thing</h1>
-	            <div class="row center">
-	                <h4 class="header col s12 light">One nice thing. one nice thing. one nice thing. one nice thing</h4>
-	            </div>
-	            <div class="row center">
-	                <a href="login.html" id="signup-button" class="btn-large waves-effect waves-light  green darken-1">Get Started</a>
-	            </div>
-	            <br><br>
-	        </div>
-	    </div>
-	    <div class="parallax"><img src="img/background1.jpg" alt="Unsplashed background img 1"></div>
-	</div>
+
+	
 	<div class="container">
-	    <div class="section">
-	        <!--   Icon Section   -->
+		<div class="section">
+			<div class="row">
+				<div class="home-banner">
+
+		        	<img src="./img/home_banner1.jpg" alt="Home banner 1">
+		            <br><br>
+		            <div class="row center">
+		                <h5 ><b>One Nice Thing </b> is Lorem ipsum dolor sit amet, usu nullam splendide.</h5>
+		            </div>
+		            
+		        </div>
+		    </div>
+	    
+		</div>
+
+	    <div class="section home-signuo-block">
 	        <div class="row">
-	            <div class="col s12 m6">
-	                <div class="icon-block">
-	                    <h2 class="center green-text"><i class="material-icons">flash_on</i></h2>
-	                    <h5 class="center">Daily Quotos</h5>
-	                    <p class="light justified">Lorem ipsum dolor sit amet, in per choro nonumes sententiae, est et graecis adipiscing. Est in vitae gloriatur. Ei nisl vidit dicit sit, in oratio debitis deserunt vis. No stet nominati sed, ne sit erat consequat. Est quidam pertinax eu, his ad quodsi fabellas reprimique. Perpetua partiendo cu vel, sed movet facete ocurreret ei. Te ferri quando pri, laoreet conceptam pri ex.
-	                    </p>
+	            <div class="col s12 m12 l4 z-depth-1">
+	                <div class="icon-block" >
+	                    <h5 class="center">Register Here</h5>
+	                   	<form class="col s12 ">
+
+	                   		<div class="row">
+						        <div class="input-field col s12">
+						          <input id="user_name" type="text" class="validate">
+						          <label for="password">User Name</label>
+						        </div>
+						      </div>
+
+						      <div class="row">
+						        <div class="input-field col s12">
+						          <input id="email" type="email" class="validate">
+						          <label for="email">Email</label>
+						        </div>
+						      </div>
+
+						      <div class="row">
+						        <div class="input-field col s12">
+						          <input id="email" type="email" class="validate">
+						          <label for="email">Friend id</label>
+						        </div>
+						      </div>
+	                   		 
+						      <div class="row">
+						        <div class="input-field col s12">
+						          <input id="password" type="password" class="validate">
+						          <label for="password">Password</label>
+						        </div>
+						      </div>
+
+
+							  <div class="row">
+								<div class="input-field col s6">
+								    <a class="waves-effect waves-teal btn-flat">Anynomous</a>
+							     </div>
+								 <div class="input-field col s6">
+							        <button class="btn waves-effect waves-light orange" type="submit" name="action">Submit
+									   <i class="material-icons right">send</i>
+									 </button>
+						         </div>
+						       </div>
+
+						</form>
 	                </div>
 	            </div>
-	            <div class="col s12 m6">
-	                <div class="icon-block">
-	                    <h2 class="center green-text"><i class="material-icons">group</i></h2>
-	                    <h5 class="center">User testimonials</h5>
-	                    <p class="light justified">Lorem ipsum dolor sit amet, in per choro nonumes sententiae, est et graecis adipiscing. Est in vitae gloriatur. Ei nisl vidit dicit sit, in oratio debitis deserunt vis. No stet nominati sed, ne sit erat consequat. Est quidam pertinax eu, his ad quodsi fabellas reprimique. Perpetua partiendo cu vel, sed movet facete ocurreret ei. Te ferri quando pri, laoreet conceptam pri ex.
-	                    </p>
-	                </div>
-	            </div>
+
+	            <div  class="col s12 m8">
+					<div class="home-help-block">
+					    <div class="section no-pad-bot">
+					       
+					        	<img src="./img/home_signup_image.jpg" alt="Help image">
+					            <br><br>
+
+					            <div class="row center">
+					               <p> You need just 10 seconds to signup. Spread tree. </p>
+					            </div>
+					            
+					    </div>
+					 </div>
+				</div>
 	        </div>
 	    </div>
-	</div>
-	<div class="parallax-container valign-wrapper">
-	    <div class="section no-pad-bot">
-	        <div class="container">
+
+	    <div class="home-bottom">
+
+	    <div class="section">
+	        
 	            <div class="row center">
-	                <h1 class="header col s12 white-text  z-depth-5-text">Lets do nice things</h1>
+	                <h5 class="header col s12 light"><b>About One Nice Thing </b></h5>
+	                <p>
+	                	Lorem ipsum dolor sit amet, usu nullam splendide et. Cibo dolores nominavi sit no, apeirian gloriatur dissentiunt cu mea. Ad per salutandi maluisset, an his facete omittantur instructior. An quo convenire petentium, pri consul iuvaret ea. Case dictas nonumes cu eos. Qui ferri prima id, dicam facilis duo eu.
+	                </p>
 	            </div>
+
+
+
+	            <img src="./img/home_bottom_image.jpg" alt="Home Bottom Image">
+	            <br><br>
+	            
 	        </div>
 	    </div>
-	    <div class="parallax"><img src="img/background2.jpg" alt="Unsplashed background img 3"></div>
+
+
+
 	</div>
+	
 {% endblock %}

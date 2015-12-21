@@ -7,61 +7,43 @@
 
 nav ul a,
 nav .brand-logo {
-  color: #fff;
+  color: green;
+  max-height: 100px;
 }
 
 p {
-  line-height: 2rem;
-}
-
-h1{ 
-
+ 
 }
 
 
-.button-collapse {
-  color: #fff;
+.home-help-block{
+  margin-left: 100px;
 }
 
-.parallax-container {
-  min-height: 400px;
-  line-height: 0;
-  height: auto;
-  color: rgba(255,255,255,.9);
+.home-signuo-block{
+  margin-top: 40px;
 }
 
-.parallax-container {
-  min-height: 400px;
-  line-height: 0;
-  height: auto;
-  color: rgba(255,255,255,.9);
-}
-  .parallax-container .section {
-    width: 100%;
-  }
-
-@media only screen and (max-width : 992px) {
-  .parallax-container .section {
-    position: absolute;
-    top: 40%;
-  }
-  #index-banner .section {
-    top: 10%;
-  }
+.home-banner{
+  margin-top: 40px;
 }
 
-@media only screen and (max-width : 600px) {
-  #index-banner .section {
-    top: 0;
-  }
+.home-bottom{
+  margin-top: 10px;
 }
 
-.icon-block {
-  padding: 0 15px;
+.home-bottom img {
+  margin-top: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
-.icon-block .material-icons {
-  font-size: inherit;
+
+
+.home-banner h5 b { 
+  color: green;
 }
+
 
 footer.page-footer {
   margin: 0;
