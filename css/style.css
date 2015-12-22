@@ -100,13 +100,7 @@ footer.page-footer {
 }
 
 #modal-success{
-    width: 30%; 
-    height: 30%; 
-    top: 5%; 
-    left: 5%; 
-    right: 5%; 
-    bottom: 5%;
-    
+    width: 30%;     
   }
 
 #modal-success h5  { 

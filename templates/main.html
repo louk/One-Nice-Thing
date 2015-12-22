@@ -20,7 +20,7 @@
 	            <div class="col s12 m12 l4 z-depth-1" style="padding-top:10px">
 	                <div class="icon-block" >
 	                    <h5 class="center">Quick add nice thing</h5>
-	                   	<form class="col s12 ">
+	                   	<form id="add_nice_thing" class="col s12 ">
 	                   		<div class="row">
 						        <div id="email_pack" class="input-field col s12">
 						          	<input id="email" type="email" class="validate">
@@ -50,7 +50,7 @@
 					        	</div>
 					        </div>
 					        <div class="row center-align">
-							    <button class="btn waves-effect waves-light green" type="submit" name="action">ADD</button>
+							    <button class="btn waves-effect waves-light green" type="submit" name="action">START NICE THINGS</button>
 					        </div>	
 						</form>
 	        		</div>
@@ -127,6 +127,25 @@
       		<a href="#" id="show_login" class="waves-effect waves-light btn-flat center hide">Login now</a>
     	</div>
 	</div>
+	<!-- Success modal-->
+	<div id="modal-success" class="modal">
+	    <div class="modal-content">
+	        <div class="row col s6" >
+	         	<form class="col s12">
+	            	<div class="row center">
+	               		<div class="input-field col s12">
+	                  		<img src="./img/modal_success.png" alt="Home Bottom Image"  >
+	                  	</div>
+	            	</div>
+	            	<div class="row center">
+	               		<a  href ="#!" class="modal-action modal-close waves-effect waves-light green btn" type="submit" name="action" >Close
+	               			<i class="material-icons right"></i>
+	               		</a>	
+	            	</div>
+	         	</form>
+	      	</div>
+	   </div>
+	</div>
 {% endblock %}
 {% block scripting %}
 	{{parent()}}
@@ -181,6 +200,11 @@
 			        scrollTop: $("#quick_add").offset().top
 			    	})
 			});
+
+			$('#add_nice_thing').on('submit', function(e){
+		        e.preventDefault();
+		        $('#modal-success').openModal();
+		    });
 	   	});
 	</script>
 {% endblock %}
