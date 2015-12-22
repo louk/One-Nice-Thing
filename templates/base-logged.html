@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% block head %}
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+        <title>One Nice Thing {{ title }}</title>
+        <!-- CSS  -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        {% endblock %}
+    </head>
+    <body>
+        <header>
+            <div class="navbar ">
+                <nav class="white z-depth-0" role="navigation">
+                    <div class="nav-wrapper container ">
+
+                        <a class="brand-logo" id="logo-container" rel="home" href="#" title="One nice thing">
+                            <img style="max-width:100px;" src="./img/logo.png">
+                        </a>
+
+                        <ul class="right hide-on-med-and-down">
+                            <li ><a href="#">My Profile</a></li>
+                            <li><a  href="#">Notification</a></li>
+                            <li><a  href="#">Chat</a></li>
+                            <li><a  href="#">Explore</a></li>
+                            <li><a  href="#">Add</a></li>
+                            
+                        </ul>
+
+                        <ul id="nav-mobile" class="side-nav green white-text">
+                            <li ><a href="#">My Profile</a></li>
+                            <li><a  href="#">Notification</a></li>
+                            <li><a  href="#">Chat</a></li>
+                            <li><a  href="#">Explore</a></li>
+                            <li><a  href="#">Add</a></li>
+                        </ul>
+
+                        <a href="#" data-activates="nav-mobile" class="button-collapse green-text"><i class="material-icons">menu</i></a>
+                        
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        {% block content %}
+
+        {% endblock %}
+        <footer class="page-footer green">
+            <div class="container">
+                <div class="row">
+                    
+                    <div class="col l3 s12">
+                        <h6 class="yellow-text text-darken-1">ABOUT US</h5>  
+                    </div>
+                    <div class="col l3 s12">
+                        <h6 class="yellow-text text-darken-1">HELP</h5>
+                    </div>
+                    <div class="col l3 s12">
+                        <h6 class="yellow-text text-darken-1">CONTACT US</h5>  
+                    </div>
+                    <div class="col l3 s12">
+                        <h6 class="yellow-text text-darken-1">PRIVACY POLICY</h5>
+                    </div>
+
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <div class="container">
+                    Copyright 2015. <a class="yellow-text text-darken-1" href="http://onenicething.net">One nice thing</a>  
+                </div>
+            </div>
+        </footer>
+        <!--  Scripts-->
+        {% block scripting %}
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="js/materialize.js"></script>
+        <script src="js/init.js"></script>
+        {% endblock %}
+    </body>
+</html>

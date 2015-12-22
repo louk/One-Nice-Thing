@@ -1,0 +1,226 @@
+{% extends "base-logged.html" %}
+{% block content %}
+<div class="container">
+   <div class="section">
+      <div class="row">
+         <div class="profile-tab-menu">
+            <div class="row">
+               <div class="col s12 m12 l12">
+                  <ul class="tabs">
+                     <li class="tab col s2 m2 l2"><a href="#modal-add">Add</a></li>
+                     <li class="tab col s2 m2 l2"><a href="#modal-register">Register</a></li>
+                     <li class="tab col s2 m2 l2"><a href="#modal-forgot">Forgot Password</a></li>
+                     <li class="tab col s2 m2 l2"><a href="#modal-success">Awesome</a></li>
+                     <li class="tab col s2 m2 l2"><a href="#modal-error">Error</a></li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+<!-- Modal Structure -->
+<div id="modal-register" class="modal">
+   <div class="modal-content">
+      <div class="row" >
+         <h5 class="center"><b>Register Here</b></h5>
+         <form class="col s12 ">
+            <div class="row">
+               <div class="input-field col s12">
+                  <input id="username" type="text" class="validate" required>
+                  <label for="username">User Name</label>
+               </div>
+            </div>
+            <div class="row">
+               <div class="input-field col s12">
+                  <input id="email" type="email" class="validate" required>
+                  <label for="email">Email</label>
+               </div>
+            </div>
+            <div class="row">
+               <div class="input-field col s12">
+                  <input id="email" type="email" class="validate" required>
+                  <label for="email">Friend id</label>
+               </div>
+            </div>
+            <div class="row">
+               <div class="input-field col s12">
+                  <input id="password" type="password" class="validate" required>
+                  <label for="password">Password</label>
+               </div>
+            </div>
+            <div class="row center">
+               <div class="input-field col s12">
+                  <button class="btn waves-effect waves-light green" type="submit" name="action" >Register
+                  <i class="material-icons right"></i>
+                  </button>
+               </div>
+            </div>
+         </form>
+      </div>
+   </div>
+   <div class="modal-footer">					
+   </div>
+</div>
+
+<div id="modal-add" class="modal">
+   <div class="modal-content">
+      <div class="row col s6" >
+         <h5 class="center"><b>Report Nice Thing</b></h5>
+         <form class="col s12">
+            <div class="row">
+               <div class="input-field col s6">
+                  <input id="username" type="text" class="validate" required>
+                  <label for="username">User lookup</label>
+               </div>
+               <div class="input-field col s6">
+                  <input id="email" type="email" class="validate" required>
+                  <label for="email">Email for who 
+                  <label>
+               </div>
+            </div>
+            <div class="row">
+            <div class="input-field col s6">
+            <input id="date" type="date" class="datepicker" required>
+            <label for="email">When</label>
+            </div>
+            <div class="input-field col s6">
+            <input id="map-select" type="text" class="validate" required>
+            <label for="email">Where</label>
+            </div>
+            </div>
+            <div class="row">
+               <div class="file-field input-field col s6">
+                  <div class="btn green">
+                     <span>File</span>
+                     <input type="file">
+                  </div>
+                  <div class="file-path-wrapper">
+                     <input class="file-path validate " type="text">
+                  </div>
+               </div>
+               <div class="input-field col s6">
+                  <input id="map-select" type="text" class="validate" required>
+                  <label for="email">Detail</label>
+               </div>
+            </div>
+            <div class="row">
+               <div class="input-field col s6 browser-default">
+                  <p>
+                     <input type="checkbox" id="test5" />
+                     <label for="test5">Send Invite</label>
+                  </p>
+               </div>
+               <div class="input-field col s6">
+                  <select>
+                     <option value="" disabled selected>Choose privacy option</option>
+                     <option value="1">Public</option>
+                     <option value="2">Friend</option>
+                     <option value="3">Only me</option>
+                  </select>
+                  <label>Choose Privacy Settings</label>
+               </div>
+            </div>
+            <div class="row center">
+               <button class="btn waves-effect waves-light green" type="submit" name="action" >Submit
+               <i class="material-icons right">send</i>
+               </button>	
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+
+<div id="modal-forgot" class="modal">
+   <div class="modal-content">
+      <div class="row col s6" >
+         <h5 class="center"><b>Forget password</b></h5>
+         <form class="col s12">
+            <div class="row">
+               <div class="input-field col s12">
+                  <input id="email" type="email" class="validate" required>
+                  <label for="email">Email for who 
+                  <label>
+               </div>
+            </div>
+
+            <div class="row center">
+               <button class="btn waves-effect waves-light green" type="submit" name="action" >Submit
+               <i class="material-icons right">send</i>
+               </button>	
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+
+<div id="modal-success" class="modal">
+   <div class="modal-content">
+      <div class="row col s6" >
+        
+         <form class="col s12">
+            <div class="row center">
+               <div class="input-field col s12">
+                  <img src="./img/modal_success.png" alt="Home Bottom Image"  >
+                  </div>
+            </div>
+
+            <div class="row center">
+               <button class="btn waves-effect waves-light green" type="submit" name="action" >Close
+               <i class="material-icons right"></i>
+               </button>	
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+
+<div id="modal-error" class="modal">
+   <div class="modal-content">
+      <div class="row col s6" >
+         
+         <form class="col s12">
+
+            <div class="row center">
+               <div class="input-field col s12">
+                  <img src="./img/modal_error.png" alt="Home Bottom Image">
+               </div>
+            </div>
+
+            <div class="row center">
+               <button class="btn waves-effect waves-light green modal-trigger" type="submit"  data-target="modal-error" name="action" >Close
+               <i class="material-icons right"></i>
+               </button>	
+            </div>
+
+         </form>
+      </div>
+   </div>
+</div>
+
+
+{% endblock %}
+
+
+{% block scripting %}
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script>
+
+   $(document).ready(function() {
+      $('select').material_select();
+   });
+
+  
+$(document).ready(function() {
+  // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+  $('.modal-trigger').leanModal();
+});
+
+
+</script>
+
+
+{% endblock %}

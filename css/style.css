@@ -18,6 +18,18 @@ nav .brand-logo {
   margin-left: 100px;
 }
 
+.profile-tab-menu{
+   margin-top: 100px
+   color:green;
+
+   
+
+
+}
+
+
+
+
 .home-signuo-block{
   margin-top: 40px;
 }
@@ -46,3 +58,84 @@ nav .brand-logo {
 footer.page-footer {
   margin: 0;
 }
+
+
+
+/*Modal*/
+
+@media (min-width: 680px) {
+  #modal-add{
+
+      width: 50%; 
+      height: 70%; 
+      top: 5%; 
+      left: 5%; 
+      right: 5%; 
+      bottom: 5%; 
+  }
+
+ #modal-add h5  { 
+  color: green;
+}
+
+  #modal-register{
+
+    width: 30%; 
+    height: 70%; 
+    top: 5%; 
+    left: 5%; 
+    right: 5%; 
+    bottom: 5%;
+
+  }
+
+ #modal-register h5  { 
+  color: green;
+}
+
+  #modal-forgot{
+
+    width: 30%; 
+    height: 30%; 
+    top: 5%; 
+    left: 5%; 
+    right: 5%; 
+    bottom: 5%;
+  }
+
+#modal-forgot h5  { 
+  color: green;
+}
+
+#modal-success{
+    width: 30%; 
+    height: 30%; 
+    top: 5%; 
+    left: 5%; 
+    right: 5%; 
+    bottom: 5%;
+    
+  }
+
+#modal-success h5  { 
+  color: green;
+}
+
+#modal-error{
+
+    width: 30%; 
+    height: 30%; 
+    top: 5%; 
+    left: 5%; 
+    right: 5%; 
+    bottom: 5%;
+    
+  }
+
+#modal-error h5  { 
+  color: green;
+}
+
+
+}
+

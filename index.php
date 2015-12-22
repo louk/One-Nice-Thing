@@ -29,13 +29,10 @@
             echo $template->render(array('title' => 'Add')); 
         }
         else{
-            $template = $twig->loadTemplate('main.html');
+            $template = $twig->loadTemplate('modal.html');
             echo $template->render(array('title' => 'Start')); 
         }
         
     }
-    
-
-
 ?>
 
