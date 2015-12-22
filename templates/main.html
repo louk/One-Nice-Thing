@@ -94,8 +94,8 @@
 		            <div class="row">
 		            	<div class="col s12">
 		            		<div  class="input-field col s12">
-			                  	<input id="email_login" type="email" class="validate" required>
-			                  	<label for="email_login">Email</label>
+			                  	<input id="email_login" type="text" class="validate" required>
+			                  	<label for="email_login">Username</label>
 			               	</div>
 			               	<div class="input-field col s12">
 			                  	<input id="password_login" type="password" class="validate" required>
@@ -145,6 +145,27 @@
 	         	</form>
 	      	</div>
 	   </div>
+	</div>
+	<!-- Error modal-->
+	<div id="modal-error" class="modal">
+	   	<div class="modal-content">
+	      	<div class="row col s6" >
+	         	<form class="col s12">
+		            <div class="row center">
+		               <div class="input-field col s12">
+		                  <img src="./img/modal_error.png" alt="Home Bottom Image">
+		               </div>
+		                <p></p>
+		            </div>
+
+		            <div class="row center">
+		               <a  href ="#!" class="modal-action modal-close waves-effect waves-light orange btn" type="submit" name="action" >Username password mismatch
+		               		<i class="material-icons right"></i>
+		               	</a>	
+		            </div>
+	         	</form>
+	      	</div>
+	   	</div>
 	</div>
 {% endblock %}
 {% block scripting %}
@@ -204,6 +225,21 @@
 			$('#add_nice_thing').on('submit', function(e){
 		        e.preventDefault();
 		        $('#modal-success').openModal();
+		    });
+		    $('#login').on('submit', function(e){
+		    	e.preventDefault();
+		    	$.post("login.php", {
+	                email: $('#email_login').val(),
+	                password: $('#password_login').val()
+	                }, function (result) {
+	                    if(result==1){
+	                        window.location.replace("index.php");  
+	                    }
+	                    else{
+	                        $('#modal-error').openModal();
+	                    }
+	            });
+		       
 		    });
 	   	});
 	</script>

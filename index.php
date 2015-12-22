@@ -19,14 +19,25 @@
     $twig->setCache(false);
 
     if(isset($_SESSION['user'])){
+        $user = $_SESSION['user'];
+        if(isset($_GET['logout'])){
+            session_unset();
+            session_destroy();
+            $template = $twig->loadTemplate('main.html');
+            //render a template
+           echo $template->render(array('title' => 'See you agian')); 
+        }else{
+            $template = $twig->loadTemplate('main.html');
+            echo $template->render(array('title' => 'Welcome', 'user'=>$user)); 
+        }   
     }
     else{
         if(isset($_GET['login'])){
             $template = $twig->loadTemplate('login.html');
             echo $template->render(array('title' => 'Login')); 
-        }else if(isset($_GET['add'])){
-            $template = $twig->loadTemplate('add.html');
-            echo $template->render(array('title' => 'Add')); 
+        }else if(isset($_GET['help'])){
+            $template = $twig->loadTemplate('help.html');
+            echo $template->render(array('title' => 'Help')); 
         }
         else{
             $template = $twig->loadTemplate('main.html');
