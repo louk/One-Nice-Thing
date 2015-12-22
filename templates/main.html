@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-	
 	<div class="container">
 		<div class="section">
 			<div class="row">
@@ -16,99 +14,173 @@
 		            
 		        </div>
 		    </div>
-	    
 		</div>
-
-	    <div class="section home-signup-block">
+	    <div id="quick_add" class="section home-signup-block">
 	        <div class="row">
-	            <div class="col s12 m12 l4 z-depth-1">
+	            <div class="col s12 m12 l4 z-depth-1" style="padding-top:10px">
 	                <div class="icon-block" >
-	                    <h5 class="center">Register Here</h5>
+	                    <h5 class="center">Quick add nice thing</h5>
 	                   	<form class="col s12 ">
-
 	                   		<div class="row">
-						        <div class="input-field col s12">
-						          <input id="user_name" type="text" class="validate">
-						          <label for="password">User Name</label>
+						        <div id="email_pack" class="input-field col s12">
+						          	<input id="email" type="email" class="validate">
+						          	<label for="email">Your	 email</label>
 						        </div>
-						      </div>
-
-						      <div class="row">
-						        <div class="input-field col s12">
-						          <input id="email" type="email" class="validate">
-						          <label for="email">Email</label>
-						        </div>
-						      </div>
-
-						      <div class="row">
-						        <div class="input-field col s12">
-						          <input id="email" type="email" class="validate">
-						          <label for="email">Friend id</label>
-						        </div>
-						      </div>
-	                   		 
-						      <div class="row">
-						        <div class="input-field col s12">
-						          <input id="password" type="password" class="validate">
-						          <label for="password">Password</label>
-						        </div>
-						      </div>
-
-
-							  <div class="row">
-								<div class="input-field col s6">
-								    <a class="waves-effect waves-teal btn-flat">Anynomous</a>
-							     </div>
-								 <div class="input-field col s6">
-							        <button class="btn waves-effect waves-light orange" type="submit" name="action">Submit
-									   <i class="material-icons right">send</i>
-									 </button>
-						         </div>
-						       </div>
-
+						        <div class="col s12 center-align" style="margin-top:10px">
+						        	<div class="col s6">
+						        		<input type="checkbox" id="anom" />
+      									<label for="anom" style=" margin-bottom:8px">Anynomous</label>
+						        	</div>
+						        	<div id="add_pack" class=" col s6">
+						        		<input type="checkbox" id="register" />
+      									<label for="register" style=" margin-bottom:8px">Register</label>
+						        	</div>
+      							</div>
+					        	<div class="input-field col s12">
+						          	<input id="friend" type="text">
+						          	<label for="friend">Search friend id</label>
+					        	</div>
+					        	<div class="input-field col s12">
+						        	<textarea id="nice" class="materialize-textarea validate"></textarea>
+         							<label for="nice">Nice thing description</label>
+					        	</div>
+					        	<div class="input-field col s12">
+						        	<input id="when" type="date" class="datepicker">
+						        	<label for="when">When</label>
+					        	</div>
+					        </div>
+					        <div class="row center-align">
+							    <button class="btn waves-effect waves-light green" type="submit" name="action">ADD</button>
+					        </div>	
 						</form>
-	                </div>
-	            </div>
-
-	            <div  class="col s12 m8">
+	        		</div>
+	    		</div>
+			    <div  class="col s12 m8">
 					<div class="home-help-block">
 					    <div class="section no-pad-bot">
-					       
-					        	<img src="./img/home_signup_image.jpg" alt="Help image">
-					            <br><br>
+				        	<img src="./img/home_signup_image.jpg" alt="Help image">
+				            <br><br>
 
-					            <div class="row center">
-					               <p> You need just 10 seconds to signup. Spread tree. </p>
-					            </div>
-					            
+				            <div class="row center">
+				               <p> You need just 10 seconds to signup. Spread tree. </p>
+				            </div>
 					    </div>
 					 </div>
 				</div>
-	        </div>
-	    </div>
-
-	    
-
-	    <div class="section">
-	    <div class="home-bottom">
-	        
-	            <div class="row center">
-	                <h5 class="header col s12 light"><b>About One Nice Thing </b></h5>
-	                <p>
-	                	Lorem ipsum dolor sit amet, usu nullam splendide et. Cibo dolores nominavi sit no, apeirian gloriatur dissentiunt cu mea. Ad per salutandi maluisset, an his facete omittantur instructior. An quo convenire petentium, pri consul iuvaret ea. Case dictas nonumes cu eos. Qui ferri prima id, dicam facilis duo eu.
-	                </p>
-	            </div>
-
-
-
-	            <img src="./img/home_bottom_image.jpg" alt="Home Bottom Image">
-	            <br><br>
-	            
-	        </div>
-	    </div>
-
-
-
+			</div>
+		</div>
+		<div class="section">
+			<div class="home-bottom">
+			    <div class="row center">
+			        <h5 class="header col s12 light"><b>About One Nice Thing </b></h5>
+			        <p>
+			        	Lorem ipsum dolor sit amet, usu nullam splendide et. Cibo dolores nominavi sit no, apeirian gloriatur dissentiunt cu mea. Ad per salutandi maluisset, an his facete omittantur instructior. An quo convenire petentium, pri consul iuvaret ea. Case dictas nonumes cu eos. Qui ferri prima id, dicam facilis duo eu.
+			        </p>
+			    </div>
+			    <img src="./img/home_bottom_image.jpg" alt="Home Bottom Image">
+			    <br><br>
+			</div>
+		</div>
 	</div>
-	
+
+	<!-- Modal Login and Register -->
+	<div id="modal-login" class="modal modal-fixed-footer" style="width:30%">
+	   	<div class="modal-content  center-align">
+	      	<div class="row" >
+		        <a class="brand-logo" id="logo-container" rel="home" href="#" title="One nice thing">
+                    <img style="max-width:100px;" src="./img/logo.png">
+                </a>
+		        <form id="login" class="col s12 ">
+		            <div class="row">
+		            	<div class="col s12">
+		            		<div  class="input-field col s12">
+			                  	<input id="email_login" type="email" class="validate" required>
+			                  	<label for="email_login">Email</label>
+			               	</div>
+			               	<div class="input-field col s12">
+			                  	<input id="password_login" type="password" class="validate" required>
+			                  	<label for="password_login">Password</label>
+			               	</div>	
+		            	</div>
+		            </div>
+		            <div class="row center-align">
+		            	<button class="btn waves-effect waves-light green " type="submit" name="action">Login</button>
+		            </div>
+		        </form>
+		        <form id="forgot_pass" class="col s12 hide">
+		            <div class="row">
+		            	<div class="col s12">
+		            		<div class="input-field col s12">
+			                  	<input id="email_forgot" type="email" class="validate" required>
+			                  	<label for="email_forgot">Email</label>
+			               	</div>
+		            	</div>
+		            </div>
+		            <div class="row center-align">
+		            	<button class="btn waves-effect waves-light green " type="submit" name="action">Forgot password</button>
+		            </div>
+		        </form>
+	      	</div>
+	   	</div>
+	   	<div class="modal-footer center-align">
+      		<a href="#" id="show_forgot" class="waves-effect waves-light btn-flat center">Forgot password?</a>
+      		<a href="#" id="show_login" class="waves-effect waves-light btn-flat center hide">Login now</a>
+    	</div>
+	</div>
+{% endblock %}
+{% block scripting %}
+	{{parent()}}
+	<script type="text/javascript">
+		
+	   	$(document).ready(function() {
+	      	$('.modal-trigger').leanModal();
+	      	$('.datepicker').pickadate({
+			    selectMonths: true, // Creates a dropdown to control month
+			    selectYears: 15 // Creates a dropdown of 15 years to control year
+			});
+	      	$('#show_forgot').click(function(){
+	      		$('#login').hide();
+	      		$('#show_forgot').hide();
+	      		$('#show_login').removeClass('hide');
+	      		$('#forgot_pass').removeClass('hide');
+	      	});
+	      	$('#show_login').click(function(){
+	      		$('#login').show();
+	      		$('#show_forgot').show();
+	      		$('#show_login').addClass('hide');
+	      		$('#forgot_pass').addClass('hide');
+	      	});
+	      	$('#anom').change(function(){
+	      		if(this.checked) {
+			        $("#email_pack").fadeOut();
+			        $("#add_pack").fadeOut();
+			    }else{
+			    	$("#email_pack").fadeIn();
+			    	$("#add_pack").fadeIn();
+			    } 		
+			});
+			$('#register').change(function(){
+	      		if(this.checked) {
+			        $("#anom").attr("disabled", true);
+			    }else{
+			    	$("#anom").removeAttr("disabled");
+			    } 		
+			});
+			var availableTags = [
+				"Khan",
+				"Louk",
+				"Travis",
+				"Johnatan",
+				"Scheme"
+				];
+			$('#friend').autocomplete({
+				source: availableTags
+			});
+			$('#add_nice').click(function(){
+				$('html, body').animate({
+			        scrollTop: $("#quick_add").offset().top
+			    	})
+			});
+	   	});
+	</script>
 {% endblock %}

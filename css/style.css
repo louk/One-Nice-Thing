@@ -10,8 +10,6 @@ nav .brand-logo {
 
   color: black;
   margin-top: 20px;
-  
-
 }
 
 .home-help-block{
@@ -21,14 +19,7 @@ nav .brand-logo {
 .profile-tab-menu{
    margin-top: 100px
    color:green;
-
-   
-
-
 }
-
-
-
 
 .home-signuo-block{
   margin-top: 40px;
@@ -62,6 +53,7 @@ footer.page-footer {
 
 
 /*Modal*/
+
 
 @media (min-width: 680px) {
   #modal-add{

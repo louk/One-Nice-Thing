@@ -29,7 +29,7 @@
             echo $template->render(array('title' => 'Add')); 
         }
         else{
-            $template = $twig->loadTemplate('modal.html');
+            $template = $twig->loadTemplate('main.html');
             echo $template->render(array('title' => 'Start')); 
         }
         

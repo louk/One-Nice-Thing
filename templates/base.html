@@ -9,6 +9,7 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
         {% endblock %}
     </head>
     <body>
@@ -20,14 +21,12 @@
                         <a class="brand-logo" id="logo-container" rel="home" href="#" title="One nice thing">
                             <img style="max-width:100px;" src="./img/logo.png">
                         </a>
-
                         <ul class="right hide-on-med-and-down">
-                            <li ><a  href="index.php?login">Login | Sign up</a></li>
-                            <li><a   href="#">Help</a></li>
-                            <li><a   href="#">About</a></li>
-                            
+                            <li ><a href="#modal-login" class="modal-trigger">Login</a></li>
+                            <li ><a id="add_nice" href="#">Add nice thing</a></li>
+                            <li><a href="#">Help</a></li>
+                            <li><a href="#">About</a></li>
                         </ul>
-
                         <ul id="nav-mobile" class="side-nav green white-text">
                             <li><a href="index.php?login">Login</a></li>
                             <li><a href="#">Sign up</a></li>
@@ -72,9 +71,10 @@
         </footer>
         <!--  Scripts-->
         {% block scripting %}
-        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="js/materialize.js"></script>
         <script src="js/init.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         {% endblock %}
     </body>
 </html>
