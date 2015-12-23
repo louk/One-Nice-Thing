@@ -1,0 +1,150 @@
+{% extends "base-logged.html" %}
+{% block content %}
+<div class="container dashboard">
+    <div class='row'>
+        <div class='col s12 m6 l3'>
+            <div class="card member">
+                <div class="card-image">
+                    <img src="img/cat.jpg" height="250">
+                </div>
+                <div class="card-content">
+                    <div class='center-align'>
+                        <span style="font-size: 1.25em">Hello Naranbayar</span>
+                    </div>
+                    <div class='flex middle'>
+                        <div class='big-font green-text'>36</div>
+                        <div class='flex-col small-font' style='margin-left:10px;'>
+                            <div>You are member</div>
+                            <div>of <span class='green-text'>2700</span></div>
+                            <div>users worldwide</div>
+                        </div>
+                    </div>
+                    <div class='flex middle'>
+                        <div class='big-font green-text'>36</div>
+                        <div class='flex-col small-font' style='margin-left:10px;'>
+                            <div>You are member</div>
+                            <div>of <span class='green-text'>2700</span></div>
+                            <div>users worldwide</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='col s12 m6 l9'>
+            <div class='col s12 m12 l4'>
+                <div class="card" style='border:2px solid #e65100'>
+                    <div class="card-content center">
+                        <span class='grey-text text-lighten-1'>Originated</span>
+                        <div class='big-font orange-text text-darken-4' style='margin-top:50px;'>625</div>
+                        <div class='small-font'>Nice things originated from you</div>
+                    </div>
+                </div>
+            </div>
+            <div class='col s12 m12 l4'>
+                <div class="card" style='border:2px solid #a1e7ff'>
+                    <div class="card-content center">
+                        <span class='grey-text text-lighten-1'>Friend List</span>
+                        <div class='big-font grey-text' style='margin-top:50px;'>22</div>
+                        <div class='small-font grey-text text-lighten-1'>Friends</div>
+                    </div>
+                </div>
+            </div>
+            <div class='col s12 m12 l4'>
+                <div class="card" style='border:2px solid #65acdb'>
+                    <div class="card-content center">
+                        <span class='grey-text text-lighten-1'>Nice Things</span>
+                        <div class='big-font grey-text' style='margin-top:50px;'>215</div>
+                        <div class='small-font'>Nice directly attributed to you</div>
+                    </div>
+                </div>
+            </div>
+            <div class='col s12 m12 l4'>
+                <div class="card" style='border:2px solid #ccc145'>
+                    <div class="card-content center">
+                        <span class='grey-text text-lighten-1'>Distance</span>
+                        <div class='big-font grey-text' style='margin-top:50px;'>5000km</div>
+                        <div class='small-font grey-text text-lighten-1'>Longest distance</div>
+                    </div>
+                </div>
+            </div>
+            <div class='col s12 m12 l4'>
+                <div class="card" style='border:2px solid #f47efc'>
+                    <div class="card-content center">
+                        <span class='grey-text text-lighten-1'>Nice Things Done</span>
+                        <div class='big-font grey-text' style='margin-top:50px;'>98%</div>
+                        <div class='small-font'>Percentile for Nice Things done</div>
+                    </div>
+                </div>
+            </div>
+            <div class='col s12 m12 l4'>
+                <div class="card orange darken-4" style='border:2px solid #f5a92f'>
+                    <div class="card-content center">
+                        <span class='white-text'>Overall Rank</span>
+                        <div class='big-font white-text' style='margin-top:50px;'>18th</div>
+                        <div class='small-font white-text'>Over all rank </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class='row'>
+        <div class='col s12 m6 l6'>
+            <div class="card">
+                <div class="card-content">
+                    <span>My tree</span>
+                </div>
+                <div class="card-image">
+                    <img src="img/background2.jpg">
+                </div>
+            </div>
+        </div>
+        <div class='col s12 m6 l6'>
+            <div class="card">
+                <div class="card-content">
+                    <span>Map</span>
+                </div>
+                <div class="card-image">
+                    <img src="img/background2.jpg" height="250">
+                </div>
+                <div class="card-content flex middle around">
+                    <div class='flex middle'>
+                        <div class='big-font green-text'>36</div>
+                        <div class='flex-col small-font' style='margin-left:10px;'>
+                            <div>You are member</div>
+                            <div>of <span class='green-text'>2700</span></div>
+                            <div>users worldwide</div>
+                        </div>
+                    </div>
+                    <span style="font-size: 1.25em">Hello Naranbayar</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+
+{% block scripting %}
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+        $('select').material_select();
+    });
+
+
+    $(document).ready(function () {
+        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+        $('.modal-trigger').leanModal();
+    });
+
+
+</script>
+
+
+{% endblock %}

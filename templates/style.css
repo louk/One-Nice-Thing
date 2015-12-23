@@ -1,0 +1,74 @@
+header{
+    margin-top:20px;
+}
+header li{
+    margin:0 20px; 
+}
+header a{
+    font-weight: 500;
+    font-size:1.25em;
+}
+header a:hover{
+    color:#4caf50 !important;
+}
+.big-font{
+    font-size:3em;
+}
+.small-font{
+    font-size:0.75em;
+}
+.flex{
+    display:flex;
+    display:-webkit-flex;
+    flex-wrap:wrap;
+}
+.flex-col{
+    display:flex;
+    display:-webkit-flex;
+    flex-direction:column;
+}
+.no-wrap{
+    flex-wrap:nowrap;
+}
+.center{
+    justify-content:center;
+    -webkit-justify-content:center;
+}
+.between{
+    justify-content:space-between;
+    -webkit-justify-content:space-between;
+}
+.middle{
+    align-items:center;
+    -webkit-align-items:center;
+}
+.around{
+    justify-content:space-between;
+    -webkit-justify-content:space-between;
+}
+.dashboard .card{
+    min-height:200px;
+}
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+main {
+    flex: 1 0 auto;
+}
+#menu a{
+    display: block;
+    padding:10px 0;
+    color:#4CAF50;
+    text-align: center;
+}
+#menu .active{
+    background:#4CAF50;
+}
+#menu .active a{
+    color:#fff; 
+}
+.uppercase{
+    text-transform: uppercase;
+}

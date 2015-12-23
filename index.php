@@ -40,7 +40,8 @@
             echo $template->render(array('title' => 'Help')); 
         }
         else{
-            $template = $twig->loadTemplate('main.html');
+           // $template = $twig->loadTemplate('main.html');
+            $template = $twig->loadTemplate('friends.html');
             echo $template->render(array('title' => 'Start')); 
         }
         
