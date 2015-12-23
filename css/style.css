@@ -19,16 +19,20 @@ nav .brand-logo {
 .profile-tab-menu{
    margin-top: 100px
    color:green;
-<<<<<<< Updated upstream
 }
 
-=======
-
+span.badge{
+  position: inherit;
+  padding: 6px 6px; 
+  margin-bottom: 5px  ;
 }
 
+span.badge.new {
+  border-radius: 10px;
+  background-color: #CD0A0A;
+  margin-left: 5px;
+}
 
-
->>>>>>> Stashed changes
 .home-signuo-block{
   margin-top: 40px;
 }

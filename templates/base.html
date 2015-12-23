@@ -14,37 +14,29 @@
     </head>
     <body>
         <header>
-            <div class="navbar ">
-                <nav class="white z-depth-0" role="navigation">
-                    <div class="nav-wrapper container ">
-
-                        <a href ="index.php" class="brand-logo" id="logo-container" rel="home" href="#" title="One nice thing">
-                            <img style="max-width:100px;" src="./img/logo.png">
-                        </a>
-                        <ul class="right hide-on-med-and-down">
-                            {% if user %}
-                                <li><a  href="#">Add</a></li>
-                                <li ><a href="#">My Profile</a></li>
-                                <li><a  href="#">Notification</a></li>
-                                <li><a  href="#">Chat</a></li>
-                                <li><a  href="#">Explore</a></li>
-                                <li><a  href="index.php?logout">Logout</a></li>
-                            {% else %}
-                                <li ><a href="#modal-login" class="modal-trigger">Login</a></li>
-                                <li ><a id="add_nice" href="#">Add nice thing</a></li>
-                                <li><a href="index.php?help">Help</a></li>
-                                <li><a href="index.php?about">About</a></li>
-                            {% endif %}
-                        </ul>
-                        <ul id="nav-mobile" class="side-nav green white-text">
-                            <li><a href="index.php?login">Login</a></li>
-                            <li><a href="#">Sign up</a></li>
-                            <li><a href="#">Help</a></li>
-                            <li><a href="#">About</a></li>
-                        </ul>
-                        <a href="#" data-activates="nav-mobile" class="button-collapse green-text"><i class="material-icons">menu</i></a>
-                    </div>
-                </nav>
+            <div class='container'>
+                <a href="index.php"><img src='img/logo.png' height='64'></a>
+                <ul class="right flex middle">
+                    {% if user %}
+                        <li class='flex middle'><img src="img/background2.jpg" height='20' width='20' alt="" class="circle" style='margin-right:10px;'><a class='grey-text text-darken-3' href="index.php?dashboard">Louk</a></li>
+                        <li><a class='grey-text text-darken-3' href="#">Chat</a></li>
+                        <li><a class='grey-text text-darken-3' href="#">Notification<span class="new badge">4</span></a></li>
+                        <li><a class='grey-text text-darken-3' href="index.php?explore">Explore</a></li>
+                        <li><a class="btn-floating green modal-trigger" href="#modal-add"><i class="material-icons">add</i></a></li>
+                        <li><a  class="btn-floating grey" href="index.php?logout"><i class="material-icons">vpn_key</i></a></li>
+                    {% else %}
+                        <li ><a class='grey-text text-darken-3 modal-trigger' href="#modal-login" class="">Login</a></li>
+                        <li ><a class='grey-text text-darken-3' id="add_nice" href="#">Add nice thing</a></li>
+                        <li><a class='grey-text text-darken-3' href="index.php?help">Help</a></li>
+                        <li><a class='grey-text text-darken-3' href="index.php?about">About</a></li>
+                    {% endif %}
+                </ul>
+                <ul id="nav-mobile" class="side-nav green white-text">
+                    <li><a href="index.php?login">Login</a></li>
+                    <li><a href="#">Sign up</a></li>
+                    <li><a href="#">Help</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
             </div>
         </header>
 
@@ -76,12 +68,83 @@
                 </div>
             </div>
         </footer>
+        <div id="modal-add" class="modal">
+            <div class="modal-content">
+              <div class="row col s6" >
+                 <h5 class="center"><b>Report Nice Thing</b></h5>
+                 <form class="col s12">
+                    <div class="row">
+                       <div class="input-field col s6">
+                          <input id="username" type="text" class="validate" required>
+                          <label for="username">User lookup</label>
+                       </div>
+                       <div class="input-field col s6">
+                          <input id="email" type="email" class="validate" required>
+                          <label for="email">Email for who 
+                          <label>
+                       </div>
+                    </div>
+                    <div class="row">
+                    <div class="input-field col s6">
+                    <input id="date" type="date" class="datepicker" required>
+                    <label for="email">When</label>
+                    </div>
+                    <div class="input-field col s6">
+                    <input id="map-select" type="text" class="validate" required>
+                    <label for="email">Where</label>
+                    </div>
+                    </div>
+                    <div class="row">
+                       <div class="file-field input-field col s6">
+                          <div class="btn green">
+                             <span>File</span>
+                             <input type="file">
+                          </div>
+                          <div class="file-path-wrapper">
+                             <input class="file-path validate " type="text">
+                          </div>
+                       </div>
+                       <div class="input-field col s6">
+                          <input id="map-select" type="text" class="validate" required>
+                          <label for="email">Detail</label>
+                       </div>
+                    </div>
+                    <div class="row">
+                       <div class="input-field col s6 browser-default">
+                          <p>
+                             <input type="checkbox" id="test5" />
+                             <label for="test5">Send Invite</label>
+                          </p>
+                       </div>
+                       <div class="input-field col s6">
+                          <select>
+                             <option value="" disabled selected>Choose privacy option</option>
+                             <option value="1">Public</option>
+                             <option value="2">Friend</option>
+                             <option value="3">Only me</option>
+                          </select>
+                          <label>Choose Privacy Settings</label>
+                       </div>
+                    </div>
+                    <div class="row center">
+                       <button class="btn waves-effect waves-light green" type="submit" name="action" >Submit
+                       <i class="material-icons right">send</i>
+                       </button>    
+                    </div>
+                 </form>
+              </div>
+            </div>
+            </div>
         <!--  Scripts-->
         {% block scripting %}
         <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="js/materialize.js"></script>
         <script src="js/init.js"></script>
         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <script type="text/javascript">
+
+        </script>
         {% endblock %}
+        
     </body>
 </html>

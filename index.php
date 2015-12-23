@@ -26,10 +26,22 @@
             $template = $twig->loadTemplate('main.html');
             //render a template
            echo $template->render(array('title' => 'See you agian')); 
-        }else{
+        }else if(isset($_GET['friends'])){
+            $template = $twig->loadTemplate('friends.html');
+            echo $template->render(array('title' => 'My friends', 'user'=>$user, 'nav' => 5)); 
+        }
+        else if(isset($_GET['dashboard'])){
+            $template = $twig->loadTemplate('dashboard.html');
+            echo $template->render(array('title' => 'Dashboard', 'user'=>$user, 'nav' => 1)); 
+        }
+        else if(isset($_GET['explore'])){
+            $template = $twig->loadTemplate('explore.html');
+            echo $template->render(array('title' => 'Explore', 'user'=>$user)); 
+        }
+        else{
             $template = $twig->loadTemplate('main.html');
-            echo $template->render(array('title' => 'Welcome', 'user'=>$user)); 
-        }   
+            echo $template->render(array('title' => 'Start','user'=>$user)); 
+        }
     }
     else{
         if(isset($_GET['login'])){
@@ -40,8 +52,8 @@
             echo $template->render(array('title' => 'Help')); 
         }
         else{
-           // $template = $twig->loadTemplate('main.html');
-            $template = $twig->loadTemplate('friends.html');
+            $template = $twig->loadTemplate('main.html');
+            //$template = $twig->loadTemplate('friends.html');
             echo $template->render(array('title' => 'Start')); 
         }
         
