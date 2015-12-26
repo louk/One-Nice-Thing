@@ -52,8 +52,10 @@
             echo $template->render(array('title' => 'Help')); 
         }
         else{
+
             $template = $twig->loadTemplate('main.html');
-            //$template = $twig->loadTemplate('friends.html');
+
+            $template = $twig->loadTemplate('my-things.html');
             echo $template->render(array('title' => 'Start')); 
         }
         

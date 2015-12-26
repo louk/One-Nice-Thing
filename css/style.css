@@ -241,6 +241,7 @@ body {
     min-height: 100vh;
     flex-direction: column;
 }
+
 main {
     flex: 1 0 auto;
 }
@@ -258,6 +259,22 @@ main {
 }
 .uppercase{
     text-transform: uppercase;
+}
+
+table tr:hover{
+    background:#eee;
+}
+table td, table th{
+    padding-left:30px;
+    padding-right:30px;
+}
+i{
+    color:gray;
+    cursor: pointer;
+}
+
+th {
+    font-weight: normal;
 }
 
 
