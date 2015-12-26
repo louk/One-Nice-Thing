@@ -1,29 +1,15 @@
-{% extends "base-logged.html" %}
-{% block content %}
+{% extends "submain.html" %}
+{% block subcontent %}
 <div class="container">
-    <ul id='menu' class='grey lighten-3 row'>
-        <li class='col s12 m2 l2'><a href='#'>My Dashboard</a></li>
-        <li class='col s12 m2 l2'><a href='#'>My Nice Things</a></li>
-        <li class='col s12 m2 l2'><a href='#'>My Tree</a></li>
-        <li class='col s12 m2 l2'><a href='#'>My Map</a></li>
-        <li class='active col s12 m2 l2'><a href='#'>My Friends</a></li>
-        <li class='col s12 m2 l2'><a href='#'>Settings</a></li>
-    </ul>
-
     <table class="table centered bordered z-depth-1">
-
         <thead>
           <tr class="amber lighten-2">
               <th data-field="name">Nice Thing Name</th>
               <th data-field="who">Person name</th>
               <th data-field="date" class="right-align">Date</th>
           </tr>
-
         </thead>
-
-
         <tbody>
-
             <tr>
                 <th data-field="name">My Nice Things</th>
                 <th data-field="who">Louk</th>
