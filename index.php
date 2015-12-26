@@ -18,6 +18,17 @@
     //load template file
     $twig->setCache(false);
 
+    if(isset($_GET['about'])){
+        $template = $twig->loadTemplate('about.html');
+        echo $template->render(array('title' => 'About'));
+        return;
+    }
+    if(isset($_GET['help'])){
+        $template = $twig->loadTemplate('help.html');
+        echo $template->render(array('title' => 'Help'));
+        return;
+    }
+
     if(isset($_SESSION['user'])){
         $user = $_SESSION['user'];
         if(isset($_GET['logout'])){
