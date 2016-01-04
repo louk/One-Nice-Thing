@@ -181,23 +181,40 @@ footer.page-footer {
   }
 
 
-
   /********/
 
-
-  header{
+header{
     margin-top:20px;
 }
 header li{
-    margin:0 20px; 
+    font-size:1.125em;
+    font-weight: 500;
+    margin-left:50px;
 }
 header a{
-    font-weight: 500;
-    font-size:1.25em;
+    color:#424242; 
 }
 header a:hover{
-    color:#4caf50 !important;
+    color:#4CAF50;
 }
+
+#settings .title{
+    color:#4CAF50;
+    font-weight:bold;
+    text-align: left;
+    margin-bottom:20px;
+}
+.section{
+    padding:20px 40px;
+}
+.divider{
+    width:100%;
+    background:#bdbdbd;
+    height:1px;
+}
+
+
+
 .big-font{
     font-size:3em;
 }
@@ -207,13 +224,31 @@ header a:hover{
 .flex{
     display:flex;
     display:-webkit-flex;
-    flex-wrap:wrap;
 }
+.flex.between{
+    justify-content:space-between;
+    -webkit-justify-content:space-between;
+}
+.flex.middle{
+    align-items:center;
+    -webkit-align-items:center;
+}
+.flex.center{
+    justify-content:center;
+    -webkit-justify-content:center;
+}
+.flex.end{
+    justify-content:flex-end;
+    -webkit-justify-content:flex-end;
+}
+
 .flex-col{
     display:flex;
     display:-webkit-flex;
     flex-direction:column;
 }
+
+
 .no-wrap{
     flex-wrap:nowrap;
 }
@@ -246,21 +281,35 @@ main {
     flex: 1 0 auto;
 }
 #menu a{
-    display: block;
     padding:10px 0;
+    display: block;
     color:#4CAF50;
-    text-align: center;
+    font-weight: bold;
+    text-align: center
 }
-#menu .active{
+
+#menu{
+    background:#f5f5f5;
+}
+
+#menu a:hover{
     background:#4CAF50;
+    color:#fff;
 }
-#menu .active a{
-    color:#fff; 
-}
+
+
+
+
 .uppercase{
     text-transform: uppercase;
 }
 
+table{
+    border-collapse:initial;
+}
+table tr{
+    padding:0 20px;
+}
 table tr:hover{
     background:#eee;
 }
@@ -275,6 +324,48 @@ i{
 
 th {
     font-weight: normal;
+}
+
+
+input[type=text], input[type=password], input[type=email], input[type=url], input[type=time], input[type=date], input[type=datetime-local], input[type=tel], input[type=number], input[type=search], textarea.materialize-textarea{
+    height:2rem;
+}
+.file-field .btn, .file-field .btn-large{
+    line-height:2rem;
+    height:2rem;
+    padding:0 1rem;
+}
+
+[type="checkbox"].filled-in:checked + label:after {
+    border: 2px solid #4CAF50;
+    background-color: #4CAF50;
+}
+.select-wrapper input.select-dropdown {
+    display: inline;
+    width:40px;
+}
+
+#aside li{
+    color:#757575;
+    font-weight: bold;
+    font-size: 1.125em;
+    border-bottom: 1px solid #eeeeee;
+    padding:10px 0;
+    cursor: pointer;
+}
+#aside li:hover{
+    color:#4CAF50;
+}
+dt{
+    color:#4CAF50;
+    font-weight: bold;
+}
+dd{
+    margin:0;
+    margin-top:40px;
+}
+dt:nth-child(n+2){
+    margin-top:40px;
 }
 
 

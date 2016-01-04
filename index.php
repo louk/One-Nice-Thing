@@ -24,7 +24,7 @@
         return;
     }
     if(isset($_GET['help'])){
-        $template = $twig->loadTemplate('help.html');
+        $template = $twig->loadTemplate('settings.html');
         echo $template->render(array('title' => 'Help'));
         return;
     }
@@ -50,7 +50,7 @@
             echo $template->render(array('title' => 'My friends', 'user'=>$user, 'nav' => 2)); 
         }
         else if(isset($_GET['settings'])){
-            $template = $twig->loadTemplate('my-things.html');
+            $template = $twig->loadTemplate('settings.html');
             echo $template->render(array('title' => 'My friends', 'user'=>$user, 'nav' => 2)); 
         }
         else if(isset($_GET['dashboard'])){
