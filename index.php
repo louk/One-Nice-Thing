@@ -79,9 +79,12 @@
             echo $template->render(array('title' => 'Help')); 
         }
         else{
+            $query = new ParseQuery("_User");
+            $query->equalTo('status', 1);
+            $users = $query->find();
             $template = $twig->loadTemplate('main.html');
-           // $template = $twig->loadTemplate('my-things.html');
-            echo $template->render(array('title' => 'Start')); 
+            //$template = $twig->loadTemplate('my-things.html');
+            echo $template->render(array('title' => 'Start', 'users' => $users)); 
         }
         
     }

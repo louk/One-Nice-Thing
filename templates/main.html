@@ -23,35 +23,35 @@
 	                   	<form id="add_nice_thing" class="col s12 ">
 	                   		<div class="row">
 						        <div id="email_pack" class="input-field col s12">
-						          	<input id="email" type="email" class="validate">
+						          	<input id="email" name="email" type="email" class="validate" required>
 						          	<label for="email">Your	 email</label>
 						        </div>
 						        <div class="col s12 center-align" style="margin-top:10px">
 						        	<div class="col s6">
-						        		<input type="checkbox" id="anom" />
+						        		<input type="checkbox" id="anom" name="anom"/>
       									<label for="anom" style=" margin-bottom:8px">Anynomous</label>
 						        	</div>
 						        	<div id="add_pack" class=" col s6">
-						        		<input type="checkbox" id="register" />
+						        		<input type="checkbox" id="register" name="register"/>
       									<label for="register" style=" margin-bottom:8px">Register</label>
 						        	</div>
       							</div>
 					        	<div class="input-field col s12">
-						          	<input id="friend" type="text">
+						          	<input id="friend" type="text"  class="validate" required name="friend">
 						          	<label for="friend">Search friend id</label>
 					        	</div>
 					        	<div class="input-field col s12">
-						        	<textarea id="nice" class="materialize-textarea validate"></textarea>
+						        	<textarea id="nice" class="materialize-textarea validate" required name="nice"></textarea>
          							<label for="nice">Nice thing description</label>
 					        	</div>
 					        	<div class="input-field col s12">
-						        	<input id="when" type="date" class="datepicker">
+						        	<input id="when" type="date" class="datepicker" required name="when">
 						        	<label for="when">When</label>
 					        	</div>
 					        </div>
 					        <div class="row center-align">
 							    <button class="btn waves-effect waves-light green" type="submit" name="action">START NICE THINGS</button>
-					        </div>	
+					        </div>
 						</form>
 	        		</div>
 	    		</div>
@@ -172,12 +172,33 @@
 	{{parent()}}
 	<script type="text/javascript">
 		
+		$.fn.serializeObject = function()
+		{
+		    var o = {};
+		    var a = this.serializeArray();
+		    $.each(a, function() {
+		        if (o[this.name] !== undefined) {
+		            if (!o[this.name].push) {
+		                o[this.name] = [o[this.name]];
+		            }
+		            o[this.name].push(this.value || '');
+		        } else {
+		            o[this.name] = this.value || '';
+		        }
+		    });
+		    return o;
+		};
+
 	   	$(document).ready(function() {
 	      	$('.modal-trigger').leanModal();
-	      	$('.datepicker').pickadate({
+	      	var $input = $('.datepicker').pickadate({
 			    selectMonths: true, // Creates a dropdown to control month
-			    selectYears: 15 // Creates a dropdown of 15 years to control year
+			    selectYears: 15, // Creates a dropdown of 15 years to control year
+			    format: 'dd/mm/yyyy'
 			});
+			var picker = $input.pickadate('picker');
+			picker.set('select',  new Date());
+
 	      	$('#show_forgot').click(function(){
 	      		$('#login').hide();
 	      		$('#show_forgot').hide();
@@ -193,9 +214,11 @@
 	      	$('#anom').change(function(){
 	      		if(this.checked) {
 			        $("#email_pack").fadeOut();
+			        $("#email").removeAttr('required');
 			        $("#add_pack").fadeOut();
 			    }else{
-			    	$("#email_pack").fadeIn();
+			    	$("#email").show();
+			    	$("#email").addAttr('required');
 			    	$("#add_pack").fadeIn();
 			    } 		
 			});
@@ -206,12 +229,12 @@
 			    	$("#anom").removeAttr("disabled");
 			    } 		
 			});
+
 			var availableTags = [
-				"Khan",
-				"Louk",
-				"Travis",
-				"Johnatan",
-				"Scheme"
+				{% for user in users %}
+				"{{user.username}}",
+				{% endfor%}
+				"Travis"
 				];
 			$('#friend').autocomplete({
 				source: availableTags
@@ -224,7 +247,22 @@
 
 			$('#add_nice_thing').on('submit', function(e){
 		        e.preventDefault();
-		        $('#modal-success').openModal();
+		        var formData = $("#add_nice_thing").serializeObject();
+		        $.ajax({
+				    url : "add.php",
+				    type: "POST",
+				    data : {data:formData},
+				    success: function(data, textStatus, jqXHR)
+				    {
+				    	 $('#modal-success').openModal();
+				        console.log(data);
+				    },
+				    error: function (jqXHR, textStatus, errorThrown)
+				    {
+				 
+				    }
+				});
+		       
 		    });
 		    $('#login').on('submit', function(e){
 		    	e.preventDefault();
@@ -239,7 +277,6 @@
 	                        $('#modal-error').openModal();
 	                    }
 	            });
-		       
 		    });
 	   	});
 	</script>
