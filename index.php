@@ -47,11 +47,11 @@
         }
         else if(isset($_GET['nicethings'])){
             $template = $twig->loadTemplate('my-things.html');
-            echo $template->render(array('title' => 'My friends', 'user'=>$user, 'nav' => 2)); 
+            echo $template->render(array('title' => 'My nice things', 'user'=>$user, 'nav' => 2)); 
         }
         else if(isset($_GET['settings'])){
             $template = $twig->loadTemplate('settings.html');
-            echo $template->render(array('title' => 'My friends', 'user'=>$user, 'nav' => 2)); 
+            echo $template->render(array('title' => 'My settings', 'user'=>$user, 'nav' => 2)); 
         }
         else if(isset($_GET['dashboard'])){
             $template = $twig->loadTemplate('dashboard.html');
@@ -59,6 +59,10 @@
         }
         else if(isset($_GET['explore'])){
             $template = $twig->loadTemplate('explore.html');
+            echo $template->render(array('title' => 'Explore', 'user'=>$user)); 
+        }
+        else if(isset($_GET['chat'])){
+            $template = $twig->loadTemplate('chat.html');
             echo $template->render(array('title' => 'Explore', 'user'=>$user)); 
         }
         else{
@@ -75,9 +79,7 @@
             echo $template->render(array('title' => 'Help')); 
         }
         else{
-
             $template = $twig->loadTemplate('main.html');
-
            // $template = $twig->loadTemplate('my-things.html');
             echo $template->render(array('title' => 'Start')); 
         }
