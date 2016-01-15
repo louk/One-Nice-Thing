@@ -3,20 +3,67 @@
 {% block content %}
 <div class='ui container'>
     <div>
-        <img class="ui centered large image" src="img/home.png">
-    </div>
-    <div class='flex-col middle center' style='margin-top:50px;'>
-        <h3>If you do something nice for someone and ask them to do the same...</h3>
-        <div class='flex middle'>
-            <a class='medium-font'>How far will it go? Lets find out !</a>
-            <a class='medium-font' style='color:#40B553'>Let's find out!</a>
-        </div>
-    </div>
-    <div class='flex center' style='margin-top:50px;'>
-        <button class="ui button uppercase">Add Nice Things</button>
-        <button class="ui button uppercase" id='login'>Login</button>
+        <img class="ui centered image" src="img/home.png" style='max-height: 250px;'>
     </div>
 </div>
+<div class='flex-col middle center' style='padding:20px; background:#eee;'>
+    <h3 style='font-weight: 200;'>If you do something nice for someone and ask them to do the same...</h3>
+    <div class='flex middle'>
+        <a class='medium-font' style='color:#999; font-weight: 600'>How far will it go?</a>
+        <a class='medium-font' style='color:#40B553; margin-left:20px; font-weight: 600; text-decoration: underline'>Let's find out!</a>
+    </div>
+</div>
+<div class='ui container'>
+    <div class='flex center middle' style='margin-top:40px;'>
+        <div class='flex-col bottom' style='width:40%;'>
+            <h3 style='color:#bdbdbd'>Want to try it?</h3>
+            <span style='margin-top:20px;'>
+                <button class='ui button' style='border-radius: 10px; background:#40B553; color:#fff'>Sign up here</button>
+            </span>
+        </div>
+        <div class='separator'></div>
+        <div class='flex-col' style='width:40%'>
+            <h3 style='color:#bdbdbd; width:250px;'>Want to report a nice thing you've done?</h3>
+            <span style='margin-top:0px;'>
+                <button class='ui yellow button' style='border-radius: 10px;'>Click here</button>
+            </span>
+        </div>
+    </div>
+    <div class='flex center middle' style='margin-top:30px;'>
+        <div>
+            <img class="ui image" src="img/animate.gif" height='250'>
+        </div>
+        <div style='width: 40%; margin-left:20px;' class='flex-col middle'>
+            <p>Does helping others really make the world a better place? Do random 
+                acts of kindness create any positive impact on the lives of others? We 
+                think so, but wanted to find a way to prove it.</p>
+            <p>We developed this site to find out just how far <a href='index.php' style='color:#40B553; font-weight: 600'>One Nice Thing</a> can go,
+                and the impact it can have on the people that it touches.</p>
+            <button class='ui inverted green button' style='font-size:1.15em;'>Learn more</button>
+        </div>
+    </div>
+</div>
+<div class="ui modal">
+    <i class="close icon"></i>
+    <div class="header">
+        Modal Title
+    </div>
+    <div class="image content">
+        <div class="image">
+            An image can appear on left or an icon
+        </div>
+        <div class="description">
+            A description can appear on the right
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui button">Cancel</div>
+        <div class="ui button">OK</div>
+    </div>
+</div>
+<script>
+    $('.test.modal').modal('attach events', '.test.button', 'show');
+</script>
 {% endblock %}
 {% block scripting %}
 {{parent()}}

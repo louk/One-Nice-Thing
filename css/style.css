@@ -1,3 +1,9 @@
+*{
+    font-family: 'Roboto', sans-serif;
+}
+a{
+    color:#bdbdbd
+}
 html,
 body {
     margin:0;
@@ -20,15 +26,39 @@ footer {
     padding-bottom:50px;
 }
 header{
-    padding:20px 0;
+    padding:20px 0 40px 0;
 }
+/*#custom_small_modal{
+    width: 30.4%;
+    margin: 0em 0em 0em -14.2%;
+}
+.ui.submit.button{
+    background: rgb(64, 181, 83);
+    color: white;
+}*/
 .flex{
     display:flex;
     display: -webkit-flex;
 }
+.end{
+    justify-content:flex-end;
+    -webkit-justify-content:flex-end;
+}
+.bottom{
+    align-items:flex-end;
+    -webkit-align-items:flex-end;
+}
 .center{
     justify-content:center;
     -webkit-justify-content:center;
+}
+.around{
+    justify-content:space-around;
+    -webkit-justify-content:space-around;
+}
+.varound{
+    align-items:space-around;
+    -webkit-align-items:space-around;
 }
 .middle{
     align-items:center;
@@ -37,6 +67,10 @@ header{
 .between{
     justify-content:space-between;
     -webkit-justify-content:space-between;
+}
+.vbetween{
+    align-items:space-between;
+    -webkit-align-items:space-between;
 }
 .flex-col{
     display:flex;
@@ -54,13 +88,14 @@ footer a:hover{
     color:#fff;
 }
 #menu{
-    margin-bottom:20px;
+    margin-bottom:40px;
 }
 #menu a{
     color:#40B553;
     font-weight: 600;
     display: block;
     padding:10px 20px;
+    transition: all .2s ease-in-out;
 }
 #menu a.active{
     background:#40B553;
@@ -69,6 +104,23 @@ footer a:hover{
 #menu a:hover{
     background:#40B553;
     color:#fff;
+}
+.menu>a{
+    font-size: 1.125em;
+    font-weight: bold !important;
+    color:#bdbdbd !important;
+}
+.menu a:hover{
+    color:#40B553 !important;
+}
+.menu .active{
+    color:#40B553 !important;
+}
+.menu{
+    border-bottom-color:rgba(34,36,38,.1) !important;
+}
+.menu .active{
+    border-color:#40B553 !important;
 }
 .dashboard .content>*{
     margin-top:20px;
@@ -96,4 +148,37 @@ footer a:hover{
 }
 @media only screen and (max-width: 991px) {
 
+}
+footer a:hover{
+    color:#fff;
+}
+.separator{
+    height:100px;
+    width:1px;
+    background:#bdbdbd;
+    margin:0 30px;
+}
+.ui.selection.dropdown{
+    min-width: initial;
+}
+.settings h4{
+    color:#40B553;
+}
+.settings>div:nth-of-type(n+2){
+    margin-top:40px;
+}
+.settings{
+    width:50%;
+    border:1px solid #bdbdbd;
+    padding:20px;
+    border-radius: 3px;
+    margin-bottom:40px;
+}
+.card .header{
+    font-size:1.15em !important;
+}
+.help a{
+    color:#000;
+    font-weight: bold;
+    font-size: 1.15em;
 }
