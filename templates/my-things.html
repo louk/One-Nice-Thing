@@ -1,116 +1,85 @@
 {% extends "submain.html" %}
 {% block subcontent %}
-<div class="container">
-    <table class="table centered bordered z-depth-1">
+<div class="ui container">
+    <table class="ui celled table">
         <thead>
-          <tr class="amber lighten-2">
-              <th data-field="name">Nice Thing Name</th>
-              <th data-field="who">Person name</th>
-              <th data-field="date" class="right-align">Date</th>
-          </tr>
-        </thead>
+            <tr><th>My Thing Name</th>
+                <th>Person name</th>
+                <th class='collapsing'>Date</th>
+            </tr></thead>
         <tbody>
             <tr>
-                <th data-field="name">My Nice Things</th>
-                <th data-field="who">Louk</th>
-                <th data-field="date" class="right-align">12/15/2000</th>
-            </tr>
-
-             <tr>
-                <th data-field="name">My Nice Things</th>
-                <th data-field="who">Louk</th>
-                <th data-field="date" class="right-align">12/15/2000</th>
-            </tr>
-
-             <tr>
-                <th data-field="name">My Nice Things</th>
-                <th data-field="who">Louk</th>
-                <th data-field="date" class="right-align">12/15/2000</th>
-            </tr>
-
-             <tr>
-                <th data-field="name">My Nice Things</th>
-                <th data-field="who">Louk</th>
-                <th data-field="date" class="right-align">12/15/2000</th>
-            </tr>
-
-             <tr>
-                <th data-field="name">My Nice Things</th>
-                <th data-field="who">Louk</th>
-                <th data-field="date" class="right-align">12/15/2000</th>
-            </tr>
-
-             <tr>
-                <th data-field="name">My Nice Things</th>
-                <th data-field="who">Louk</th>
-                <th data-field="date" class="right-align">12/15/2000</th>
-            </tr>
-
-            <tr>
-                <td></td>
-                <td></td>
-                <td class="flex middle end">
-                    <span style='margin-right:40px;'>Rows per page:</span>  
-                    <select>
-                        <option value="10">10</option>
-                        <option value="20">20</option>
-                        <option value="30">30</option>
-                    </select>
-                    <span style='margin-left:40px;'>1 of 10</span>
-                    <div style='margin-left:40px;'>
-                        <a href="#"><i class="material-icons">chevron_left</i></a>
-                        <a style='margin-left:10px;' href="#"><i class="material-icons">chevron_right</i></a>
-                    </div>
+                <td>My Nice Things</td>
+                <td>
+                    <h4 class="ui image header">
+                        <img src="img/cat.jpg" class="ui mini rounded image">
+                        <div class="content">Lena</div>
+                    </h4>
                 </td>
+                <td>12/15/2000</td>
+            </tr>
+            <tr>
+                <td>My Nice Things</td>
+                <td>
+                    <h4 class="ui image header">
+                        <img src="img/cat.jpg" class="ui mini rounded image">
+                        <div class="content">Lena</div>
+                    </h4>
+                </td>
+                <td>12/15/2000</td>
+            </tr>
+            <tr>
+                <td>My Nice Things</td>
+                <td>
+                    <h4 class="ui image header">
+                        <img src="img/cat.jpg" class="ui mini rounded image">
+                        <div class="content">Lena</div>
+                    </h4>
+                </td>
+                <td>12/15/2000</td>
+            </tr>
+            <tr>
+                <td>My Nice Things</td>
+                <td>
+                    <h4 class="ui image header">
+                        <img src="img/cat.jpg" class="ui mini rounded image">
+                        <div class="content">Lena</div>
+                    </h4>
+                </td>
+                <td>12/15/2000</td>
+            </tr>
+            <tr>
+                <td>My Nice Things</td>
+                <td>
+                    <h4 class="ui image header">
+                        <img src="img/cat.jpg" class="ui mini rounded image">
+                        <div class="content">Lena</div>
+                    </h4>
+                </td>
+                <td>12/15/2000</td>
             </tr>
         </tbody>
+        <tfoot>
+            <tr><th colspan="3">
+        <div class="flex end middle">
+            <div>
+                <span>Rows per page:</span>
+                <select class="ui dropdown">
+                    <option value="">10</option>
+                    <option value="">20</option>
+                    <option value="">30</option>
+                </select>
+            </div>
+            <div style='margin:0 40px'>
+                <span>1</span><span style='margin:0 5px'>of</span><span>10</span>
+            </div>
+            <div>
+                <a href='#'><i class="left chevron icon"></i></a>
+                <a href='#'><i class="right chevron icon"></i></a>
+            </div>
+        </div>
+        </th>
+        </tr></tfoot>
     </table>
 </div>
-
-<ul id='dropdown1' class='dropdown-content'>
-    <li><a href="#!">Delete</a></li>
-    <li class="divider"></li>
-    <li><a href="#!">Edit</a></li>
-</ul>
-{% endblock %}
-
-
-{% block scripting %}
-
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="js/materialize.min.js"></script>
-<script>
-
-    $(document).ready(function () {
-        $('select').material_select();
-    });
-
-
-    $(document).ready(function () {
-        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-        $('.modal-trigger').leanModal();
-    });
-
-    $('.dropdown-button').dropdown({
-        inDuration: 300,
-        outDuration: 225,
-        constrain_width: false, // Does not change width of dropdown to that of the activator
-        hover: false, // Activate on hover
-        gutter: 0, // Spacing from edge
-        belowOrigin: false, // Displays dropdown below the button
-        alignment: 'right' // Displays dropdown with edge aligned to the left of button
-    }
-    );
-    $('#checkAll').change(function () {
-        var parent = $(this).closest('table');
-        parent.find($('input[type=checkbox]')).prop('checked', $(this).prop("checked"));
-    });
-    $('input[type=checkbox]').change(function () {
-        var parent = $(this).closest('table');
-        var len = parent.children('tbody').find($('input[type=checkbox]:checked')).length;
-        $('#selected_item').text(len);
-    });
-</script>
-
-
 {% endblock %}

@@ -7,144 +7,85 @@
         <title>One Nice Thing {{ title }}</title>
         <!-- CSS  -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link href="css/semantic.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <link href="font/UI-Icon/icon.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link href="font/UI-Icon/icon.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
         {% endblock %}
     </head>
     <body>
-        <header>
-            <div class='container'>
-                <a href="index.php"><img src='img/logo.png' height='64'></a>
-                <ul class="right flex middle">
-                    {% if user %}
-                        <li class='flex middle'><img src="img/background2.jpg" height='20' width='20' alt="" class="circle" style='margin-right:10px;'><a class='grey-text text-darken-3' href="index.php?dashboard">Louk</a></li>
-                        <li><a class='grey-text text-darken-3' href="index.php?chat">Chat</a></li>
-                        <li><a class='grey-text text-darken-3' href="#">Notification<span class="new badge">4</span></a></li>
-                        <li><a class='grey-text text-darken-3' href="index.php?explore">Explore</a></li>
-                        <li><a class="btn-floating green modal-trigger" href="#modal-add"><i class="material-icons">add</i></a></li>
-                        <li><a  class="btn-floating grey" href="index.php?logout"><i class="material-icons">vpn_key</i></a></li>
-                    {% else %}
-                        <li ><a class='grey-text text-darken-3 modal-trigger' href="#modal-login" class="">Login</a></li>
-                        <li ><a class='grey-text text-darken-3' id="add_nice" href="#">Add nice thing</a></li>
-                        <li><a class='grey-text text-darken-3' href="index.php">Help</a></li>
-                        <li><a class='grey-text text-darken-3' href="index.php?about">About</a></li>
-                    {% endif %}
-                </ul>
-                <ul id="nav-mobile" class="side-nav green white-text">
-                    <li><a href="index.php?login">Login</a></li>
-                    <li><a href="#">Sign up</a></li>
-                    <li><a href="#">Help</a></li>
-                    <li><a href="#">About</a></li>
-                </ul>
-            </div>
-        </header>
-
-        {% block content %}
-
-        {% endblock %}
-        <footer class="page-footer green">
-            <div class="container">
-                <div class="row">
-                    
-                    <div class="col l3 s12">
-                        <a href="index.php?about"><h6 class="yellow-text text-darken-1">ABOUT US</h5></a>  
+        <div id='wrapper'>
+            <header>
+                <div class="ui container">
+                    <div class="ui secondary menu flex middle">
+                        <a href="#"><img src="img/logo.png" height="64"></a>
+                        <div class="ui right secondary pointing menu">
+                            {% if user %}
+                            <a class='item active' href="index.php?home">Home</a>
+                            <a class='item' href='index.php?add'>Add</a>
+                            <a class='item' href="index.php?chat">Inbox</a>
+                            <a class='item' href="index.php?explore">Explore</a>
+                            {% else %}
+                            <a class="item" href='index.php' style='color:#40B553 !important'>How it Works</a>
+                            <a class="item" href='index.php' style='color:#fbbd08 !important'>Success Stories</a>
+                            <a class="item active" href='index.php?home'>Home</a>
+                            <a class="item" href='index.php'>My Page</a>
+                            <a class="item" href='index.php?about'>About</a>
+                            {% endif %}
+                        </div>
+                        {% if user %}
+                        <div class='item'>
+                            <div class="ui dropdown">
+                                <img class='ui avatar image' src="img/background2.jpg" alt="">
+                                <span>Louk</span>
+                                <i class="dropdown icon"></i>
+                                <div class="menu">
+                                    <div class="item"><a href='index.php?settings'>Settings</a></div>   
+                                    <div class="divider"></div>
+                                    <div class="item"><a href='index.php?logout'>Logout</a></div> 
+                                </div> 
+                            </div>
+                        </div>
+                        {% endif %}
                     </div>
-                    <div class="col l3 s12">
-                        <a href="index.php?help"><h6 class="yellow-text text-darken-1">HELP</h5></a>  
-                    </div>
-                    <div class="col l3 s12">
-                        <a href="index.php?about"><h6 class="yellow-text text-darken-1">CONTACT US</h5></a>  
-                    </div>
-                    <div class="col l3 s12">
-                        <a href="index.php?about"><h6 class="yellow-text text-darken-1">PRIVACY POLICY</h5></a>  
-                    </div>
-
                 </div>
-            </div>
-            <div class="footer-copyright">
-                <div class="container">
-                    Copyright 2015. <a class="yellow-text text-darken-1" href="http://onenicething.net">One nice thing</a>  
-                </div>
-            </div>
-        </footer>
-        <div id="modal-add" class="modal">
-            <div class="modal-content">
-              <div class="row col s6" >
-                 <h5 class="center"><b>Report Nice Thing</b></h5>
-                 <form class="col s12">
-                    <div class="row">
-                       <div class="input-field col s6">
-                          <input id="username" type="text" class="validate" required>
-                          <label for="username">User lookup</label>
-                       </div>
-                       <div class="input-field col s6">
-                          <input id="email" type="email" class="validate" required>
-                          <label for="email">Email for who 
-                          <label>
-                       </div>
-                    </div>
-                    <div class="row">
-                    <div class="input-field col s6">
-                    <input id="date" type="date" class="datepicker" required>
-                    <label for="email">When</label>
-                    </div>
-                    <div class="input-field col s6">
-                    <input id="map-select" type="text" class="validate" required>
-                    <label for="email">Where</label>
-                    </div>
-                    </div>
-                    <div class="row">
-                       <div class="file-field input-field col s6">
-                          <div class="btn green">
-                             <span>File</span>
-                             <input type="file">
-                          </div>
-                          <div class="file-path-wrapper">
-                             <input class="file-path validate " type="text">
-                          </div>
-                       </div>
-                       <div class="input-field col s6">
-                          <input id="map-select" type="text" class="validate" required>
-                          <label for="email">Detail</label>
-                       </div>
-                    </div>
-                    <div class="row">
-                       <div class="input-field col s6 browser-default">
-                          <p>
-                             <input type="checkbox" id="test5" />
-                             <label for="test5">Send Invite</label>
-                          </p>
-                       </div>
-                       <div class="input-field col s6">
-                          <select>
-                             <option value="" disabled selected>Choose privacy option</option>
-                             <option value="1">Public</option>
-                             <option value="2">Friend</option>
-                             <option value="3">Only me</option>
-                          </select>
-                          <label>Choose Privacy Settings</label>
-                       </div>
-                    </div>
-                    <div class="row center">
-                       <button class="btn waves-effect waves-light green" type="submit" name="action" >Submit
-                       <i class="material-icons right">send</i>
-                       </button>    
-                    </div>
-                 </form>
-              </div>
-            </div>
-            </div>
-        <!--  Scripts-->
-        {% block scripting %}
-        <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-        <script src="js/materialize.js"></script>
-        <script src="js/init.js"></script>
-        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-        <script type="text/javascript">
+            </header>
+            <div id='content'>
+                {% block content %}
 
+                {% endblock %}
+            </div>
+            <footer class='flex middle'>
+                <div class='ui container'>
+                    <div class='flex between'>
+                        <div class='flex between'>
+                            <a href='#'>ABOUT US</a>
+                            <a href='#'>HELP</a>
+                            <a href='#'>CONTACT US</a>
+                            <a href='#'>PRIVACY POLICY</a>
+                        </div>
+                        <div class='flex between'>
+                            <a href='#'><i class="large facebook icon"></i></a>
+                            <a href='#'><i class="large twitter icon"></i></a>
+                            <a href='#'><i class="large instagram icon"></i></a>
+                            <a href='#'><i class="large google plus icon"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!--  Scripts-->
+            {% block scripting %}
+
+            <script src="js/init.js"></script>
+            <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+            <script src="js/jquery-2.2.0.min.js"></script>
+            <script src="js/semantic.min.js"></script>
+            {% endblock %}
+        </div>
+        <script>
+$('.ui.dropdown').dropdown();
+$('.ui.checkbox').checkbox();
         </script>
-        {% endblock %}
-        
     </body>
 </html>

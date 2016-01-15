@@ -1,181 +1,34 @@
 {% extends "base.html" %}
 {% block content %}
-<div class='container static'>
-    <div class='row'>
-        <div class='col offset-s0 offset-m3 offset-l3 grey-text'><h4 style='font-weight: bold;' class='title'>About us</h4></div>
+<div class='ui container'>
+    <div id='about' class='section'>
+        <div class='flex-col middle'>
+            <h1>About us</h1>
+            <img src='img/about.png' style='max-height:300px'>
+        </div>
+        <p style='margin-top:30px;'>Does helping others really make the world a better place? Do random acts of kindness create any positive 
+            impact on the lives of others? We think so, but wanted to find a way to prove it.</p>
+        <p>We developed this site to find out just how far <a href='#' style='color:#40B553; font-weight:bold;'>One Nice Thing</a> can go, and the impact it can have on the 
+            people that it touches.</p>
+        <div class='flex center'>
+            <i class="huge facebook square icon"></i>
+            <i class="huge twitter square icon"></i>
+            <i class="huge mail square icon"></i>
+        </div>
     </div>
-    <div class='row'>
-        <ul class='col s12 m3 l3' id='aside'>
-            <li>About us</li>
-            <li>Help</li>
-            <li>Faq</li>
-            <li>Privacy Policy</li>
-            <li>Contact us</li>
-        </ul>
-        <div class="col s12 m9 l9 section">
-            <div class='row'>
-                <div class='col s12 m4 l4'><img class='col s12 m12 l12' src='img/cat.jpg'></div>
-                <div class='col s12 m8 l8'>
-                    <p>Lorem ipsum dolor sit amet, unum dicant his ei, mei meis appareat incorrupte no. Vis ne nemore
-                        latine efficiendi, iusto oportere vix ex. Ut pri erant dicunt. Pri ei nominavi facilisi, tale exerci 
-                        principes ut qui. Vim quas justo nostrud at, nam aperiri scripserit at. Eam ne voluptatibus 
-                        interpretaris, eum at prompta commune voluptatibus.
-                    </p>
-                    <p>Lorem ipsum dolor sit amet, unum dicant his ei, mei meis appareat incorrupte no. Vis ne nemore
-                        latine efficiendi, iusto oportere vix ex. Ut pri erant dicunt. Pri ei nominavi facilisi, tale exerci 
-                        principes ut qui. Vim quas justo nostrud at, nam aperiri scripserit at. Eam ne voluptatibus 
-                        interpretaris, eum at prompta commune voluptatibus.
-                    </p>
-                    <p>Lorem ipsum dolor sit amet, unum dicant his ei, mei meis appareat incorrupte no. Vis ne nemore
-                        latine efficiendi, iusto oportere vix ex. Ut pri erant dicunt. Pri ei nominavi facilisi, tale exerci 
-                        principes ut qui. Vim quas justo nostrud at, nam aperiri scripserit at. Eam ne voluptatibus 
-                        interpretaris, eum at prompta commune voluptatibus.
-                    </p>
-                </div>
-            </div>
-            <div class='flex center'>
-                <img src='img/cat.jpg' class='circle' width='100' height='100'>
-                <img src='img/cat.jpg' class='circle' width='100' height='100' style='margin:0 40px;'>
-                <img src='img/cat.jpg' class='circle' width='100' height='100'>
-            </div>
-        </div>
-        <div class="col s12 m9 l9 section" style='display:none;'>
-            <div class='row'>
-                <div class='col s12 m4 l4'><img class='col s12 m12 l12' src='img/cat.jpg'></div>
-                <div class='col s12 m8 l8'>
-                    <div style='color:#4CAF50; font-size:1.125em; font-weight:bold'>Step 1</div>
-                    <p>Lorem ipsum dolor sit amet, unum dicant his ei, mei meis appareat incorrupte no. Vis ne nemore
-                        latine efficiendi, iusto oportere vix ex. Ut pri erant dicunt. Pri ei nominavi facilisi, tale exerci 
-                        principes ut qui. Vim quas justo nostrud at, nam aperiri scripserit at. Eam ne voluptatibus 
-                        interpretaris, eum at prompta commune voluptatibus.
-                    </p>
-                </div>
-            </div>
-            <div class='divider' style='margin:20px 0'></div>
-            <div class='row'>
-                <div class='col s12 m4 l4'><img class='col s12 m12 l12' src='img/cat.jpg'></div>
-                <div class='col s12 m8 l8'>
-                    <div style='color:#4CAF50; font-size:1.125em; font-weight:bold'>Step 1</div>
-                    <p>Lorem ipsum dolor sit amet, unum dicant his ei, mei meis appareat incorrupte no. Vis ne nemore
-                        latine efficiendi, iusto oportere vix ex. Ut pri erant dicunt. Pri ei nominavi facilisi, tale exerci 
-                        principes ut qui. Vim quas justo nostrud at, nam aperiri scripserit at. Eam ne voluptatibus 
-                        interpretaris, eum at prompta commune voluptatibus.
-                    </p>
-                </div>
-            </div>
-            <div class='divider' style='margin:20px 0'></div>
-            <div class='row'>
-                <div class='col s12 m4 l4'><img class='col s12 m12 l12' src='img/cat.jpg'></div>
-                <div class='col s12 m8 l8'>
-                    <div style='color:#4CAF50; font-size:1.125em; font-weight:bold'>Step 1</div>
-                    <p>Lorem ipsum dolor sit amet, unum dicant his ei, mei meis appareat incorrupte no. Vis ne nemore
-                        latine efficiendi, iusto oportere vix ex. Ut pri erant dicunt. Pri ei nominavi facilisi, tale exerci 
-                        principes ut qui. Vim quas justo nostrud at, nam aperiri scripserit at. Eam ne voluptatibus 
-                        interpretaris, eum at prompta commune voluptatibus.
-                    </p>
-                </div>
-            </div>
-            <div class='divider' style='margin:20px 0'></div>
-        </div>
-        <div class="col s12 m9 l9 section" style='display:none;'>
-            <dl>
-                <dt>Q: Why would I need more than one Keyword?</dt>
-                <dd>If you're running multiple campaigns targeting different groups of people, you may want to use different Keywords 
-                    to segment those groups -- or perhaps to segment the performance of different advertisements. You may also be 
-                    running different sorts of campaigns, such as opt-in campaigns, contest campaigns, and polling campaigns</dd>
-                <dt>Q: Why would I need more than one Keyword?</dt>
-                <dd>If you're running multiple campaigns targeting different groups of people, you may want to use different Keywords 
-                    to segment those groups -- or perhaps to segment the performance of different advertisements. You may also be 
-                    running different sorts of campaigns, such as opt-in campaigns, contest campaigns, and polling campaigns</dd>
-                <dt>Q: Why would I need more than one Keyword?</dt>
-                <dd>If you're running multiple campaigns targeting different groups of people, you may want to use different Keywords 
-                    to segment those groups -- or perhaps to segment the performance of different advertisements. You may also be 
-                    running different sorts of campaigns, such as opt-in campaigns, contest campaigns, and polling campaigns</dd>
-                <dt>Q: Why would I need more than one Keyword?</dt>
-                <dd>If you're running multiple campaigns targeting different groups of people, you may want to use different Keywords 
-                    to segment those groups -- or perhaps to segment the performance of different advertisements. You may also be 
-                    running different sorts of campaigns, such as opt-in campaigns, contest campaigns, and polling campaigns</dd>
-                <dt>Q: Why would I need more than one Keyword?</dt>
-                <dd>If you're running multiple campaigns targeting different groups of people, you may want to use different Keywords 
-                    to segment those groups -- or perhaps to segment the performance of different advertisements. You may also be 
-                    running different sorts of campaigns, such as opt-in campaigns, contest campaigns, and polling campaigns</dd>
-            </dl>
-        </div>
-        <div class="col s12 m9 l9 section" style='display:none;'>
-            <p>Lorem ipsum dolor sit amet, unum dicant his ei, mei meis appareat incorrupte no. Vis ne nemore
-                latine efficiendi, iusto oportere vix ex. Ut pri erant dicunt. Pri ei nominavi facilisi, tale exerci 
-                principes ut qui. Vim quas justo nostrud at, nam aperiri scripserit at. Eam ne voluptatibus 
-                interpretaris, eum at prompta commune voluptatibus.
-            </p>
-            <p>Lorem ipsum dolor sit amet, unum dicant his ei, mei meis appareat incorrupte no. Vis ne nemore
-                latine efficiendi, iusto oportere vix ex. Ut pri erant dicunt. Pri ei nominavi facilisi, tale exerci 
-                principes ut qui. Vim quas justo nostrud at, nam aperiri scripserit at. Eam ne voluptatibus 
-                interpretaris, eum at prompta commune voluptatibus.
-            </p>
-            <p>Lorem ipsum dolor sit amet, unum dicant his ei, mei meis appareat incorrupte no. Vis ne nemore
-                latine efficiendi, iusto oportere vix ex. Ut pri erant dicunt. Pri ei nominavi facilisi, tale exerci 
-                principes ut qui. Vim quas justo nostrud at, nam aperiri scripserit at. Eam ne voluptatibus 
-                interpretaris, eum at prompta commune voluptatibus.
-            </p>
-            <p>Lorem ipsum dolor sit amet, unum dicant his ei, mei meis appareat incorrupte no. Vis ne nemore
-                latine efficiendi, iusto oportere vix ex. Ut pri erant dicunt. Pri ei nominavi facilisi, tale exerci 
-                principes ut qui. Vim quas justo nostrud at, nam aperiri scripserit at. Eam ne voluptatibus 
-                interpretaris, eum at prompta commune voluptatibus.
-            </p>
-            <p>Lorem ipsum dolor sit amet, unum dicant his ei, mei meis appareat incorrupte no. Vis ne nemore
-                latine efficiendi, iusto oportere vix ex. Ut pri erant dicunt. Pri ei nominavi facilisi, tale exerci 
-                principes ut qui. Vim quas justo nostrud at, nam aperiri scripserit at. Eam ne voluptatibus 
-                interpretaris, eum at prompta commune voluptatibus.
-            </p>
-        </div>
-        <div class="col s12 m9 l9 section flex center" style='display:none;'>
-            <form class='col s12 m9 l6 z-depth-1' style='padding:20px;'>
-                <div style='color:#4CAF50'><h5>Send us</h5></div>
-                <div class="input-field">
-                    <input id="name" type="text" class="validate">
-                    <label for="name">Name</label>
-                </div>
-                <div class="input-field">
-                    <input id="email" type="text" class="validate">
-                    <label for="email">Email</label>
-                </div>
-                <div class="input-field">
-                    <textarea id="message" class="materialize-textarea"></textarea>
-                    <label for="message">Message</label>
-                </div>
-                <a style='margin-top:40px;' class="waves-effect waves-light btn amber">Send</a>
-            </form>
-        </div>
+    <div class='flex between help' style='margin:50px 0 70px 0;'>
+        <a href='#' data-show='about'>How it Works</a>
+        <a href='#' data-show='help'>Help</a>
+        <a href='#' data-show='privacy'>Privacy Policy</a>
+        <a href='#' data-show='contact'>Contact us</a>
     </div>
 </div>
-{% endblock %}
-
-
-
-{% block scripting %}
-
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="js/materialize.min.js"></script>
 <script>
-
-    $(document).ready(function () {
-        $('select').material_select();
-    });
-
-
-    $(document).ready(function () {
-        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-        $('.modal-trigger').leanModal();
-    });
-    $('#aside li').click(function () {
-        var index = $(this).index();
-        var text = $(this).text();
-
-        $('.title').text(text);
-        $('.section').hide();
-        $('.section').eq(index).show();
+    $(function () {
+        $('.help a').click(function(){
+           var text = $(this).data('show');
+           console.log(text);
+        });
     });
 </script>
-
-
 {% endblock %}

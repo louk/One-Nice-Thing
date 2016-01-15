@@ -1,162 +1,205 @@
 {% extends "submain.html" %}
 {% block subcontent %}
-<style type="text/css" media="all">
-#mailbox{
-    padding: 0;
-} 
-.mailsend{
-    margin-top: 15px;
-}
-#mailbox .collection{
-    margin: 0;
-}
-
-#mailbox .collection .collection-item.avatar {
-    min-height: 61px;
-}
-#mailbox .collection .collection-item.avatar p{
-   margin-top: 10px; 
-}
-#mailbox .collection .collection-item.avatar.email-unread{
-    margin: 10px;
-    border: 1px solid whitesmoke;
-}
-span.ultra-small{
-    font-size: 12px;
-}
+<style>
+    ul{
+        list-style:none;
+    }
+    textarea{
+        padding:10px;
+        resize:none;
+    }
+    .chat-col{
+        overflow-y:scroll;
+        max-height:400px;
+    }
+    .chat-col::-webkit-scrollbar {
+        width: 7px;
+    }
+    .chat-col::-webkit-scrollbar-track {
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        transition:all 0.2s;
+    }
+    .chat-col::-webkit-scrollbar-thumb {
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        background: rgba(0,0,0,0.5); 
+        transition:all 0.2s;
+    }
+    .chat-col::-webkit-scrollbar-thumb:window-inactive {
+        background: rgba(0,0,0,0.5); 
+        transition:all 0.2s;
+    }
+    .img{
+        margin-right:20px;
+    }
+    .name, .name2{
+        font-weight:600;
+    }
+    .name2:hover{
+        text-decoration: underline;
+        color:#40B553;
+    }
+    .name:hover{
+        color:#40B553;
+    }
+    .time{
+        margin-left:10px;
+    }
+    .date-divider{
+        border-top:1px solid #e0e0e0;
+    }
+    .date-divider{
+        text-align: center;
+        margin-top:40px;
+    }
+    .date-divider span{
+        background:#fff;
+        padding:0 3px;
+        position: relative;
+        bottom:12px;
+        font-size:0.75em;
+        color:#bdbdbd;
+    }
+    .text{
+        font-size:0.75em;
+    }
+    .chat{
+        margin-top:20px;
+    }
+    #send{
+        margin-top:20px;
+    }
+    .date, .time{
+        font-size:0.75em;
+        color:#bdbdbd;
+    }
+    .chat .flex-col>span:nth-of-type(n+2){
+        margin-top:10px;
+    }
 </style>
-<div class="container" style="margin-top: 50px; margin-bottom: 50px;">
-    <div class="row">
-        <div id="mailbox" class="col s2 m4 l4 card-panel">
-            <ul class="collection">
-                <a href="#!" class="collection-item avatar">
-                <img src="img/background2.jpg" alt="" class="circle">
-                <p class="title">Naranbayar</p>
-                </a>
-                <a href="#!" class="collection-item avatar">
-                <img src="img/background2.jpg" alt="" class="circle">
-                <p class="title">Khangai</p>
-                </a>
-                <a href="#!" class="collection-item avatar">
-                <img src="img/background2.jpg" alt="" class="circle">
-                <p class="title">Title</p>
-                </a>
-                <a href="#!" class="collection-item avatar">
-                <img src="img/background2.jpg" alt="" class="circle">
-                <p class="title">Title</p>
-                </a>
-                <a href="#!" class="collection-item avatar">
-                <img src="img/background2.jpg" alt="" class="circle">
-                <p class="title">Title</p>
-                </a>
-                <a href="#!" class="collection-item avatar">
-                <img src="img/background2.jpg" alt="" class="circle">
-                <p class="title">Title</p>
-                </a>
-                <a href="#!" class="collection-item avatar">
-                <img src="img/background2.jpg" alt="" class="circle">
-                <p class="title">Title</p>
-                </a>
-                <a href="#!" class="collection-item avatar">
-                <img src="img/background2.jpg" alt="" class="circle">
-                <p class="title">Title</p>
-                </a>
-                <a href="#!" class="collection-item avatar">
-                <img src="img/background2.jpg" alt="" class="circle">
-                <p class="title">Title</p>
-                </a>
-                <a href="#!" class="collection-item avatar">
-                <img src="img/background2.jpg" alt="" class="circle">
-                <p class="title">Title</p>
-                </a>
+<div class="ui container">
+    <div class='flex' style='border:1px solid #e0e0e0'>
+        <div style='width:35%;border-right:1px solid #e0e0e0; padding-right:20px;'>
+            <ul style="margin:10px 0;">
+                <li class="ui input">
+                    <input type="search" placeholder="Search...">
+                </li>
+            </ul>
+            <ul>
+                <li class="flex between"> 
+                    <div class="flex middle">
+                        <a href="#"><img src="images/placeholder.png" alt="" class="circle img" height="50" width="50"></a>
+                        <div class="flex-col">
+                            <a href="#" class="name">LastName FirstName</a>
+                            <span class="text">Lorem ipsum dolor sit amet...</span>
+                        </div>
+                    </div>
+                    <span class="date">12/15/30</span>
+                </li>
+                <li class="flex between"> 
+                    <div class="flex middle">
+                        <a href="#"><img src="images/placeholder.png" alt="" class="circle img" height="50" width="50"></a>
+                        <div class="flex-col">
+                            <a href="#" class="name">LastName FirstName</a>
+                            <span class="text">Lorem ipsum dolor sit amet...</span>
+                        </div>
+                    </div>
+                    <span class="date">12/15/30</span>
+                </li>
             </ul>
         </div>
-        <div id="mailbox" class="col s10 m8 l8 card-panel">
-            <ul class="collection">
-                <li class="collection-item avatar email-unread">
-                    <img src="img/background2.jpg" alt="" class="circle">
-                    <b class="truncate grey-text ultra-small">Naranbayar</b>
-                    <span class="email-title ultra-small red-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span>
-                    <a href="#!" class="secondary-content email-time"><span class="grey-text ultra-small">5:18 am</span></a>
+        <div style='width:60%;'>
+            <ul class="chat-col">
+                <li class="date-divider"><span>December 28, 2015</span></li>
+                <li class="flex between"> 
+                    <div class="flex">
+                        <a href="#"><img src="images/placeholder.png" alt="" class="circle img" height="50" width="50"></a>
+                        <div class="flex-col">
+                            <a href="#" class=" name2">LastName FirstName</a>
+                            <span class="text">Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet...</span>
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <span class="date">12/15</span>
+                        <span class="time">4:25pm</span>
+                    </div>
                 </li>
-                <li class="collection-item avatar email-unread">
-                    <img src="img/background2.jpg" alt="" class="circle">
-                    <b class="truncate grey-text ultra-small">Khangai</b>
-                    <span class="email-title ultra-small red-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span>
-                    <a href="#!" class="secondary-content email-time"><span class="grey-text ultra-small">5:18 am</span></a>
+                <li class="flex between"> 
+                    <div class="flex">
+                        <a href="#"><img src="images/placeholder.png" alt="" class="circle img" height="50" width="50"></a>
+                        <div class="flex-col">
+                            <a href="#" class=" name2">LastName FirstName</a>
+                            <span class="text">Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet...</span>
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <span class="date">12/15</span>
+                        <span class="time">4:25pm</span>
+                    </div>
                 </li>
-                <li class="collection-item avatar email-unread">
-                    <img src="img/background2.jpg" alt="" class="circle">
-                    <b class="truncate grey-text ultra-small">Naranbayar</b>
-                    <span class="email-title ultra-small">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span>
-                    <a href="#!" class="secondary-content email-time"><span class="grey-text ultra-small">5:18 am</span></a>
+                <li class="flex between"> 
+                    <div class="flex">
+                        <a href="#"><img src="images/placeholder.png" alt="" class="circle img" height="50" width="50"></a>
+                        <div class="flex-col">
+                            <a href="#" class=" name2">LastName FirstName</a>
+                            <span class="text">Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet...</span>
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <span class="date">12/15</span>
+                        <span class="time">4:25pm</span>
+                    </div>
                 </li>
-                <li class="collection-item avatar email-unread">
-                    <img src="img/background2.jpg" alt="" class="circle">
-                    <b class="truncate grey-text ultra-small">Khangai</b>
-                    <span class="email-title ultra-small ">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span>
-                    <a href="#!" class="secondary-content email-time"><span class="grey-text ultra-small">5:18 am</span></a>
-                </li>                <li class="collection-item avatar email-unread">
-                    <img src="img/background2.jpg" alt="" class="circle">
-                    <b class="truncate grey-text ultra-small">Naranbayar</b>
-                    <span class="email-title ultra-small">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span>
-                    <a href="#!" class="secondary-content email-time"><span class="grey-text ultra-small">5:18 am</span></a>
+                <li class="date-divider"><span>December 28, 2015</span></li>
+                <li class="flex between"> 
+                    <div class="flex">
+                        <a href="#"><img src="images/placeholder.png" alt="" class="circle img" height="50" width="50"></a>
+                        <div class="flex-col">
+                            <a href="#" class=" name2">LastName FirstName</a>
+                            <span class="text">Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet...</span>
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <span class="date">12/15</span>
+                        <span class="time">4:25pm</span>
+                    </div>
+                </li>              
+                <li class="flex between"> 
+                    <div class="flex">
+                        <a href="#"><img src="images/placeholder.png" alt="" class="circle img" height="50" width="50"></a>
+                        <div class="flex-col">
+                            <a href="#" class=" name2">LastName FirstName</a>
+                            <span class="text">Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet...</span>
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <span class="date">12/15</span>
+                        <span class="time">4:25pm</span>
+                    </div>
                 </li>
-                <li class="collection-item avatar email-unread">
-                    <img src="img/background2.jpg" alt="" class="circle">
-                    <b class="truncate grey-text ultra-small">Khangai</b>
-                    <span class="email-title ultra-small">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span>
-                    <a href="#!" class="secondary-content email-time"><span class="grey-text ultra-small">5:18 am</span></a>
-                </li>
-                <li class="collection-item avatar email-unread">
-                    <img src="img/background2.jpg" alt="" class="circle">
-                    <b class="truncate grey-text ultra-small">Khangai</b>
-                    <span class="email-title ultra-small">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span>
-                    <a href="#!" class="secondary-content email-time"><span class="grey-text ultra-small">5:18 am</span></a>
-                </li>
-                <li class="collection-item avatar email-unread">
-                    <img src="img/background2.jpg" alt="" class="circle">
-                    <b class="truncate grey-text ultra-small">Khangai</b>
-                    <span class="email-title ultra-small">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span>
-                    <a href="#!" class="secondary-content email-time"><span class="grey-text ultra-small">5:18 am</span></a>
-                </li>
-                <li class="collection-item avatar email-unread">
-                    <img src="img/background2.jpg" alt="" class="circle">
-                    <b class="truncate grey-text ultra-small">Khangai</b>
-                    <span class="email-title ultra-small">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span>
-                    <a href="#!" class="secondary-content email-time"><span class="grey-text ultra-small">5:18 am</span></a>
-                </li>
-                <li class="collection-item avatar email-unread">
-                    <img src="img/background2.jpg" alt="" class="circle">
-                    <b class="truncate grey-text ultra-small">Khangai</b>
-                    <span class="email-title ultra-small">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span>
-                    <a href="#!" class="secondary-content email-time"><span class="grey-text ultra-small">5:18 am</span></a>
-                </li>
-                <li class="collection-item avatar email-unread">
-                    <img src="img/background2.jpg" alt="" class="circle">
-                    <b class="truncate grey-text ultra-small">Khangai</b>
-                    <span class="email-title ultra-small">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span>
-                    <a href="#!" class="secondary-content email-time"><span class="grey-text ultra-small">5:18 am</span></a>
-                </li>
-                <li class="collection-item avatar email-unread">
-                    <img src="img/background2.jpg" alt="" class="circle">
-                    <b class="truncate grey-text ultra-small">Khangai</b>
-                    <span class="email-title ultra-small">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span>
-                    <a href="#!" class="secondary-content email-time"><span class="grey-text ultra-small">5:18 am</span></a>
+                <li class="flex between"> 
+                    <div class="flex">
+                        <a href="#"><img src="images/placeholder.png" alt="" class="circle img" height="50" width="50"></a>
+                        <div class="flex-col">
+                            <a href="#" class=" name2">LastName FirstName</a>
+                            <span class="text">Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet...</span>
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <span class="date">12/15</span>
+                        <span class="time">4:25pm</span>
+                    </div>
                 </li>
             </ul>
-            <form action="" method="get" accept-charset="utf-8" style="padding: 10px;background: whitesmoke;">
-                <div class="row"style="margin: 10px;">
-                    <div class="col s8 m9 l10 input-field"style="background: white;">
-                        <textarea id="textarea1" class="materialize-textarea"></textarea>
-                    </div>
-                    <div class="col s4 m3 l2">
-                        <a href="#!" class="mailsend btn waves-effect grey darken-1">Send</a> 
-                    </div>
-                </div>
+            <form id="send" class='flex-col'>
+                <textarea placeholder="write a text..." rows="5"></textarea>
+                <span style='margin-top:20px;'>
+                    <button class="ui green button right floated">SEND</button>
+                </span>
             </form>
-            </div>
         </div>
     </div>
 </div>
+
 {% endblock %}
