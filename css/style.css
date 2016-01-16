@@ -25,17 +25,53 @@ footer {
 #content {
     padding-bottom:50px;
 }
+.ui.form.field.login{
+    padding: 0 15px;
+}
+.center_content{
+    padding:20px;
+    background:#eee;
+    text-align: center;
+}
+.center_content h3{
+    font-weight: 200;
+    text-align: center;
+}
 header{
     padding:20px 0 40px 0;
 }
-/*#custom_small_modal{
+#custom_small_modal{
     width: 30.4%;
-    margin: 0em 0em 0em -14.2%;
+    margin: 0em 0em 0em -15.2%;
+}
+#loglabel{
+    top: -14px;
+    left: -2px;
+    width: 101%;
+}
+.login_text{
+    color: #40B553;
+}
+.ui.modal>.footer_action{
+    text-align: center;
+    background: #cacbcd;
+}
+.ui.modal>.footer_action a{
+    color: #404040
+}
+.ui.text{
+    text-align: center;
+    text-decoration: underline;
+}
+#custom_small_modal{
+    width:320px;
+    margin:0 0 0 -160px;
 }
 .ui.submit.button{
     background: rgb(64, 181, 83);
     color: white;
-}*/
+}
+
 .flex{
     display:flex;
     display: -webkit-flex;

@@ -6,9 +6,9 @@
         <img class="ui centered image" src="img/home.png" style='max-height: 250px;'>
     </div>
 </div>
-<div class='flex-col middle center' style='padding:20px; background:#eee;'>
-    <h3 style='font-weight: 200;'>If you do something nice for someone and ask them to do the same...</h3>
-    <div class='flex middle'>
+<div class="center_content">
+    <h3>If you do something nice for someone and ask them to do the same...</h3>
+    <div>
         <a class='medium-font' style='color:#999; font-weight: 600'>How far will it go?</a>
         <a class='medium-font' style='color:#40B553; margin-left:20px; font-weight: 600; text-decoration: underline'>Let's find out!</a>
     </div>
@@ -18,14 +18,14 @@
         <div class='flex-col bottom' style='width:40%;'>
             <h3 style='color:#bdbdbd'>Want to try it?</h3>
             <span style='margin-top:20px;'>
-                <button class='ui button' style='border-radius: 10px; background:#40B553; color:#fff'>Sign up here</button>
+                <button class='ui button register_c' style='border-radius: 10px; background:#40B553; color:#fff'>Sign up here</button>
             </span>
         </div>
         <div class='separator'></div>
         <div class='flex-col' style='width:40%'>
             <h3 style='color:#bdbdbd; width:250px;'>Want to report a nice thing you've done?</h3>
             <span style='margin-top:0px;'>
-                <button class='ui yellow button' style='border-radius: 10px;'>Click here</button>
+                <button class='ui yellow button' id='add_nice_thing' style='border-radius: 10px;'>Click here</button>
             </span>
         </div>
     </div>
@@ -35,36 +35,429 @@
         </div>
         <div style='width: 40%; margin-left:20px;' class='flex-col middle'>
             <p>Does helping others really make the world a better place? Do random 
-                acts of kindness create any positive impact on the lives of others? We 
-                think so, but wanted to find a way to prove it.</p>
+            acts of kindness create any positive impact on the lives of others? We 
+            think so, but wanted to find a way to prove it.</p>
             <p>We developed this site to find out just how far <a href='index.php' style='color:#40B553; font-weight: 600'>One Nice Thing</a> can go,
-                and the impact it can have on the people that it touches.</p>
+            and the impact it can have on the people that it touches.</p>
             <button class='ui inverted green button' style='font-size:1.15em;'>Learn more</button>
         </div>
     </div>
 </div>
-<div class="ui modal">
+<div class="ui one small modal register" id="custom_small_modal">
     <i class="close icon"></i>
-    <div class="header">
-        Modal Title
+    <div class="ui raised segment"id ="loglabel">
+        <a class="ui violet ribbon label">Register</a>
+        <span>Register now!</span>
+        <p></p>
     </div>
-    <div class="image content">
-        <div class="image">
-            An image can appear on left or an icon
-        </div>
-        <div class="description">
-            A description can appear on the right
-        </div>
+    <div class="content">
+        <form class="ui form field login">
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" name="username" placeholder="Username">
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="mail icon"></i>
+                    <input type="text" name="email" placeholder="e-mail">
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="lock icon"></i>
+                    <input type="password" name="password" placeholder="Password">
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="lock icon"></i>
+                    <input type="password" name="password_confirm" placeholder="Password confirm">
+                </div>
+            </div>
+
+            <div class="ui fluid large submit button">Register</div>
+            <div class="ui error message"></div>
+            <div class="inline field"></div><div class="inline field"></div>
+        </form>
     </div>
-    <div class="actions">
-        <div class="ui button">Cancel</div>
-        <div class="ui button">OK</div>
+    <div class="footer_action actions">
+        <a href="#" class="login_f" >Login</a>
+        <p></p>
     </div>
 </div>
-<script>
-    $('.test.modal').modal('attach events', '.test.button', 'show');
-</script>
+<div class="ui one small modal add_nice_thing1" id="custom_small_modal">
+    <i class="close icon"></i>
+    <div class="ui raised segment" id="loglabel">
+        <a class="ui red ribbon label">User</a>
+        <span>Login for user</span>
+        <p></p>
+    </div>
+    <div class="content">
+        <form class="ui form field login">
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" name="username" placeholder="Username">
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="lock icon"></i>
+                    <input type="password" name="password" placeholder="Password">
+                </div>
+            </div>           
+            <div class="inline field">
+                <div class="ui checkbox">
+                    <input type="checkbox" name="remember_me">
+                    <label>Remember me!</label>
+                </div>
+            </div>
+            <div class="ui fluid large submit button">Login</div>
+            <div class="ui error message"></div>
+            <div class="inline field">
+            </div>
+            <div class="inline field">
+                <div class="ui text">
+                    <label for=""><a href="#" class="login_text guest">login as a guest</a></label>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="footer_action actions">
+        <a href="#" class="forget" >Forget password</a>
+        |
+        <a href="#" class="register_c">Register</a>
+    </div>
+</div>
+<div class="ui one small modal guest_login" id="custom_small_modal">
+    <i class="close icon"></i>
+    <div class="ui raised segment" id="loglabel">
+        <a class="ui blue ribbon label">Guest</a>
+        <span>Login for guest</span>
+        <p></p>
+    </div>
+    <div class="content">
+        <form class="ui form field login">
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" name="username" placeholder="Username">
+                </div>
+            </div>
+            <div class="inline field"></div>
+            <div class="ui fluid large submit button">login as a guest</div>
+            <div class="ui error message"></div>
+            <div class="inline field">
+            </div>
+            <div class="inline field">
+                <div class="ui text">
+                    <label for=""><a href="#" class="login_text login_f">login as a member</a></label>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="footer_action actions">
+        <a href="#" class="forget">Forget password</a>
+        |
+        <a href="#" class="register_c">Register</a>
+    </div>
+</div>
+<div class="ui one small modal forget_password" id="custom_small_modal">
+    <i class="close icon"></i>
+    <div class="ui raised segment" id="loglabel">
+        <a class="ui green ribbon label">Forget!</a>
+        <span>Forget Password</span>
+        <p></p>
+    </div>
+    <div class="content">
+        <form class="ui form field login">
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="mail icon"></i>
+                    <input type="text" name="email" placeholder="e-mail">
+                </div>
+            </div>
+            <div class="inline field"></div>
+            <div class="ui fluid large submit button">submit</div>
+            <div class="ui error message"></div>
+            <div class="inline field">
+            </div>
+        </form>
+    </div>
+    <div class="footer_action actions">
+        <a href="#" class="login_f">Login</a>
+        |
+        <a href="#" class="register_c">Register</a>
+    </div>
+</div>
+<div class="ui one large modal report_nice_thing">
+    <i class="close icon"></i>
+    <div class="ui raised segment" id="loglabel" style="left: -5px;">
+        <a class="ui green ribbon label">Report Nice Thing!</a>
+        <span>Your nice thing</span>
+        <p></p>
+    </div>
+    <div class="content">
+        <form class="ui form">
+            <div class="field">
+                <div class="two fields">
+                    <div class="field">
+                        <label>Username Lookup</label>
+                        <input type="text" name="username_looukup" placeholder="Enter username">
+                    </div>
+                    <div class="field">
+                        <label>Location where did you do your nice thing ?</label>
+                        <input type="text" name="" placeholder="Last Name">
+                    </div>
+                </div>
+            </div> 
+            <div class="field">
+                <div class="two fields">
+                    <div class="field">
+                        <label>Who did you do it for ?</label>
+                        <input type="text" name="" placeholder="Last Name">
+                        <p></p>
+                        <label>How did you respond, how did you feel ?</label>
+                        <input type="text" name="" placeholder="Last Name">
+                    </div>
+                    <div class="field">
+                        <label>What nice thing did you do ?</label>
+                        <textarea rows="5"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <div class="two fields">
+                    <div class="field">
+                        <div class="inline field">
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="remember_me">
+                                <label>Did you ask them to keep it going and did they agree?</label>
+                            </div>
+                        </div><br />
+                        <div class="four fields">
+                            <div class="field">
+                                <div class="ui link list">
+                                    <div class="active item">Only me</div>
+                                    <a class="item">Friends</a>
+                                    <a class="item">Public</a>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui label">
+                                    <a href="#" class="ui black">Privacy settings</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>Would you like to leave any other message for this member?</label>
+                        <textarea rows="3"></textarea>
+                    </div>
+                </div>
+            </div> 
+            <div class="field">
+                <div class="two fields">
+
+                    <div class="field">
+                        <br />
+                        <div class="ui medium submit button">submit</div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock %}
 {% block scripting %}
 {{parent()}}
+<script type="text/javascript">
+
+/* Modal show functions start*/
+
+$('#login').click(function(){
+        $('.ui.modal.add_nice_thing1').modal('show');	                   
+        });
+
+$('.login_f').click(function(){
+        $('.ui.modal.add_nice_thing1').modal('show');	                   
+        });
+$('.register_c').click(function(){
+        $('.ui.modal.register').modal('show');	                   
+        });
+
+$('.forget').click(function(){
+        $('.ui.modal.forget_password').modal('show');	                   
+        });
+$('.guest').click(function(){
+        $('.ui.modal.guest_login').modal('show');	                   
+        });
+$('#add_nice_thing').click(function(){
+        $('.ui.modal.report_nice_thing').modal('show');	                   
+        });
+
+
+$('.ui.form.field.login')
+.form({
+on: 'submit',
+fields: {
+text: {
+identifier  : 'username',
+rules: [
+{
+type   : 'empty',
+prompt : 'Please enter a username'
+}
+]
+},
+email: {
+identifier  : 'email',
+rules: [
+{
+type   : 'email',
+prompt : 'Please enter a valid e-mail'
+}
+]
+},
+password: {
+identifier  : 'password',
+              rules: [
+              {
+type   : 'regExp[/^[a-z0-9_-]{4,16}$/]',
+         prompt : 'Please enter a 4-16 letter password'
+              }
+              ]
+          }
+}
+})
+;
+/* end */
+$.fn.serializeObject = function()
+{
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function() {
+            if (o[this.name] !== undefined) {
+            if (!o[this.name].push) {
+            o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+            } else {
+            o[this.name] = this.value || '';
+            }
+            });
+    return o;
+};
+
+$(document).ready(function() {
+
+
+
+        $('.modal-trigger').leanModal();
+        var $input = $('.datepicker').pickadate({
+selectMonths: true, // Creates a dropdown to control month
+selectYears: 15, // Creates a dropdown of 15 years to control year
+format: 'dd/mm/yyyy'
+});
+        var picker = $input.pickadate('picker');
+        picker.set('select',  new Date());
+
+        $('#show_forgot').click(function(){
+            $('#login').hide();
+            $('#show_forgot').hide();
+            $('#show_login').removeClass('hide');
+            $('#forgot_pass').removeClass('hide');
+            });
+        $('#show_login').click(function(){
+            $('#login').show();
+            $('#show_forgot').show();
+            $('#show_login').addClass('hide');
+            $('#forgot_pass').addClass('hide');
+            });
+$('#anom').change(function(){
+        if(this.checked) {
+        $("#email_pack").fadeOut();
+        $("#email").removeAttr('required');
+        $("#add_pack").fadeOut();
+        }else{
+        $("#email").show();
+        $("#email").addAttr('required');
+        $("#add_pack").fadeIn();
+        } 		
+        });
+$('#register').change(function(){
+        if(this.checked) {
+        $("#anom").attr("disabled", true);
+        }else{
+        $("#anom").removeAttr("disabled");
+        } 		
+        });
+
+var availableTags = [
+{% for user in users %}
+"{{user.username}}",
+{% endfor%}
+"Travis"
+];
+$('#friend').autocomplete({
+source: availableTags
+});
+$('#add_nice').click(function(){
+        $('html, body').animate({
+scrollTop: $("#quick_add").offset().top
+})
+        });
+
+$('#add_nice_thing').on('submit', function(e){
+        e.preventDefault();
+        var formData = $("#add_nice_thing").serializeObject();
+        $.ajax({
+url : "add.php",
+type: "POST",
+data : {data:formData},
+success: function(data, textStatus, jqXHR)
+{
+$('#modal-success').openModal();
+console.log(data);
+},
+error: function (jqXHR, textStatus, errorThrown)
+{
+
+}
+});
+
+        });
+$('#login').on('submit', function(e){
+        e.preventDefault();
+        $.post("login.php", {
+email: $('#email_login').val(),
+password: $('#password_login').val()
+}, function (result) {
+if(result==1){
+window.location.replace("index.php?dashboard");  
+}
+else{
+$('#modal-error').openModal();
+}
+});
+        });
+});
+function footerAlign() {
+    $('footer').css('height', 'auto');
+    var footerHeight = $('footer').outerHeight();
+    $('body').css('padding-bottom', footerHeight);
+    $('footer').css('height', footerHeight);
+}
+
+
+$(document).ready(function(){
+        footerAlign();
+        });
+
+$( window ).resize(function() {
+        footerAlign();
+        });
+</script>
 {% endblock %}
