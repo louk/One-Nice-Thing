@@ -25,7 +25,7 @@
         <div class='flex-col' style='width:40%'>
             <h3 style='color:#bdbdbd; width:250px;'>Want to report a nice thing you've done?</h3>
             <span style='margin-top:0px;'>
-                <button class='ui yellow button' id='add_nice_thing' style='border-radius: 10px;'>Click here</button>
+                <a class='ui yellow button' href="index.php?reportnicething" id='add_nice_thing' style='border-radius: 10px;'>Click here</a>
             </span>
         </div>
     </div>
@@ -192,272 +192,182 @@
         <a href="#" class="register_c">Register</a>
     </div>
 </div>
-<div class="ui one large modal report_nice_thing">
-    <i class="close icon"></i>
-    <div class="ui raised segment" id="loglabel" style="left: -5px;">
-        <a class="ui green ribbon label">Report Nice Thing!</a>
-        <span>Your nice thing</span>
-        <p></p>
-    </div>
-    <div class="content">
-        <form class="ui form">
-            <div class="field">
-                <div class="two fields">
-                    <div class="field">
-                        <label>Username Lookup</label>
-                        <input type="text" name="username_looukup" placeholder="Enter username">
-                    </div>
-                    <div class="field">
-                        <label>Location where did you do your nice thing ?</label>
-                        <input type="text" name="" placeholder="Last Name">
-                    </div>
-                </div>
-            </div> 
-            <div class="field">
-                <div class="two fields">
-                    <div class="field">
-                        <label>Who did you do it for ?</label>
-                        <input type="text" name="" placeholder="Last Name">
-                        <p></p>
-                        <label>How did you respond, how did you feel ?</label>
-                        <input type="text" name="" placeholder="Last Name">
-                    </div>
-                    <div class="field">
-                        <label>What nice thing did you do ?</label>
-                        <textarea rows="5"></textarea>
-                    </div>
-                </div>
-            </div>
-            <div class="field">
-                <div class="two fields">
-                    <div class="field">
-                        <div class="inline field">
-                            <div class="ui checkbox">
-                                <input type="checkbox" name="remember_me">
-                                <label>Did you ask them to keep it going and did they agree?</label>
-                            </div>
-                        </div><br />
-                        <div class="four fields">
-                            <div class="field">
-                                <div class="ui link list">
-                                    <div class="active item">Only me</div>
-                                    <a class="item">Friends</a>
-                                    <a class="item">Public</a>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="ui label">
-                                    <a href="#" class="ui black">Privacy settings</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <label>Would you like to leave any other message for this member?</label>
-                        <textarea rows="3"></textarea>
-                    </div>
-                </div>
-            </div> 
-            <div class="field">
-                <div class="two fields">
-
-                    <div class="field">
-                        <br />
-                        <div class="ui medium submit button">submit</div>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
 {% endblock %}
 {% block scripting %}
 {{parent()}}
 <script type="text/javascript">
+    /* Modal show functions start*/
 
-/* Modal show functions start*/
+    $('#login').click(function() {
+        $('.ui.modal.add_nice_thing1').modal('show');
+    });
 
-$('#login').click(function(){
-        $('.ui.modal.add_nice_thing1').modal('show');	                   
+    $('.login_f').click(function() {
+        $('.ui.modal.add_nice_thing1').modal('show');
+    });
+    $('.register_c').click(function() {
+        $('.ui.modal.register').modal('show');
+    });
+
+    $('.forget').click(function() {
+        $('.ui.modal.forget_password').modal('show');
+    });
+    $('.guest').click(function() {
+        $('.ui.modal.guest_login').modal('show');
+    });
+    $('#add_nice_thing').click(function() {
+        $('.ui.modal.report_nice_thing').modal('show');
+    });
+
+    $('.ui.form.field.login')
+        .form({
+            on: 'submit',
+            fields: {
+                text: {
+                    identifier: 'username',
+                    rules: [{
+                        type: 'empty',
+                        prompt: 'Please enter a username'
+                    }]
+                },
+                email: {
+                    identifier: 'email',
+                    rules: [{
+                        type: 'email',
+                        prompt: 'Please enter a valid e-mail'
+                    }]
+                },
+                password: {
+                    identifier: 'password',
+                    rules: [{
+                        type: 'regExp[/^[a-z0-9_-]{4,16}$/]',
+                        prompt: 'Please enter a 4-16 letter password'
+                    }]
+                }
+            }
         });
 
-$('.login_f').click(function(){
-        $('.ui.modal.add_nice_thing1').modal('show');	                   
-        });
-$('.register_c').click(function(){
-        $('.ui.modal.register').modal('show');	                   
-        });
-
-$('.forget').click(function(){
-        $('.ui.modal.forget_password').modal('show');	                   
-        });
-$('.guest').click(function(){
-        $('.ui.modal.guest_login').modal('show');	                   
-        });
-$('#add_nice_thing').click(function(){
-        $('.ui.modal.report_nice_thing').modal('show');	                   
-        });
-
-
-$('.ui.form.field.login')
-.form({
-on: 'submit',
-fields: {
-text: {
-identifier  : 'username',
-rules: [
-{
-type   : 'empty',
-prompt : 'Please enter a username'
-}
-]
-},
-email: {
-identifier  : 'email',
-rules: [
-{
-type   : 'email',
-prompt : 'Please enter a valid e-mail'
-}
-]
-},
-password: {
-identifier  : 'password',
-              rules: [
-              {
-type   : 'regExp[/^[a-z0-9_-]{4,16}$/]',
-         prompt : 'Please enter a 4-16 letter password'
-              }
-              ]
-          }
-}
-})
-;
-/* end */
-$.fn.serializeObject = function()
-{
-    var o = {};
-    var a = this.serializeArray();
-    $.each(a, function() {
+    /* end */
+    $.fn.serializeObject = function() {
+        var o = {};
+        var a = this.serializeArray();
+        $.each(a, function() {
             if (o[this.name] !== undefined) {
-            if (!o[this.name].push) {
-            o[this.name] = [o[this.name]];
-            }
-            o[this.name].push(this.value || '');
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
             } else {
-            o[this.name] = this.value || '';
+                o[this.name] = this.value || '';
             }
-            });
-    return o;
-};
+        });
+        return o;
+    };
 
-$(document).ready(function() {
-
-
-
-        $('.modal-trigger').leanModal();
+    $(document).ready(function() {
+/*
         var $input = $('.datepicker').pickadate({
-selectMonths: true, // Creates a dropdown to control month
-selectYears: 15, // Creates a dropdown of 15 years to control year
-format: 'dd/mm/yyyy'
-});
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 15, // Creates a dropdown of 15 years to control year
+            format: 'dd/mm/yyyy'
+        });
         var picker = $input.pickadate('picker');
-        picker.set('select',  new Date());
-
-        $('#show_forgot').click(function(){
+        picker.set('select', new Date());
+*/
+        $('#show_forgot').click(function() {
             $('#login').hide();
             $('#show_forgot').hide();
             $('#show_login').removeClass('hide');
             $('#forgot_pass').removeClass('hide');
-            });
-        $('#show_login').click(function(){
+        });
+        $('#show_login').click(function() {
             $('#login').show();
             $('#show_forgot').show();
             $('#show_login').addClass('hide');
             $('#forgot_pass').addClass('hide');
+        });
+        $('#anom').change(function() {
+            if (this.checked) {
+                $("#email_pack").fadeOut();
+                $("#email").removeAttr('required');
+                $("#add_pack").fadeOut();
+            } else {
+                $("#email").show();
+                $("#email").addAttr('required');
+                $("#add_pack").fadeIn();
+            }
+        });
+        $('#register').change(function() {
+            if (this.checked) {
+                $("#anom").attr("disabled", true);
+            } else {
+                $("#anom").removeAttr("disabled");
+            }
+        });
+
+        var availableTags = [{%
+                for user in users %}
+            "{{user.username}}", {% endfor %}
+            "Travis"
+        ];
+        $('#friend').autocomplete({
+            source: availableTags
+        });
+        $('#add_nice').click(function() {
+            $('html, body').animate({
+                scrollTop: $("#quick_add").offset().top
+            })
+        });
+
+        $('#add_nice_thing').on('submit', function(e) {
+            e.preventDefault();
+            var formData = $("#add_nice_thing").serializeObject();
+            $.ajax({
+                url: "add.php",
+                type: "POST",
+                data: {
+                    data: formData
+                },
+                success: function(data, textStatus, jqXHR) {
+                    $('#modal-success').openModal();
+                    console.log(data);
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+
+                }
             });
-$('#anom').change(function(){
-        if(this.checked) {
-        $("#email_pack").fadeOut();
-        $("#email").removeAttr('required');
-        $("#add_pack").fadeOut();
-        }else{
-        $("#email").show();
-        $("#email").addAttr('required');
-        $("#add_pack").fadeIn();
-        } 		
-        });
-$('#register').change(function(){
-        if(this.checked) {
-        $("#anom").attr("disabled", true);
-        }else{
-        $("#anom").removeAttr("disabled");
-        } 		
-        });
-
-var availableTags = [
-{% for user in users %}
-"{{user.username}}",
-{% endfor%}
-"Travis"
-];
-$('#friend').autocomplete({
-source: availableTags
-});
-$('#add_nice').click(function(){
-        $('html, body').animate({
-scrollTop: $("#quick_add").offset().top
-})
-        });
-
-$('#add_nice_thing').on('submit', function(e){
-        e.preventDefault();
-        var formData = $("#add_nice_thing").serializeObject();
-        $.ajax({
-url : "add.php",
-type: "POST",
-data : {data:formData},
-success: function(data, textStatus, jqXHR)
-{
-$('#modal-success').openModal();
-console.log(data);
-},
-error: function (jqXHR, textStatus, errorThrown)
-{
-
-}
-});
 
         });
-$('#login').on('submit', function(e){
-        e.preventDefault();
-        $.post("login.php", {
-email: $('#email_login').val(),
-password: $('#password_login').val()
-}, function (result) {
-if(result==1){
-window.location.replace("index.php?dashboard");  
-}
-else{
-$('#modal-error').openModal();
-}
-});
+        $('#login').on('submit', function(e) {
+            e.preventDefault();
+            $.post("login.php", {
+                email: $('#email_login').val(),
+                password: $('#password_login').val()
+            }, function(result) {
+                if (result == 1) {
+                    window.location.replace("index.php?dashboard");
+                } else {
+                    $('#modal-error').openModal();
+                }
+            });
         });
-});
-function footerAlign() {
-    $('footer').css('height', 'auto');
-    var footerHeight = $('footer').outerHeight();
-    $('body').css('padding-bottom', footerHeight);
-    $('footer').css('height', footerHeight);
-}
+    });
+
+/*    function footerAlign() {
+        $('footer').css('height', 'auto');
+        var footerHeight = $('footer').outerHeight();
+        $('body').css('padding-bottom', footerHeight);
+        $('footer').css('height', footerHeight);
+    }
 
 
-$(document).ready(function(){
+    $(document).ready(function() {
         footerAlign();
-        });
+    });
 
-$( window ).resize(function() {
+    $(window).resize(function() {
         footerAlign();
-        });
+    });
+*/
 </script>
 {% endblock %}

@@ -1,91 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        {% block head %}
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-        <title>One Nice Thing {{ title }}</title>
-        <!-- CSS  -->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link href="css/semantic.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-        <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-        <link href="font/UI-Icon/icon.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-        <link href="font/UI-Icon/icon.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-        {% endblock %}
-    </head>
-    <body>
-        <div id='wrapper'>
-            <header>
-                <div class="ui container">
-                    <div class="ui secondary menu flex middle">
-                        <a href="#"><img src="img/logo.png" height="64"></a>
-                        <div class="ui right secondary pointing menu">
-                            {% if user %}
-                            <a class='item active' href="index.php?home">Home</a>
-                            <a class='item' href='index.php?add'>Add</a>
-                            <a class='item' href="index.php?chat">Inbox</a>
-                            <a class='item' href="index.php?explore">Explore</a>
-                            {% else %}
-                            <a class="item" href='index.php' style='color:#40B553 !important'>How it Works</a>
-                            <a class="item" href='index.php' style='color:#fbbd08 !important'>Success Stories</a>
-                            <a class="item active" href='index.php?home'>Home</a>
-                            <a class="item" href='index.php'>My Page</a>
-                            <a class="item" href='index.php?about'>About</a>
-                            {% endif %}
-                        </div>
-                        {% if user %}
-                        <div class='item'>
-                            <div class="ui dropdown">
-                                <img class='ui avatar image' src="img/background2.jpg" alt="">
-                                <span>Louk</span>
-                                <i class="dropdown icon"></i>
-                                <div class="menu">
-                                    <div class="item"><a href='index.php?settings'>Settings</a></div>   
-                                    <div class="divider"></div>
-                                    <div class="item"><a href='index.php?logout'>Logout</a></div> 
-                                </div> 
-                            </div>
-                        </div>
-                        {% endif %}
+<html>
+<head>
+{% block head %}
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+<title>One Nice Thing {{ title }}</title>
+<!-- CSS  -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="css/semantic.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+<link href="font/UI-Icon/icon.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+<link href="font/UI-Icon/icon.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+{% endblock %}
+</head>
+<body>
+<div id='wrapper'>
+    <header>
+        <div class="ui container">
+            <div class="ui secondary menu flex middle">
+                <a href="#"><img src="img/logo.png" height="64"></a>
+                <div class="ui right secondary pointing menu">
+                    {% if user %}
+                    <a class='item active' href="index.php?home">Home</a>
+                    <a class='item' href='index.php?add'>Add</a>
+                    <a class='item' href="index.php?chat">Inbox</a>
+                    <a class='item' href="index.php?explore">Explore</a>
+                    {% else %}
+                    <a class="item" href='index.php' style='color:#40B553 !important'>How it Works</a>
+                    <a class="item" href='index.php' style='color:#fbbd08 !important'>Success Stories</a>
+                    <a class="item active" href='index.php?home'>Home</a>
+                    <a class="item" href='index.php'>My Page</a>
+                    <a class="item" href='index.php?about'>About</a>
+                    {% endif %}
+                </div>
+                {% if user %}
+                <div class='item'>
+                    <div class="ui dropdown">
+                        <img class='ui avatar image' src="img/background2.jpg" alt="">
+                        <span>Louk</span>
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <div class="item"><a href='index.php?settings'>Settings</a></div>   
+                            <div class="divider"></div>
+                            <div class="item"><a href='index.php?logout'>Logout</a></div> 
+                        </div> 
                     </div>
                 </div>
-            </header>
-            <div id='content'>
-                {% block content %}
-
-                {% endblock %}
+                {% endif %}
             </div>
-            <footer class='flex middle'>
-                <div class='ui container'>
-                    <div class='flex between'>
-                        <div class='flex between'>
-                            <a href='#'>ABOUT US</a>
-                            <a href='#'>HELP</a>
-                            <a href='#'>CONTACT US</a>
-                            <a href='#'>PRIVACY POLICY</a>
-                        </div>
-                        <div class='flex between'>
-                            <a href='#'><i class="large facebook icon"></i></a>
-                            <a href='#'><i class="large twitter icon"></i></a>
-                            <a href='#'><i class="large instagram icon"></i></a>
-                            <a href='#'><i class="large google plus icon"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-            <!--  Scripts-->
-            {% block scripting %}
-
-            <script src="js/init.js"></script>
-            <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-            <script src="js/jquery-2.2.0.min.js"></script>
-            <script src="js/semantic.min.js"></script>
-            {% endblock %}
         </div>
-        <script>
+    </header>
+    <div id='content'>
+        {% block content %}
+
+        {% endblock %}
+    </div>
+    <footer class='flex middle'>
+        <div class='ui container'>
+            <div class='flex between'>
+                <div class='flex between'>
+                    <a href='#'>ABOUT US</a>
+                    <a href='#'>HELP</a>
+                    <a href='#'>CONTACT US</a>
+                    <a href='#'>PRIVACY POLICY</a>
+                </div>
+                <div class='flex between'>
+                    <a href='#'><i class="large facebook icon"></i></a>
+                    <a href='#'><i class="large twitter icon"></i></a>
+                    <a href='#'><i class="large instagram icon"></i></a>
+                    <a href='#'><i class="large google plus icon"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--  Scripts-->
+    {% block scripting %}
+
+    <script src="js/jquery-2.2.0.min.js"></script>
+    <script src="js/init.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="js/semantic.min.js"></script>
+    {% endblock %}
+</div>
+<script>
+$('.pointing.menu .item').tab();
 $('.ui.dropdown').dropdown();
 $('.ui.checkbox').checkbox();
-        </script>
-    </body>
+</script>
+</body>
 </html>

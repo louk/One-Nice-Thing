@@ -74,6 +74,9 @@
         if(isset($_GET['login'])){
             $template = $twig->loadTemplate('login.html');
             echo $template->render(array('title' => 'Login')); 
+        }else if(isset($_GET['reportnicething'])){
+            $template = $twig->loadTemplate('reportnicething.html');
+            echo $template->render(array('title' => 'Report Nice Thing')); 
         }else if(isset($_GET['help'])){
             $template = $twig->loadTemplate('help.html');
             echo $template->render(array('title' => 'Help')); 
