@@ -1,47 +1,36 @@
 {% extends "submain.html" %}
 {% block subcontent %}
-<div class='ui container dashboard'>
-    <div class="ui four cards">
-        <div class="card" style='box-shadow:0 1px 3px 0 #e65100,0 0 0 1px #e65100'>
-            <div class="content flex-col middle center">
-                <div class='medium-font'>Originated</div>
-                <div class='big-font' style='color:#e65100'>625</div>
-                <div>Nice things originated from you</div>
+<div class='dashboard'>
+    <div class='flex between'>
+        <div class='stats'>
+            <div class='card'>
+                <a class='medium-font'>Originated</a>
+                <a class='big-font'>625</a>
+                <a>Nice things originated from you</a>
+            </div>
+            <div class='card'>
+                <a class='medium-font'>Friend List</a>
+                <a class='big-font'>22</a>
+                <a>Friends</a>
+            </div>
+            <div class='card'>
+                <a class='medium-font'>Nice Things</a>
+                <a class='big-font'>625</a>
+                <a>Nice directly attributed to you</a>
             </div>
         </div>
-        <div class="card" style='box-shadow:0 1px 3px 0 #a1e7ff,0 0 0 1px #a1e7ff'>
-            <div class="content flex-col middle center">
-                <div class='medium-font'>Friend List</div>
-                <div class='big-font'>22</div>
-                <div>Friends</div>
+        <div class='maps flex-col between'>
+            <div class='map'>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d2674.1231407599025!2d106.9150149306034!3d47.914654737141085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1smn!2smn!4v1453028489882" width="500" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
             </div>
-        </div>
-        <div class="card" style='box-shadow:0 1px 3px 0 #65acdb,0 0 0 1px #65acdb'>
-            <div class="content flex-col middle center">
-                <div class='medium-font'>Nice Things</div>
-                <div class='big-font'>625</div>
-                <div>Nice directly attributed to you</div>
-            </div>
-        </div>
-        <div class="card" style='box-shadow:0 1px 3px 0 #ccc145,0 0 0 1px #ccc145'>
-            <div class="content flex-col middle center">
-                <div class='medium-font'>Distance</div>
-                <div class='big-font'>5000km</div>
-                <div>Longest distance</div>
-            </div>
-        </div>
-        <div class="card" style='box-shadow:0 1px 3px 0 #f47efc,0 0 0 1px #f47efc'>
-            <div class="content flex-col middle center">
-                <div class='medium-font'>Nice Things Done</div>
-                <div class='big-font'>98%</div>
-                <div>Percentile for Nice Things done</div>
-            </div>
-        </div>
-        <div class="card" style='box-shadow:0 1px 3px 0 #f5a92f,0 0 0 1px #f5a92f; color:#fff; background: #e65100'>
-            <div class="content flex-col middle center">
-                <div class='medium-font'>Overall Rank</div>
-                <div class='big-font'>18th</div>
-                <div>Over all rank</div>
+            <div class='box'>
+                <div class='flex center'>
+                    <div class='one'>
+                    </div>
+                    <div class='separator'></div>
+                    <div class='one'>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

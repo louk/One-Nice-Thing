@@ -65,6 +65,10 @@
             $template = $twig->loadTemplate('chat.html');
             echo $template->render(array('title' => 'Explore', 'user'=>$user)); 
         }
+          else if(isset($_GET['mymap'])){
+            $template = $twig->loadTemplate('my-map.html');
+            echo $template->render(array('title' => 'My map', 'user'=>$user)); 
+        }
         else{
             $template = $twig->loadTemplate('main.html');
             echo $template->render(array('title' => 'Start','user'=>$user)); 
@@ -76,7 +80,7 @@
             echo $template->render(array('title' => 'Login')); 
         }else if(isset($_GET['reportnicething'])){
             $template = $twig->loadTemplate('reportnicething.html');
-            echo $template->render(array('title' => 'Report Nice  Thing')); 
+            echo $template->render(array('title' => 'Report Nice Thing')); 
         }else if(isset($_GET['help'])){
             $template = $twig->loadTemplate('help.html');
             echo $template->render(array('title' => 'Help')); 

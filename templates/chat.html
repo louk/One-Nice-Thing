@@ -1,205 +1,237 @@
 {% extends "submain.html" %}
 {% block subcontent %}
-<style>
-    ul{
-        list-style:none;
-    }
-    textarea{
-        padding:10px;
-        resize:none;
-    }
-    .chat-col{
-        overflow-y:scroll;
-        max-height:400px;
-    }
-    .chat-col::-webkit-scrollbar {
-        width: 7px;
-    }
-    .chat-col::-webkit-scrollbar-track {
-        -webkit-border-radius: 10px;
-        border-radius: 10px;
-        transition:all 0.2s;
-    }
-    .chat-col::-webkit-scrollbar-thumb {
-        -webkit-border-radius: 10px;
-        border-radius: 10px;
-        background: rgba(0,0,0,0.5); 
-        transition:all 0.2s;
-    }
-    .chat-col::-webkit-scrollbar-thumb:window-inactive {
-        background: rgba(0,0,0,0.5); 
-        transition:all 0.2s;
-    }
-    .img{
-        margin-right:20px;
-    }
-    .name, .name2{
-        font-weight:600;
-    }
-    .name2:hover{
-        text-decoration: underline;
-        color:#40B553;
-    }
-    .name:hover{
-        color:#40B553;
-    }
-    .time{
-        margin-left:10px;
-    }
-    .date-divider{
-        border-top:1px solid #e0e0e0;
-    }
-    .date-divider{
-        text-align: center;
-        margin-top:40px;
-    }
-    .date-divider span{
-        background:#fff;
-        padding:0 3px;
-        position: relative;
-        bottom:12px;
-        font-size:0.75em;
-        color:#bdbdbd;
-    }
-    .text{
-        font-size:0.75em;
-    }
-    .chat{
-        margin-top:20px;
-    }
-    #send{
-        margin-top:20px;
-    }
-    .date, .time{
-        font-size:0.75em;
-        color:#bdbdbd;
-    }
-    .chat .flex-col>span:nth-of-type(n+2){
-        margin-top:10px;
-    }
-</style>
 <div class="ui container">
-    <div class='flex' style='border:1px solid #e0e0e0'>
-        <div style='width:35%;border-right:1px solid #e0e0e0; padding-right:20px;'>
-            <ul style="margin:10px 0;">
-                <li class="ui input">
-                    <input type="search" placeholder="Search...">
-                </li>
-            </ul>
-            <ul>
-                <li class="flex between"> 
-                    <div class="flex middle">
-                        <a href="#"><img src="images/placeholder.png" alt="" class="circle img" height="50" width="50"></a>
-                        <div class="flex-col">
-                            <a href="#" class="name">LastName FirstName</a>
-                            <span class="text">Lorem ipsum dolor sit amet...</span>
-                        </div>
-                    </div>
-                    <span class="date">12/15/30</span>
-                </li>
-                <li class="flex between"> 
-                    <div class="flex middle">
-                        <a href="#"><img src="images/placeholder.png" alt="" class="circle img" height="50" width="50"></a>
-                        <div class="flex-col">
-                            <a href="#" class="name">LastName FirstName</a>
-                            <span class="text">Lorem ipsum dolor sit amet...</span>
-                        </div>
-                    </div>
-                    <span class="date">12/15/30</span>
-                </li>
-            </ul>
+    <div id='chat'>
+        <div class="flex" id="chat-header">
+            <div class="border-right" id='header-first'>
+                <div>
+                    <a>Recent (7)</a>
+                    <a>Message Requests</a>
+                </div>
+            </div>
+            <div id='header-second'>
+                <a id="name" href='#'>FirstName LastName</a>
+            </div>
         </div>
-        <div style='width:60%;'>
-            <ul class="chat-col">
-                <li class="date-divider"><span>December 28, 2015</span></li>
-                <li class="flex between"> 
-                    <div class="flex">
-                        <a href="#"><img src="images/placeholder.png" alt="" class="circle img" height="50" width="50"></a>
-                        <div class="flex-col">
-                            <a href="#" class=" name2">LastName FirstName</a>
-                            <span class="text">Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet...</span>
+        <div class='flex'>
+            <div id='chat-side'>
+                <div class="ui icon input" id='chat-search'>
+                    <input type="text" placeholder="Search...">
+                    <i class="circular search link icon"></i>
+                </div>
+                <div id='recent-chat' class="chat-scroll">
+                    <a href='#' class='flex middle unseen'>
+                        <img src="img/cat.jpg" width="50" height="50">
+                        <div class="chat">
+                            <div class="flex between">
+                                <span class="chat-side-name">FirstName LastName</span>
+                                <span class="chat-time">11:49am</span>
+                            </div>
+                            <span>Chat chat chat chat...</span>
+                        </div>
+                    </a>
+                    <a href='#' class='flex middle'>
+                        <img src="img/cat.jpg" width="50" height="50">
+                        <div class="chat">
+                            <div class="flex between">
+                                <span class="chat-side-name">FirstName LastName</span>
+                                <span class="chat-time">11:49am</span>
+                            </div>
+                            <span>Chat chat chat chat...</span>
+                        </div>
+                    </a>
+                    <a href='#' class='flex middle'>
+                        <img src="img/cat.jpg" width="50" height="50">
+                        <div class="chat">
+                            <div class="flex between">
+                                <span class="chat-side-name">FirstName LastName</span>
+                                <span class="chat-time">11:49am</span>
+                            </div>
+                            <span>Chat chat chat chat...</span>
+                        </div>
+                    </a>
+                    <a href='#' class='flex middle'>
+                        <img src="img/cat.jpg" width="50" height="50">
+                        <div class="chat">
+                            <div class="flex between">
+                                <span class="chat-side-name">FirstName LastName</span>
+                                <span class="chat-time">11:49am</span>
+                            </div>
+                            <span>Chat chat chat chat...</span>
+                        </div>
+                    </a>
+                    <a href='#' class='flex middle'>
+                        <img src="img/cat.jpg" width="50" height="50">
+                        <div class="chat">
+                            <div class="flex between">
+                                <span class="chat-side-name">FirstName LastName</span>
+                                <span class="chat-time">11:49am</span>
+                            </div>
+                            <span>Chat chat chat chat...</span>
+                        </div>
+                    </a>
+                    <a href='#' class='flex middle'>
+                        <img src="img/cat.jpg" width="50" height="50">
+                        <div class="chat">
+                            <div class="flex between">
+                                <span class="chat-side-name">FirstName LastName</span>
+                                <span class="chat-time">11:49am</span>
+                            </div>
+                            <span>Chat chat chat chat...</span>
+                        </div>
+                    </a>
+                    <a href='#' class='flex middle'>
+                        <img src="img/cat.jpg" width="50" height="50">
+                        <div class="chat">
+                            <div class="flex between">
+                                <span class="chat-side-name">FirstName LastName</span>
+                                <span class="chat-time">11:49am</span>
+                            </div>
+                            <span>Chat chat chat chat...</span>
+                        </div>
+                    </a>
+                    <a href='#' class='flex middle'>
+                        <img src="img/cat.jpg" width="50" height="50">
+                        <div class="chat">
+                            <div class="flex between">
+                                <span class="chat-side-name">FirstName LastName</span>
+                                <span class="chat-time">11:49am</span>
+                            </div>
+                            <span>Chat chat chat chat...</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div id='chat-main'>
+                <div class='chat-scroll'>
+                    <div class='flex'>
+                        <a href='#'><img src="img/cat.jpg" width="32" height="32"></a>
+                        <div class='chat'>
+                            <div class='flex between'>
+                                <a href='#' class="chat-main-name">FirstName LastName</a>
+                                <span class='chat-time'>1/1, 11:49am</span>
+                            </div>
+                            <div class='chat-text'>
+                                <div>sdsdsdsdsdsd</div>
+                                <div>sdsdsdsdsdsd</div>
+                                <div>sdsdsdsdsdsd</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="flex">
-                        <span class="date">12/15</span>
-                        <span class="time">4:25pm</span>
-                    </div>
-                </li>
-                <li class="flex between"> 
-                    <div class="flex">
-                        <a href="#"><img src="images/placeholder.png" alt="" class="circle img" height="50" width="50"></a>
-                        <div class="flex-col">
-                            <a href="#" class=" name2">LastName FirstName</a>
-                            <span class="text">Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet...</span>
+                    <div class='chat-separator'><span>January 1</span></div>
+                    <div class='flex section'>
+                        <a href='#'><img src="img/cat.jpg" width="32" height="32"></a>
+                        <div class='chat'>
+                            <div class='flex between'>
+                                <a href='#' class="chat-main-name">FirstName LastName</a>
+                                <span>1/1, 11:49am</span>
+                            </div>
+                            <div class='chat-text'>
+                                <div>sdsdsdsdsdsd</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="flex">
-                        <span class="date">12/15</span>
-                        <span class="time">4:25pm</span>
-                    </div>
-                </li>
-                <li class="flex between"> 
-                    <div class="flex">
-                        <a href="#"><img src="images/placeholder.png" alt="" class="circle img" height="50" width="50"></a>
-                        <div class="flex-col">
-                            <a href="#" class=" name2">LastName FirstName</a>
-                            <span class="text">Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet...</span>
+                    <div class='flex section'>
+                        <a href='#'><img src="img/cat.jpg" width="32" height="32"></a>
+                        <div class='chat'>
+                            <div class='flex between'>
+                                <a href='#' class="chat-main-name">FirstName LastName</a>
+                                <span>1/1, 11:49am</span>
+                            </div>
+                            <div class='chat-text'>
+                                <div>sdsdsdsdsdsd</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="flex">
-                        <span class="date">12/15</span>
-                        <span class="time">4:25pm</span>
-                    </div>
-                </li>
-                <li class="date-divider"><span>December 28, 2015</span></li>
-                <li class="flex between"> 
-                    <div class="flex">
-                        <a href="#"><img src="images/placeholder.png" alt="" class="circle img" height="50" width="50"></a>
-                        <div class="flex-col">
-                            <a href="#" class=" name2">LastName FirstName</a>
-                            <span class="text">Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet...</span>
+                    <div class='flex section'>
+                        <a href='#'><img src="img/cat.jpg" width="32" height="32"></a>
+                        <div class='chat'>
+                            <div class='flex between'>
+                                <a href='#' class="chat-main-name">FirstName LastName</a>
+                                <span>1/1, 11:49am</span>
+                            </div>
+                            <div class='chat-text'>
+                                <div>sdsdsdsdsdsd</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="flex">
-                        <span class="date">12/15</span>
-                        <span class="time">4:25pm</span>
-                    </div>
-                </li>              
-                <li class="flex between"> 
-                    <div class="flex">
-                        <a href="#"><img src="images/placeholder.png" alt="" class="circle img" height="50" width="50"></a>
-                        <div class="flex-col">
-                            <a href="#" class=" name2">LastName FirstName</a>
-                            <span class="text">Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet...</span>
+                    <div class='flex section'>
+                        <a href='#'><img src="img/cat.jpg" width="32" height="32"></a>
+                        <div class='chat'>
+                            <div class='flex between'>
+                                <a href='#' class="chat-main-name">FirstName LastName</a>
+                                <span>1/1, 11:49am</span>
+                            </div>
+                            <div class='chat-text'>
+                                <div>sdsdsdsdsdsd</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="flex">
-                        <span class="date">12/15</span>
-                        <span class="time">4:25pm</span>
-                    </div>
-                </li>
-                <li class="flex between"> 
-                    <div class="flex">
-                        <a href="#"><img src="images/placeholder.png" alt="" class="circle img" height="50" width="50"></a>
-                        <div class="flex-col">
-                            <a href="#" class=" name2">LastName FirstName</a>
-                            <span class="text">Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet...</span>
+                    <div class='flex section'>
+                        <a href='#'><img src="img/cat.jpg" width="32" height="32"></a>
+                        <div class='chat'>
+                            <div class='flex between'>
+                                <a href='#' class="chat-main-name">FirstName LastName</a>
+                                <span>1/1, 11:49am</span>
+                            </div>
+                            <div class='chat-text'>
+                                <div>sdsdsdsdsdsd</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="flex">
-                        <span class="date">12/15</span>
-                        <span class="time">4:25pm</span>
+                    <div class='flex section'>
+                        <a href='#'><img src="img/cat.jpg" width="32" height="32"></a>
+                        <div class='chat'>
+                            <div class='flex between'>
+                                <a href='#' class="chat-main-name">FirstName LastName</a>
+                                <span>1/1, 11:49am</span>
+                            </div>
+                            <div class='chat-text'>
+                                <div>sdsdsdsdsdsd</div>
+                            </div>
+                        </div>
                     </div>
-                </li>
-            </ul>
-            <form id="send" class='flex-col'>
-                <textarea placeholder="write a text..." rows="5"></textarea>
-                <span style='margin-top:20px;'>
-                    <button class="ui green button right floated">SEND</button>
-                </span>
-            </form>
+                    <div class='flex section'>
+                        <a href='#'><img src="img/cat.jpg" width="32" height="32"></a>
+                        <div class='chat'>
+                            <div class='flex between'>
+                                <a href='#' class="chat-main-name">FirstName LastName</a>
+                                <span>1/1, 11:49am</span>
+                            </div>
+                            <div class='chat-text'>
+                                <div>sdsdsdsdsdsd</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id='chat-send'>
+                    <form>
+                        <textarea rows='5' placeholder='Write a text...'></textarea>
+                        <span class='flex end'>
+                            <button class='ui green button'>Send</button>
+                        </span>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+<script src='jquery-2.2.0.min.js'></script>
+<script>
+    $(function () {
+       $(function() {
 
+  var toolbox = $('.scroll_height'),
+      height = toolbox.height(),
+      scrollHeight = toolbox.get(0).scrollHeight;
+
+  toolbox.bind('mousewheel', function(e, d) {
+    if((this.scrollTop === (scrollHeight - height) && d < 0) || (this.scrollTop === 0 && d > 0)) {
+      e.preventDefault();
+    }
+  });
+
+});
+    })
+</script>
 {% endblock %}

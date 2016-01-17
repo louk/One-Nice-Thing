@@ -1,85 +1,83 @@
 {% extends "submain.html" %}
 {% block subcontent %}
-<div class="ui container">
-    <table class="ui celled table">
-        <thead>
-            <tr><th>My Thing Name</th>
-                <th>Person name</th>
-                <th class='collapsing'>Date</th>
-            </tr></thead>
-        <tbody>
-            <tr>
-                <td>My Nice Things</td>
-                <td>
-                    <h4 class="ui image header">
-                        <img src="img/cat.jpg" class="ui mini rounded image">
-                        <div class="content">Lena</div>
-                    </h4>
-                </td>
-                <td>12/15/2000</td>
-            </tr>
-            <tr>
-                <td>My Nice Things</td>
-                <td>
-                    <h4 class="ui image header">
-                        <img src="img/cat.jpg" class="ui mini rounded image">
-                        <div class="content">Lena</div>
-                    </h4>
-                </td>
-                <td>12/15/2000</td>
-            </tr>
-            <tr>
-                <td>My Nice Things</td>
-                <td>
-                    <h4 class="ui image header">
-                        <img src="img/cat.jpg" class="ui mini rounded image">
-                        <div class="content">Lena</div>
-                    </h4>
-                </td>
-                <td>12/15/2000</td>
-            </tr>
-            <tr>
-                <td>My Nice Things</td>
-                <td>
-                    <h4 class="ui image header">
-                        <img src="img/cat.jpg" class="ui mini rounded image">
-                        <div class="content">Lena</div>
-                    </h4>
-                </td>
-                <td>12/15/2000</td>
-            </tr>
-            <tr>
-                <td>My Nice Things</td>
-                <td>
-                    <h4 class="ui image header">
-                        <img src="img/cat.jpg" class="ui mini rounded image">
-                        <div class="content">Lena</div>
-                    </h4>
-                </td>
-                <td>12/15/2000</td>
-            </tr>
-        </tbody>
-        <tfoot>
-            <tr><th colspan="3">
-        <div class="flex end middle">
-            <div>
-                <span>Rows per page:</span>
-                <select class="ui dropdown">
-                    <option value="">10</option>
-                    <option value="">20</option>
-                    <option value="">30</option>
-                </select>
-            </div>
-            <div style='margin:0 40px'>
-                <span>1</span><span style='margin:0 5px'>of</span><span>10</span>
-            </div>
-            <div>
-                <a href='#'><i class="left chevron icon"></i></a>
-                <a href='#'><i class="right chevron icon"></i></a>
-            </div>
+<table class="ui celled table" id='my-nice-things'>
+    <thead>
+        <tr><th>My Thing Name</th>
+            <th>Person name</th>
+            <th class='collapsing'>Date</th>
+        </tr></thead>
+    <tbody>
+        <tr>
+            <td>My Nice Things</td>
+            <td>
+                <h4 class="ui image header">
+                    <img src="img/cat.jpg" class="ui mini rounded image">
+                    <div class="content">Lena</div>
+                </h4>
+            </td>
+            <td>12/15/2000</td>
+        </tr>
+        <tr>
+            <td>My Nice Things</td>
+            <td>
+                <h4 class="ui image header">
+                    <img src="img/cat.jpg" class="ui mini rounded image">
+                    <div class="content">Lena</div>
+                </h4>
+            </td>
+            <td>12/15/2000</td>
+        </tr>
+        <tr>
+            <td>My Nice Things</td>
+            <td>
+                <h4 class="ui image header">
+                    <img src="img/cat.jpg" class="ui mini rounded image">
+                    <div class="content">Lena</div>
+                </h4>
+            </td>
+            <td>12/15/2000</td>
+        </tr>
+        <tr>
+            <td>My Nice Things</td>
+            <td>
+                <h4 class="ui image header">
+                    <img src="img/cat.jpg" class="ui mini rounded image">
+                    <div class="content">Lena</div>
+                </h4>
+            </td>
+            <td>12/15/2000</td>
+        </tr>
+        <tr>
+            <td>My Nice Things</td>
+            <td>
+                <h4 class="ui image header">
+                    <img src="img/cat.jpg" class="ui mini rounded image">
+                    <div class="content">Lena</div>
+                </h4>
+            </td>
+            <td>12/15/2000</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr><th colspan="3">
+    <div class="flex end middle footer">
+        <div>
+            <span>Rows per page:</span>
+            <select class="ui dropdown">
+                <option value="">10</option>
+                <option value="">20</option>
+                <option value="">30</option>
+            </select>
         </div>
-        </th>
-        </tr></tfoot>
-    </table>
-</div>
+        <div>
+            <span>1</span><span>of</span><span>10</span>
+        </div>
+        <div>
+            <a href='#'><i class="left chevron icon"></i></a>
+            <a href='#'><i class="right chevron icon"></i></a>
+        </div>
+    </div>
+</th>
+</tr></tfoot>
+</table>
 {% endblock %}

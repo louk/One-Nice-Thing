@@ -1,40 +1,22 @@
 {% extends "submain.html" %}
 {% block subcontent %}
-<div class="container">
-    <div class='row'>
-        <div class='col s12 m12 l12'>
-            <div id="tree-container"></div>
-            <div id="bio"></div>
-        </div>
+<div id="tree-container"></div>
+<div id="bio"></div>
 </div>
 {% endblock %}
 
 
 {% block scripting %}
 
- <link rel="stylesheet" type="text/css" href="style/tree.css">
- <script src="bower_components/jquery/dist/jquery.min.js"></script>
- <script src="bower_components/d3/d3.min.js"></script>
- <script src="scripts/jquery.hoverIntent.minified.js"></script>
- <script src="scripts/tree.js"></script>
-
-
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="js/materialize.min.js"></script>
+<link rel="stylesheet" type="text/css" href="style/tree.css">
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/d3/d3.min.js"></script>
+<script src="scripts/jquery.hoverIntent.minified.js"></script>
+<script src="scripts/tree.js"></script>
 <script>
-
-    $(document).ready(function () {
-        $('select').material_select();
-    });
-
-
-    $(document).ready(function () {
-        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-        $('.modal-trigger').leanModal();
-    });
-
-
+$(function(){
+    $('#tree-container').children(g).attr('translate(74.27521493039598,-170.40899554710882)scale(0.6597539553864472)');
+});
 </script>
-
-
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 {% endblock %}
