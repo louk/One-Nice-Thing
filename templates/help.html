@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block content %}
+<div class='ui container'>
+    <div id='help'>            
+        <h1>How does it work?</h1>
+        <div class='section'>
+            <h4>First we wanted to make it easy so everyone could do it. It takes just 3 simple steps.</h4>
+            <div class='steps'>
+                <p><span>1.</span>Sign up! It's free and fast and you can even do it anonymously if you don't want to
+                    give out your personal information.</p>
+                <p><span>2.</span>Do something nice for someone and when they thank you, just ask them to keep it 
+                    going and do something for someone else.</p>
+                <p><span>3.</span>Then ask them to visit this site and leave a brief message about what they did for the
+                    next person (give them your username so they can find you here).</p>
+                <p><span>4.</span>*Bonus step* Ask them to sign up too and join the fun.</p>
+                <span>*Bonus step* Ask them to sign up too and join the fun.</span>
+            </div>
+        </div>
+        <div class='section'>
+            <h4>The moment that person leaves a message for you; we will send you an email which will include:</h4>
+            <div class='steps'>
+                <p>An uplifting message telling what they did for someone else</p>
+                <p>If others keep it going you will receive an email message every time someone logs in to tell about their One Nice Thing</p>
+                <p>We will show you how long the chain of Nice Things has grown (insert graphic of animation from Lucas below</p>
+                <p>We will map how far from the original Nice Thing this new one has travelled (show graphic of nice things on a map 
+                    below)</p>
+                <p>We will also show a total of the Nice things that started with you along with an overall total with all the nice things 
+                    others have done that started with your original Nice Thing (show graphic for stats page here)</p>
+            </div>
+        </div>
+        <div class='section'>
+            <h4>Using this site, we will show:</h4>
+            <div class='steps'>
+                <p>-How many people keep your "one nice thing" going</p>
+                <p>-How far it travels before it stops</p>
+                <p>-What these people do for each other by sending you messages from them</p>
+                <p>-How many other people join and start doing nice things because of you</p>
+                <p>All from your initial "one nice thing"!</p>
+                <p>Can doing one random act of kindness or one nice thing for someone really make a difference?</p>
+                <p>Have you every helped someone and wondered I wonder what effect it had on their lives.</p>
+                <p>Users of our site are encouraged to do nice things for others then encourage them to pass it on and keep it going. Then 
+                    we offer a place where those people can share the nice things they've done with the people that started it.</p>
+                <p>This will provide a sequence of nice things that we can watch unfold and see the kind acts other perform and how long
+                    it stays going. We can also see how far it goes (geographically) from the original kind act. We've had users watch one 
+                    act go all around the world.</p>
+                <p>You will receive an email each time a new nice thing is done that originated from you, or someone that signed up 
+                    because of you. This will show what was done (because of you), and what each other person along the way did for one 
+                    another.</p>
+                <p>Our goal is to make random acts of kindness go viral by encourage others to join in the fun of seeing how something so 
+                    small can make a huge impact.</p>
+            </div>
+        </div>
+        <div class='section'>
+            <h4>Signup with us then:</h4>
+            <div class='steps'>
+                <p>Do something nice for someone and ask them to do the same and ask that person to keep it going.</p>
+                <p>Then ask that person to visit this site and tell you what they did for someone else.</p>
+                <p>We will send their message to you along with any successive message from people that keep it going.</p>
+                <p>We will also show you how far your nice thing went (distance on a map)</p>
+                <p>How many people kept it going</p>
+                <p>How many people signed up as a result of you</p>
+                <p>All the nice things done by everyone that started from your original nice things</p>
+            </div>
+        </div>
+        <div class='flex end'>
+            <button class='ui green button prev'>PREV</button>
+            <button class='ui green button next'>NEXT</button>
+        </div>
+    </div>
+</div>
+<script src='js/jquery-2.2.0.min.js'></script>
+<script>
+    $(function () {
+        var i = 0;
+        var length = $('.section').length - 1;
+
+        slide();
+
+        $('.next').click(function () {
+            i++;
+            slide();
+        });
+        $('.prev').click(function () {
+            i--
+            slide();
+        });
+        function slide() {
+            if (i > length) {
+                i = 0;
+            }
+            if (i < 0) {
+                i = length;
+            }
+            $('.section').hide();
+            $('.section').eq(i).show();
+        }
+    });
+</script>
+{% endblock %}

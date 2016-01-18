@@ -24,7 +24,13 @@ footer {
     left:0;
 }
 #content {
-    padding-bottom:50px;
+    padding-bottom:70px;
+}
+textarea{
+    resize:none;
+    padding:10px;
+    border-radius:3px;
+    border-color:#e0e0e0;
 }
 .ui.selection.dropdown{
     min-width: initial;
@@ -116,6 +122,10 @@ footer {
 }
 .center_text{
     text-align:center;
+}
+.with-link{
+    color:#40B553;
+    font-weight: bold;
 }
 
 .ui.form.field.login{
@@ -417,6 +427,62 @@ footer .links a:hover{
 /*FRIENDS PAGE*/
 #friends .next{
     margin-top:20px;
+}
+/*HELP PAGE*/
+#help{
+    position: relative;
+    overflow:hidden;
+}
+#help h1, h4{
+    text-align: center;
+}
+#help h4{
+    color:#40B553;
+}
+#help .steps{
+    width:60%;
+    margin:0 auto;
+}
+#help .steps span{
+    font-weight:bold;
+    margin-right:10px;
+}
+#help .steps p{
+    margin-bottom:30px;
+}
+#help .steps>span{
+    margin-top:40px;
+    display: block;
+}
+#help button{
+    margin-bottom:20px;
+}
+/*About page*/
+#about h1{
+    text-align:center;
+}
+#about img{
+    max-width:400px;
+}
+/*CONTACT US*/
+#contact h2{
+    text-align:center;
+}
+#contact form{
+    width:30%;
+    border:1px solid #e0e0e0;
+    padding:20px;
+    border-radius:3px;
+}
+#contact form>*{
+    margin-top:20px;
+}
+#contact textarea{
+    width:100%
+}
+/*Home Page*/
+.width40 p{
+    font-size:1.125em;
 }
 /*MEDIA QUERIES*/
 @media only screen and (min-width: 320px) {

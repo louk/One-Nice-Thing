@@ -20,7 +20,7 @@
                 <header>
                     <div class="ui container">
                         <div class="ui secondary menu flex middle">
-                            <a href="#"><img src="img/logo.png" height="64" id='logo'></a>
+                            <a href="index.php"><img src="img/logo.png" height="64" id='logo'></a>
                             <div class="ui right secondary pointing menu" id='menu'>
                                 {% if user %}
                                 <a class='item active' href="index.php?home">Home</a>
@@ -28,10 +28,10 @@
                                 <a class='item' href="index.php?chat">Inbox</a>
                                 <a class='item' href="index.php?explore">Explore</a>
                                 {% else %}
-                                <a class="item" href='index.php' style='color:#40B553 !important'>How it Works</a>
-                                <a class="item" href='index.php' style='color:#fbbd08 !important'>Success Stories</a>
+                                <a class="item" href='index.php?help' style='color:#40B553 !important'>How it Works</a>
+                                <a class="item" href='index.php?help' style='color:#fbbd08 !important'>Success Stories</a>
                                 <a class="item active" href='index.php?home'>Home</a>
-                                <a class="item" href='index.php'>My Page</a>
+                                <a class="item register_c" href='#'>My Page</a>
                                 <a class="item" href='index.php?about'>About</a>
                                 {% endif %}
                             </div>

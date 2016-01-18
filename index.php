@@ -23,8 +23,13 @@
         echo $template->render(array('title' => 'About'));
         return;
     }
+    if(isset($_GET['contact'])){
+        $template = $twig->loadTemplate('contact.html');
+        echo $template->render(array('title' => 'Contact Us'));
+        return;
+    }
     if(isset($_GET['help'])){
-        $template = $twig->loadTemplate('settings.html');
+        $template = $twig->loadTemplate('help.html');
         echo $template->render(array('title' => 'Help'));
         return;
     }

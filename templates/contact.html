@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<div class='ui container'>
+    <div id='contact' class='flex-col middle'>
+        <h1>CONTACT US</h1>
+        <form class='flex-col'>
+            <h2>Send us</h2>
+            <div class='ui input'>
+                <input type='text' placeholder='Name'>
+            </div>
+            <div class='ui input'>
+                <input type='email' placeholder='email'>
+            </div>
+            <div class='ui input m'>
+                <textarea placeholder='message' rows='5'></textarea>
+            </div>
+            <div class='flex end'>
+                <button class='ui yellow button'>Send</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
