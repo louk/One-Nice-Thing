@@ -84,11 +84,18 @@
             $template = $twig->loadTemplate('login.html');
             echo $template->render(array('title' => 'Login')); 
         }else if(isset($_GET['reportnicething'])){
+            $query = new ParseQuery("_User");
+            $query->equalTo('status', 1);
+            $users = $query->find();
             $template = $twig->loadTemplate('reportnicething.html');
-            echo $template->render(array('title' => 'Report Nice Thing')); 
+            echo $template->render(array('title' => 'Report Nice Thing', 'users' => $users)); 
         }else if(isset($_GET['help'])){
             $template = $twig->loadTemplate('help.html');
             echo $template->render(array('title' => 'Help')); 
+        }
+        else if(isset($_GET['choose'])){
+            $template = $twig->loadTemplate('choose.html');
+            echo $template->render(array('title' => 'Choose user type')); 
         }
         else{
             $query = new ParseQuery("_User");
