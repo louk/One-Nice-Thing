@@ -8,9 +8,9 @@
                 <a class="item" data-tab="register">Register</a>
             </div>
             <div class="ui bottom attached tab segment active" data-tab="login">
-                <form class="ui form">
-                    <input type="email" placeholder="Email">
-                    <input type="password" placeholder="Password">
+                <form class="ui form" action="login.php" method="post">
+                    <input name="email" type="text" placeholder="Email">
+                    <input type="password" name="password" placeholder="Password">
                     <div class="flex between middle">
                         <div class="ui checkbox">
                             <input type="checkbox">

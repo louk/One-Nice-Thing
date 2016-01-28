@@ -28,9 +28,9 @@
     $_SESSION['user'] = $user;
 
     if($result){
-        echo 1;
+        header('location: index.php?dashboard');  
     }else{
-        echo 0;
+        header('location: index.php?login');
     }
     
 ?>
