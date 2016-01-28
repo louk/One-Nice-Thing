@@ -1,21 +1,23 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="ui container">
-    <div class='flex'>
-        <div id='submenu'>
-            <div class='ui input search'>
-                <div class="ui icon input">
-                    <input type="text" placeholder="Search...">
-                    <i class="circular search link icon"></i>
+<div class='ui container'>
+    <div class="flex xs-wrap">
+        <div>
+            <div class="ui vertical menu" id='submenu'>
+                <div class='item'>
+                    <div class="ui transparent icon input">
+                        <input type="text" placeholder="Search...">
+                        <i class="search icon"></i>
+                    </div>
                 </div>
+                <a class="active item" href="index.php?dashboard">My Dashboard</a>
+                <a class="item" href="index.php?nicethings">My Nice Things</a>
+                <a class="item" href="index.php?tree">My tree</a>
+                <a class="item" href="index.php?map">My Map</a>
+                <a class="item" href="index.php?friends">My Friends</a>
             </div>
-            <a class='{% if nav ==1 %} active {%endif%}col s12 m2 l2' href='index.php?dashboard'>My Dashboard</a>
-            <a class='{% if nav ==2 %} active {%endif%}col s12 m2 l2' href='index.php?nicethings'>My Nice Things</a>
-            <a class='{% if nav ==3 %} active {%endif%}col s12 m2 l2' href='index.php?tree'>My Tree</a>
-            <a class='{% if nav ==4 %} active {%endif%}col s12 m2 l2' href='index.php?mymap'>My Map</a>
-            <a class='{% if nav ==5 %} active {%endif%}col s12 m2 l2' href='index.php?friends'>My Friends</a>
         </div>
-        <div id='main'>
+        <div id="right-content" class="margin-left">
             {% block subcontent %}
 
             {% endblock %}

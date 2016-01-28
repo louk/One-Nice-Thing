@@ -1,59 +1,38 @@
 {% extends "base.html" %}
-
 {% block content %}
-    <div class="container">
-        <h2 class="green-text">Register</h2>
-        <div class="section">
-            <div class="row center">
-                <form >
-                    <div class="row">
-                        <div class="input-field col s12 m12 l6">
-                            <i class="material-icons prefix">account_circle</i>
-                            <input  id="first_name" type="text" class="validate">
-                            <label for="first_name">User Name</label>
+<div class="ui container">
+    <div class="flex center">
+        <div id="login">
+            <div class="ui top attached tabular menu">
+                <a class="item active" data-tab="login">Login</a>
+                <a class="item" data-tab="register">Register</a>
+            </div>
+            <div class="ui bottom attached tab segment active" data-tab="login">
+                <form class="ui form">
+                    <input type="email" placeholder="Email">
+                    <input type="password" placeholder="Password">
+                    <div class="flex between middle">
+                        <div class="ui checkbox">
+                            <input type="checkbox">
+                            <label>Login as guest</label>
                         </div>
-                        <div class="input-field col s12 m12 l6">
-                            <i class="material-icons prefix">account_circle</i>
-                            <input id="last_name" type="text" class="validate">
-                            <label for="last_name">Refer ID</label>
-                        </div>
+                        <button class="ui green button">Login</button>
                     </div>
-                    <div class="row center">
-                        <div class="input-field col s12 m12 l6">
-                            <i class="material-icons prefix">account_circle</i>
-                            <input  id="first_name" type="text" class="validate">
-                            <label for="first_name">First Name</label>
-                        </div>
-                        <div class="input-field col s12 m12 l6">
-                            <i class="material-icons prefix">account_circle</i>
-                            <input id="last_name" type="text" class="validate">
-                            <label for="last_name">Last Name</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12 m12 l6">
-                            <i class="material-icons prefix">lock</i>
-                            <input id="password" type="password" class="validate">
-                            <label for="password">Password</label>
-                        </div>
-                        <div class="input-field col s12 m12 l6">
-                            <i class="material-icons prefix">lock</i>
-                            <input id="password" type="password" class="validate">
-                            <label for="password">Password Verify</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12 m12 l6">
-                            <i class="material-icons prefix">email</i>
-                            <input id="email" type="email" class="validate">
-                            <label for="email">Email</label>
-                        </div>
-                    </div>
-                    <div class="row center">
-                        <a href="#" id="signup-button" class="btn-large waves-effect waves-light  green darken-1">Sign up</a>
+                </form>
+            </div>
+            <div class="ui bottom attached tab segment" data-tab="register">
+                <form class="ui form">
+                    <input type="text" placeholder="First Name">
+                    <input type="text" placeholder="Last Name">
+                    <input type="text" placeholder="email">
+                    <input type="password" placeholder="password">
+                    <input type="password" placeholder="Type password again">
+                    <div class="flex end">
+                        <button class="ui green button">Register</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}
