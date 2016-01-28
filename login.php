@@ -15,9 +15,10 @@
     ParseClient::setStorage($storage);
     
     $result =false;
+    $data = $_POST['data'];
 
     try {
-        $user = ParseUser::logIn($_POST['email'], $_POST['password']);
+        $user = ParseUser::logIn($data['email'], $data['password']);
         $user->save();
         $result = true;
     } catch (ParseException $error) {

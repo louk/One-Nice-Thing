@@ -69,10 +69,16 @@
         else if(isset($_GET['chat'])){
             $template = $twig->loadTemplate('chat.html');
             echo $template->render(array('title' => 'Explore', 'user'=>$user)); 
-        }
-          else if(isset($_GET['mymap'])){
+        }else if(isset($_GET['mymap'])){
             $template = $twig->loadTemplate('my-map.html');
             echo $template->render(array('title' => 'My map', 'user'=>$user)); 
+        }
+        else if(isset($_GET['reportnicething'])){
+            $query = new ParseQuery("_User");
+            $query->equalTo('status', 1);
+            $users = $query->find();
+            $template = $twig->loadTemplate('reportnicething.html');
+            echo $template->render(array('title' => 'Report Nice Thing', 'users' => $users)); 
         }
         else{
             $template = $twig->loadTemplate('main.html');

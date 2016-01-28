@@ -1,10 +1,4 @@
-/*RESET CSS*/
-*{
-    font-family: 'Roboto', sans-serif;
-}
-a{
-    color:#bdbdbd
-}
+/*-----RESET-----*/
 html,
 body {
     margin:0;
@@ -15,490 +9,295 @@ body {
     min-height:100%;
     position:relative;
 }
-footer {
-    background:#40B553;
-    width:100%;
-    height:50px;
-    position:absolute;
-    bottom:0;
-    left:0;
-}
 #content {
+    margin:3rem 0;
     padding-bottom:70px;
 }
-textarea{
-    resize:none;
-    padding:10px;
-    border-radius:3px;
-    border-color:#e0e0e0;
+#footer{
+    position: absolute;
+    bottom:0;
+    left:0;
+    width:100%;
 }
-.ui.selection.dropdown{
-    min-width: initial;
+.ui.secondary.pointing.menu .active.item{
+    border-color:#40B553;
+    color:#40B553;
 }
-.ui.toggle.checkbox input:checked~.box:before, .ui.toggle.checkbox input:checked~label:before{
-    background:#40B553!important;
+.ui.secondary.pointing.menu .active.item.yellow-text{
+    border-color:#fbbd08;
 }
-.card .header{
-    font-size:1.15em !important;
+.ui.table{
+    margin:0;
 }
-/* will fix*/
-.card .image img{
-    max-height:70px;
+#side-menu-btn {
+    display: none;
 }
-/*Custom framework*/
-.flex{
-    display:flex;
-    display: -webkit-flex;
-}
-.wrap{
-    flex-wrap:wrap;
-}
-.end{
-    justify-content:flex-end;
-    -webkit-justify-content:flex-end;
-}
-.bottom{
-    align-items:flex-end;
-    -webkit-align-items:flex-end;
-}
-.center{
-    justify-content:center;
-    -webkit-justify-content:center;
-}
-.around{
-    justify-content:space-around;
-    -webkit-justify-content:space-around;
-}
-.varound{
-    align-items:space-around;
-    -webkit-align-items:space-around;
-}
-.middle{
-    align-items:center;
-    -webkit-align-items:center;
-}
-.between{
-    justify-content:space-between;
-    -webkit-justify-content:space-between;
-}
-.vbetween{
-    align-items:space-between;
-    -webkit-align-items:space-between;
-}
-.flex-col{
-    display:flex;
-    display: -webkit-flex;
-    flex-direction:column;
-}
-.uppercase{
-    text-transform: uppercase;
-}
+/*-----CUSTOM CLASS-----*/
 .big-font{
-    font-size:3em;
+    font-size:3rem;
 }
 .medium-font{
-    font-size:1.5em;
-}
-.margin{
-    margin-top:20px;
-}
-.separator{
-    height:100px;
-    width:1px;
-    background:#bdbdbd;
-    margin:0 30px;
-}
-.green{
-    color:#40B553;
+    font-size:1.25rem;
 }
 .underline{
     text-decoration: underline;
 }
-.underline:hover{
-    text-decoration: underline;
-}
-.width40{
-    width:40%;
-}
-.center_text{
-    text-align:center;
-}
-.with-link{
-    color:#40B553;
-    font-weight: bold;
-}
-
-.ui.form.field.login{
-    padding: 0 15px;
-}
-.center_content{
-    padding:20px;
-    background:#eee;
-    text-align: center;
-}
-.center_content h3{
-    font-weight: 200;
-    text-align: center;
-}
-header{
-    padding:20px 0 40px 0;
-}
-#custom_small_modal{
-    width: 30.4%;
-    margin: 0em 0em 0em -15.2%;
-}
-#loglabel{
-    top: -14px;
-    left: -2px;
-    width: 101%;
-}
-.login_text{
-    color: #40B553;
-}
-.ui.modal>.footer_action{
-    text-align: center;
-    background: #cacbcd;
-}
-.ui.modal>.footer_action a{
-    color: #404040
-}
-.ui.text{
-    text-align: center;
-    text-decoration: underline;
-}
-#custom_small_modal{
-    width:320px;
-    margin:0 0 0 -160px;
-}
-.ui.submit.button{
-    background: rgb(64, 181, 83);
-    color: white;
-}
-/*FOOTER*/
-footer a{
-    color:#fff;
-    margin: 0 20px;
-}
-footer a:hover{
-    color:#ffc929;
-}
-footer .links a:hover{
-    text-decoration:underline;
-}
-/*SUB MENU*/
-#submenu{
-    width:150px;
-}
-#submenu a{
-    color:#40B553;
-    font-weight: 600;
-    display: block;
-    padding:10px 20px;
-}
-#submenu a.active{
-    background:#40B553;
-    color:#fff;
-}
-#submenu a:hover{
-    background:#40B553;
-    color:#fff;
-}
-#submenu .search{
-    margin-bottom:30px;
-}
-#submenu .search input{
-    width:150px;
-}
-#main{
-    width:calc(100% - 200px);
-    margin-left:50px;
-}
-/*MAIN MENU*/
-#logo{
-    margin-left:22px;
-}
-#menu{
-    margin-right:20px;
-}
-#menu>a{
-    font-size: 1.125em;
-    font-weight: bold !important;
-    color:#bdbdbd !important;
-}
-#menu a:hover{
+.green-text{
     color:#40B553 !important;
 }
-#menu .active{
-    color:#40B553 !important;
+.yellow-text{
+    color:#fbbd08 !important;
 }
-#menu{
-    border-bottom-color:rgba(34,36,38,.1) !important;
-}
-#menu .active{
-    border-color:#40B553 !important;
-}
-#user{
-    background:rgba(34,36,38,.1);
-    height:40px;
-}
-/*Dashboard Page*/
-.dashboard .card{
-    border:1px solid #e0e0e0;
-    padding:20px;
-    border-radius:5px;
-}
-.dashboard .card:nth-child(n+2){
-    margin-top:20px;
-}
-.dashboard .card a{
-    display: block;
-    text-align:center;
-}
-.dashboard .card a:nth-child(n+2){
-    margin-top:20px;
-}
-.dashboard .maps{
+.margin-left{
     margin-left:50px;
 }
-.dashboard .box{
+/*DASHBOARD*/
+#dashboard .stat{
     border:1px solid #e0e0e0;
-    padding:20px;
-    border-radius:5px;
-    margin-top:20px;
-}
-.dashboard .one{
-    width:40%;
-}
-/*SETTINGS Page*/
-.settings .title{
-    color:#40B553;
-    font-weight: bold;
-    margin:10px 0;
-    display:block;
-}
-.settings input[type='file']{
-    margin-left:20px;
-}
-.settings>div:nth-of-type(n+2){
-    margin-top:20px;
-}
-.settings{
-    width:60%;
-    border:1px solid #bdbdbd;
     padding:20px;
     border-radius: 3px;
-    margin-bottom:40px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+    flex:1;
+    margin:0 20px;
 }
-/*MY NICE THINGS PAGE*/
-#my-nice-things .footer>div{
-    margin-left:15px;
+#dashboard .map{
+    margin-top:40px;
 }
-#my-nice-things .footer>div>span{
-    margin-left:5px;
+#dashboard .value{
+    font-size:4rem;
+    padding:20px;
 }
-/*CHAT*/
-#name{
-    color:#000;
-    font-weight:bold;
-    font-size: 1.125em;
+#dashboard iframe{
+    width:100%;
 }
-#name:hover{
+/*HEADER*/
+#logo{
+    margin-top:1rem;
+}
+#menu a{
+    font-weight: bold;
+}
+#menu a:hover{
+    color:#40B553;
+}
+#menu .active.item:hover{
+    border-color:#40B553;
+}
+#user{
+    margin-left:40px;
+    background:#e0e0e0;
+    padding:5px;
+    border-radius: 3px;
+}
+/*HOME*/
+#home-text{
+    background:#eee;
+    padding:20px 0 30px 0;
+    text-align: center;
+}
+#home-report a{
+    margin-bottom: 15px;
+}
+/*FOOTER*/
+#footer{
+    background:#40B553;
+    padding:15px;
+    margin-top:3rem;
+}
+#footer a{
+    color:#fff;
+    margin:0 10px;
+}
+#footer a:hover{
+    color:#fbbd08;
     text-decoration: underline;
 }
+#social a:hover{
+    text-decoration: none;
+}
+/*SETTINGS PAGE*/
+#settings{
+    border:1px solid #e0e0e0;
+    padding:20px 40px;
+}
+#settings .title{
+    color:#40B553;
+    font-size:1.125rem;
+    margin:20px 0;
+    font-weight: bold
+}
+/*MY NICE THINGS PAGE*/
+#mythings .footer>div{
+    margin-left:20px;
+}
+/*CONTACT US PAGE*/
+#contact{
+    border:1px solid #e0e0e0;
+    padding:20px 40px;
+    border-radius: 5px;
+    width:350px;
+}
+#contact h1{
+    color:#40B553;
+}
+#contact>form>*{
+    margin-top:20px;
+}
+#help .actions{
+    margin-top:40px;
+}
+/*LOGIN REGISTER PAGE*/
+#login{
+    width: 350px;
+}
+#login form>*{
+    margin-top:20px;
+}
+/*CHAT*/
 #chat{
     border:1px solid #e0e0e0;
 }
-#chat-header{
-    border-bottom: 1px solid #e0e0e0;
-    line-height: 50px;
-}
-#chat-side, #header-first{
-    width:35%;
-}
-#chat-side{
-    border-right:1px solid #e0e0e0;
-}
-#chat-main, #header-second{
-    width:65%;
-}
-#header-first>div, #name, #recent-chat a, #chat-main>div{
-    padding-left:10px;
-    padding-right:10px;
-}
-#chat-main .section{
-    margin-top:10px;
-}
-#chat-main>div{
-    margin-top:10px;
-    margin-bottom: 10px;
-}
-#chat-search{
-    width:calc(100% - 20px);
-    margin:10px;
-    box-sizing: border-box;
-}
-#chat-search i{
+#chat-friends>.search{
     padding:10px;
 }
-#chat-send textarea{
+#chat-friends .search .input{
     width:100%;
 }
-.border-right{
+#chat-friends{
     border-right:1px solid #e0e0e0;
+    flex:1;
 }
-.chat{
-    font-size:0.938em;
-    color:#9197a3;
+#chat-friends *{
+    white-space:nowrap;
+}
+#chat-friends .name{
+    color:#000;
+}
+#chat-friends .date{
+    color:#7f7f7f;
+    font-size:0.875em;
+}
+#chat-friends .section>div{
+    margin-left:10px;
+    width:100%;
+}
+#chat-friends .section{
+    padding:10px;
+}
+#chat-friends .section:nth-child(n+2){
+    border-top:1px solid #e0e0e0;
+}
+#chat-friends .msg{
+    color:#7f7f7f;
+}
+#chat-friends .section.active{
+    background:#40B553;
+    color:#fff;
+}
+#chat-friends .section.active a{
+    color:#fff;
+}
+#chat-friends .section.active .msg{
+    color:#fff;
+}
+#chat-text{
+    padding:20px;
+    flex:2;
+}
+#chat-text .name:hover{
+    text-decoration: underline;
+}
+#chat-text .divider{
+    width:100%;
+    border-top:1px solid #e0e0e0;
+    font-size:0.75em;
+    white-space:nowrap;
+    color:#e0e0e0;
+    position: relative;
+    margin-top:20px;
+}
+#chat-text .divider>span{
+    background:#fff;
+    padding:0 5px;
+    position: relative;
+    top:-10px;
+}
+#chat-text .section>div{
     margin-left:10px;
     flex:1;
 }
-.chat-side-name{
-    color:#000;
-    font-weight: bold;
-}
-.chat-time{
-    margin-left:10px;
-    font-size: 0.938em;
-}
-.chat-main-name{
+#chat-text .name{
     color:#40B553;
-    font-weight: bold;
 }
-.chat-main-name:hover{
-    text-decoration: underline;
+#chat-text .date{
+    color:#7f7f7f;
+    font-size:0.875em;
 }
-#recent-chat>a{
-    padding-top:5px;
-    padding-bottom:5px;
-    border-bottom:1px solid #e0e0e0;
-}
-#recent-chat .unseen{
-    background:#3b5998;
-}
-.chat-text div:nth-child(n+2){
+#chat-text .msg:nth-child(n+3){
     margin-top:5px;
 }
-.chat-separator{
-    border-top:1px solid #e0e0e0;
-    text-align: center;
-    margin-top:30px;
-    display: block;
-}
-.chat-separator span{
-    background:#fff;
-    padding:0 3px;
-    position: relative;
-    bottom:12px;
-    font-size:0.75em;
-    color:#bdbdbd;
-}
-.chat-scroll{
-    overflow-y: scroll;
-    max-height: 400px;
-}
-.chat-scroll::-webkit-scrollbar {
-    width: 7px;
-}
-.chat-scroll::-webkit-scrollbar-track {
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-    transition:all 0.2s;
-}
-.chat-scroll::-webkit-scrollbar-thumb {
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-    background: rgba(0,0,0,0.5); 
-    transition:all 0.2s;
-}
-.chat-scroll::-webkit-scrollbar-thumb:window-inactive {
-    background: rgba(0,0,0,0.5); 
-    transition:all 0.2s;
-}
-.unseen{
-    background:#e0e0e0;
-}
-.unseen span{
-    color:#fff;
-}
-/*MY MAP*/
-#my-map iframe{
-    width:100%;
-}
-/*FRIENDS PAGE*/
-#friends .next{
+#chat-text .section{
     margin-top:20px;
 }
-/*HELP PAGE*/
-#help{
-    position: relative;
-    overflow:hidden;
+#chat-text .divider + .section{
+    margin-top: 0;
 }
-#help h1, h4{
-    text-align: center;
+#chat-form{
+    margin-top:20px;
 }
-#help h4{
+#chat-form button{
+    margin-top:10px;
+}
+/*FRIENDS*/
+#friends .actions, #explore .actions{
+    margin-top:40px;
+}
+/*REPORT*/
+#report h1{
     color:#40B553;
 }
-#help .steps{
-    width:60%;
-    margin:0 auto;
-}
-#help .steps span{
-    font-weight:bold;
-    margin-right:10px;
-}
-#help .steps p{
-    margin-bottom:30px;
-}
-#help .steps>span{
-    margin-top:40px;
-    display: block;
-}
-#help button{
-    margin-bottom:20px;
-}
-/*About page*/
-#about h1{
-    text-align:center;
-}
-#about img{
-    max-width:400px;
-}
-/*CONTACT US*/
-#contact h2{
-    text-align:center;
-}
-#contact form{
-    width:30%;
-    border:1px solid #e0e0e0;
-    padding:20px;
-    border-radius:3px;
-}
-#contact form>*{
+#report button{
     margin-top:20px;
 }
-#contact textarea{
-    width:100%
-}
-/*Home Page*/
-.width40 p{
-    font-size:1.125em;
-}
-/*MEDIA QUERIES*/
-@media only screen and (min-width: 320px) {
-
-}
-@media only screen and (max-width: 480px) {
-
-}
-@media only screen and (max-width: 736px) {
-
-}
-@media only screen and (max-width: 991px) {
-
-}
-.help a{
-    color:#000;
-    font-weight: bold;
-    font-size: 1.15em;
+@media only screen and (max-width: 700px) {
+    #dashboard .stat{
+        flex:1 100%;
+        margin-top:20px;
+    }
+    .secondary.pointing.menu .item{
+        display: none;
+    }
+    #side-menu-btn {
+        display: block;
+    }
+    #user{
+        display: none;
+    }
+    #footer-menu{
+        width:100%;
+    }
+    #social{
+        display: flex;
+        display: -webkit-flex;
+        justify-content:center;
+        -webkit-justify-content:center;
+        width:100%;
+        margin-top:20px;
+    }
+    #footer-menu a{
+        text-align: center;
+        width:100%;
+        margin-top:5px;
+    }
+    #settings .margin-left{
+        margin-left:20px;
+    }
+    .margin-left{
+        margin-left:0;
+    }
+    #chat-text{
+        flex:1;
+    }
 }
