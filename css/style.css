@@ -1,4 +1,8 @@
 /*-----RESET-----*/
+@font-face {
+    font-family: 'animated';
+    src: url('../font/Animated.ttf') format('truetype');
+}
 a{
     color:#000;
 }
@@ -35,6 +39,9 @@ body {
 #side-menu-btn {
     display: none;
 }
+.actions{
+    margin-top:40px;
+}
 /*-----CUSTOM CLASS-----*/
 .big-font{
     font-size:3rem;
@@ -60,18 +67,18 @@ body {
 /*DASHBOARD*/
 #dashboard .stat{
     border:1px solid #e0e0e0;
-    padding:20px;
     border-radius: 3px;
     text-align: center;
     text-transform: uppercase;
     font-weight: 700;
-    flex:1;
+    font-size:0.875em;
+    white-space:wrap;
 }
-#dashboard .stat:nth-child(n+2){
-    margin-top:20px;
+#dashboard .stat:nth-child(2){
+    margin:0 10px;
 }
 #dashboard .value{
-    font-size:4rem;
+    font-size:2rem;
     padding:20px;
 }
 #dashboard iframe{
@@ -80,6 +87,9 @@ body {
 /*HEADER*/
 #logo{
     margin-top:1rem;
+}
+#logo img{
+    width:100px;
 }
 #menu a{
     font-weight: bold;
@@ -95,6 +105,29 @@ body {
     background:#e0e0e0;
     padding:5px;
     border-radius: 3px;
+}
+/*SUBMENU*/
+#submenu{
+    font-family: 'animated';
+    font-size:1.5em;
+}
+#submenu .item{
+    margin-top:5px;
+}
+#submenu a{
+    padding:10px 30px;
+    white-space: nowrap;
+    color:#40b553;
+}
+#submenu a.active{
+    color:#fff;
+    background:#40b553;
+    border-radius: 20px;
+}
+#submenu a:hover{
+   color:#fff;
+   background:#40b553;
+   border-radius: 20px;
 }
 /*HOME*/
 #home-text{
@@ -137,6 +170,11 @@ body {
 #mythings .footer>div{
     margin-left:20px;
 }
+/*THINGS*/
+#things div>p{
+    font-size:1.25rem;
+    color:#7f7f7f;
+}
 /*CONTACT US PAGE*/
 #contact{
     border:1px solid #e0e0e0;
@@ -149,9 +187,6 @@ body {
 }
 #contact>form>*{
     margin-top:20px;
-}
-#help .actions{
-    margin-top:40px;
 }
 /*LOGIN REGISTER PAGE*/
 #login{
@@ -256,10 +291,6 @@ body {
 #chat-form button{
     margin-top:10px;
 }
-/*FRIENDS*/
-#friends .actions, #explore .actions{
-    margin-top:40px;
-}
 /*REPORT*/
 #report h1{
     color:#40B553;
@@ -309,5 +340,23 @@ body {
     }
     #chat-text{
         flex:1;
+    }
+}
+@media (max-width:992px){
+    #things img{
+        margin-top:20px;
+    }
+    #things .margin-left{
+        margin-left:0;
+    }
+    #dashboard .stat:nth-child(2){
+        margin-left:0;
+        margin-right:0;
+    }
+    #dashboard .margin-left{
+        margin-left:0;
+    }
+    #dashboard .stat{
+        margin-top:20px !important;
     }
 }
