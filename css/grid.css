@@ -46,6 +46,9 @@
     align-items:baseline;
     -webkit-align-items:baseline;
 }
+.flex12{
+    flex:100%;
+}
 @media (max-width:700px){
     .xs-flex-col{
         flex-direction:column;
@@ -91,6 +94,12 @@
     .xs-baseline{
         align-items:baseline;
         -webkit-align-items:baseline;
+    }
+    .xs-hide{
+        display: none;
+    }
+    .xs-flex12{
+        flex:100%;
     }
 }
 @media (min-width:701px){

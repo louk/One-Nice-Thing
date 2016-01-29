@@ -16,7 +16,7 @@ $loader = new Twig_Loader_Filesystem('templates');
 //twig instance
 $twig = new Twig_Environment($loader, array(
     'cache' => 'cache',
-        ));
+    ));
 //load template file
 $twig->setCache(false);
 
@@ -40,7 +40,16 @@ if (isset($_GET['report'])) {
     echo $template->render(array('title' => 'Contact Us'));
     return;
 }
-
+if (isset($_GET['things'])) {
+    $template = $twig->loadTemplate('things.html');
+    echo $template->render(array('title' => 'Contact Us'));
+    return;
+}
+if (isset($_GET['success'])) {
+    $template = $twig->loadTemplate('success.html');
+    echo $template->render(array('title' => 'Contact Us'));
+    return;
+}
 
 
 if (isset($_SESSION['user'])) {
