@@ -14,8 +14,8 @@ Twig_Autoloader::register();
 //loader for template files
 $loader = new Twig_Loader_Filesystem('templates');
 //twig instance
-$twig = new Twig_Environment($loader, array(
-    'cache' => 'cache',
+$twig   = new Twig_Environment($loader, array(
+    'cache' => 'cache'
     ));
 //load template file
 $twig->setCache(false);
@@ -23,7 +23,9 @@ $twig->setCache(false);
 
 if (isset($_GET['things'])) {
     $template = $twig->loadTemplate('things.html');
-    echo $template->render(array('title' => 'Contact Us'));
+    echo $template->render(array(
+        'title' => 'Contact Us'
+        ));
     return;
 }
 
@@ -39,86 +41,145 @@ if (isset($_SESSION['user'])) {
         session_destroy();
         $template = $twig->loadTemplate('main.html');
         //render a template
-        echo $template->render(array('title' => 'See you agian'));
+        echo $template->render(array(
+            'title' => 'See you agian'
+            ));
     } else if (isset($_GET['friends'])) {
         $template = $twig->loadTemplate('friends.html');
-        echo $template->render(array('title' => 'My friends', 'user' => $user, 'nav' => 5));
+        echo $template->render(array(
+            'title' => 'My friends',
+            'user' => $user,
+            'nav' => 5
+            ));
     } else if (isset($_GET['tree'])) {
         $template = $twig->loadTemplate('my-tree.html');
-        echo $template->render(array('title' => 'My friends', 'user' => $user, 'nav' => 3));
+        echo $template->render(array(
+            'title' => 'My tree',
+            'user' => $user,
+            'nav' => 3
+            ));
     } else if (isset($_GET['nicethings'])) {
         $template = $twig->loadTemplate('my-things.html');
-        echo $template->render(array('title' => 'My nice things', 'user' => $user, 'nav' => 2));
+        echo $template->render(array(
+            'title' => 'My nice things',
+            'user' => $user,
+            'nav' => 2
+            ));
     } else if (isset($_GET['settings'])) {
         $template = $twig->loadTemplate('settings.html');
-        echo $template->render(array('title' => 'My settings', 'user' => $user, 'nav' => 2));
+        echo $template->render(array(
+            'title' => 'My settings',
+            'user' => $user,
+            'nav' => 2
+            ));
     } else if (isset($_GET['dashboard'])) {
         $template = $twig->loadTemplate('dashboard.html');
-        echo $template->render(array('title' => 'Dashboard', 'user' => $user, 'nav' => 1));
+        echo $template->render(array(
+            'title' => 'My dashboard',
+            'user' => $user,
+            'nav' => 1
+            ));
     } else if (isset($_GET['explore'])) {
         $template = $twig->loadTemplate('explore.html');
-        echo $template->render(array('title' => 'Explore', 'user' => $user));
+        echo $template->render(array(
+            'title' => 'Explore',
+            'user' => $user
+            ));
     } else if (isset($_GET['chat'])) {
         $template = $twig->loadTemplate('chat.html');
-        echo $template->render(array('title' => 'Explore', 'user' => $user));
-    }else if (isset($_GET['report'])) {
+        echo $template->render(array(
+            'title' => 'Chat',
+            'user' => $user
+            ));
+    } else if (isset($_GET['report'])) {
         $template = $twig->loadTemplate('report.html');
-        echo $template->render(array('title' => 'Contact Us', 'user' => $user));
+        echo $template->render(array(
+            'title' => 'Report nice things',
+            'user' => $user
+            ));
     } else if (isset($_GET['mymap'])) {
-       $template = $twig->loadTemplate('my-map.html');
-       echo $template->render(array('title' => 'My map', 'user' => $user));
-   }else if (isset($_GET['contact'])) {
-    $template = $twig->loadTemplate('contact.html');
-    echo $template->render(array('title' => 'Contact Us', 'user' => $user));
-}else if (isset($_GET['success'])) {
-    $template = $twig->loadTemplate('success.html');
-    echo $template->render(array('title' => 'Contact Us', 'user' => $user));
-}else if (isset($_GET['about'])) {
-    $template = $twig->loadTemplate('about.html');
-    echo $template->render(array('title' => 'About', 'user' => $user));
-} else if (isset($_GET['help'])) {
-    $template = $twig->loadTemplate('help.html');
-    echo $template->render(array('title' => 'Help', 'user' => $user));
-}else if (isset($_GET['report'])) {
-    $template = $twig->loadTemplate('report.html');
-    echo $template->render(array('title' => 'Contact Us', 'user' => $user));
-}else {
-    $template = $twig->loadTemplate('main.html');
-    echo $template->render(array('title' => 'Start', 'user' => $user));
-}
+        $template = $twig->loadTemplate('my-map.html');
+        echo $template->render(array(
+            'title' => 'My map',
+            'user' => $user
+            ));
+    } else if (isset($_GET['contact'])) {
+        $template = $twig->loadTemplate('contact.html');
+        echo $template->render(array(
+            'title' => 'Contact Us',
+            'user' => $user
+            ));
+    } else if (isset($_GET['success'])) {
+        $template = $twig->loadTemplate('success.html');
+        echo $template->render(array(
+            'title' => 'Success stories',
+            'user' => $user
+            ));
+    } else if (isset($_GET['about'])) {
+        $template = $twig->loadTemplate('about.html');
+        echo $template->render(array(
+            'title' => 'About us',
+            'user' => $user
+            ));
+    } else if (isset($_GET['help'])) {
+        $template = $twig->loadTemplate('help.html');
+        echo $template->render(array(
+            'title' => 'Help',
+            'user' => $user
+            ));
+    } else {
+        $template = $twig->loadTemplate('main.html');
+        echo $template->render(array(
+            'title' => 'Start',
+            'user' => $user
+            ));
+    }
 } else {
     if (isset($_GET['login'])) {
         $template = $twig->loadTemplate('login.html');
-        echo $template->render(array('title' => 'Login'));
-    } else if (isset($_GET['reportnicething'])) {
-        $template = $twig->loadTemplate('reportnicething.html');
-        echo $template->render(array('title' => 'Report Nice Thing'));
+        echo $template->render(array(
+            'title' => 'Login'
+            ));
     }else if (isset($_GET['about'])) {
         $template = $twig->loadTemplate('about.html');
-        echo $template->render(array('title' => 'About'));
+        echo $template->render(array(
+            'title' => 'About'
+            ));
     } else if (isset($_GET['help'])) {
         $template = $twig->loadTemplate('help.html');
-        echo $template->render(array('title' => 'Help'));
-    }else if (isset($_GET['contact'])) {
+        echo $template->render(array(
+            'title' => 'Help'
+            ));
+    } else if (isset($_GET['contact'])) {
         $template = $twig->loadTemplate('contact.html');
-        echo $template->render(array('title' => 'Contact Us'));
-    }else if (isset($_GET['report'])) {
+        echo $template->render(array(
+            'title' => 'Contact Us'
+            ));
+    } else if (isset($_GET['report'])) {
         $template = $twig->loadTemplate('report.html');
-        echo $template->render(array('title' => 'Contact Us'));
-    }else if (isset($_GET['success'])) {
+        echo $template->render(array(
+            'title' => 'Report nice things'
+            ));
+    } else if (isset($_GET['success'])) {
         $template = $twig->loadTemplate('success.html');
-        echo $template->render(array('title' => 'Contact Us'));
-    }else if (isset($_GET['help'])) {
+        echo $template->render(array(
+            'title' => 'Success stories'
+            ));
+    } else if (isset($_GET['help'])) {
         $template = $twig->loadTemplate('help.html');
-        echo $template->render(array('title' => 'Help'));
-    }else {
+        echo $template->render(array(
+            'title' => 'Help'
+            ));
+    } else {
         $query = new ParseQuery("_User");
         $query->equalTo('status', 1);
-        $users = $query->find();
+        $users    = $query->find();
         $template = $twig->loadTemplate('main.html');
         //$template = $twig->loadTemplate('my-things.html');
-        echo $template->render(array('title' => 'Start', 'users' => $users));
+        echo $template->render(array(
+            'title' => 'Start',
+            'users' => $users
+            ));
     }
 }
 ?>
-

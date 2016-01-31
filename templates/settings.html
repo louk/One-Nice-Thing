@@ -1,7 +1,7 @@
 {% extends "submain.html" %}
 {% block subcontent %}
 <div class="flex center">
-    <form id="settings" class="ui form">
+    <form id="settings" class="ui form edit">
         <div class="flex xs-center">
             <div class="title">Change Profile Picture</div>
         </div>
@@ -16,34 +16,34 @@
         <div class="flex xs-center">
             <div class="title">Change Name</div>
         </div>
-        <div class="flex xs-flex-col xs-center">
-            <div>
-                <input type="text" placeholder="First Name">
+        <div class="flex xs-flex-col xs-center between">
+            <div class='field flex-col'>
+                <input type="text" placeholder="First Name" name='first'>
             </div>
-            <div class="margin-left">
-                <input type="text" placeholder="Last Name">
+            <div class="field flex-col">
+                <input type="text" placeholder="Last Name" name='last'>
             </div>
         </div>
         <div class="flex xs-center">
             <div class="title">Change Password</div>
         </div>
         <div class="flex xs-center">
-            <div class="xs-flex12">
-                <input  type="password" placeholder="Old Password">
+            <div class="xs-flex12 field flex-col">
+                <input type="password" placeholder="Old Password" name='old_pass'>
             </div>
         </div>
-        <div class="flex xs-flex-col margin-top xs-center">
-            <div>
-                <input  type="password" placeholder="New Password">
+        <div class="flex xs-flex-col margin-top xs-center between">
+            <div class='field flex-col'>
+                <input  type="password" placeholder="New Password" name='new_pass'>
             </div>
-            <div class="margin-left">
-                <input  type="password" placeholder="New Password Again">
+            <div class="field flex-col">
+                <input  type="password" placeholder="New Password Again" name='new_pass2'>
             </div>
         </div>   
-        <div class="flex xs-flex-col sm-middle between xs-center">
+        <div class="flex xs-flex-col middle between xs-center">
             <div class="title">Change Email</div>
-            <div class="xs-flex12">
-                <input type="email" placeholder="Email">
+            <div class="xs-flex12 field flex-col">
+                <input type="email" placeholder="Email" name='email'>
             </div>
         </div>
         <div class="flex middle between xs-around">
@@ -54,8 +54,92 @@
             </div>
         </div>
         <div class="flex end">
-            <button class="ui green button">Save</button>
+            <button class="ui green submit button">Save</button>
         </div>
+        <div class="ui error message"></div>
     </form>
 </div>
+{% endblock %}
+{% block scripting %}
+{{ parent() }}
+<script>
+$('.ui.form')
+.form({
+ fields: {
+        first: {
+            identifier: 'first',
+            rules: [
+            {
+                type   : 'empty',
+                prompt : 'Please enter your first name'
+            }
+            ]
+        },
+        last: {
+            identifier: 'last',
+            rules: [
+            {
+                type   : 'empty',
+                prompt : 'Please enter your last name'
+            }
+            ]
+        },
+        password: {
+            identifier: 'old_pass',
+            rules: [
+            {
+               type   : 'empty',
+               prompt : 'Please enter a password'
+           },
+           {
+               type   : 'minLength[6]',
+               prompt : 'Your password must be at least {ruleValue} characters'
+           }
+           ]
+       },
+       password2: {
+        identifier: 'new_pass',
+        rules: [
+        {
+           type   : 'empty',
+           prompt : 'Please enter a password'
+       },
+       {
+           type   : 'minLength[6]',
+           prompt : 'Your password must be at least {ruleValue} characters'
+       }
+       ]
+   },
+       password3: {
+            identifier: 'new_pass2',
+            rules: [
+            {
+               type   : 'empty',
+               prompt : 'Please enter a password'
+           },
+           {
+               type   : 'match[new_pass]',
+               prompt : 'Your password must be at least {ruleValue} characters'
+           }
+           ]
+       },
+   email: {
+    identifier: 'email',
+    rules: [
+    {
+        type   : 'empty',
+        prompt : 'Please enter a email'
+    },
+    {
+       type   : 'email',
+       prompt : 'Please enter a valid e-mail' 
+   }
+   ]
+}
+},
+inline : true,
+on     : 'blur'
+})
+;
+</script>
 {% endblock %}
