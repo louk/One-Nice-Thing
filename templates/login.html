@@ -3,12 +3,14 @@
 <div class="ui container">
     <div class="flex center">
         <div id="login">
-            <div class="ui top attached tabular menu">
+            <div class="ui tabular menu">
                 <a class="item active" data-tab="login">Login</a>
                 <a class="item" data-tab="register">Register</a>
             </div>
             <div class="ui bottom attached tab segment active" data-tab="login">
                 <form class="ui form login">
+            <div class="ui bottom attached tab  active" data-tab="login">
+                <form class="ui form attached fluid segment login">
                     <div class="field">
                         <label>Username</label>
                         <input placeholder="Username" name="username" type="text">
@@ -23,12 +25,19 @@
                     </div>
                 </form>
                 <div class="ui warning message">
+
+                <div class="ui bottom attached warning message">
+
                     <i class="icon help"></i>
                     <a href="#">Forgot your password? </a> 
                 </div>
             </div>
+
             <div class="ui bottom attached tab segment" data-tab="register">
                 <form class="ui form register" >
+
+            <div class="ui bottom attached tab " data-tab="register">
+                <form class="ui form segment register" >
                     <div class="field">
                         <label>Firstname</label>
                         <input placeholder="Name" name="first" type="text">
