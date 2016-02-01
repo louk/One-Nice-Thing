@@ -1,27 +1,27 @@
 {% extends "submain.html" %}
 {% block subcontent %}
 <div class="flex center" id="report">
-    <form class="ui form report">
+    <form class="ui form">
         <h1>Report Nice Things</h1>
-        <div class='section field'>
+        <div class='section'>
             <div class='title'>Username Lookup</div>
-            <input type="text" name="username_lookup">
+            <input type="text" name="username_looukup">
         </div>
-        <div class='section field'>
+        <div class='section'>
             <div class='title'>Location where did you do your nice thing ?</div>
-            <input type="text" name="location">
+            <input type="text" name="">
         </div>
-        <div class='section field'>
+        <div class='section'>
             <div class='title'>What nice thing did you do ?</div>
-            <textarea rows="2" name='things'></textarea>
+            <textarea rows="2"></textarea>
         </div>
-        <div class='section field'>
+        <div class='section'>
             <div class='title'>Who did you do it for ?</div>
-            <input type="text" name="who">
+            <input type="text" name="" >
         </div>
-        <div class='section field'>
+        <div class='section'>
             <div class='title'>How did you respond, how did you feel ?</div>
-            <input type="text" name="feeling">
+            <input type="text" name="">
         </div>
         <div class='section'>
             <div class="ui checkbox">
@@ -29,15 +29,15 @@
                 <label>Did you ask them to keep it going and did they agree?</label>
             </div>
         </div>
-        <div class='section field'>
+        <div class='section'>
             <div class='title'>Would you like to leave any other message for this member?</div>
-            <textarea rows="2" name='message'></textarea>
+            <textarea rows="2"></textarea>
         </div>
         <div class='section'>
             <div class='flex between middle'>
                 <label>Privacy Settings</label>
                 <div class="ui selection dropdown">
-                    <input type="hidden" name="privacy">
+                    <input type="hidden" name="gender">
                     <i class="dropdown icon"></i>
                     <div class="default text">Only me</div>
                     <div class="menu">
@@ -49,65 +49,11 @@
             </div>
         </div>
         <div class="flex end">
-            <button class="ui green submit button">Submit</button>
+            <button class="ui green button">Submit</button>
         </div>
     </form>
 </div>
-{% endblock %}
-{% block scripting %}
-{{ parent() }}
 <script>
-$('.ui.form')
-.form({
-  fields:{
-        name:{
-            identifier: 'username_lookup',
-            rules: [
-            {
-                type: 'empty',
-                prompt: 'Please enter your name'
-            },
-            ]
-        },
-        location:{
-            identifier: 'location',
-            rules: [
-            {
-                type: 'empty',
-                prompt: 'Please enter your location'
-            },
-            ]
-        },
-        things:{
-            identifier: 'things',
-            rules:[
-            {
-                type: 'empty',
-                prompt: 'Do not blank this field'
-            }
-            ]
-        },
-        who:{
-            identifier:'who',
-            rules:[
-            {
-                type:'empty',
-                prompt:'Do not blank this field',
-            }
-            ]
-        },
-        feeling:{
-            identifier:'feeling',
-            rules:[
-            {
-                type:'empty',
-                prompt:'Do not blank this field',
-            }
-            ]
-        }
-    },
-    inline : true,
-    on     : 'blur'
-});
+$('.ui.dropdown').dropdown();
 </script>
 {% endblock %}

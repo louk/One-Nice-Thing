@@ -7,20 +7,20 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/grid.css" />
     <script src="js/jquery-2.2.0.min.js"></script>
-    <script src="js/semantic.min.js"></script>
+    <script src="js/semantic.min.js"></script>  
     <title>One Nice Thing {{ title }}</title>
     {% endblock %}
 </head>
 <body class='pushable'>
     {% if user %}
     <div class="ui vertical sidebar menu left" id="side-menu">
-        <a class="item" href="index.php?report">Add</a>
+        <a class="item" href="index.php?reportnicething">Add</a>
         <a class="item" href="index.php?chat">Inbox</a>
         <a class="item" href="index.php?explore">Explore</a>
         <a class="item" href="index.php?dashboard">My Dashboard</a>
         <a class="item" href="index.php?nicethings">My Nice Things</a>
         <a class="item" href="index.php?tree">My Tree</a>
-        <a class="item" href="index.php?mymap">My Map</a>
+        <a class="item" href="index.php?map">My Map</a>
         <a class="item" href="index.php?friends">My Friends</a>
         <a class="item" href="index.php?settings">Settings</a>
         <a class="item" href="index.php?logout">Logout</a>
@@ -40,27 +40,27 @@
                 <div class="ui container">
                     <div class="flex between middle">
                         <div id="logo">
-                            <a href="index.php"><img src="img/logo.png"></a>
+                            <a href="index.php"><img class="ui tiny image" src="img/logo.png"></a>
                         </div>
                         {% if user %}
                         <div class='flex baseline margin-top'>
                             <div class="ui large secondary pointing menu" id='menu'>
                                 <a class="item" id="side-menu-btn"><i class="sidebar icon"></i></a>
                                 <a class="active item" href="index.php?main">Home</a>
-                                <a class="item" href="index.php?report">Add</a>
+                                <a class="item" href="index.php?reportnicething">Add</a>
                                 <a class="item" href="index.php?chat">Inbox</a>
                                 <a class="item" href="index.php?explore">Explore</a>
                             </div>
                             <div class="ui inline dropdown" id='user'>
                                 <div class="text">
-                                    <img class="ui avatar image" src="img/placeholder.png">Louk
+                                    <img class="ui avatar image" src="img/placeholder.png">{{user.username}}
                                 </div>
                                 <i class="dropdown icon"></i>
                                 <div class="menu">
                                     <a class="item" href="index.php?dashboard">Dashboard</a>
                                     <a class="item" href="index.php?nicethings">Nice things</a>
                                     <a class="item" href="index.php?tree">Tree</a>
-                                    <a class="item" href="index.php?mymap">Map</a>
+                                    <a class="item" href="index.php?map">Map</a>
                                     <a class="item" href="index.php?friends">Friends</a>
                                     <div class="divider"></div>
                                     <a class="item" href="index.php?settings">Settings</a>
@@ -109,7 +109,8 @@
             </div>
         </div>
     </div>
-    {% block scripting %}     
+    {% block scripting %}   
+    
     <script>
     $('#user').dropdown();
     $('#side-menu').sidebar('attach events', '#side-menu-btn');

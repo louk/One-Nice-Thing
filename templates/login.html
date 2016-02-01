@@ -3,12 +3,12 @@
 <div class="ui container">
     <div class="flex center">
         <div id="login">
-            <div class="ui top attached tabular menu">
+            <div class="ui secondary menu">
                 <a class="item active" data-tab="login">Login</a>
                 <a class="item" data-tab="register">Register</a>
             </div>
-            <div class="ui bottom attached tab segment active" data-tab="login">
-                <form class="ui form login">
+            <div class="ui bottom attached tab  active" data-tab="login">
+                <form class="ui form attached fluid segment login">
                     <div class="field">
                         <label>Username</label>
                         <input placeholder="Username" name="username" type="text">
@@ -22,13 +22,13 @@
                         <div class="header">Check your username password !</div>
                     </div>
                 </form>
-                <div class="ui warning message">
+                <div class="ui bottom attached warning message">
                     <i class="icon help"></i>
-                    <a href="#">Forgot your password? </a> 
+                    <a href="index.php?forgot">Forgot your password? </a> 
                 </div>
             </div>
-            <div class="ui bottom attached tab segment" data-tab="register">
-                <form class="ui form register" >
+            <div class="ui bottom attached tab " data-tab="register">
+                <form class="ui form segment register" >
                     <div class="field">
                         <label>Firstname</label>
                         <input placeholder="Name" name="first" type="text">
@@ -56,54 +56,54 @@
 </div>
 {% endblock %}
 {% block scripting %}
-    {{ parent() }}
-    <script src="js/init.js"></script>  
-    <script type="text/javascript">
-        $(function() {
-            $('.ui.form.login').form(login_validate)
-                .api({
-                    action: 'login user',
-                    method: 'POST',
-                    serializeForm: true,
-                    data: {
-                      name: 22
-                    },
-                    beforeSend: function(settings) {
-                        console.log(settings.data);
-                        return settings;
-                    },
-                    onSuccess: function(response) {
-                        console.log(response.message);
-                        var url = "index.php?dashboard";
-                        window.location.replace(url); 
+{{ parent() }}
+<script src="js/init.js"></script>  
+<script type="text/javascript">
+$(function() {
+    $('.ui.form.login').form(login_validate)
+    .api({
+        action: 'login user',
+        method: 'POST',
+        serializeForm: true,
+        data: {
+          name: 22
+      },
+      beforeSend: function(settings) {
+        console.log(settings.data);
+        return settings;
+    },
+    onSuccess: function(response) {
+        console.log(response.message);
+        var url = "index.php?dashboard";
+        window.location.replace(url); 
                       // valid response and response.success = true
-                    },
-                    onError: function(errorMessage) {
-                        console.log(errorMessage);
-                    }
-                });
-            $('.ui.form.register').form(register_validate)
-                .api({
-                    action: 'register user',
-                    method: 'POST',
-                    serializeForm: true,
-                    data: {
-                      check: 'register'
-                    },
-                    beforeSend: function(settings) {
-                        console.log(settings.data);
-                        return settings;
-                    },
-                    onSuccess: function(response) {
-                        console.log(response.message);
-                        var url = "index.php?dashboard";
-                        window.location.replace(url); 
+                  },
+                  onError: function(errorMessage) {
+                    console.log(errorMessage);
+                }
+            });
+    $('.ui.form.register').form(register_validate)
+    .api({
+        action: 'register user',
+        method: 'POST',
+        serializeForm: true,
+        data: {
+          check: 'register'
+      },
+      beforeSend: function(settings) {
+        console.log(settings.data);
+        return settings;
+    },
+    onSuccess: function(response) {
+        console.log(response.message);
+        var url = "index.php?dashboard";
+        window.location.replace(url); 
                       // valid response and response.success = true
-                    },
-                    onError: function(errorMessage) {
-                        console.log(errorMessage);
-                    }
-                });
-        });
-    </script>
+                  },
+                  onError: function(errorMessage) {
+                    console.log(errorMessage);
+                }
+            });
+});
+</script>
 {% endblock %}

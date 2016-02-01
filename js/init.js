@@ -3,9 +3,10 @@
 $.fn.api.settings.api = {
   'login user': 'login.php',
   'register user': 'user.php',
-  'edit user' : 'edit.php?id={$id}',
+  'report nicething' : 'add.php',
+  'forgot password': 'user.php',
+  'settings': 'user.php'
 };
-
 
 var login_validate = {
     fields: {
@@ -86,7 +87,7 @@ on     : 'blur'
 var report_validate = {
     fields:{
         name:{
-            identifier: 'username_lookup',
+            identifier: 'username',
             rules: [
             {
                 type: 'empty',
@@ -103,8 +104,8 @@ var report_validate = {
             },
             ]
         },
-        things:{
-            identifier: 'things',
+        content:{
+            identifier: 'content',
             rules:[
             {
                 type: 'empty',
@@ -121,8 +122,8 @@ var report_validate = {
             }
             ]
         },
-        feeling:{
-            identifier:'feeling',
+        feel:{
+            identifier:'feel',
             rules:[
             {
                 type:'empty',
@@ -134,9 +135,25 @@ var report_validate = {
     inline : true,
     on     : 'blur'
 }
-
-var edit_validate = {
-    fields: {
+var forgot_validate = {
+    fields:{
+        email:{
+            identifier:'email',
+            rules:[
+            {
+                type:'empty',
+                prompt:'Please enter your email',
+            },
+            {
+                type:'email',
+                prompt:'Please enter a valid e-mail'
+            }
+            ]
+        }
+    }
+}
+var settings_validate = {
+     fields: {
         first: {
             identifier: 'first',
             rules: [

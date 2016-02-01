@@ -1,6 +1,5 @@
-{% extends "main.html" %}
-{% block content %}
-<div class="ui container">
+{% extends "submain.html" %}
+{% block subcontent %}
     <div id="chat" class="flex">
         <div id="chat-friends">
             <div class="ui search">
@@ -106,7 +105,6 @@
             </div>
         </div>
     </div>
-</div>
 <script src='jquery-2.2.0.min.js'></script>
 <script>
     $('.ui.search').search({source: content});

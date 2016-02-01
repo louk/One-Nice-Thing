@@ -62,84 +62,31 @@
 {% endblock %}
 {% block scripting %}
 {{ parent() }}
-<script>
-$('.ui.form')
-.form({
- fields: {
-        first: {
-            identifier: 'first',
-            rules: [
-            {
-                type   : 'empty',
-                prompt : 'Please enter your first name'
-            }
-            ]
-        },
-        last: {
-            identifier: 'last',
-            rules: [
-            {
-                type   : 'empty',
-                prompt : 'Please enter your last name'
-            }
-            ]
-        },
-        password: {
-            identifier: 'old_pass',
-            rules: [
-            {
-               type   : 'empty',
-               prompt : 'Please enter a password'
-           },
-           {
-               type   : 'minLength[6]',
-               prompt : 'Your password must be at least {ruleValue} characters'
-           }
-           ]
-       },
-       password2: {
-        identifier: 'new_pass',
-        rules: [
-        {
-           type   : 'empty',
-           prompt : 'Please enter a password'
-       },
-       {
-           type   : 'minLength[6]',
-           prompt : 'Your password must be at least {ruleValue} characters'
-       }
-       ]
-   },
-       password3: {
-            identifier: 'new_pass2',
-            rules: [
-            {
-               type   : 'empty',
-               prompt : 'Please enter a password'
-           },
-           {
-               type   : 'match[new_pass]',
-               prompt : 'Your password must be at least {ruleValue} characters'
-           }
-           ]
-       },
-   email: {
-    identifier: 'email',
-    rules: [
-    {
-        type   : 'empty',
-        prompt : 'Please enter a email'
+<script src="js/init.js"></script>  
+<script type="text/javascript">
+$(function() {
+  $('.ui.form.forgot').form(settings_validate)
+  .api({
+    action: 'settings',
+    method: 'POST',
+    serializeForm: true,
+    data: {
+      check: 'settings'
     },
-    {
-       type   : 'email',
-       prompt : 'Please enter a valid e-mail' 
-   }
-   ]
-}
-},
-inline : true,
-on     : 'blur'
-})
-;
+    beforeSend: function(settings) {
+      console.log(settings.data);
+      return settings;
+    },
+    onSuccess: function(response) {
+      console.log(response.message);
+      var url = "index.php?settings";
+      window.location.replace(url); 
+                      // valid response and response.success = true
+                  },
+                  onError: function(errorMessage) {
+                    console.log(errorMessage);
+                  }
+              });
+});
 </script>
 {% endblock %}

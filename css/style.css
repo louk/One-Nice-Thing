@@ -39,8 +39,14 @@ body {
 #side-menu-btn {
     display: none;
 }
-.actions{
-    margin-top:40px;
+/*FORGOT PASSWORD*/
+.forgot{
+    padding:20px;
+    border:1px solid #e0e0e0;
+    border-radius:3px;
+}
+.forgot h1{
+    color:#40B553;
 }
 /*-----CUSTOM CLASS-----*/
 .big-font{
@@ -88,9 +94,6 @@ body {
 #logo{
     margin-top:1rem;
 }
-#logo img{
-    width:100px;
-}
 #menu a{
     font-weight: bold;
 }
@@ -105,29 +108,6 @@ body {
     background:#e0e0e0;
     padding:5px;
     border-radius: 3px;
-}
-/*SUBMENU*/
-#submenu{
-    font-family: 'animated';
-    font-size:1.5em;
-}
-#submenu .item{
-    margin-top:5px;
-}
-#submenu a{
-    padding:10px 30px;
-    white-space: nowrap;
-    color:#40b553;
-}
-#submenu a.active{
-    color:#fff;
-    background:#40b553;
-    border-radius: 20px;
-}
-#submenu a:hover{
-   color:#fff;
-   background:#40b553;
-   border-radius: 20px;
 }
 /*HOME*/
 #home-text{
@@ -170,11 +150,6 @@ body {
 #mythings .footer>div{
     margin-left:20px;
 }
-/*THINGS*/
-#things div>p{
-    font-size:1.25rem;
-    color:#7f7f7f;
-}
 /*CONTACT US PAGE*/
 #contact{
     border:1px solid #e0e0e0;
@@ -187,6 +162,9 @@ body {
 }
 #contact>form>*{
     margin-top:20px;
+}
+#help .actions{
+    margin-top:40px;
 }
 /*LOGIN REGISTER PAGE*/
 #login{
@@ -291,6 +269,10 @@ body {
 #chat-form button{
     margin-top:10px;
 }
+/*FRIENDS*/
+#friends .actions, #explore .actions{
+    margin-top:40px;
+}
 /*REPORT*/
 #report h1{
     color:#40B553;
@@ -304,6 +286,29 @@ body {
 #report .section .title, #report .section label{
     margin-bottom:5px;
     font-weight: bold;
+}
+/*SUBMENU*/
+#submenu{
+    font-family: 'Animated';
+    font-size:1.5em;
+}
+#submenu .item{
+    margin-top:5px;
+}
+#submenu a{
+    padding:10px 30px;
+    white-space: nowrap;
+    color:#40b553;
+}
+#submenu a.active{
+    color:#fff;
+    background:#40b553;
+    border-radius: 20px;
+}
+#submenu a:hover{
+   color:#fff;
+   background:#40b553;
+   border-radius: 20px;
 }
 @media only screen and (max-width: 700px) {
     #dashboard .stat{
