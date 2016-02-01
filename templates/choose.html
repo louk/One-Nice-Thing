@@ -18,7 +18,7 @@
                         <input type="password" name="password">
                     </div>             
                     <div class="ui green submit button">Login</div>
-                     <div class="ui green submit button">Login as guest</div>
+                    <div style="float:right" class="ui blue submit button guest">Login as guest</div>
                     <div class="ui error message">
                         <div class="header">Check your username password !</div>
                     </div>
@@ -61,13 +61,34 @@
     <script src="js/init.js"></script>  
     <script type="text/javascript">
         $(function() {
+            $('.button.guest')
+              .api({
+                action: 'guest report',
+                method: 'POST',
+                data: {
+                    check: 'guest'
+                },
+                beforeSend: function(settings) {
+                    console.log(settings.data);
+                    return settings;
+                },
+                onSuccess: function(response) {
+                    console.log(response.message);
+                    var url = "index.php?dashboard";
+                    window.location.replace(url); 
+                  // valid response and response.success = true
+                },
+                onError: function(errorMessage) {
+                    console.log(errorMessage);
+                }
+              });
             $('.ui.form.login').form(login_validate)
                 .api({
-                    action: 'login user',
+                    action: 'user report',
                     method: 'POST',
                     serializeForm: true,
                     data: {
-                      name: 22
+                      check: 'login'
                     },
                     beforeSend: function(settings) {
                         console.log(settings.data);
@@ -85,7 +106,7 @@
                 });
             $('.ui.form.register').form(register_validate)
                 .api({
-                    action: 'register user',
+                    action: 'user report',
                     method: 'POST',
                     serializeForm: true,
                     data: {
