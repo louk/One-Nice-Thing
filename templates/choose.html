@@ -1,113 +1,110 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="ui container report_nice_thing">
-    <div class='ui grid'>
-        <div class='one wide column'>
-        </div>
-        <div class='five wide column'>
-            <div class="ui raised segment" id="loglabel" style="left: -5px;">
-                <a class="ui green ribbon label">Continue as Guest</a>
-               
-                <p></p>
+<div class="ui container">
+    <div class="flex center">
+        <div id="login">
+            <div class="ui secondary menu">
+                <a class="item active" data-tab="login">Login</a>
+                <a class="item" data-tab="register">Register</a>
             </div>
-            <div class="content">
-                
-            </div>
-        </div>
-        <div class='five wide column'>
-            <div class="ui raised segment" id="loglabel" style="left: -5px;">
-                <a class="ui green ribbon label">Register</a>
-                <br>
-                <br>
-                <form class="ui form field login">
+            <div class="ui bottom attached tab  active" data-tab="login">
+                <form class="ui form attached fluid segment login">
                     <div class="field">
-                        <div class="ui left icon input">
-                            <i class="user icon"></i>
-                            <input type="text" name="username" placeholder="Username">
-                        </div>
+                        <label>Username</label>
+                        <input placeholder="Username" name="username" type="text">
                     </div>
                     <div class="field">
-                        <div class="ui left icon input">
-                            <i class="mail icon"></i>
-                            <input type="text" name="email" placeholder="e-mail">
-                        </div>
+                        <label>Password</label>
+                        <input type="password" name="password">
+                    </div>             
+                    <div class="ui green submit button">Login</div>
+                     <div class="ui green submit button">Login as guest</div>
+                    <div class="ui error message">
+                        <div class="header">Check your username password !</div>
                     </div>
-                    <div class="field">
-                        <div class="ui left icon input">
-                            <i class="lock icon"></i>
-                            <input type="password" name="password" placeholder="Password">
-                        </div>
-                    </div>
-                    <div class="field">
-                        <div class="ui left icon input">
-                            <i class="lock icon"></i>
-                            <input type="password" name="password_confirm" placeholder="Password confirm">
-                        </div>
-                    </div>
-
-                    <div class="ui fluid large submit button">Register</div>
-                    <div class="ui error message"></div>
-                    <div class="inline field"></div><div class="inline field"></div>
                 </form>
+                <div class="ui bottom attached warning message">
+                    <i class="icon help"></i>
+                    <a href="#">Forgot your password? </a> 
+                </div>
             </div>
-        </div>
-        <div class='five wide column'>
-            <div class="ui raised segment" id="loglabel" style="left: -5px;">
-                <a class="ui red ribbon label">Old user :)</a>
-                <br>
-                <br>
-                 <form class="ui form field login">
+            <div class="ui bottom attached tab " data-tab="register">
+                <form class="ui form segment register" >
                     <div class="field">
-                        <div class="ui left icon input">
-                            <i class="user icon"></i>
-                            <input type="text" name="username" placeholder="Username">
-                        </div>
+                        <label>Firstname</label>
+                        <input placeholder="Name" name="first" type="text">
                     </div>
                     <div class="field">
-                        <div class="ui left icon input">
-                            <i class="lock icon"></i>
-                            <input type="password" name="password" placeholder="Password">
-                        </div>
+                        <label>Lastname</label>
+                        <input placeholder="Surname" name="last" type="text">
+                    </div>
+                    <div class="field">
+                        <label>Email</label>
+                        <input placeholder="Email" name="email" type="text">
+                    </div>
+                    <div class="field">
+                        <label>Password</label>
+                        <input type="password" name="password">
                     </div>           
-                    <div class="inline field">
-                        <div class="ui checkbox">
-                            <input type="checkbox" name="remember_me">
-                            <label>Remember me!</label>
-                        </div>
+                    <div class="fluid ui green submit button">Register</div>
+                    <div class="ui error message">
+                        <div class="header">Email or user name is already in the system!</div>
                     </div>
-                    <div class="ui fluid large submit button">Login</div>
-                    <div class="ui error message"></div>
-                    <div class="inline field"></div><div class="inline field"></div>               
                 </form>
             </div>
         </div>
     </div>
 </div>
-<br /><br />
 {% endblock %}
 {% block scripting %}
     {{ parent() }}
-     <script type="text/javascript">
-        $.fn.serializeObject = function(){
-              var o = {};
-              var a = this.serializeArray();
-              $.each(a, function() {
-                if (o[this.name] !== undefined) {
-                    if (!o[this.name].push) {
-                        o[this.name] = [o[this.name]];
-                    }
-                    o[this.name].push(this.value || '');
-                } else {
-                    o[this.name] = this.value || '';
-                }
-              });
-              return o;
-        };
+    <script src="js/init.js"></script>  
+    <script type="text/javascript">
         $(function() {
-          
-          
-
-
+            $('.ui.form.login').form(login_validate)
+                .api({
+                    action: 'login user',
+                    method: 'POST',
+                    serializeForm: true,
+                    data: {
+                      name: 22
+                    },
+                    beforeSend: function(settings) {
+                        console.log(settings.data);
+                        return settings;
+                    },
+                    onSuccess: function(response) {
+                        console.log(response.message);
+                        var url = "index.php?dashboard";
+                        window.location.replace(url); 
+                      // valid response and response.success = true
+                    },
+                    onError: function(errorMessage) {
+                        console.log(errorMessage);
+                    }
+                });
+            $('.ui.form.register').form(register_validate)
+                .api({
+                    action: 'register user',
+                    method: 'POST',
+                    serializeForm: true,
+                    data: {
+                      check: 'register'
+                    },
+                    beforeSend: function(settings) {
+                        console.log(settings.data);
+                        return settings;
+                    },
+                    onSuccess: function(response) {
+                        console.log(response.message);
+                        var url = "index.php?dashboard";
+                        window.location.replace(url); 
+                      // valid response and response.success = true
+                    },
+                    onError: function(errorMessage) {
+                        console.log(errorMessage);
+                    }
+                });
         });
-  </script>
+    </script>
 {% endblock %}

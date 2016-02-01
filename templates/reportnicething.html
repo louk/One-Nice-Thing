@@ -10,27 +10,34 @@
                 <p></p>
             </div>
             <div class="content">
-                <form id="report_nice_thing" class="ui form small">
+               
+                <form class="ui form report">
                     <div class="field">
                         <label>Username Lookup</label>
-                        <input type="text" name="username" id="tags" placeholder="Enter username" required="">
+                        <div class="ui search">
+                          <div class="ui icon input">
+                            <input class="prompt" type="text" placeholder="Search username..." name="username">
+                            <i class="search icon"></i>
+                          </div>
+                          <div class="results"></div>
+                        </div>
                     </div>
                     <div class="field">
                         <label>Location where did you do your nice thing ?</label>
-                        <input type="text" name="location" id="location" required="">
+                        <input type="text" name="location" id="location">
                     </div>
                     <div class="field">
                         <label>What nice thing did you do ?</label>
-                        <textarea rows="2" name="content" required=""></textarea>
+                        <textarea rows="2" name="content" ></textarea>
                     </div>
                     <div class="field">
                         <label>Who did you do it for ?</label>
                         <input type="text" name="who" >
-                        <p></p>
-                        <label>How did you respond, how did you feel ?</label>
-                        <input type="text" name="feel" required="">
                     </div>
-
+                    <div class="field">
+                        <label>How did you respond, how did you feel ?</label>
+                        <input type="text" name="feel">
+                    </div>
                     <div class="inline field">
                         <div class="ui checkbox">
                             <input type="checkbox" name="remember_me">
@@ -42,25 +49,21 @@
                         <textarea rows="2" name="message"></textarea>
                     </div>
                     <div class="field">
-                        <div class="ui dropdown">
-                            <span class="text" style="font-weight: 600;">Privacy settings ?</span>
+                        <div class="ui selection dropdown">
+                            <input type="hidden" name="privacy">
+                            <i class="dropdown icon"></i>
+                            <div class="default text">Privacy</div>
                             <div class="menu">
-                                <div class="scrolling menu">
-                                    <div class="item" data-value="0">
-                                        Only me 
-                                    </div>
-                                    <div class="item" data-value="1">
-                                        Friends
-                                    </div>
-                                    <div class="item active" data-value="2">
-                                        Public
-                                    </div>
-                                </div>
+                                <div class="item" data-value="1">Only me</div>
+                                <div class="item" data-value="0">Public</div>
                             </div>
                         </div>
                     </div>
-                    <div class="field" style="float:right">
-                        <input type="submit" class="ui large submit button" />
+                    <div class="ui error message">
+                        <div class="header">Email or user name is already in the system!</div>
+                    </div>
+                    <div class="field">
+                        <input type="submit" class="ui large submit green button fluid" />
                     </div>
                 </form>
             </div>
@@ -73,62 +76,40 @@
 {% block scripting %}
     {{ parent() }}
      <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+     <script src="js/init.js"></script>  
      <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
      <script src="js/jquery.geocomplete.js"></script>
      <script type="text/javascript">
-        $.fn.serializeObject = function(){
-              var o = {};
-              var a = this.serializeArray();
-              $.each(a, function() {
-                if (o[this.name] !== undefined) {
-                    if (!o[this.name].push) {
-                        o[this.name] = [o[this.name]];
-                    }
-                    o[this.name].push(this.value || '');
-                } else {
-                    o[this.name] = this.value || '';
-                }
-              });
-              return o;
-        };
-        $(function() {
-            var availableTags = [
-                {% for user in users %}
-                "{{user.username}}",
-                {% endfor %}
-                "travis"
+        var content = [
+            {% for user in users %}
+                { title: '{{user.username}}' },
+            {% endfor %}
+                { title: 'travis' }
+              // etc
             ];
-
-            $( "#tags" ).autocomplete({
-                source: availableTags
-            });
+        $(function() {
+            $('.ui.search').search({ source: content });
             $("#location").geocomplete();
-
-            $( "#report_nice_thing" ).submit(function( event ) {
-                event.preventDefault();
-                var j = $("#report_nice_thing").serializeObject();
-                var dropdown = $('.ui.dropdown' ).dropdown('get value');
-                
-                if ( dropdown.jquery ) { 
-                    alert("Please select privacy");
-                    return;   
-                }
-
-                $.ajax({
-                    type: "POST",
-                    url: "add.php",
-                    data: {data:j, privacy:dropdown},
-                    success: function(data, textStatus, jqXHR){
-                        if (data.indexOf("Error:") >= 0){
-                            alert(data);
-                        }else{
-                            var url = "index.php?choose="+data;  
-                            window.location.replace(url); 
-                        }
+            $('.ui.form.report').form(report_validate)
+                .api({
+                    action: 'report nicething',
+                    method: 'POST',
+                    serializeForm: true,
+                    data: {
+                      name: 22
+                    },
+                    beforeSend: function(settings) {
+                        console.log(settings.data);
+                        return settings;
+                    },
+                    onSuccess: function(response) {
+                        var url = "index.php?choose="+response.data;  
+                        window.location.replace(url); 
+                    },
+                    onFailure: function(response) {
+                        console.log(response);
                     }
                 });
-            });
-
 
         });
   </script>

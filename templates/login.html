@@ -3,32 +3,51 @@
 <div class="ui container">
     <div class="flex center">
         <div id="login">
-            <div class="ui top attached tabular menu">
+            <div class="ui secondary menu">
                 <a class="item active" data-tab="login">Login</a>
                 <a class="item" data-tab="register">Register</a>
             </div>
-            <div class="ui bottom attached tab segment active" data-tab="login">
-                <form class="ui form" id="login">
-                    <input name="email" type="text" placeholder="Email" required="" >
-                    <input type="password" name="password" placeholder="Password" required="">
-                    <div class="flex between middle">
-                        <div class="ui checkbox">
-                            <input type="checkbox" name="guest">
-                            <label>Login as guest</label>
-                        </div>
-                        <button class="ui green button">Login</button>
+            <div class="ui bottom attached tab  active" data-tab="login">
+                <form class="ui form attached fluid segment login">
+                    <div class="field">
+                        <label>Username</label>
+                        <input placeholder="Username" name="username" type="text">
+                    </div>
+                    <div class="field">
+                        <label>Password</label>
+                        <input type="password" name="password">
+                    </div>             
+                    <div class="fluid ui green submit button">Login</div>
+                    <div class="ui error message">
+                        <div class="header">Check your username password !</div>
                     </div>
                 </form>
+                <div class="ui bottom attached warning message">
+                    <i class="icon help"></i>
+                    <a href="#">Forgot your password? </a> 
+                </div>
             </div>
-            <div class="ui bottom attached tab segment" data-tab="register">
-                <form class="ui form">
-                    <input type="text" placeholder="First Name">
-                    <input type="text" placeholder="Last Name">
-                    <input type="text" placeholder="email">
-                    <input type="password" placeholder="password">
-                    <input type="password" placeholder="Type password again">
-                    <div class="flex end">
-                        <button class="ui green button">Register</button>
+            <div class="ui bottom attached tab " data-tab="register">
+                <form class="ui form segment register" >
+                    <div class="field">
+                        <label>Firstname</label>
+                        <input placeholder="Name" name="first" type="text">
+                    </div>
+                    <div class="field">
+                        <label>Lastname</label>
+                        <input placeholder="Surname" name="last" type="text">
+                    </div>
+                    <div class="field">
+                        <label>Email</label>
+                        <input placeholder="Email" name="email" type="text">
+                    </div>
+                    <div class="field">
+                        <label>Password</label>
+                        <input type="password" name="password">
+                    </div>           
+                    <div class="fluid ui green submit button">Register</div>
+                    <div class="ui error message">
+                        <div class="header">Email or user name is already in the system!</div>
                     </div>
                 </form>
             </div>
@@ -38,43 +57,53 @@
 {% endblock %}
 {% block scripting %}
     {{ parent() }}
-     <script type="text/javascript">
-        $.fn.serializeObject = function(){
-              var o = {};
-              var a = this.serializeArray();
-              $.each(a, function() {
-                if (o[this.name] !== undefined) {
-                    if (!o[this.name].push) {
-                        o[this.name] = [o[this.name]];
-                    }
-                    o[this.name].push(this.value || '');
-                } else {
-                    o[this.name] = this.value || '';
-                }
-              });
-              return o;
-        };
+    <script src="js/init.js"></script>  
+    <script type="text/javascript">
         $(function() {
-           
-            $( "#login" ).submit(function( event ) {
-                event.preventDefault();
-                var j = $("#login").serializeObject();
-                $.ajax({
-                    type: "POST",
-                    url: "login.php",
-                    data: {data:j},
-                    success: function(data, textStatus, jqXHR){
-                         alert(data);
-                         return;
-                        if (data==0){
-                            alert(data);
-                        }else{
-                            var url = "index.php?dashboard";  
-                            window.location.replace(url); 
-                        }
+            $('.ui.form.login').form(login_validate)
+                .api({
+                    action: 'login user',
+                    method: 'POST',
+                    serializeForm: true,
+                    data: {
+                      name: 22
+                    },
+                    beforeSend: function(settings) {
+                        console.log(settings.data);
+                        return settings;
+                    },
+                    onSuccess: function(response) {
+                        console.log(response.message);
+                        var url = "index.php?dashboard";
+                        window.location.replace(url); 
+                      // valid response and response.success = true
+                    },
+                    onError: function(errorMessage) {
+                        console.log(errorMessage);
                     }
                 });
-            });
+            $('.ui.form.register').form(register_validate)
+                .api({
+                    action: 'register user',
+                    method: 'POST',
+                    serializeForm: true,
+                    data: {
+                      check: 'register'
+                    },
+                    beforeSend: function(settings) {
+                        console.log(settings.data);
+                        return settings;
+                    },
+                    onSuccess: function(response) {
+                        console.log(response.message);
+                        var url = "index.php?dashboard";
+                        window.location.replace(url); 
+                      // valid response and response.success = true
+                    },
+                    onError: function(errorMessage) {
+                        console.log(errorMessage);
+                    }
+                });
         });
-  </script>
+    </script>
 {% endblock %}

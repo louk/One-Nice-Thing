@@ -1,0 +1,59 @@
+{% extends "submain.html" %}
+{% block subcontent %}
+<div class="flex center" id="report">
+    <form class="ui form">
+        <h1>Report Nice Things</h1>
+        <div class='section'>
+            <div class='title'>Username Lookup</div>
+            <input type="text" name="username_looukup">
+        </div>
+        <div class='section'>
+            <div class='title'>Location where did you do your nice thing ?</div>
+            <input type="text" name="">
+        </div>
+        <div class='section'>
+            <div class='title'>What nice thing did you do ?</div>
+            <textarea rows="2"></textarea>
+        </div>
+        <div class='section'>
+            <div class='title'>Who did you do it for ?</div>
+            <input type="text" name="" >
+        </div>
+        <div class='section'>
+            <div class='title'>How did you respond, how did you feel ?</div>
+            <input type="text" name="">
+        </div>
+        <div class='section'>
+            <div class="ui checkbox">
+                <input type="checkbox" name="remember_me">
+                <label>Did you ask them to keep it going and did they agree?</label>
+            </div>
+        </div>
+        <div class='section'>
+            <div class='title'>Would you like to leave any other message for this member?</div>
+            <textarea rows="2"></textarea>
+        </div>
+        <div class='section'>
+            <div class='flex between middle'>
+                <label>Privacy Settings</label>
+                <div class="ui selection dropdown">
+                    <input type="hidden" name="gender">
+                    <i class="dropdown icon"></i>
+                    <div class="default text">Only me</div>
+                    <div class="menu">
+                        <div class="item" data-value="1">Public</div>
+                        <div class="item" data-value="1">Friends</div>
+                        <div class="item" data-value="0">Only me</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex end">
+            <button class="ui green button">Submit</button>
+        </div>
+    </form>
+</div>
+<script>
+$('.ui.dropdown').dropdown();
+</script>
+{% endblock %}

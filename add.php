@@ -8,13 +8,12 @@
     use Parse\ParseObject;
     use Parse\ParseQuery;
 
-    $data = $_POST['data'];
-    $privacy = $_POST['privacy'];
+    //$privacy = $_POST['privacy'];
 
     /* Find user **/
 
     $query = new ParseQuery("_User");
-    $query->equalTo("username",$data['username']);
+    $query->equalTo("username",$_POST['username']);
     $user = $query->first();
 
     if(!$user){
@@ -24,15 +23,15 @@
 
     $result = false;
     $nice_thing = new ParseObject("NiceThing");
-    $nice_thing->set("nice_thing", $data['content']);
-    $nice_thing->set("location_name", $data['location']);
-    $nice_thing->set("nice_thing", $data['content']);
-    $nice_thing->set("whom", $data['who']);
-    $nice_thing->set("feel", $data['feel']);
-    $nice_thing->set("message", $data['message']);
-    $nice_thing->set("feel", $data['feel']);
+    $nice_thing->set("nice_thing", $_POST['content']);
+    $nice_thing->set("location_name", $_POST['location']);
+    $nice_thing->set("nice_thing", $_POST['content']);
+    $nice_thing->set("whom", $_POST['who']);
+    $nice_thing->set("feel", $_POST['feel']);
+    $nice_thing->set("message", $_POST['message']);
+    $nice_thing->set("feel", $_POST['feel']);
     $nice_thing->set("refered_user", $user);
-    $nice_thing->set("privacy", (int)$privacy);
+    $nice_thing->set("privacy", 1);
     $nice_thing->set("status", 0);
 
     try {
@@ -45,11 +44,16 @@
         return;
     }
 
+    class Response {};
+
     if($result){
-        echo $nice_thing->getObjectId();
+        $response = new Response();
+        $response->success = true;
+        $response->message = "Your nice thing is added";
+        $response->data = $nice_thing->getObjectId();
+        echo json_encode($response); 
     }else{
         echo "Error: User please select valid username";
     }
  
 ?>
-     

@@ -1,4 +1,7 @@
 /*-----RESET-----*/
+a{
+    color:#000;
+}
 html,
 body {
     margin:0;
@@ -51,6 +54,9 @@ body {
 .margin-left{
     margin-left:50px;
 }
+.margin-top{
+    margin-top:20px;
+}
 /*DASHBOARD*/
 #dashboard .stat{
     border:1px solid #e0e0e0;
@@ -60,10 +66,9 @@ body {
     text-transform: uppercase;
     font-weight: 700;
     flex:1;
-    margin:0 20px;
 }
-#dashboard .map{
-    margin-top:40px;
+#dashboard .stat:nth-child(n+2){
+    margin-top:20px;
 }
 #dashboard .value{
     font-size:4rem;
@@ -178,6 +183,7 @@ body {
 #chat-friends .date{
     color:#7f7f7f;
     font-size:0.875em;
+    margin-left:10px;
 }
 #chat-friends .section>div{
     margin-left:10px;
@@ -261,6 +267,13 @@ body {
 #report button{
     margin-top:20px;
 }
+#report .section{
+    margin-top:20px;
+}
+#report .section .title, #report .section label{
+    margin-bottom:5px;
+    font-weight: bold;
+}
 @media only screen and (max-width: 700px) {
     #dashboard .stat{
         flex:1 100%;
@@ -290,9 +303,6 @@ body {
         text-align: center;
         width:100%;
         margin-top:5px;
-    }
-    #settings .margin-left{
-        margin-left:20px;
     }
     .margin-left{
         margin-left:0;

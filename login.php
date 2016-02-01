@@ -1,4 +1,4 @@
-<?php
+    <?php
     require 'js/parse/autoload.php';
     use Parse\ParseException;
     use Parse\ParseUser;
@@ -14,24 +14,32 @@
     $storage = new ParseSessionStorage();
     ParseClient::setStorage($storage);
     
-    $result =false;
-    $data = $_POST['data'];
 
+    /*if($_POST['check']=="true" ){
+        (string)$uniq = uniqid();
+        $name = "Guest-".$uniq;
+        $user = new ParseUser();
+        $user->set("username", $name);
+        $user->set("password", $uniq);
+
+        try {
+            $user->signUp();
+            $_SESSION['user'] = $user;
+            echo 11;
+        } catch (ParseException $ex) {
+            echo 0;
+        }
+
+    }else{*/
     try {
-        $user = ParseUser::logIn($data['email'], $data['password']);
+        $user = ParseUser::logIn($_POST['username'], $_POST['password']);
         $user->save();
-        $result = true;
+        $user = ParseUser::getCurrentUser();
+        $_SESSION['user'] = $user;
+        echo 12;
     } catch (ParseException $error) {
         echo $error;
-    }
-    
-    $user = ParseUser::getCurrentUser();
-    $_SESSION['user'] = $user;
+    } 
+   //}
 
-    if($result){
-        echo 1;
-    }else{
-        echo 0;
-    }
-    
 ?>
