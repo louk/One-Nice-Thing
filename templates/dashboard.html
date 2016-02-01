@@ -1,34 +1,128 @@
 {% extends "submain.html" %}
 {% block subcontent %}
 <div id='dashboard'>
-    <div class='flex between'>
-        <div>
-            <div class="stat">
-                <div class="label">Originated</div>
-                <div class="value">625</div>
-                <div class="label">Nice things originated from you</div>
-            </div>
-            <div class='stat'>
-                <div class='label'>Friend List</div>
-                <div class='value'>22</div>
-                <div class="label">Friends</div>
-            </div>
-            <div class='stat'>
-                <div class='label'>Nice Things</div>
-                <div class='value'>625</div>
-                <div class="label">Nice directly attributed to you</div>
-            </div>
+  <div class='flex between md-flex-col md-col-reverse'>
+    <div class='flex flex12'>
+      <div class='flex md-wrap'>
+        <div class="stat flex-col center md-flex12">
+          <div class="label">Originated</div>
+          <div class="value">625</div>
+          <div class="label">Nice things originated from you</div>
         </div>
-        <div>
-            <div class="ui vertical menu">
-              <a class="active teal item">Inbox<div class="ui teal pointing left label">9</div></a>
-              <a class="item">Spam<div class="ui label">51</div></a>
-              <a class="item">Updates<div class="ui label">1</div></a>
-          </div>
+        <div class="stat flex-col center md-flex12">
+          <div class="label">Originated</div>
+          <div class="value">625</div>
+          <div class="label">Nice things originated from you</div>
+        </div>
+        <div class="stat flex-col center md-flex12">
+          <div class="label">Originated</div>
+          <div class="value">625</div>
+          <div class="label">Nice things originated from you</div>
+        </div>
       </div>
+    </div>
+    <div class='margin-left'>
+      <div class="ui vertical menu">
+        <a class="active teal item">Inbox<div class="ui teal pointing left label">9</div></a>
+        <a class="item">Spam<div class="ui label">51</div></a>
+        <a class="item">Updates<div class="ui label">1</div></a>
+      </div>
+    </div>
   </div>
   <div class='map margin-top'>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d2674.1231407599025!2d106.9150149306034!3d47.914654737141085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1smn!2smn!4v1453028489882" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
-</div>
+      <style>
+#map {
+    height: 400px;
+}
+#map .gm-style{
+    height: 400px;
+}
+      </style>
+      <div id="map"></div>
+      <script>
+
+// This example creates a 2-pixel-wide red polyline showing the path of William
+// Kingsford Smith's first trans-Pacific flight between Oakland, CA, and
+// Brisbane, Australia.
+
+      function initMap() {
+          var map = new google.maps.Map(document.getElementById('map'), {
+zoom: 4,
+center: {lat: 39.656, lng: -104.897},
+mapTypeId: google.maps.MapTypeId.TERRAIN
+});
+
+var flightPlanCoordinates = [
+{lat: 39.656, lng: -104.897},
+{lat: 36.066, lng: -115.092},
+{lat: 39.656, lng: -104.897},
+{lat: 37.631, lng: -97.250},
+{lat: 39.656, lng: -104.897},
+{lat: 34.976, lng: -106.545}
+];
+var flightPath = new google.maps.Polyline({
+path: flightPlanCoordinates,
+geodesic: true,
+strokeColor: '#40B553',
+strokeOpacity: 1.0,
+strokeWeight: 2
+});
+
+var marker = new google.maps.Marker({
+position: {lat: 39.656, lng: -104.897},
+map: map,
+title: 'Hello World!'
+});
+
+flightPath.setMap(map);
+}
+
+      </script>
+      <script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMBjviMpi2gIUKzigBO3HQdKIjkx4XxvY&signed_in=true&callback=initMap"></script>
+  </div>
+  <div class='margin-top'>
+    <div class="ui three stackable cards">
+      <div class="ui card">
+        <div class="content">
+          <div class="header">Cute Dog</div>
+          <div class="meta">2 days ago</div>
+          <div class="description">
+            <p>Cute dogs come in a variety of shapes and...</p>
+          </div>
+        </div>
+        <div class="extra content">
+          <i class="check icon"></i>
+          121 Votes
+        </div>
+      </div>
+      <div class="ui card">
+        <div class="content">
+          <div class="header">Cute Dog</div>
+          <div class="meta">2 days ago</div>
+          <div class="description">
+            <p>Cute dogs come in a variety of shapes and...</p>
+          </div>
+        </div>
+        <div class="extra content">
+          <i class="check icon"></i>
+          121 Votes
+        </div>
+      </div>
+      <div class="ui card">
+        <div class="content">
+          <div class="header">Cute Dog</div>
+          <div class="meta">2 days ago</div>
+          <div class="description">
+            <p>Cute dogs come in a variety of shapes and...</p>
+          </div>
+        </div>
+        <div class="extra content">
+          <i class="check icon"></i>
+          121 Votes
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}

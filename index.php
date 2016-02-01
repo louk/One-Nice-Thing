@@ -52,7 +52,13 @@ if (isset($_SESSION['user'])) {
     } else if (isset($_GET['mymap'])) {
         $template = $twig->loadTemplate('my-map.html');
         echo $template->render(array('title' => 'My map', 'user' => $user));
-    } else {
+    } else if (isset($_GET['success'])) {
+        $template = $twig->loadTemplate('success.html');
+        echo $template->render(array('title' => 'Success stories', 'user' => $user));
+    } else if(isset($_GET['about'])){
+        $template = $twig->loadTemplate('about.html');
+        echo $template->render(array('title' => 'About us', 'user' => $user)); 
+    }else {
         $template = $twig->loadTemplate('main.html');
         echo $template->render(array('title' => 'Start', 'user' => $user));
     }
@@ -69,6 +75,12 @@ if (isset($_SESSION['user'])) {
     } else if (isset($_GET['report'])) {
         $template = $twig->loadTemplate('report.html');
         echo $template->render(array('title' => 'Report Nice Thing'));
+    }else if (isset($_GET['success'])) {
+        $template = $twig->loadTemplate('success.html');
+        echo $template->render(array('title' => 'Success stories'));
+    }else if(isset($_GET['forgot'])){
+        $template = $twig->loadTemplate('forgot.html');
+        echo $template->render(array('title' => 'Forgot password'));
     }else if (isset($_GET['help'])) {
         $template = $twig->loadTemplate('help.html');
         echo $template->render(array('title' => 'Help'));
@@ -76,7 +88,11 @@ if (isset($_SESSION['user'])) {
         $template = $twig->loadTemplate('choose.html');
         echo $template->render(array('title' => 'Choose user type')); 
     }
-     else {
+    else if(isset($_GET['about'])){
+        $template = $twig->loadTemplate('about.html');
+        echo $template->render(array('title' => 'About us')); 
+    }
+    else {
         $query = new ParseQuery("_User");
         $query->equalTo('status', 1);
         $users = $query->find();

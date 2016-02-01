@@ -1,19 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
 <div class='ui container'>
+    {% if user %}
     <div class="flex xs-center">
         <div class="xs-hide">
-            <div class="ui vertical menu" id='submenu'>
-                <div class='item'>
-                    <div class="ui transparent icon input">
-                        <input type="text" placeholder="Search...">
-                        <i class="search icon"></i>
-                    </div>
-                </div>
+            <div id='submenu' class='flex-col'>
                 <a class="active item" href="index.php?dashboard">My Dashboard</a>
                 <a class="item" href="index.php?nicethings">My Nice Things</a>
                 <a class="item" href="index.php?tree">My Tree</a>
-                <a class="item" href="index.php?map">My Map</a>
+                <a class="item" href="index.php?mymap">My Map</a>
                 <a class="item" href="index.php?friends">My Friends</a>
             </div>
         </div>
@@ -23,5 +18,9 @@
             {% endblock %}
         </div>
     </div>
+    {% else %}
+        {% block subcontent1 %}
+        {% endblock %}
+    {% endif %}
 </div>
 {% endblock %}

@@ -24,7 +24,7 @@
                 </form>
                 <div class="ui bottom attached warning message">
                     <i class="icon help"></i>
-                    <a href="#">Forgot your password? </a> 
+                    <a href="index.php?forgot">Forgot your password? </a> 
                 </div>
             </div>
             <div class="ui bottom attached tab " data-tab="register">
@@ -56,54 +56,54 @@
 </div>
 {% endblock %}
 {% block scripting %}
-    {{ parent() }}
-    <script src="js/init.js"></script>  
-    <script type="text/javascript">
-        $(function() {
-            $('.ui.form.login').form(login_validate)
-                .api({
-                    action: 'login user',
-                    method: 'POST',
-                    serializeForm: true,
-                    data: {
-                      name: 22
-                    },
-                    beforeSend: function(settings) {
-                        console.log(settings.data);
-                        return settings;
-                    },
-                    onSuccess: function(response) {
-                        console.log(response.message);
-                        var url = "index.php?dashboard";
-                        window.location.replace(url); 
+{{ parent() }}
+<script src="js/init.js"></script>  
+<script type="text/javascript">
+$(function() {
+    $('.ui.form.login').form(login_validate)
+    .api({
+        action: 'login user',
+        method: 'POST',
+        serializeForm: true,
+        data: {
+          name: 22
+      },
+      beforeSend: function(settings) {
+        console.log(settings.data);
+        return settings;
+    },
+    onSuccess: function(response) {
+        console.log(response.message);
+        var url = "index.php?dashboard";
+        window.location.replace(url); 
                       // valid response and response.success = true
-                    },
-                    onError: function(errorMessage) {
-                        console.log(errorMessage);
-                    }
-                });
-            $('.ui.form.register').form(register_validate)
-                .api({
-                    action: 'register user',
-                    method: 'POST',
-                    serializeForm: true,
-                    data: {
-                      check: 'register'
-                    },
-                    beforeSend: function(settings) {
-                        console.log(settings.data);
-                        return settings;
-                    },
-                    onSuccess: function(response) {
-                        console.log(response.message);
-                        var url = "index.php?dashboard";
-                        window.location.replace(url); 
+                  },
+                  onError: function(errorMessage) {
+                    console.log(errorMessage);
+                }
+            });
+    $('.ui.form.register').form(register_validate)
+    .api({
+        action: 'register user',
+        method: 'POST',
+        serializeForm: true,
+        data: {
+          check: 'register'
+      },
+      beforeSend: function(settings) {
+        console.log(settings.data);
+        return settings;
+    },
+    onSuccess: function(response) {
+        console.log(response.message);
+        var url = "index.php?dashboard";
+        window.location.replace(url); 
                       // valid response and response.success = true
-                    },
-                    onError: function(errorMessage) {
-                        console.log(errorMessage);
-                    }
-                });
-        });
-    </script>
+                  },
+                  onError: function(errorMessage) {
+                    console.log(errorMessage);
+                }
+            });
+});
+</script>
 {% endblock %}
