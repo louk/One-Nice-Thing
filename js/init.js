@@ -210,17 +210,6 @@ var settings_validate = {
                },
                {
                    type   : 'match[new_pass]',
-<<<<<<< Updated upstream
-                   prompt : 'Your password must be at least {ruleValue} characters'
-               },
-                {
-                   type   : 'empty',
-                   prompt : 'Please enter a password'
-               },
-               {
-                   type   : 'match[new_pass]',
-=======
->>>>>>> Stashed changes
                    prompt : 'Your password must be the same'
                }
             ]

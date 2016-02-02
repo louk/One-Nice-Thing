@@ -51,6 +51,9 @@ body {
 .forgot h1{
     color:#40B553;
 }
+.forgot .margin-left{
+    margin-left:20px;
+}
 .forgot .field{
     width:300px;
 }

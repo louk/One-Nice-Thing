@@ -54,11 +54,14 @@
             </div>
             <div class="ui bottom attached tab " data-tab="forgot">
                 <form class="ui form segment forgot">
+                    <div class='flex'>
                     <div class="field">
-                        <label>Forgot your password?</label>
                         <input type="text" name = "email" placeholder='Email'>
                     </div>
+                    <div class='margin-left'>
                     <button class='ui green submit fluid button'>Send</button>
+                </div>
+                </div>
                     <div class="ui success message">
                         <div class="header">
                             Your password sent your email.
@@ -133,7 +136,7 @@
                 },
                 onSuccess: function(response) {
                     console.log(response.message);
-                å},
+                },
                 onError: function(errorMessage) {
                     console.log(errorMessage);
                 }
