@@ -72,15 +72,9 @@ use Parse\ParseUser;
             $users = $query->find();
             $template = $twig->loadTemplate('reportnicething.html');
             echo $template->render(array('title' => 'Report Nice Thing', 'users' =>$users));
-        } else if (isset($_GET['report'])) {
-            $template = $twig->loadTemplate('report.html');
-            echo $template->render(array('title' => 'Report Nice Thing'));
         }else if (isset($_GET['success'])) {
             $template = $twig->loadTemplate('success.html');
             echo $template->render(array('title' => 'Success stories'));
-        }else if(isset($_GET['forgot'])){
-            $template = $twig->loadTemplate('forgot.html');
-            echo $template->render(array('title' => 'Forgot password'));
         }else if (isset($_GET['help'])) {
             $template = $twig->loadTemplate('help.html');
             echo $template->render(array('title' => 'Help'));
