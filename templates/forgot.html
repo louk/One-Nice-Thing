@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
 <div class='flex center middle'>
-	<form class='ui form forgot flex-col'>
-		<h1>Forgot Your Password?</h1>
+	<form class='ui form forgot'>
+		<h3>Forgot your password?</h3>
 		<div class='field'>
-			<input type='email' placeholder='Email'>
+			<input type='text' name ='email' placeholder='Email'>
 		</div>
 		<button class='ui green submit button'>Send</button>
 		<div class="ui success message hidden">
@@ -36,12 +36,12 @@ $(function() {
 			console.log(response.message);
 			var url = "index.php?forgot";
 			window.location.replace(url); 
-                      // valid response and response.success = true
-                  },
-                  onError: function(errorMessage) {
-                  	console.log(errorMessage);
-                  }
-              });
+          // valid response and response.success = true
+         },
+         onError: function(errorMessage) {
+          	console.log(errorMessage);
+         }
+        });
 });
 </script>
 {% endblock %}

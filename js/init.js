@@ -210,7 +210,15 @@ var settings_validate = {
                    type   : 'match[new_pass]',
                    prompt : 'Your password must be at least {ruleValue} characters'
                }
-           ]
+                {
+                   type   : 'empty',
+                   prompt : 'Please enter a password'
+               },
+               {
+                   type   : 'match[new_pass]',
+                   prompt : 'Your password must be the same'
+               }
+            ]
         },
         email: {
             identifier: 'email',
