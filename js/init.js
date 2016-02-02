@@ -1,10 +1,10 @@
 
 $.fn.api.settings.api = {
 
-  'forgot password': 'user.php',
-  'settings': 'user.php'
- 	'login user'       : 'login.php',
- 	'register user'    : 'user.php',
+  'forgot password'  : 'user.php',
+  'settings'         : 'user.php',
+ 	'login user'     : 'login.php',
+ 	'register user'  : 'user.php',
   'guest report'     : 'report.php',
   'user report'      : 'report.php',
   'register report'  : 'report.php',
@@ -69,21 +69,21 @@ var register_validate = {
            ]
        },
        email: {
-        identifier: 'email',
-        rules: [
-        {
-            type   : 'empty',
-            prompt : 'Please enter a email'
-        },
-        {
-           type   : 'email',
-           prompt : 'Please enter a valid e-mail' 
-       }
-       ]
-   }
-},
-inline : true,
-on     : 'blur'
+            identifier: 'email',
+            rules: [
+                {
+                    type   : 'empty',
+                    prompt : 'Please enter a email'
+                },
+                {
+                   type   : 'email',
+                   prompt : 'Please enter a valid e-mail' 
+               }
+            ]
+        }
+    }   ,
+    inline : true,
+    on     : 'blur'
 }
 var report_validate = {
     fields:{
@@ -141,91 +141,91 @@ var forgot_validate = {
         email:{
             identifier:'email',
             rules:[
-            {
-                type:'empty',
-                prompt:'Please enter your email',
-            },
-            {
-                type:'email',
-                prompt:'Please enter a valid e-mail'
-            }
+                {
+                    type:'empty',
+                    prompt:'Please enter your email',
+                },
+                {
+                    type:'email',
+                    prompt:'Please enter a valid e-mail'
+                }
             ]
         }
     }
 }
 var settings_validate = {
-     fields: {
+    fields: {
         first: {
             identifier: 'first',
             rules: [
-            {
-                type   : 'empty',
-                prompt : 'Please enter your first name'
-            }
+                {
+                    type   : 'empty',
+                    prompt : 'Please enter your first name'
+                }
             ]
         },
         last: {
             identifier: 'last',
             rules: [
-            {
-                type   : 'empty',
-                prompt : 'Please enter your last name'
-            }
+                {
+                    type   : 'empty',
+                    prompt : 'Please enter your last name'
+                }
             ]
         },
         password: {
             identifier: 'old_pass',
             rules: [
-            {
-               type   : 'empty',
-               prompt : 'Please enter a password'
-           },
-           {
-               type   : 'minLength[6]',
-               prompt : 'Your password must be at least {ruleValue} characters'
-           }
+                {
+                   type   : 'empty',
+                   prompt : 'Please enter a password'
+               },
+               {
+                   type   : 'minLength[6]',
+                   prompt : 'Your password must be at least {ruleValue} characters'
+                }
            ]
-       },
-       password2: {
-        identifier: 'new_pass',
-        rules: [
-        {
-           type   : 'empty',
-           prompt : 'Please enter a password'
-       },
-       {
-           type   : 'minLength[6]',
-           prompt : 'Your password must be at least {ruleValue} characters'
-       }
-       ]
-   },
-       password3: {
+        },
+        password2: {
+            identifier: 'new_pass',
+            rules: [
+                {
+                   type   : 'empty',
+                   prompt : 'Please enter a password'
+               },
+               {
+                   type   : 'minLength[6]',
+                   prompt : 'Your password must be at least {ruleValue} characters'
+               }
+           ]
+        },
+        password3: {
             identifier: 'new_pass2',
             rules: [
-            {
-               type   : 'empty',
-               prompt : 'Please enter a password'
-           },
-           {
-               type   : 'match[new_pass]',
-               prompt : 'Your password must be at least {ruleValue} characters'
-           }
+                {
+                   type   : 'empty',
+                   prompt : 'Please enter a password'
+               },
+               {
+                   type   : 'match[new_pass]',
+                   prompt : 'Your password must be at least {ruleValue} characters'
+               }
            ]
-       },
-   email: {
-    identifier: 'email',
-    rules: [
-    {
-        type   : 'empty',
-        prompt : 'Please enter a email'
+        },
+        email: {
+            identifier: 'email',
+            rules: [
+                {
+                    type   : 'empty',
+                    prompt : 'Please enter a email'
+                },
+                {
+                   type   : 'email',
+                   prompt : 'Please enter a valid e-mail' 
+               }
+            ]
+        }
     },
-    {
-       type   : 'email',
-       prompt : 'Please enter a valid e-mail' 
-   }
-   ]
-}
-},
-inline : true,
-on     : 'blur'
+    inline : true,
+    on     : 'blur'
 }
