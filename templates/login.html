@@ -74,12 +74,11 @@
                     },
                     onSuccess: function(response) {
                         console.log(response.message);
-                        var url = "index.php?dashboard";
+                        var url = "index.php?dashboard"; 
                         window.location.replace(url); 
-                      // valid response and response.success = true
                     },
-                    onError: function(errorMessage) {
-                        console.log(errorMessage);
+                    onFailure: function(response) {
+                        console.log(response);
                     }
                 });
             $('.ui.form.register').form(register_validate)
