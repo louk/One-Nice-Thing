@@ -3,8 +3,8 @@ $.fn.api.settings.api = {
 
   'forgot password'  : 'user.php',
   'settings'         : 'user.php',
- 	'login user'     : 'login.php',
- 	'register user'  : 'user.php',
+  'login user'       : 'login.php',
+  'register user'    : 'user.php',
   'guest report'     : 'report.php',
   'user report'      : 'report.php',
   'register report'  : 'report.php',
