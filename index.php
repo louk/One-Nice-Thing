@@ -76,7 +76,7 @@ if (isset($_SESSION['user'])) {
         $template = $twig->loadTemplate('choose.html');
         echo $template->render(array('title' => 'Choose user type')); 
     }
-     else {
+    else {
         $query = new ParseQuery("_User");
         $query->equalTo('status', 1);
         $users = $query->find();
