@@ -11,6 +11,7 @@
 
     if($func == 'register'){
         echo user_register($_POST['first'], $_POST['last'],$_POST['pass'],$_POST['email']);
+        mail_box($_POST['email'],'Register', 'Thank  you for registering', 'register');
     }
     
 ?>

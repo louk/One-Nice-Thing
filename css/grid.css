@@ -102,7 +102,7 @@
         flex:100%;
     }
 }
-@media (min-width:701px){
+@media (max-width:768px){
     .sm-wrap{
         flex-wrap:wrap;
     }
@@ -145,13 +145,25 @@
         align-items:baseline;
         -webkit-align-items:baseline;
     }
+    .sm-flex12{
+        flex:100%;
+    }
 }
-@media (min-width:768px){
+@media (max-width:992px){
     .md-wrap{
         flex-wrap:wrap;
     }
-    .md-wrap{
+    .md-nowrap{
         flex-wrap:nowrap;
+    }
+    .md-flex-col{
+        flex-direction:column;
+    }
+    .md-row-reverse{
+        flex-flow:row-reverse;
+    }
+    .md-col-reverse{
+        flex-flow:column-reverse;
     }
     .md-center{
         justify-content:center;
@@ -189,92 +201,7 @@
         align-items:baseline;
         -webkit-align-items:baseline;
     }
-}
-@media (min-width:992px){
-    .lg-wrap{
-        flex-wrap:wrap;
-    }
-    .lg-nowrap{
-        flex-wrap:nowrap;
-    }
-    .lg-center{
-        justify-content:center;
-        -webkit-justify-content:center;
-    }
-    .lg-around{
-        justify-content:space-around;
-        -webkit-justify-content:space-around;
-    }
-    .lg-between{
-        justify-content:space-between;
-        -webkit-justify-content:space-between;
-    }
-    .lg-end{
-        justify-content:flex-end;
-        -webkit-justify-content:flex-end;
-    }
-    .lg-middle{
-        align-items:center;
-        -webkit-align-items:center;
-    }
-    .lg-varound{
-        align-items:space-around;
-        -webkit-align-items:space-around;
-    }
-    .lg-vbetween{
-        align-items:space-between;
-        -webkit-align-items:space-between;
-    }
-    .lg-bottom{
-        align-items:flex-end;
-        -webkit-align-items:flex-end;
-    }
-    .lg-baseline{
-        align-items:baseline;
-        -webkit-align-items:baseline;
-    }
-}
-@media (min-width:1200px){
-    .xl-wrap{
-        flex-wrap:wrap;
-    }
-    .xl-nowrap{
-        flex-wrap:nowrap;
-    }
-    .xl-center{
-        justify-content:center;
-        -webkit-justify-content:center;
-    }
-    .xl-around{
-        justify-content:space-around;
-        -webkit-justify-content:space-around;
-    }
-    .xl-between{
-        justify-content:space-between;
-        -webkit-justify-content:space-between;
-    }
-    .xl-end{
-        justify-content:flex-end;
-        -webkit-justify-content:flex-end;
-    }
-    .xl-middle{
-        align-items:center;
-        -webkit-align-items:center;
-    }
-    .xl-varound{
-        align-items:space-around;
-        -webkit-align-items:space-around;
-    }
-    .xl-vbetween{
-        align-items:space-between;
-        -webkit-align-items:space-between;
-    }
-    .xl-bottom{
-        align-items:flex-end;
-        -webkit-align-items:flex-end;
-    }
-    .xl-baseline{
-        align-items:baseline;
-        -webkit-align-items:baseline;
+    .md-flex12{
+        flex:100%;
     }
 }

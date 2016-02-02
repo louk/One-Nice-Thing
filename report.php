@@ -18,15 +18,20 @@
         $user = new ParseUser();
         $user->set("username", $name);
         $user->set("password", $uniq);
+        $user->setArray("connected", []);
+        $user->set("status", 0);
         
         try{
             $user->signUp();
             $_SESSION['user'] = $user;
-            echo add_user_report($_SESSION['id'],$user);
+            
+            add_user_report($_SESSION['id'],$user);
+
         } catch (ParseException $ex) {
             echo $ex;
         }
     }
+
     if($func == 'login'){
        echo user_login_report($_POST['username'], $_POST['password'], $_SESSION['id']);
     }

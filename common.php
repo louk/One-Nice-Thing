@@ -7,11 +7,46 @@
     use Parse\ParseSessionStorage;
     use Parse\ParseClient;
     use Parse\ParseQuery;
+    use Parse\ParseObject;
 
     session_start();
 
 	class Response {};
     
+    function user_to_user($report_id){
+        
+        $query = new ParseQuery("NiceThing");
+        $query->equalTo("objectId",$report_id);
+        $query->includeKey('User');
+        $query->includeKey('refered_user');
+        $nice_thing = $query->first();  
+        
+        $ref_user = $nice_thing -> get('refered_user');
+        $con_user = $nice_thing -> get('User');
+
+        $ref_user_id = $ref_user->getObjectId();
+
+        $connected =  $con_user->get("connected");
+
+        array_push($connected,$ref_user_id);
+
+        $con_user->setArray("connected",$connected);
+        $response = new Response();
+        try {
+            $con_user->save();
+            $response->success = true;
+            $response->message = "Your nice thing is added";
+            $response->data = $nice_thing->getObjectId();
+            echo json_encode($response); 
+        } catch (ParseException $ex) {  
+            // Execute any logic that should take place if the save fails.
+            // error is a ParseException object with an error code and message.
+            echo 'Error: Failed to create new object, with error message: ' . $ex->getMessage();
+            return;
+        }
+    }
+
+
 	function add_user_report($report_id, $user){
 	    
         $query = new ParseQuery("NiceThing");
@@ -21,10 +56,8 @@
         $response = new Response();
         try {
             $nice_thing->save();   
-            $response->success = true;
-            $response->message = "Your nice thing is added";
-            $response->data = $nice_thing->getObjectId();
-            echo json_encode($response); 
+            echo user_to_user($report_id);
+
    		} catch (ParseException $ex) {  
             // Execute any logic that should take place if the save fails.
             // error is a ParseException object with an error code and message
@@ -90,26 +123,7 @@
 	        $user->save();
 	        $user = ParseUser::getCurrentUser();
 	        $_SESSION['user'] = $user;
-
-	        $query = new ParseQuery("NiceThing");
-	        $query->equalTo("objectId",$report_id);
-	        $nice_thing = $query->first();    
-	        $nice_thing->set("User", $user);
-
-	        try {
-	            $nice_thing->save();   
-	            $response->success = true;
-	            $response->message = "Your nice thing is added";
-	            $response->data = $nice_thing->getObjectId();
-	            echo json_encode($response); 
-	   		} catch (ParseException $ex) {  
-	            // Execute any logic that should take place if the save fails.
-	            // error is a ParseException object with an error code and message
-	            $response->success = false;
-	            $response->message = 'Error: Failed to create new object, with error message: ' . $ex->getMessage();
-	            echo json_encode($response); 
-	        }
-
+            echo add_user_report($report_id, $user);
 	    } catch (ParseException $error) {
 	        $response->success = false;
             $response->message = 'Error: Failed to login: ' . $error;
@@ -137,5 +151,23 @@
             echo json_encode($response); 
         }  
 	}
+
+    function mail_box($to, $header, $content, $type){
+        
+        $mail = new ParseObject("Mails");
+        $mail->set("to", $to);
+        $mail->set("header", $header);
+        $mail->set("content", $content);
+        $mail->set("type", $type);
+        $mail->set("status", 0); 
+        try {
+            $mail->save();
+        } catch (ParseException $ex) {  
+            // Execute any logic that should take place if the save fails.
+            // error is a ParseException object with an error code and message.
+            echo 'Error: Failed to create new object, with error message: ' . $ex->getMessage();
+            return;
+        }
+    }
 
 ?>
