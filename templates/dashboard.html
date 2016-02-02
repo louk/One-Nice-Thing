@@ -31,6 +31,7 @@
   </div>
   <div class='map margin-top'>
       <style>
+<<<<<<< HEAD
 #map {
     height: 400px;
 }
@@ -47,6 +48,7 @@
 
       function initMap() {
           var map = new google.maps.Map(document.getElementById('map'), {
+<<<<<<< HEAD
 zoom: 4,
 center: {lat: 39.656, lng: -104.897},
 mapTypeId: google.maps.MapTypeId.TERRAIN
@@ -81,6 +83,42 @@ flightPath.setMap(map);
       <script async defer
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMBjviMpi2gIUKzigBO3HQdKIjkx4XxvY&signed_in=true&callback=initMap"></script>
   </div>
+=======
+          zoom: 4,
+          center: {lat: 39.656, lng: -104.897},
+          mapTypeId: google.maps.MapTypeId.TERRAIN
+          });
+
+          var flightPlanCoordinates = [
+          {lat: 39.656, lng: -104.897},
+          {lat: 36.066, lng: -115.092},
+          {lat: 39.656, lng: -104.897},
+          {lat: 37.631, lng: -97.250},
+          {lat: 39.656, lng: -104.897},
+          {lat: 34.976, lng: -106.545}
+          ];
+          var flightPath = new google.maps.Polyline({
+            path: flightPlanCoordinates,
+            geodesic: true,
+            strokeColor: '#40B553',
+            strokeOpacity: 1.0,
+            strokeWeight: 2
+          });
+
+          var marker = new google.maps.Marker({
+              position: {lat: 39.656, lng: -104.897},
+              map: map,
+              title: 'Hello World!'
+          });
+
+          flightPath.setMap(map);
+          }
+
+      </script>
+      <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMBjviMpi2gIUKzigBO3HQdKIjkx4XxvY&signed_in=true&callback=initMap"></script>
+    </div>
+>>>>>>> 857412c3e03abad3f4ad6b5183d9180dc998a739
   <div class='margin-top'>
     <div class="ui three stackable cards">
       <div class="ui card">

@@ -8,17 +8,18 @@
                 <a class="item" data-tab="register">Register</a>
             </div>
             <div class="ui bottom attached tab  active" data-tab="login">
-                <form class="ui form attached fluid segment login">
+                <form class="ui form attached fluid segment login2">
                     <div class="field">
                         <label>Username</label>
                         <input placeholder="Username" name="username" type="text">
+                        <input name="check" type="hidden" value="login">
                     </div>
                     <div class="field">
                         <label>Password</label>
                         <input type="password" name="password">
                     </div>             
                     <div class="ui green submit button">Login</div>
-                     <div class="ui green submit button">Login as guest</div>
+                    <div style="float:right" class="ui blue button guest">Login as guest</div>
                     <div class="ui error message">
                         <div class="header">Check your username password !</div>
                     </div>
@@ -29,10 +30,11 @@
                 </div>
             </div>
             <div class="ui bottom attached tab " data-tab="register">
-                <form class="ui form segment register" >
+                <form class="ui form segment register2" >
                     <div class="field">
                         <label>Firstname</label>
                         <input placeholder="Name" name="first" type="text">
+                        <input name="check" type="hidden" value="register">
                     </div>
                     <div class="field">
                         <label>Lastname</label>
@@ -61,15 +63,32 @@
     <script src="js/init.js"></script>  
     <script type="text/javascript">
         $(function() {
-            $('.ui.form.login').form(login_validate)
+            $('.button.guest')
                 .api({
-                    action: 'login user',
+                    action: 'guest report',
                     method: 'POST',
-                    serializeForm: true,
                     data: {
-                      name: 22
+                        check: 'guest'
                     },
                     beforeSend: function(settings) {
+                        console.log(settings.data);
+                        return settings;
+                    },
+                    onSuccess: function(response) {
+                            var url = "index.php?dashboard";
+                            window.location.replace(url); 
+                    },
+                    onFailure: function(response) {
+                        console.log(response);
+                    }
+              });
+            $('.ui.form.login2').form(login_validate)
+                .api({
+                    action: 'user report',
+                    serializeForm: true,
+                    method: 'POST',
+                    beforeSend: function(settings) {
+                        settings.data.username = 'login';
                         console.log(settings.data);
                         return settings;
                     },
@@ -79,18 +98,15 @@
                         window.location.replace(url); 
                       // valid response and response.success = true
                     },
-                    onError: function(errorMessage) {
-                        console.log(errorMessage);
+                    onFailure: function(response) {
+                        console.log(response);
                     }
                 });
-            $('.ui.form.register').form(register_validate)
+            $('.ui.form.register2').form(register_validate)
                 .api({
-                    action: 'register user',
+                    action: 'user report',
                     method: 'POST',
-                    serializeForm: true,
-                    data: {
-                      check: 'register'
-                    },
+                    serializeForm: true, 
                     beforeSend: function(settings) {
                         console.log(settings.data);
                         return settings;
@@ -101,8 +117,8 @@
                         window.location.replace(url); 
                       // valid response and response.success = true
                     },
-                    onError: function(errorMessage) {
-                        console.log(errorMessage);
+                    onFailure: function(response) {
+                        console.log(response);
                     }
                 });
         });

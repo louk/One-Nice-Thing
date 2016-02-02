@@ -1,6 +1,7 @@
 <?php
     require 'js/parse/autoload.php';
     require_once "config.php";
+    require_once "common.php";
     use Parse\ParseException;
     use Parse\ParseUser;
     use Parse\ParseSessionStorage;
@@ -9,20 +10,8 @@
     $func = $_POST['check'];
 
     if($func == 'register'){
-
-        $name = $_POST['first']."_".$_POST['last'];
-        $user = new ParseUser();
-        $user->set("username", strtolower($name);
-        $user->set("email", $_POST['email']);
-        $user->set("password", $_POST['pass']);
-        try {
-            $user->signUp();
-            $_SESSION['user'] = $user;
-            echo 11;
-        } catch (ParseException $ex) {
-            echo $ex;
-        }
-
+        echo user_register($_POST['first'], $_POST['last'],$_POST['pass'],$_POST['email']);
+        mail_box($_POST['email'],'Register', 'Thank  you for registering', 'register');
     }
     
     if($func == 'forgot'){

@@ -8,7 +8,7 @@
     use Parse\ParseObject;
     use Parse\ParseQuery;
 
-    //$privacy = $_POST['privacy'];
+    session_start();
 
     /* Find user **/
 
@@ -51,6 +51,7 @@
         $response->success = true;
         $response->message = "Your nice thing is added";
         $response->data = $nice_thing->getObjectId();
+        $_SESSION['id'] = $nice_thing->getObjectId();
         echo json_encode($response); 
     }else{
         echo "Error: User please select valid username";

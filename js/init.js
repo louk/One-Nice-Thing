@@ -1,11 +1,14 @@
 
-
 $.fn.api.settings.api = {
-  'login user': 'login.php',
-  'register user': 'user.php',
-  'report nicething' : 'add.php',
+
   'forgot password': 'user.php',
   'settings': 'user.php'
+ 	'login user'       : 'login.php',
+ 	'register user'    : 'user.php',
+  'guest report'     : 'report.php',
+  'user report'      : 'report.php',
+  'register report'  : 'report.php',
+  'report nicething' : 'add.php'
 };
 
 var login_validate = {
@@ -32,7 +35,6 @@ var login_validate = {
     inline : true,
     on     : 'blur'
 }
-
 var register_validate = {
     fields: {
         first: {
@@ -83,7 +85,6 @@ var register_validate = {
 inline : true,
 on     : 'blur'
 }
-
 var report_validate = {
     fields:{
         name:{
