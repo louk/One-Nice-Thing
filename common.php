@@ -114,6 +114,42 @@
         }
     }
 
+    function user_register_create_chat( $user ){
+        
+        $response = new Response();
+
+        $query = new ParseQuery("_User");
+        $query->equalTo("username",'admin');
+        $admin = $query->first();
+        
+        $chat = new ParseObject("Chat");
+        $chat->set("user1", $admin);
+        $chat->set("user2", $user);
+
+        try {
+            $chat->save();
+            
+            $chatter = new ParseObject("ChatLogs");
+            $chatter->set("speaker", $admin);
+            $chatter->set("Chat", $chat);
+            $chatter->set("message", 'Hello there? Have you done any nicething today ? We can talk about it');
+            
+            try {
+                $chatter->save();
+            } catch (ParseException $ex) {
+                $response->success = false;
+                $response->message = 'Error: Failed to chatter: ' . $ex;
+                echo json_encode($response); 
+            }
+
+        } catch (ParseException $ex) {
+            $response->success = false;
+            $response->message = 'Error: Failed to chat: ' . $ex;
+            echo json_encode($response); 
+        } 
+
+    }
+
 	function user_register( $first, $last, $pass, $email ){
 	    
 	    $response = new Response();
@@ -122,13 +158,17 @@
         $user = new ParseUser();
         $user->set("username", strtolower($name));
         $user->set("email", $email );
+        $user->set("first", $first );
+        $user->set("last", $last );
         $user->set("password", $pass);
         $user->set("status", 1);
 
         try {
             $user->signUp();
             $_SESSION['user'] = $user;
-            
+
+            user_register_create_chat($user);
+
             $response->success = true;
             $response->message = "Signed";
             $response->data = $user->getObjectId();

@@ -6,7 +6,7 @@
             <div class='flex md-wrap'>
                 <div class="stat flex-col center md-flex12">
                     <div class="label">Directed</div>
-                    <div class="value">1</div>
+                    <div class="value">0</div>
                     <div class="label">Nice things directed from you</div>
                 </div>
                 <div class="stat flex-col center md-flex12">
@@ -23,8 +23,8 @@
         </div>
         <div class='margin-left'>
             <div class="ui vertical menu">
-                <a class="item"><strong>Inbox</strong><div class="ui yellow label">9</div></a>
-                <a class="item"><strong>Updates</strong><div class="ui green label">1</div></a>
+                <a class="item"><strong>Inbox</strong><div class="ui yellow label">0</div></a>
+                <a class="item"><strong>Updates</strong><div class="ui green label">0</div></a>
                 <a class="item"><strong>New</strong><div class="ui red label">0</div></a>
             </div>
         </div>
@@ -78,8 +78,8 @@
 </div>
 {% endblock %}
 {% block scripting %}
-{{ parent() }}
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
-<script type="text/javascript" src="js/v3_epoly.js"></script>
-<script type="text/javascript" src="js/custommap.js" charset="utf-8"></script>
+    {{ parent() }}
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
+    <script type="text/javascript" src="js/v3_epoly.js"></script>
+    <script type="text/javascript" src="js/custommap.js" charset="utf-8"></script>
 {% endblock %}

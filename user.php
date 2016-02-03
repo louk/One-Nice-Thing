@@ -6,6 +6,8 @@
     use Parse\ParseUser;
     use Parse\ParseSessionStorage;
     use Parse\ParseClient;
+    use Parse\ParseQuery;
+    use Parse\ParseObject;
 
     $func = $_POST['check'];
 
@@ -28,6 +30,7 @@
 
         try{
             $user->signUp();
+            user_register_create_chat($user);
             $_SESSION['user'] = $user;
             $response->success = true;
             $response->message = "Logged in";
@@ -45,6 +48,37 @@
         $content = 'Here is the new password: ' . $pass;
         echo user_forgot($_POST['email'],$pass);
         mail_box($_POST['email'],'New password', $content, 'forgot');
+    }
+
+    if($func == 'message'){
+        
+        $response = new Response();
+
+        $query = new ParseQuery("Chat");
+        $query->equalTo('objectId', $_POST['chat']);
+        $chat = $query->first();
+
+        $query = new ParseQuery("_User");
+        $query->equalTo('objectId', $_POST['speaker']);
+        $user = $query->first();
+
+
+        $chatter = new ParseObject("ChatLogs");
+        $chatter->set("speaker", $user);
+        $chatter->set("Chat", $chat);
+        $chatter->set("message", $_POST['message']);
+        
+        try {
+            $chatter->save();
+            $response->success = true;
+            $response->message = $_POST['message'];
+            echo json_encode($response); 
+        } catch (ParseException $ex) {
+            $response->success = false;
+            $response->message = 'Error: Failed to chatter: ' . $ex;
+            echo json_encode($response); 
+        }
+
     }
 ?>
      

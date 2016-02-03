@@ -40,8 +40,27 @@ use Parse\ParseUser;
             $template = $twig->loadTemplate('reportnicething.html');
             echo $template->render(array('title' => 'Report Nice Thing', 'users' =>$users, 'user' => $user, 'nav' => 2));
         }else if (isset($_GET['chat'])) {
+            
+            $query = new ParseQuery("_User");
+            $query->equalTo('status', 1);
+            $users = $query->find();
+
+            $query = new ParseQuery("_User");
+            $query->equalTo('username', 'admin');
+            $admin = $query->first();
+            
+            $query = new ParseQuery("Chat");
+            $query->equalTo('user1', $admin);
+            $query->equalTo('user2', $user);
+            $chat = $query->first();
+
+            $query = new ParseQuery("ChatLogs");
+            $query->equalTo('Chat', $chat);
+            $query->includeKey('speaker');
+            $chatters = $query->find();
+
             $template = $twig->loadTemplate('chat.html');
-            echo $template->render(array('title' => 'Inbox', 'user' => $user, 'nav' => 3));
+            echo $template->render(array('title' => 'Inbox', 'user' => $user, 'nav' => 3,'users' =>$users, 'chatters' =>$chatters, 'chat' => $chat ));
         }else if (isset($_GET['explore'])) {
             $template = $twig->loadTemplate('explore.html');
             echo $template->render(array('title' => 'Explore', 'user' => $user, 'nav' => 4));

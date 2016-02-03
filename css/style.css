@@ -387,7 +387,7 @@ body {
   overflow-y:hidden;
   overflow-x:hidden;
   max-height:600px;
-  background: #e0e0e0;
+  background: #f5f8fa;
   cursor: grab;
   cursor: -webkit-grab;
 }
@@ -413,8 +413,9 @@ body {
 @media only screen and (max-width: 700px) {
   #dashboard .stat{
     flex:1 100%;
-    margin-top:20px;
+    margin-top:100px;
   }
+
   .secondary.pointing.menu .item{
     display: none;
   }
@@ -447,6 +448,7 @@ body {
     margin-left:0;
   }
   #dashboard .stat:nth-child(2){
+
     margin-left:0;
     margin-right:0;
   }
@@ -454,7 +456,9 @@ body {
     margin-left:0;
   }
   #dashboard .stat{
+
     margin-top:20px !important;
+
   }
   #footer #social{
     margin-top:20px;
