@@ -118,7 +118,7 @@ body {
 }
 #user{
   margin-left:40px;
-  background:#e0e0e0;
+  background:#ffe6a2;
   padding:5px;
   border-radius: 3px;
 }
@@ -305,13 +305,13 @@ body {
 }
 /*SUBMENU*/
 #submenu{
-  font-size:1.5em;
+  font-size:1.3em;
 }
 #submenu .item{
   margin-top:5px;
 }
 #submenu a{
-  padding:10px 30px;
+  padding:10px 10px;
   white-space: nowrap;
   color:#40b553;
 }
