@@ -93,7 +93,13 @@ use Parse\ParseUser;
             echo $template->render(array('title' => 'About us', 'user' => $user));
         }else if (isset($_GET['success'])) {
             $template = $twig->loadTemplate('success.html');
-            echo $template->render(array('title' => 'Success stories', 'user' => $user));
+            echo $template->render(array('title' => 'Success stories'));
+        }else if (isset($_GET['help'])) {
+            $template = $twig->loadTemplate('help.html');
+            echo $template->render(array('title' => 'Help'));
+        }else if(isset($_GET['about'])){
+            $template = $twig->loadTemplate('about.html');
+            echo $template->render(array('title' => 'About us')); 
         }else{
             $template = $twig->loadTemplate('dashboard.html');
             echo $template->render(array('title' => 'Dashboard', 'user' => $user, 'nav' => 1));
