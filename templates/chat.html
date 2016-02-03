@@ -12,11 +12,11 @@
             {%for user_ in users%}
                 {% if user_.objectId != user.objectId %}
                 <div class="flex middle section{%if loop.index==1 %} active{% endif%}">
-                    <a href="#"><img src="img/profile_default_{%if loop.index==1 %}female{%else%}male{% endif%}.jpg" width="50" height="50"></a>
+                    <a href="#" onclick="refresh({{user_.objectId}});"><img src="img/profile_default_{%if loop.index==1 %}female{%else%}male{% endif%}.jpg" width="50" height="50"></a>
                     <div>
                         <div class="flex between">
-                            <a href="#" class="name">{{user_.first}}</a>
-                            <a href="#  " class="date">{%if loop.index==1 %} just now {%else%} never  {% endif%}</a>
+                            <a href="#" onclick="refresh({{user_.objectId}});" class="name">{{user_.first}}</a>
+                            <a href="# " onclick="refresh({{user_.objectId}});" class="date">{%if loop.index==1 %} just now {%else%} never  {% endif%}</a>
                         </div>
                         
                     </div>
@@ -27,47 +27,48 @@
         <div id="chat-text">
             <div class="ui comments">
                 <h3 class="ui dividing header">Conversations</h3>
-                {% for chatter in chatters%}
-                    {% if chatter.speaker.username == user.username%}
-                    <div class="comment">
-                        <div class="comments">
-                            <div class="comment">
-                                <a class="avatar">
-                                    <img src="img/profile_default_male.jpg">
-                                </a>
-                                <div class="content">
-                                    <a class="author">Me</a>
-                                        <div class="metadata">
-                                            <span class="date">{{chatter.createdAt | date("F jS \\a\\t g:ia")}}</span>
-                                        </div>
-                                        <div class="text">
-                                            {{chatter.message}}
-                                        </div>
+                <div id="conservations">
+                    {% for chatter in chatters%}
+                        {% if chatter.speaker.username == user.username%}
+                        <div class="comment">
+                            <div class="comments">
+                                <div class="comment">
+                                    <a class="avatar">
+                                        <img src="img/profile_default_male.jpg">
+                                    </a>
+                                    <div class="content">
+                                        <a class="author">Me</a>
+                                            <div class="metadata">
+                                                <span class="date">{{chatter.createdAt | date("F jS \\a\\t g:ia")}}</span>
+                                            </div>
+                                            <div class="text">
+                                                {{chatter.message}}
+                                            </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    {% else%}
-                    <div class="comment">
-                        <a class="avatar">
-                            <img src="img/profile_default_female.jpg">
-                        </a>
-                        <div class="content">
-                            <a class="author">{{chatter.speaker.first}}</a>
-                            <div class="metadata">
-                                <span class="date">{{chatter.createdAt | date("F jS \\a\\t g:ia")}}</span>
-                            </div>
-                            <div class="text">
-                               {{chatter.message}}
+                        {% else%}
+                        <div class="comment">
+                            <a class="avatar">
+                                <img src="img/profile_default_female.jpg">
+                            </a>
+                            <div class="content">
+                                <a class="author">{{chatter.speaker.first}}</a>
+                                <div class="metadata">
+                                    <span class="date">{{chatter.createdAt | date("F jS \\a\\t g:ia")}}</span>
+                                </div>
+                                <div class="text">
+                                   {{chatter.message}}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    {%endif%}
-                {% endfor %}
-
+                        {%endif%}
+                    {% endfor %}
+                </div>
                 <form class="ui form reply">
                     <div class="field">
-                        <input type="hidden" name="me" value="{{user.objectId}}">
+                        <input type="hidden" name="speaker" value="{{user.objectId}}">
                         <input type="hidden" name="chat" value="{{chat.objectId}}">
                         <input type="hidden" name="check" value="message">
                         <textarea name="message"></textarea>
@@ -84,6 +85,10 @@
     {{ parent() }}
     <script src="js/init.js"></script>  
     <script type="text/javascript">
+        function refresh(id){
+            alert(id);
+        }
+
         $(function() {
             $('.ui.form.reply').form(report_validate)
             .api({
@@ -98,7 +103,7 @@
                     return settings;
                 },
                 onSuccess: function(response) {
-                     
+                     $("#conservations").append('<div class="comment"><div class="comments"><div class="comment"><a class="avatar"><img src="img/profile_default_male.jpg"></a><div><a class="author">Me</a><div class="metadata"><span class="date">just now</span></div><div class="text">'+response.message+'</div></div></div></div></div>');
                 },
                 onFailure: function(response) {
                     console.log(response);
