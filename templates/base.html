@@ -16,7 +16,6 @@
         <a class="item" href="index.php?chat">Inbox</a>
         <a class="item" href="index.php?explore">Explore</a>
         <a class="item" href="index.php?dashboard">My Dashboard</a>
-        <a class="item" href="index.php?nicethings">My Nice Things</a>
         <a class="item" href="index.php?tree">My Tree</a>
         <a class="item" href="index.php?map">My Map</a>
         <a class="item" href="index.php?friends">My Friends</a>
@@ -44,10 +43,10 @@
                         <div class='flex baseline margin-top'>
                             <div class="ui large secondary pointing menu" id='menu'>
                                 <a class="item" id="side-menu-btn"><i class="sidebar icon"></i></a>
-                                <a class="active item" href="index.php?main">Home</a>
-                                <a class="item" href="index.php?reportnicething">Add</a>
-                                <a class="item" href="index.php?chat">Inbox</a>
-                                <a class="item" href="index.php?explore">Explore</a>
+                                <a class="{%if nav==1 %} active {%endif%}item" href="index.php?dashboard">Dashboard</a>
+                                <a class="{%if nav==2 %} active {%endif%}item" href="index.php?reportnicething">Add</a>
+                                <a class="{%if nav==3 %} active {%endif%}item" href="index.php?chat">Inbox</a>
+                                <a class="{%if nav==4 %} active {%endif%}item" href="index.php?explore">Explore</a>
                             </div>
                             <div class="ui inline dropdown" id='user'>
                                 <div class="text">
