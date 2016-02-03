@@ -3,9 +3,8 @@
   font-family: 'ComicSans';
   src: url('../font/ComicSansMSRegular.ttf') format('truetype');
 }
-@font-face{
-  font-family: 'animated';
-  src: url('../font/Animated.ttf') format('truetype');
+*{
+  font-family: 'ComicSans';
 }
 a{
   color:#000;
@@ -22,7 +21,6 @@ body {
 }
 #content {
   margin:3rem 0;
-  font-family: 'ComicSans';
   padding-bottom:70px;
 }
 #footer{
@@ -113,6 +111,7 @@ body {
 }
 #menu a:hover{
   color:#40B553;
+  font-weight: bold;
 }
 #menu .active.item:hover{
   border-color:#40B553;
@@ -306,7 +305,6 @@ body {
 }
 /*SUBMENU*/
 #submenu{
-  font-family: 'Animated';
   font-size:1.5em;
 }
 #submenu .item{

@@ -23,7 +23,7 @@
         <a class="item" href="index.php?logout">Logout</a>
     </div>
     {% else %}
-    <div class="ui vertical sidebar menu left" id="side-menu">
+    <div class="ui vertical sidebar menu right" id="side-menu">
         <a class="item" href="index.php?help">How it Works</a>
         <a class="item" href="index.php?success">Success Stories</a>
         <a class="item" href="index.php?main">Home</a>
@@ -51,16 +51,12 @@
                             </div>
                             <div class="ui inline dropdown" id='user'>
                                 <div class="text">
-                                    <img class="ui avatar image" src="img/jenny.jpg">{{user.username}}
+
+                                    <img class="ui avatar image" src="img/profile_default_male.jpg">{{user.username}}
+
                                 </div>
                                 <i class="dropdown icon"></i>
                                 <div class="menu">
-                                    <a class="item" href="index.php?dashboard">Dashboard</a>
-                                    <a class="item" href="index.php?nicethings">Nice things</a>
-                                    <a class="item" href="index.php?tree">Tree</a>
-                                    <a class="item" href="index.php?map">Map</a>
-                                    <a class="item" href="index.php?friends">Friends</a>
-                                    <div class="divider"></div>
                                     <a class="item" href="index.php?settings">Settings</a>
                                     <a class="item" href="index.php?logout">Logout</a>
                                 </div>

@@ -46,8 +46,11 @@ use Parse\ParseUser;
             $template = $twig->loadTemplate('explore.html');
             echo $template->render(array('title' => 'Explore', 'user' => $user, 'nav' => 4));
         }else if (isset($_GET['nicethings'])) {
+            $query = new ParseQuery("NiceThing");
+            $query->equalTo('User', $user);
+            $nice_things = $query->find();
             $template = $twig->loadTemplate('my-things.html');
-            echo $template->render(array('title' => 'My nice things', 'user' => $user, 'nav' => 5));
+            echo $template->render(array('title' => 'My nice things', 'user' => $user, 'nav' => 5, 'nices' => $nice_things));
         }else if (isset($_GET['mymap'])) {
             $template = $twig->loadTemplate('my-map.html');
             echo $template->render(array('title' => 'My map', 'user' => $user, 'nav' => 6));
