@@ -124,6 +124,10 @@ use Parse\ParseUser;
             $template = $twig->loadTemplate('choose.html');
             echo $template->render(array('title' => 'Choose user type')); 
         }
+        else if (isset($_GET['contact'])) {
+            $template = $twig->loadTemplate('contact.html');
+            echo $template->render(array('title' => 'One nice thing contact us'));
+        }
         else if(isset($_GET['about'])){
             $template = $twig->loadTemplate('about.html');
             echo $template->render(array('title' => 'About us')); 
