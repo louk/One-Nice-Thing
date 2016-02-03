@@ -5,8 +5,6 @@
 
     font-family: 'ComicSans';
     src: url('../font/ComicSansMSRegular.ttf') format('truetype');
-
-
 }
 a{
     color:#000;
@@ -27,11 +25,14 @@ body {
     padding-bottom:70px;
 }
 #footer{
+    font-family: 'ComicSans';
     position: absolute;
     bottom:0;
     left:0;
     width:100%;
 }
+
+
 .ui.secondary.pointing.menu .active.item{
     border-color:#40B553;
     color:#40B553;
@@ -335,6 +336,7 @@ body {
     }
     .secondary.pointing.menu .item{
         display: none;
+        font-family: 'ComicSans';
     }
     #side-menu-btn {
         display: block;
@@ -423,6 +425,7 @@ body {
 .ui.secondary.pointing.menu .active.item{
     border-color:#40B553;
     color:#40B553;
+    font-family: 'ComicSans';
 }
 .ui.secondary.pointing.menu .active.item.yellow-text{
     border-color:#fbbd08;
