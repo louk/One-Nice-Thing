@@ -1,72 +1,31 @@
 {% extends "submain.html" %}
 {% block subcontent %}
-<div id='mythings'>
-    <div class='flex end'>
-        <div class="ui search">
-          <div class="ui icon input">
-            <input class="prompt" type="text" placeholder="Search...">
-            <i class="search icon"></i>
-        </div>
+<div class="ui card">
+  <div class="content">
+    <div class="header">Nice Things Name</div>
+</div>
+<div class="content">
+    <div><span><i class="user icon"></i>Khangai</span></div>
+    <div><span><i class="location arrow icon"></i>Ulaanbaatar</span></div>
+    <div><span><i class="calendar icon"></i>2016/06/06</span></div>
+</div>
+<div class='extra content'>
+    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
+</div>
+<div class='extra content'>
+    How did you feel
+</div>
+<div class='extra content'>
+    <div class="ui labeled icon dropdown button">
+        <span class="text">Menu</span>
+        <i class="dropdown icon"></i>
     </div>
 </div>
-<table class="ui celled striped table">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>For who</th>
-            <th>Location</th>
-            <th>Nice Thing</th>
-            <th>How did you feel?</th>
-            <th>Date</th>
-            <th>Privacy</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for nice in nices %}
-            <tr>
-            <td><a href="index.php?things">{{loop.index}}</a></td>
-            <td>{{nice.whom}}</td>
-            <td><a href="#">{{nice.location_name}}</a></td>
-            <td>{{nice.nice_thing}}</td>
-            <td>{{nice.feel}}</td>
-            <td class="right aligned collapsing">{{nice.createdAt|date("m/d/Y")}}</td>
-            <td>
-                <div class="ui floating dropdown {{loop_index}}">
-                  <input name="privacy" type="hidden" value="{{nice.privacy}}">
-                  <i class="dropdown icon"></i>
-                  <div class="text">Choose privacy</div>
-                  <div class="menu">
-                      <div class="item" data-value="0">Only friends</div>
-                      <div class="item" data-value="1">Only me</div>
-                      <div class="item" data-value="2">Public</div>
-                  </div>
-                 </div>
-            </td>
-            
-        </tr>
-        {% endfor %}
-    </tbody>
-    <tfoot>
-        <tr>
-            <th colspan="8">
-                <div class="flex end middle footer">
-                    <div>
-                        <span>1</span><span>of</span><span>10</span>
-                    </div>
-                    <div>
-                        <a href="#"><i class="left chevron icon"></i></a>
-                        <a href="#"><i class="right chevron icon"></i></a>
-                    </div>
-                </div>
-            </th>
-        </tr>
-    </tfoot>
-</table>
 </div>
 {% endblock %}
 {% block scripting %}
-    {{ parent() }}
-    <script type="text/javascript">
-        $('.ui.dropdown').dropdown();
-    </script>
+{{ parent() }}
+<script type="text/javascript">
+$('.ui.dropdown').dropdown();
+</script>
 {% endblock %}

@@ -63,6 +63,9 @@ use Parse\ParseUser;
         }else if (isset($_GET['settings'])) {
             $template = $twig->loadTemplate('settings.html');
             echo $template->render(array('title' => 'My settings', 'user' => $user));
+        }else if (isset($_GET['success'])) {
+            $template = $twig->loadTemplate('success.html');
+            echo $template->render(array('title' => 'Success stories', 'user' => $user));
         }else{
             $template = $twig->loadTemplate('dashboard.html');
             echo $template->render(array('title' => 'Dashboard', 'user' => $user, 'nav' => 1));
