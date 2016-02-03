@@ -109,6 +109,9 @@ body {
 #logo{
   margin-top:1rem;
 }
+#logo img{
+  height:70px;
+}
 #menu a{
   font-weight: bold;
 }
