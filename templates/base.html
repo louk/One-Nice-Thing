@@ -11,7 +11,7 @@
 </head>
 <body class='pushable'>
     {% if user %}
-    <div class="ui vertical sidebar menu left" id="side-menu">
+    <div class="ui vertical sidebar menu right" id="side-menu">
         <a class="item" href="index.php?reportnicething">Add</a>
         <a class="item" href="index.php?chat">Inbox</a>
         <a class="item" href="index.php?explore">Explore</a>
@@ -28,8 +28,9 @@
         <a class="item" href="index.php?help">How it Works</a>
         <a class="item" href="index.php?success">Success Stories</a>
         <a class="item" href="index.php?main">Home</a>
-        <a class="item" href="index.php?login">My Page</a>
         <a class="item" href="index.php?about">About</a>
+        <a class="item" href="index.php?login">My Page</a>
+        
     </div>
     {% endif %}
     <div class='pusher'>
@@ -89,19 +90,20 @@
                 <div class="flex between center wrap">
                     <div id='footer-menu' class="flex wrap center">
                         <a href='index.php?about'>ABOUT US</a>
-                        <a href='index.php?help'>HELP</a>
-                        <a href='index.php?contact'>CONTACT US</a>
-                        <a href='index.php?privacy'>PRIVACY POLICY</a>
-                        {% if user %}
-                        <a href='index.php?success'>SUCCESS STORIES</a>
                         <a href='index.php?privacy'>HOW IT WORKS</a>
+                        <a href='index.php?success'>SUCCESS STORIES</a>
+                        <a href='index.php?privacy'>PRIVACY POLICY</a>
+                        <a href='index.php?contact'>CONTACT US</a>
+                        {% if user %}
+                        
+                        
                         {% endif %}
                     </div>
                     <div id='social'>
                         <a href='#'><i class="large facebook icon"></i></a>
                         <a href='#'><i class="large twitter icon"></i></a>
                         <a href='#'><i class="large instagram icon"></i></a>
-                        <a href='#'><i class="large google plus icon"></i></a>
+                        
                     </div>
                 </div>
             </div>
