@@ -82,6 +82,15 @@ use Parse\ParseUser;
         }else if (isset($_GET['settings'])) {
             $template = $twig->loadTemplate('settings.html');
             echo $template->render(array('title' => 'My settings', 'user' => $user));
+        }else if (isset($_GET['contact'])) {
+            $template = $twig->loadTemplate('contact.html');
+            echo $template->render(array('title' => 'One nice thing contact us', 'user' => $user));
+        }else if (isset($_GET['help'])) {
+            $template = $twig->loadTemplate('help.html');
+            echo $template->render(array('title' => 'One nice thing help', 'user' => $user));
+        }else if (isset($_GET['about'])) {
+            $template = $twig->loadTemplate('about.html');
+            echo $template->render(array('title' => 'About us', 'user' => $user));
         }else if (isset($_GET['success'])) {
             $template = $twig->loadTemplate('success.html');
             echo $template->render(array('title' => 'Success stories', 'user' => $user));
