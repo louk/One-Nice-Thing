@@ -25,7 +25,7 @@
                 </form>
                 <div class="ui bottom attached warning message">
                     <i class="icon help"></i>
-                    <a href="#">Login as guest</a> 
+                    <a href="#" class="ui guest">Login as guest</a> 
                 </div>
             </div>
             <div class="ui bottom attached tab " data-tab="register">
@@ -33,6 +33,7 @@
                     <div class="field">
                         <label>Firstname</label>
                         <input placeholder="Name" name="first" type="text">
+                        <input type="hidden" name = "check" value= "register">
                     </div>
                     <div class="field">
                         <label>Lastname</label>
@@ -53,18 +54,23 @@
                 </form>
             </div>
             <div class="ui bottom attached tab " data-tab="forgot">
-                <form class="ui form segment forgot">
-                    <div class='flex'>
+                <form class="ui form forget segment ">
                     <div class="field">
+                        <label>We will send new pass to your email</label>
                         <input type="text" name = "email" placeholder='Email'>
+                        <input type="hidden" name = "check" value= "forgot">
                     </div>
-                    <div class='margin-left'>
-                    <button class='ui green submit fluid button'>Send</button>
-                </div>
-                </div>
+                    <div class="field">
+                        <div class="fluid ui green submit button">Send</div>
+                    </div>
                     <div class="ui success message">
                         <div class="header">
                             Your password sent your email.
+                        </div>
+                    </div>
+                     <div class="ui error message">
+                        <div class="header">
+                           Email is not recognized
                         </div>
                     </div>
                 </form>
@@ -84,9 +90,6 @@
                 action: 'login user',
                 method: 'POST',
                 serializeForm: true,
-                data: {
-                  name: 22
-                },
                 beforeSend: function(settings) {
                     console.log(settings.data);
                     return settings;
@@ -105,9 +108,6 @@
                 action: 'register user',
                 method: 'POST',
                 serializeForm: true,
-                data: {
-                  check: 'register'
-                },
                 beforeSend: function(settings) {
                     console.log(settings.data);
                     return settings;
@@ -122,23 +122,42 @@
                     console.log(errorMessage);
                 }
             });
-        $('.ui.form.forgot').form(forgot_validate)
+
+        $('.ui.form.forget').form(forgot_validate)
             .api({
-                action: 'forgot user',
+                action: 'forget user',
                 method: 'POST',
                 serializeForm: true,
+                beforeSend: function(settings) {
+                    console.log(settings.data);
+                    return settings;
+                },
+                onSuccess: function(response) {
+                    console.log("1");
+                    console.log(response);
+                },
+                onFailure: function(response) {
+                    console.log("2");
+                    console.log(response);
+                }
+            });
+        $('.ui.guest')
+            .api({
+                action: 'guest user',
+                method: 'POST',
                 data: {
-                    check: 'forgot'
+                    check: 'guest'
                 },
                 beforeSend: function(settings) {
                     console.log(settings.data);
                     return settings;
                 },
                 onSuccess: function(response) {
-                    console.log(response.message);
+                        var url = "index.php?dashboard";
+                        window.location.replace(url); 
                 },
-                onError: function(errorMessage) {
-                    console.log(errorMessage);
+                onFailure: function(response) {
+                    console.log(response);
                 }
             });
     });

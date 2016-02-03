@@ -1,10 +1,11 @@
 
 $.fn.api.settings.api = {
 
-  'forgot user'      : 'user.php',
+  'forget user'      : 'user.php',
   'settings'         : 'user.php',
   'login user'       : 'login.php',
   'register user'    : 'user.php',
+  'guest user'       : 'user.php',
   'guest report'     : 'report.php',
   'user report'      : 'report.php',
   'register report'  : 'report.php',
@@ -152,7 +153,7 @@ var forgot_validate = {
             ]
         }
     },
-        inline : true,
+    inline : true,
     on     : 'blur'
 }
 var settings_validate = {

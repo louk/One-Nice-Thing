@@ -46,7 +46,6 @@
         }
     }
 
-
 	function add_user_report($report_id, $user){
 	    
         $query = new ParseQuery("NiceThing");
@@ -89,6 +88,32 @@
 	    } 
 	}
 
+    function user_forgot($email, $pass){
+        
+        $response = new Response();
+
+        $query = new ParseQuery("_User");
+        $query->equalTo("email",$email);
+        $user = $query->first(); 
+
+        if($user){
+            try {
+                $user->setPassword($pass);
+                $response->success = true;
+                $response->message = "Password sent. Check your email";
+                echo json_encode($response);
+            } catch (ParseException $error) {
+                $response->success = false;
+                $response->message = 'Error: Failed to save user: ' . $error;
+                echo json_encode($response); 
+            } 
+        }else{
+            $response->success = false;
+            $response->message = 'Error: email is not registered';
+            echo json_encode($response); 
+        }
+    }
+
 	function user_register( $first, $last, $pass, $email ){
 	    
 	    $response = new Response();
@@ -98,6 +123,7 @@
         $user->set("username", strtolower($name));
         $user->set("email", $email );
         $user->set("password", $pass);
+        $user->set("status", 1);
 
         try {
             $user->signUp();
