@@ -42,6 +42,9 @@ body {
 .ui.basic.red.pointing.prompt.label{
   max-width:180px;
 }
+.ui.card>.content:after, .ui.cards>.card>.content:after{
+  display: none;
+}
 #side-menu-btn {
   display: none;
 }
