@@ -76,30 +76,29 @@
 {% endblock %}
 {% block scripting %}
 {{ parent() }}
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<script src="js/init.js"></script>  
-<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
-<script src="js/jquery.geocomplete.js"></script>
-<script type="text/javascript">
-var content = [
-{% for user in users %}
-{ title: '{{user.username}}' },
-{% endfor %}
-{ title: 'travis' }
-              // etc
-              ];
-              $(function() {
-                $('.ui.search').search({ source: content });
-                $("#location").geocomplete();
-                $('.ui.form.report').form(report_validate)
-                .api({
-                    action: 'report nicething',
-                    method: 'POST',
-                    serializeForm: true,
-                    data: {
-                      name: 22
-                  },
-                  beforeSend: function(settings) {
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="js/init.js"></script>  
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+    <script src="js/jquery.geocomplete.js"></script>
+    <script type="text/javascript">
+        var content = [
+            {% for user in users %}
+            { title: '{{user.username}}' },
+            {% endfor %}
+            { title: 'travis' }
+        ];
+        $(function() {
+            $('.ui.search').search({ source: content });
+            $("#location").geocomplete();
+            $('.ui.form.report').form(report_validate)
+            .api({
+                action: 'report nicething',
+                method: 'POST',
+                serializeForm: true,
+                data: {
+                  name: 22
+                },
+                beforeSend: function(settings) {
                     console.log(settings.data);
                     return settings;
                 },
@@ -111,8 +110,7 @@ var content = [
                     console.log(response);
                 }
             });
-
-            });
-              $('.ui.dropdown').dropdown();
-              </script>
-              {% endblock %}
+        });
+        $('.ui.dropdown').dropdown();
+    </script>
+{% endblock %}
