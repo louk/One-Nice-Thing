@@ -4,7 +4,7 @@ $.fn.api.settings.api = {
   'forget user'      : 'user.php',
   'settings'         : 'user.php',
   'login user'       : 'login.php',
-  'register user'    : 'user.php',
+   'register user'    : 'user.php',
   'guest user'       : 'user.php',
   'guest report'     : 'report.php',
   'user report'      : 'report.php',
