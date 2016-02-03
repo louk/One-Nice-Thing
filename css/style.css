@@ -2,6 +2,11 @@
 @font-face {
     font-family: 'animated';
     src: url('../font/Animated.ttf') format('truetype');
+
+    font-family: 'ComicSans';
+    src: url('../font/ComicSansMSRegular.ttf') format('truetype');
+
+
 }
 a{
     color:#000;
@@ -18,6 +23,7 @@ body {
 }
 #content {
     margin:3rem 0;
+    font-family: 'ComicSans';
     padding-bottom:70px;
 }
 #footer{
@@ -385,6 +391,11 @@ body {
 @font-face {
     font-family: 'animated';
     src: url('../font/Animated.ttf') format('truetype');
+
+    font-family: 'ComicSans';
+    src: url('../font/ComicSansMSRegular.ttf') format('truetype');
+
+
 }
 a{
     color:#000;
