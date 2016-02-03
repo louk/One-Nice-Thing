@@ -108,6 +108,10 @@
                 action: 'register user',
                 method: 'POST',
                 serializeForm: true,
+                data:{
+                    check:'register'
+                }
+                ,
                 beforeSend: function(settings) {
                     console.log(settings.data);
                     return settings;
@@ -118,8 +122,8 @@
                     window.location.replace(url); 
                               // valid response and response.success = true
                 },
-                onError: function(errorMessage) {
-                    console.log(errorMessage);
+                onFailure: function(response) {
+                    console.log(response);
                 }
             });
 

@@ -46,5 +46,32 @@
         echo user_forgot($_POST['email'],$pass);
         mail_box($_POST['email'],'New password', $content, 'forgot');
     }
+
+    if($func == 'message'){
+        $query = new ParseQuery("Chat");
+        $query->equalTo('objectId', $_POST['chat']);
+        $chat = $query->first();
+
+        $query = new ParseQuery("_User");
+        $query->equalTo('objectId', $_POST['speaker']);
+        $chat = $query->first();
+
+
+        $chatter = new ParseObject("ChatLogs");
+        $chatter->set("speaker", $admin);
+        $chatter->set("Chat", $chat);
+        $chatter->set("message", );
+        
+        try {
+            $chatter->save();
+        } catch (ParseException $ex) {
+            $response->success = false;
+            $response->message = 'Error: Failed to chatter: ' . $ex;
+            echo json_encode($response); 
+        }
+
+
+
+    }
 ?>
      
