@@ -42,9 +42,6 @@ body {
 .ui.basic.red.pointing.prompt.label{
   max-width:180px;
 }
-.ui.card>.content:after, .ui.cards>.card>.content:after{
-  display: none;
-}
 #side-menu-btn {
   display: none;
 }
@@ -53,12 +50,6 @@ body {
   padding:20px;
   border:1px solid #e0e0e0;
   border-radius:3px;
-}
-.forgot .margin-left{
-  margin-left:20px;
-}
-.forgot .field{
-  width:300px;
 }
 /*-----CUSTOM CLASS-----*/
 .big-font{
@@ -82,6 +73,9 @@ body {
 .margin-top{
   margin-top:20px;
 }
+.actions{
+  margin-top:40px;
+}
 /*DASHBOARD*/
 #dashboard .stat{
   border:1px solid #e0e0e0;
@@ -101,9 +95,6 @@ body {
 }
 #dashboard iframe{
   width:100%;
-}
-.actions{
-  margin-top:40px;
 }
 /*HEADER*/
 #logo{
@@ -167,27 +158,27 @@ body {
 }
 /*MY NICE THINGS PAGE*/
 #mythings form{
-    display: flex;
-    flex-direction:column;
-    flex:1;
+  display: flex;
+  flex-direction:column;
+  flex:1;
 }
 #mythings .content{
-    padding:1em;
-    border-bottom:1px solid #e0e0e0;
-    flex-grow:1;
+  padding:1em;
+  border-bottom:1px solid #e0e0e0;
+  flex-grow:1;
 }
 #mythings .content:last-child{
-    border:none;
+  border:none;
 }
 #mythings .field{
-    width:100%;
-    display: none;
+  width:100%;
+  display: none;
 }
 #mythings .ui.selection.dropdown{
-    width:100%;
+  width:100%;
 }
 #mythings .back{
-display:none;
+  display:none;
 }
 /*CONTACT US PAGE*/
 #contact{
@@ -200,13 +191,6 @@ display:none;
   color:#40B553;
 }
 #contact>form>*{
-  margin-top:20px;
-}
-/*LOGIN REGISTER PAGE*/
-#login{
-  width: 350px;
-}
-#login form>*{
   margin-top:20px;
 }
 /*CHAT*/
@@ -226,16 +210,12 @@ display:none;
 #chat-friends *{
   white-space:nowrap;
 }
-#chat-friends .name{
-  color:#000;
-}
 #chat-friends .date{
   color:#7f7f7f;
   font-size:0.875em;
   margin-left:10px;
 }
 #chat-friends .section>div{
-  margin-left:10px;
   width:100%;
 }
 #chat-friends .section{
@@ -244,9 +224,6 @@ display:none;
 #chat-friends .section:nth-child(n+2){
   border-top:1px solid #e0e0e0;
 }
-#chat-friends .msg{
-  color:#7f7f7f;
-}
 #chat-friends .section.active{
   background:#40B553;
   color:#fff;
@@ -254,57 +231,11 @@ display:none;
 #chat-friends .section.active a{
   color:#fff;
 }
-#chat-friends .section.active .msg{
-  color:#fff;
-}
 #chat-text{
   padding:20px;
   flex:2;
 }
-#chat-text .name:hover{
-  text-decoration: underline;
-}
-#chat-text .divider{
-  width:100%;
-  border-top:1px solid #e0e0e0;
-  font-size:0.75em;
-  white-space:nowrap;
-  color:#e0e0e0;
-  position: relative;
-  margin-top:20px;
-}
-#chat-text .divider>span{
-  background:#fff;
-  padding:0 5px;
-  position: relative;
-  top:-10px;
-}
-#chat-text .section>div{
-  margin-left:10px;
-  flex:1;
-}
-#chat-text .name{
-  color:#40B553;
-}
-#chat-text .date{
-  color:#7f7f7f;
-  font-size:0.875em;
-}
-#chat-text .msg:nth-child(n+3){
-  margin-top:5px;
-}
-#chat-text .section{
-  margin-top:20px;
-}
-#chat-text .divider + .section{
-  margin-top: 0;
-}
-#chat-form{
-  margin-top:20px;
-}
-#chat-form button{
-  margin-top:10px;
-}
+
 /*REPORT*/
 #report h1{
   color:#40B553;
@@ -411,9 +342,6 @@ display:none;
   cursor: grab;
   cursor: -webkit-grab;
 }
-.tree>ul{
-  margin:0 40px 20px 20px;
-}
 .tree img{
   width: 50px;
   height:50px;
@@ -429,6 +357,9 @@ display:none;
   padding-bottom:5px;
   font-size:0.75em;
   color:#40b553;
+}
+.tree>ul>li{
+  padding:500px;
 }
 @media only screen and (max-width: 700px) {
   #dashboard .stat{

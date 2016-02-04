@@ -84,6 +84,15 @@ $(function(){
   $(document).on('click','.active>li>a',function(){
     $(this).next('ul').addClass('active');
   });
+  var offset_element = $('.tree>ul>li>a').offset();
+  var offset_tree = $('.tree').offset();
+  var tree_h = $('.tree').height();
+  var element_h = $('.tree>ul>li>a').height();
+  var tree_w = $('.tree').width();
+  var element_w = $('.tree>ul>li>a').width();
+
+  $('.tree').scrollLeft(offset_element.left - offset_tree.left - (tree_w - element_w)/2);
+  $('.tree').scrollTop(offset_element.top - offset_tree.top - (tree_h - element_h)/2);
 });
 </script>
 {% endblock %}
