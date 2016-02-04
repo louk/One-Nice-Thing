@@ -12,11 +12,11 @@
             {%for user_ in users%}
                 {% if user_.objectId != user.objectId %}
                 <div class="flex middle section{%if loop.index==1 %} active{% endif%}">
-                    <a href="#" onclick="refresh({{user_.objectId}});"><img src="img/profile_default_{%if loop.index==1 %}female{%else%}male{% endif%}.jpg" width="50" height="50"></a>
+                    <a href="#" onclick="refresh('{{user_.objectId}}', $(this) )"><img src="img/profile_default_{%if loop.index==1 %}female{%else%}male{% endif%}.jpg" width="50" height="50"></a>
                     <div>
                         <div class="flex between">
-                            <a href="#" onclick="refresh({{user_.objectId}});" class="name">{{user_.first}}</a>
-                            <a href="# " onclick="refresh({{user_.objectId}});" class="date">{%if loop.index==1 %} just now {%else%} never  {% endif%}</a>
+                            <a href="#"  class="name">{{user_.first}}</a>
+                            <a href="#"  class="date">{%if loop.index==1 %} just now {%else%} never  {% endif%}</a>
                         </div>
                         
                     </div>
@@ -27,7 +27,7 @@
         <div id="chat-text">
             <div class="ui comments">
                 <h3 class="ui dividing header">Conversations</h3>
-                <div id="conservations">
+                <div id="conversations">
                     {% for chatter in chatters%}
                         {% if chatter.speaker.username == user.username%}
                         <div class="comment">
@@ -69,7 +69,7 @@
                 <form class="ui form reply">
                     <div class="field">
                         <input type="hidden" name="speaker" value="{{user.objectId}}">
-                        <input type="hidden" name="chat" value="{{chat.objectId}}">
+                        <input id="chat_id" type="hidden" name="chat" value="{{chat.objectId}}">
                         <input type="hidden" name="check" value="message">
                         <textarea name="message"></textarea>
                     </div>
@@ -85,11 +85,29 @@
     {{ parent() }}
     <script src="js/init.js"></script>  
     <script type="text/javascript">
-        function refresh(id){
-            alert(id);
+        
+        function refresh(id,ele){
+            $("#conversations").empty();
+            $(".section").removeClass("active");
+            $(ele).parent().addClass('active');
+            /*
+            $.ajax({
+                url : "chat.php",
+                type: "POST",
+                data : { user:id, check:'get_chatters'},
+                success: function(data, textStatus, jqXHR)
+                {
+                    //data - response from server
+                },
+                error: function (jqXHR, textStatus, errorThrown)
+                {
+             
+                }
+            });*/
         }
 
         $(function() {
+
             $('.ui.form.reply').form(report_validate)
             .api({
                 action: 'user message',
@@ -103,7 +121,7 @@
                     return settings;
                 },
                 onSuccess: function(response) {
-                     $("#conservations").append('<div class="comment"><div class="comments"><div class="comment"><a class="avatar"><img src="img/profile_default_male.jpg"></a><div><a class="author">Me</a><div class="metadata"><span class="date">just now</span></div><div class="text">'+response.message+'</div></div></div></div></div>');
+                     $("#conversations").append('<div class="comment"><div class="comments"><div class="comment"><a class="avatar"><img src="img/profile_default_male.jpg"></a><div><a class="author">Me</a><div class="metadata"><span class="date">just now</span></div><div class="text">'+response.message+'</div></div></div></div></div>');
                 },
                 onFailure: function(response) {
                     console.log(response);
