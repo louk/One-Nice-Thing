@@ -1,55 +1,93 @@
 {% extends "submain.html" %}
 {% block subcontent %}
-    
-    <div class='ui three stackable cards'>
-        {% for nice in nices %}
-        <div class="card">
+<div class='ui three stackable cards' id='mythings'>
+    {% for nice in nices %}
+    <div class="card">
+        <form class='ui form'>
             <div class="content flex middle between">
-                <div><span><i class="user icon"></i>{{nice.whom}}</span></div>
+                <span class='value'><i class="user icon"></i>{{nice.whom}}</span>
+                <div class='field ui left icon input'><i class="user icon"></i><input type='text' value='{{nice.whom}}' placeholder='Whom?'></div>
             </div>
             <div class="content flex middle between">
-                <div>
-                    <div><span><i class="location arrow icon"></i>{{nice.location_name}}</span></div>
-                </div>
+                <span class='value'><i class="location arrow icon"></i>{{nice.location_name}}</span>
+                <div class='field ui left icon input'><i class="location arrow icon"></i><input type='text' value='{{nice.location_name}}' placeholder='Location'></div>
             </div>
             <div class="content flex middle between">
-                <div>
-                    <div><span><i class="calendar icon"></i>{{nice.createdAt | date("F jS \\a\\t g:ia")}}</span></div>
-                </div>
+                <span class='value'><i class="calendar icon"></i>{{nice.createdAt | date("F jS \\a\\t g:ia")}}</span>
+                <div class='field ui left icon input'><i class="calendar icon"></i><input type='text' value='{{nice.createdAt | date("F jS \\a\\t g:ia")}}' placeholder="Date"></div>
             </div>
             <div class='extra content'>
-                {{nice.nice_thing}}
+                <span class='value'>{{nice.nice_thing}}</span>
+                <div class='field'><textarea placeholder='Nice thing'>{{nice.nice_thing}}</textarea></div>
             </div>
             <div class='extra content'>
-                {{nice.feel}}
+                <span class='value'>{{nice.feel}}</span>
+                <div class='field'><textarea placeholder='What did you feel?'>{{nice.feel}}</textarea></div>
             </div>
-            <div class='extra content flex between middle'>
-                <div class="ui green icon dropdown button">
-                    <span class="text">Share</span>
-                    <div class='menu'>
-                        <div class="item"><a href='#'><i class='large twitter icon'></i>Twitter</a></div>
-                        <div class="item"><a href='#'><i class='large facebook square icon'></i>Facebook</a></div>
-                        <div class="item"><a href='#'><i class='large instagram icon'></i>Instagram</a></div>
-                    </div>
+            <div class='extra content'>
+                <span class='value'><i class='lock icon'></i>Only me</span>
+                <div class="ui selection dropdown field">
+                  <input type="hidden" name="gender">
+                  <i class="dropdown icon"></i>
+                  <div class="default text">Only me</div>
+                  <div class="menu">
+                    <div class="item" data-value="2">Only me</div>
+                    <div class="item" data-value="1">Public</div>
+                    <div class="item" data-value="0">Friends</div>
                 </div>
-                <div class="ui disabled dropdown">
-                    Only me <i class="dropdown icon"></i>
-                    <div class="menu">
-                        <div class="item">Choice 1</div>
-                        <div class="item">Choice 2</div>
-                        <div class="item">Choice 3</div>
-                    </div>
-                </div>
-                <button class='ui green button'>Edit</button>
             </div>
         </div>
-         {% endfor %}
-    </div>
-   
+        <div class='extra content flex between middle'>
+            <div class="ui green icon dropdown button">
+                <span class="text">Share</span>
+                <div class='menu'>
+                    <div class="item"><a href='#'><i class='large twitter icon'></i>Twitter</a></div>
+                    <div class="item"><a href='#'><i class='large facebook square icon'></i>Facebook</a></div>
+                    <div class="item"><a href='#'><i class='large instagram icon'></i>Instagram</a></div>
+                </div>
+            </div>
+            <button class='ui green button back'>Back</button>
+            <button class='ui green button edit'>Edit</button>
+        </div>
+    </form>
+</div>
+{% endfor %}
+</div>
+<div class='actions flex end'>
+    <button class='ui green button'>Prev</button>
+    <button class='ui green button'>Next</button>
+</div>
 {% endblock %}
 {% block scripting %}
-    {{ parent() }}
-    <script type="text/javascript">
-        $('.ui.dropdown').dropdown();
-    </script>
+{{ parent() }}
+<script>
+$('.ui.dropdown').dropdown();
+$(document).on('click', '.edit', function () {
+    var parent = $(this).closest('.form');
+
+    $('#mythings').find('.value').css('display', 'block');
+    $('#mythings').find('.field').css('display', 'none');
+    $('#mythings').find('.save').text('Edit').removeClass('save').addClass('edit');
+    $('#mythings').find('.back').css('display', 'none');
+
+    parent.find('.value').css('display', 'none');
+    parent.find('.field').css('display', 'block');
+    parent.find('.back').css('display', 'block');
+
+    $(this).text('Save').removeClass('edit').addClass('save');
+
+    return false;
+});
+$(document).on('click', '.back', function(){
+    var parent = $(this).closest('.form');
+
+    parent.find('.value').css('display', 'block');
+    parent.find('.field').css('display', 'none');
+    parent.find('.save').text('Edit').removeClass('save').addClass('edit');
+
+    $(this).css('display', 'none');
+
+    return false;
+})
+</script>
 {% endblock %}

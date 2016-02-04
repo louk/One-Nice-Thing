@@ -166,11 +166,28 @@ body {
   font-weight: bold
 }
 /*MY NICE THINGS PAGE*/
-#mythings .footer>div{
-  margin-left:20px;
+#mythings form{
+    display: flex;
+    flex-direction:column;
+    flex:1;
 }
-#mythings .search{
-  padding-bottom:20px;
+#mythings .content{
+    padding:1em;
+    border-bottom:1px solid #e0e0e0;
+    flex-grow:1;
+}
+#mythings .content:last-child{
+    border:none;
+}
+#mythings .field{
+    width:100%;
+    display: none;
+}
+#mythings .ui.selection.dropdown{
+    width:100%;
+}
+#mythings .back{
+display:none;
 }
 /*CONTACT US PAGE*/
 #contact{
