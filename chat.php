@@ -16,7 +16,7 @@
     if($func == 'get_chatters'){
 
         $query = new ParseQuery("_User");
-        $query->equalTo('objectId', $_POST['user_id']);
+        $query->equalTo('objectId', $_POST['user']);
         $host = $query->first();
     
         $query = new ParseQuery("Chat");
@@ -25,11 +25,18 @@
         $chat = $query->first();
 
         if($chat){
-
+            $response = new Response();
             $query = new ParseQuery("ChatLogs");
             $query->equalTo('Chat', $chat);
             $query->includeKey('speaker');
+
             $chatters = $query->find();
+            $response->success = true;
+            $response->type = 1;
+            $response->data = $chatters;
+            $response->chat = $chat->getObjectId();
+            $response->user = $user->getObjectId();
+            echo json_encode($response);
 
         }else{
 
@@ -39,6 +46,12 @@
 
             try {
                 $chat->save();
+                $response = new Response();
+                $response->success = true;
+                $response->type = 2;
+                $response->chat = $chat->getObjectId();
+                $response->user = $user->getObjectId();
+                echo json_encode($response);
 
             } catch (ParseException $ex) {
                 $response->success = false;

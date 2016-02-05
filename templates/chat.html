@@ -90,20 +90,25 @@
             $("#conversations").empty();
             $(".section").removeClass("active");
             $(ele).parent().addClass('active');
-            /*
+            
             $.ajax({
                 url : "chat.php",
                 type: "POST",
                 data : { user:id, check:'get_chatters'},
                 success: function(data, textStatus, jqXHR)
                 {
-                    //data - response from server
+                    var json = $.parseJSON(data);
+                    
+                    if(json.type==2){
+                        
+                    }
+                    $("chat_id").val(json.chat);
                 },
                 error: function (jqXHR, textStatus, errorThrown)
                 {
              
                 }
-            });*/
+            });
         }
 
         $(function() {
