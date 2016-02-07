@@ -278,7 +278,7 @@ body {
   padding:0;
   list-style:none;
   position: relative;
-}
+}s
 .tree ul{
   display: flex;
   display: -webkit-flex;
@@ -304,34 +304,38 @@ body {
   content:'';
   position: absolute;
   top:0;
-  height:20px;
-  border-left:2px solid #40b553;
   left:50%;
-}
-.tree li a::before{
-  content:'';
-  position: absolute;
-  top:0;
   height:20px;
-  border-left:2px solid #40b553;
-  left:50%;
+  width:0;
+  border-left: 2px solid #40B553;
 }
 .tree li::before, .tree li::after{
   content:'';
   position: absolute;
   top:0;
-  height: 1px;
-  width:50%;
-  border-top:2px solid #40b553;
-}
-.tree li:last-child::before, .tree li::before{
   right:50%;
+  border-top:2px solid #40B553;
+  width:50%;
+  height:20px;
 }
-.tree li:first-child::before, .tree li::after{
+.tree li::after{
   left:50%;
+  right:auto;
+  border-left:2px solid #40B553;
 }
-.tree li:last-child::after,  .tree ul li:first-child::after,  .tree li:only-child::before, .tree li:only-child::after, .tree ul:first-child>li>a::before{
+.tree li:only-child::after, .tree li:only-child::before {
   display: none;
+}
+.tree li:first-child::before, .tree li:last-child::after{
+  border: 0 none;
+}
+.tree li:last-child::before{
+  border-right:2px solid #40B553;
+  border-radius: 0 5px 0 0;
+  left:0;
+}
+.tree li:first-child::after{
+  border-radius: 5px 0 0 0;
 }
 .tree{
   overflow:scroll;
