@@ -3,55 +3,55 @@
 <div class="tree dragscroll">
   <ul class='active'>
     <li>
-      <a><span><img src='img/placeholder.png'></span><span>FirstName</span></a>
+      <a data-show='1'><span><img src='img/placeholder.png'></span><span>dfgsdgsdfgsfdgsfdgdsfgd</span></a>
       <ul>
         <li>
-         <a><span><img src='img/placeholder.png'></span><span>FirstName</span></a>
+         <a data-show='2'><span><img src='img/placeholder.png'></span><span>FirstName</span></a>
          <ul>
           <li>
-            <a><span><img src='img/placeholder.png'></span><span>FirstName</span></a>
+            <a data-show='3'><span><img src='img/placeholder.png'></span><span>FirstName</span></a>
           </li>
           <li>
-            <a><span><img src='img/placeholder.png'></span><span>FirstName</span></a>
+            <a data-show='4'><span><img src='img/placeholder.png'></span><span>FirstName</span></a>
           </li>
           <li>
-            <a><span><img src='img/placeholder.png'></span><span>FirstName</span></a>
+            <a data-show='5'><span><img src='img/placeholder.png'></span><span>FirstName</span></a>
           </li>
           <li>
-            <a><span><img src='img/placeholder.png'></span><span>FirstName</span></a>
+            <a data-show='6'><span><img src='img/placeholder.png'></span><span>FirstName</span></a>
           </li>
           <li>
-            <a><span><img src='img/placeholder.png'></span><span>FirstName</span></a>
+            <a data-show='7'><span><img src='img/placeholder.png'></span><span>FirstName</span></a>
           </li>
           <li>
-            <a><span><img src='img/placeholder.png'></span><span>FirstName</span></a>
+            <a data-show='8'><span><img src='img/placeholder.png'></span><span>FirstName</span></a>
           </li>
         </ul>
       </li>
       <li>
-        <a><span><img src='img/placeholder.png'></span><span>FirstName</span></a>
+        <a data-show='9'><span><img src='img/placeholder.png'></span><span>FirstName</span></a>
         <ul>
           <li><a><span><img src='img/placeholder.png'></span><span>FirstName</span></a></li>
           <li>
-           <a><span><img src='img/placeholder.png'></span><span>FirstName</span></a>
+           <a data-show='10'><span><img src='img/placeholder.png'></span><span>FirstName</span></a>
            <ul>
             <li>
-             <a><span><img src='img/placeholder.png'></span><span>FirstName</span></a>
+             <a data-show='11'><span><img src='img/placeholder.png'></span><span>FirstName</span></a>
            </li>
            <li>
-             <a><span><img src='img/placeholder.png'></span><span>FirstNam</span></a>
+             <a data-show='12'><span><img src='img/placeholder.png'></span><span>FirstNam</span></a>
            </li>
            <li>
-             <a><span><img src='img/placeholder.png'></span><span>FirstName</span></a>
+             <a data-show='13'><span><img src='img/placeholder.png'></span><span>FirstName</span></a>
              <ul>
               <li>
-               <a><span><img src='img/placeholder.png'></span><span>FirstName</span></a>
+               <a data-show='14'><span><img src='img/placeholder.png'></span><span>FirstName</span></a>
              </li>
              <li>
-               <a><span><img src='img/placeholder.png'></span><span>FirstNam</span></a>
+               <a data-show='15'><span><img src='img/placeholder.png'></span><span>FirstNam</span></a>
              </li>
              <li>
-               <a><span><img src='img/placeholder.png'></span><span>FirstName</span></a>
+               <a data-show='16'><span><img src='img/placeholder.png'></span><span>FirstName</span></a>
              </li>
            </ul>
          </li>
@@ -64,16 +64,48 @@
 </li>
 </ul>
 </div>
+<div class="ui small modal card modal1">
+  <div class='content'><i class="user icon"></i>Svdsfjghsdfl</div>
+  <div class='content'><i class="location arrow icon"></i>17 Tsagdaa Street, Ulaanbaatar, Mongolia</div>
+  <div class='content'><i class="calendar icon"></i>February 2nd at 10:06am</div>
+  <div class='content'>Everything the user has posted is handled and posted using jQuery; it is written to the chat log with PHP. The only thing left to do is to display the updated chat log to the user.</div>
+  <div class='content'>Thank you</div>
+</div>
+<div class="ui small modal card modal2">
+  <div class='content'><i class="user icon"></i>Svdsfjghsdfl</div>
+  <div class='content'><i class="location arrow icon"></i>17 Tsagdaa Street, Ulaanbaatar, Mongolia</div>
+  <div class='content'><i class="calendar icon"></i>February 2nd at 10:06am</div>
+  <div class='content'>Everything the user has posted is handled and posted using jQuery; it is written to the chat log with PHP. The only thing left to do is to display the updated chat log to the user.</div>
+  <div class='content'>Thank you</div>
+</div>
 <script src='js/dragscroll.js'></script>
 <script src='js/jquery-2.2.0.min.js'></script>
 <script>
 $(function(){
+
+  $('.tree a').click(function(){
+    var data = $(this).data('show'),
+    modal = '.modal' + data;
+
+    $(modal).modal('show');
+  });
+
+  function asd(){
+    var a = $('.tree ul')
+    a.each(function(){
+      if($(this).hasClass('active')){ 
+      }
+    })
+  }
+  asd();
+
   function treeWidth(){
-    window_w = $(window).width();
-    menu_w =  $('#submenu').width();
-    container_w = $('.container').width();
-    margin_left = parseInt($('.margin-left').css('margin-left'),10);
+    var window_w = $(window).width(),
+    menu_w =  $('#submenu').width(),
+    container_w = $('.container').width(),
+    margin_left = parseInt($('.margin-left').css('margin-left'),10),
     tree_w = container_w - menu_w - margin_left;
+
     $('.tree').width(tree_w);
   }
   treeWidth();
