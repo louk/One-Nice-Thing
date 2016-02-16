@@ -365,6 +365,13 @@ body {
 .tree>ul>li{
   padding:500px;
 }
+.tree .show{
+  position: absolute;
+  z-index: 0;
+}
+#show{
+  display: none;
+}
 @media only screen and (max-width: 700px) {
   #dashboard .stat{
     flex:1 100%;

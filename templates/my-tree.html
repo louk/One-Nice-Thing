@@ -64,40 +64,32 @@
 </li>
 </ul>
 </div>
-<div class="ui small modal card modal1">
-  <div class='content'><i class="user icon"></i>Svdsfjghsdfl</div>
-  <div class='content'><i class="location arrow icon"></i>17 Tsagdaa Street, Ulaanbaatar, Mongolia</div>
-  <div class='content'><i class="calendar icon"></i>February 2nd at 10:06am</div>
-  <div class='content'>Everything the user has posted is handled and posted using jQuery; it is written to the chat log with PHP. The only thing left to do is to display the updated chat log to the user.</div>
-  <div class='content'>Thank you</div>
-</div>
-<div class="ui small modal card modal2">
-  <div class='content'><i class="user icon"></i>Svdsfjghsdfl</div>
-  <div class='content'><i class="location arrow icon"></i>17 Tsagdaa Street, Ulaanbaatar, Mongolia</div>
-  <div class='content'><i class="calendar icon"></i>February 2nd at 10:06am</div>
-  <div class='content'>Everything the user has posted is handled and posted using jQuery; it is written to the chat log with PHP. The only thing left to do is to display the updated chat log to the user.</div>
-  <div class='content'>Thank you</div>
+<div id='show'>
+  <div class="ui card show1">
+    <div class='content'>Everything the user has posted...</div>
+    <div class='content'>Thank you</div>
+  </div>
+  <div class="ui card show2">
+    <div class='content'><i class="user icon"></i>Svdsfjghsdfl</div>
+    <div class='content'><i class="location arrow icon"></i>17 Tsagdaa Street, Ulaanbaatar, Mongolia</div>
+    <div class='content'><i class="calendar icon"></i>February 2nd at 10:06am</div>
+    <div class='content'>Everything the user has posted is handled and posted using jQuery; it is written to the chat log with PHP. The only thing left to do is to display the updated chat log to the user.</div>
+    <div class='content'>Thank you</div>
+  </div>
 </div>
 <script src='js/dragscroll.js'></script>
 <script src='js/jquery-2.2.0.min.js'></script>
 <script>
 $(function(){
-
-  $('.tree a').click(function(){
+  $('.tree a').mouseenter(function(e){
+    e.preventDefault();
     var data = $(this).data('show'),
-    modal = '.modal' + data;
+    append = $('.show'+data).html();
 
-    $(modal).modal('show');
+   $(this).after('<span class="show"><div class="ui card">'+append+'</div></span>');
+  }).mouseout(function(){
+    $(this).next('.show').remove();
   });
-
-  function asd(){
-    var a = $('.tree ul')
-    a.each(function(){
-      if($(this).hasClass('active')){ 
-      }
-    })
-  }
-  asd();
 
   function treeWidth(){
     var window_w = $(window).width(),
