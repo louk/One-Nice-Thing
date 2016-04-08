@@ -1,85 +1,97 @@
 {% extends "submain.html" %}
 {% block subcontent %}
-<div id='dashboard'>
-    <div class='flex between md-flex-col md-col-reverse'>
-        <div class='flex flex12'>
-            <div class='flex md-wrap'>
-                <div class="stat flex-col center md-flex12">
-                    <div class="label">Directed</div>
-                    <div class="value">0</div>
-                    <div class="label">Nice things directed from you</div>
+    <div id='dashboard'>
+        <div class='flex between md-flex-col md-col-reverse'>
+            <div class='flex flex12'>
+                <div class='flex md-wrap'>
+                    <div class="stat flex-col center md-flex12">
+                        <div class="label">Directed</div>
+                        <div class="value">0</div>
+                        <div class="label">Nice things directed from you</div>
+                    </div>
+                    <div class="stat flex-col center md-flex12">
+                        <div class="label">Originated</div>
+                        <div class="value ui yellow">0</div>
+                        <div class="label">Nice things originated from you</div>
+                    </div>
+                    <div class="stat flex-col center md-flex12">
+                        <div class="label">Longest</div>
+                        <div class="value">0</div>
+                        <div class="label">miles of nice thing done from you</div>
+                    </div>
                 </div>
-                <div class="stat flex-col center md-flex12">
-                    <div class="label">Originated</div>
-                    <div class="value ui yellow">0</div>
-                    <div class="label">Nice things originated from you</div>
-                </div>
-                <div class="stat flex-col center md-flex12">
-                    <div class="label">Longest</div>
-                    <div class="value">0</div>
-                    <div class="label">miles of nice thing done from you</div>
+            </div>
+            <div class='margin-left'>
+                <div class="ui vertical menu">
+                    <a class="item"><strong>Inbox</strong><div class="ui yellow label">0</div></a>
+                    <a class="item"><strong>Updates</strong><div class="ui green label">0</div></a>
+                    <a class="item"><strong>New</strong><div class="ui red label">0</div></a>
                 </div>
             </div>
         </div>
-        <div class='margin-left'>
-            <div class="ui vertical menu">
-                <a class="item"><strong>Inbox</strong><div class="ui yellow label">0</div></a>
-                <a class="item"><strong>Updates</strong><div class="ui green label">0</div></a>
-                <a class="item"><strong>New</strong><div class="ui red label">0</div></a>
-            </div>
+        <div class='map margin-top'>
+            <div id="map_canvas" style="width:100%; height:500px"></div> 
         </div>
-    </div>
-    <div class='map margin-top'>
-        <div id="map_canvas" style="width:100%; height:500px"></div> 
-    </div>
-    <div class='margin-top'>
-        <div class="ui three stackable cards">
-            <div class="ui card">
-                <div class="content">
-                    <div class="header">Cute Dog</div>
-                    <div class="meta">2 days ago</div>
-                    <div class="description">
-                        <p>Cute dogs come in a variety of shapes and...</p>
+        <div class='margin-top'>
+            <div class="ui three stackable cards">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">Cute Dog</div>
+                        <div class="meta">2 days ago</div>
+                        <div class="description">
+                            <p>Cute dogs come in a variety of shapes and...</p>
+                        </div>
+                    </div>
+                    <div class="extra content">
+                        <i class="check icon"></i>
+                        121 Votes
                     </div>
                 </div>
-                <div class="extra content">
-                    <i class="check icon"></i>
-                    121 Votes
-                </div>
-            </div>
-            <div class="ui card">
-                <div class="content">
-                    <div class="header">Cute Dog</div>
-                    <div class="meta">2 days ago</div>
-                    <div class="description">
-                        <p>Cute dogs come in a variety of shapes and...</p>
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">Cute Dog</div>
+                        <div class="meta">2 days ago</div>
+                        <div class="description">
+                            <p>Cute dogs come in a variety of shapes and...</p>
+                        </div>
+                    </div>
+                    <div class="extra content">
+                        <i class="check icon"></i>
+                        121 Votes
                     </div>
                 </div>
-                <div class="extra content">
-                    <i class="check icon"></i>
-                    121 Votes
-                </div>
-            </div>
-            <div class="ui card">
-                <div class="content">
-                    <div class="header">Cute Dog</div>
-                    <div class="meta">2 days ago</div>
-                    <div class="description">
-                        <p>Cute dogs come in a variety of shapes and...</p>
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">Cute Dog</div>
+                        <div class="meta">2 days ago</div>
+                        <div class="description">
+                            <p>Cute dogs come in a variety of shapes and...</p>
+                        </div>
                     </div>
-                </div>
-                <div class="extra content">
-                    <i class="check icon"></i>
-                    121 Votes
+                    <div class="extra content">
+                        <i class="check icon"></i>
+                        121 Votes
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 {% endblock %}
 {% block scripting %}
     {{ parent() }}
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
     <script type="text/javascript" src="js/v3_epoly.js"></script>
+    <script type="text/javascript" charset="utf-8">
+    var userPoint = [];
+    userPoint.push({lat: '{{ user.location.latitude }}', lng: '{{ user.location.longitude }}', 
+            name:'{{ user.username }}', image: 'joe'});
+    var childPoint = [];
+        {% for nicething in nicethings %}
+            {% if nicething.location %}
+            childPoint.push({lat: '{{ nicething.location.latitude }}', lng: '{{ nicething.location.longitude }}', 
+                    name:'{{ nicething.refered_user.username }}', image: 'joe'});
+            {% endif %}
+        {% endfor %}
+    </script>
     <script type="text/javascript" src="js/custommap.js" charset="utf-8"></script>
 {% endblock %}

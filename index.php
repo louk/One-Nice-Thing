@@ -1,12 +1,12 @@
 <?php
 
-require_once 'includes/Twig/Autoloader.php';
-require_once "config.php";
+    require_once 'includes/Twig/Autoloader.php';
+    require_once "config.php";
 
-use Parse\ParseObject;
-use Parse\ParseClient;
-use Parse\ParseQuery;
-use Parse\ParseUser;
+    use Parse\ParseObject;
+    use Parse\ParseClient;
+    use Parse\ParseQuery;
+    use Parse\ParseUser;
 
     session_start();
     //register autoloader
@@ -16,12 +16,12 @@ use Parse\ParseUser;
     //twig instance
     $twig = new Twig_Environment($loader, array(
         'cache' => 'cache',
-        ));
+    ));
     //load template file
     $twig->setCache(false);
 
     if (isset($_SESSION['user'])) {
-        
+
         $user = $_SESSION['user'];
 
         if (isset($_GET['logout'])) {
@@ -32,7 +32,12 @@ use Parse\ParseUser;
             echo $template->render(array('title' => 'See you agian'));
         }else if (isset($_GET['dashboard'])) {
             $template = $twig->loadTemplate('dashboard.html');
-            echo $template->render(array('title' => 'Dashboard', 'user' => $user, 'nav' => 1));
+            $query = new ParseQuery("NiceThing");
+            $query->equalTo("User", $user);
+            $query->includeKey("refered_user");
+            $query->limit(100);
+            $nicethings = $query->find();
+            echo $template->render(array('title' => 'Dashboard', 'user' => $user, 'nav' => 1, 'nicethings' => $nicethings));
         }else if (isset($_GET['reportnicething'])) {
             $query = new ParseQuery("_User");
             $query->equalTo('status', 1);
@@ -40,7 +45,7 @@ use Parse\ParseUser;
             $template = $twig->loadTemplate('reportnicething.html');
             echo $template->render(array('title' => 'Report Nice Thing', 'users' =>$users, 'user' => $user, 'nav' => 2));
         }else if (isset($_GET['chat'])) {
-            
+
             $query = new ParseQuery("_User");
             $query->equalTo('status', 1);
             $users = $query->find();
@@ -48,7 +53,7 @@ use Parse\ParseUser;
             $query = new ParseQuery("_User");
             $query->equalTo('username', 'admin');
             $admin = $query->first();
-            
+
             $query = new ParseQuery("Chat");
             $query->equalTo('user1', $admin);
             $query->equalTo('user2', $user);
@@ -72,7 +77,13 @@ use Parse\ParseUser;
             echo $template->render(array('title' => 'My nice things', 'user' => $user, 'nav' => 5, 'nices' => $nice_things));
         }else if (isset($_GET['mymap'])) {
             $template = $twig->loadTemplate('my-map.html');
-            echo $template->render(array('title' => 'My map', 'user' => $user, 'nav' => 6));
+            $query = new ParseQuery("NiceThing");
+            $query->equalTo("User", $user);
+            $query->includeKey("refered_user");
+            $query->limit(100);
+            $nicethings = $query->find();
+            echo $template->render(array('title' => 'My map', 'user' => $user, 'nav' => 6, 'nicethings' => $nicethings));
+
         }else if (isset($_GET['tree'])) {
             $template = $twig->loadTemplate('my-tree.html');
             echo $template->render(array('title' => 'My tree', 'user' => $user, 'nav' => 7));
@@ -102,7 +113,12 @@ use Parse\ParseUser;
             echo $template->render(array('title' => 'About us')); 
         }else{
             $template = $twig->loadTemplate('dashboard.html');
-            echo $template->render(array('title' => 'Dashboard', 'user' => $user, 'nav' => 1));
+            $query = new ParseQuery("NiceThing");
+            $query->equalTo("User", $user);
+            $query->includeKey("refered_user");
+            $query->limit(100);
+            $nicethings = $query->find();
+            echo $template->render(array('title' => 'Dashboard', 'user' => $user, 'nav' => 1, 'nicethings' => $nicethings));
         }
     } else {
         if (isset($_GET['login'])) {
@@ -141,5 +157,6 @@ use Parse\ParseUser;
             echo $template->render(array('title' => 'Start', 'users' => $users));
         }
     }
+
 ?>
 

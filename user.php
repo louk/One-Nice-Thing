@@ -1,4 +1,5 @@
 <?php
+
     require 'js/parse/autoload.php';
     require_once "config.php";
     require_once "common.php";
@@ -12,7 +13,7 @@
     $func = $_POST['check'];
 
     if($func == 'register'){
-        echo user_register($_POST['first'], $_POST['last'],$_POST['password'],$_POST['email']);
+        echo user_register($_POST['first'], $_POST['last'],$_POST['password'],$_POST['email'], $_POST['location'], $_POST['lat'], $_POST['lng']);
         mail_box($_POST['email'],'Register', 'Thank  you for registering', 'register');
     }
 
@@ -25,7 +26,7 @@
         $user->set("password", $uniq);
         $user->setArray("connected", []);
         $user->set("status", 0);
-        
+
         $response = new Response();
 
         try{
@@ -42,7 +43,7 @@
             echo json_encode($response);
         }
     }
-    
+
     if($func == 'forgot'){
         (string)$pass = uniqid();
         $content = 'Here is the new password: ' . $pass;
@@ -51,7 +52,7 @@
     }
 
     if($func == 'message'){
-        
+
         $response = new Response();
 
         $query = new ParseQuery("Chat");
@@ -67,7 +68,7 @@
         $chatter->set("speaker", $user);
         $chatter->set("Chat", $chat);
         $chatter->set("message", $_POST['message']);
-        
+
         try {
             $chatter->save();
             $response->success = true;
@@ -80,5 +81,5 @@
         }
 
     }
+
 ?>
-     

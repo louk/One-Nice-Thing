@@ -1,51 +1,51 @@
 {% extends "base.html" %}
 {% block content %}
-<div class='flex center middle'>
-	<form class='ui form forgot'>
-		<h3>Forgot your password?</h3>
-		<div class='flex'>
-			<div class='field'>
-				<input type='text' name ='email' placeholder='Email'>
-			</div>
-			<div class='margin-left'>
-				<button class='ui green submit button'>Send</button>
-			</div>
-		</div>
-		<div class="ui success message hidden">
-			<div class="header">
-				Your password sent your email.
-			</div>
-		</div>
-	</form>
-</div>
+    <div class='flex center middle'>
+        <form class='ui form forgot'>
+            <h3>Forgot your password?</h3>
+            <div class='flex'>
+                <div class='field'>
+                    <input type='text' name ='email' placeholder='Email'>
+                </div>
+                <div class='margin-left'>
+                    <button class='ui green submit button'>Send</button>
+                </div>
+            </div>
+            <div class="ui success message hidden">
+                <div class="header">
+                    Your password sent your email.
+                </div>
+            </div>
+        </form>
+    </div>
 {% endblock %}
 {% block scripting %}
-{{ parent() }}
-<script src="js/init.js"></script>  
-<script type="text/javascript">
-$(function() {
-	$('.ui.form.forgot').form(forgot_validate)
-	.api({
-		action: 'forgot password',
-		method: 'POST',
-		serializeForm: true,
-		data: {
-			check: 'forgot'
-		},
-		beforeSend: function(settings) {
-			console.log(settings.data);
-			return settings;
-		},
-		onSuccess: function(response) {
-			console.log(response.message);
-			var url = "index.php?forgot";
-			window.location.replace(url); 
-          // valid response and response.success = true
-      },
-      onError: function(errorMessage) {
-      	console.log(errorMessage);
-      }
-  });
-});
-</script>
+    {{ parent() }}
+    <script src="js/init.js"></script>  
+    <script type="text/javascript">
+    $(function() {
+        $('.ui.form.forgot').form(forgot_validate)
+        .api({
+            action: 'forgot password',
+            method: 'POST',
+            serializeForm: true,
+            data: {
+                check: 'forgot'
+            },
+            beforeSend: function(settings) {
+                console.log(settings.data);
+                return settings;
+            },
+            onSuccess: function(response) {
+                console.log(response.message);
+                var url = "index.php?forgot";
+                window.location.replace(url); 
+              // valid response and response.success = true
+          },
+          onError: function(errorMessage) {
+            console.log(errorMessage);
+          }
+      });
+    });
+    </script>
 {% endblock %}

@@ -122,14 +122,15 @@ function createClickablePoly(poly, html, label, point) {
     label = "<a href='javascript:google.maps.event.trigger(gpolys["+poly_num+"],\"click\");'>"+label+"</a>";
 }
 
+var centerPoint;
+var current = false;
 function initialize() {
     var myOptions = {
-        zoom: 20,
-        center: new google.maps.LatLng(40.24270, -108.04522),
+        zoom: 1,
+        center: new google.maps.LatLng(userPoint[0].lat, userPoint[0].lng),
         mapTypeControl: true,
-        mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},
         navigationControl: true,
-        mapTypeId: google.maps.MapTypeId.TERRAIN
+        mapTypeId: google.maps.MapTypeId.ROADMAP
     }
     map = new google.maps.Map(document.getElementById("map_canvas"),
             myOptions);
@@ -137,33 +138,9 @@ function initialize() {
     google.maps.event.addListener(map, 'click', function() {
         infowindow.close();
     });
+
     bounds = new google.maps.LatLngBounds();
-
-    var centerPoint = new google.maps.LatLng(40.24270, -108.04522);
     bounds.extend(centerPoint);
-
-
-    /*
-     *
-     * Root location нэр
-     * array{
-     *     child location name list
-     *     child username 
-     *     child image
-     *}
-     * */
-
-
-    /*  find location Point google map api,
-       $.get( "https://maps.googleapis.com/maps/api/geocode/json?address=Winnetka", function( data ) {
-       console.log(data.results[0].geometry.bounds.northeast.lat);
-       });
-    */
-
-    var childPoint = [];
-    childPoint.push({lat: '30.41018', lng: '-105.16603', name:'Username', image: 'jo1e'});
-    childPoint.push({lat: '33.74900', lng: '-84.38798', name:'Username', image: 'joe'});
-    childPoint.push({lat: '37.76996', lng: '-122.42830', name:'Username', image: 'joe'});
 
     for (var i = 0; i < childPoint.length; i += 1) {
         bounds.extend(new google.maps.LatLng(childPoint[i].lat, childPoint[i].lng));
@@ -179,11 +156,26 @@ function initialize() {
             strokeWeight: 4
         });
     }
-    createMarker(centerPoint, "<img class='ui avatar image' src='img/joe.jpg'><span>Username</span>", false);
+    createMarker(centerPoint, "<img class='ui avatar image' src='img/joe.jpg'><span>"+userPoint[0].name+"</span>", false);
     for (var i = 0; i < childPoint.length; i += 1) {
         createMarker(new google.maps.LatLng(childPoint[i].lat, childPoint[i].lng), "<img class='ui avatar image' src='img/"+
                 childPoint[i].image+".jpg'><span>"+childPoint[i].name+"</span>", true);
     }
     map.fitBounds(bounds);
 }
-initialize();
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            centerPoint = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            initialize();
+            bounds.extend(centerPoint);
+        }, function() {
+            centerPoint = new google.maps.LatLng(userPoint[0].lat, userPoint[0].lng);
+            initialize();
+            bounds.extend(centerPoint);
+        });
+    } else {
+            centerPoint = new google.maps.LatLng(userPoint[0].lat, userPoint[0].lng);
+            initialize();
+            bounds.extend(centerPoint);
+    }

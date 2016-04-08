@@ -1,61 +1,60 @@
 {% extends "base.html" %}
-
 {% block content %}
- <div class="container">
-    <h2 class="green-text">Add nice thing</h2>
-    <div class="section">
-        <div class="row ">
-            <form >
-                <div class="row">
-                    <div class="input-field col s12 m12 l6">
-                        <input  id="first_name" type="text" class="validate">
-                        <label for="first_name">Nice thing name</label>
+    <div class="container">
+        <h2 class="green-text">Add nice thing</h2>
+        <div class="section">
+            <div class="row ">
+                <form >
+                    <div class="row">
+                        <div class="input-field col s12 m12 l6">
+                            <input  id="first_name" type="text" class="validate">
+                            <label for="first_name">Nice thing name</label>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s12 m12 l6">
-                        <textarea id="textarea" class="materialize-textarea" length="160"></textarea>
-                        <label for="textarea1">Please write more about it</label>
+                    <div class="row">
+                        <div class="input-field col s12 m12 l6">
+                            <textarea id="textarea" class="materialize-textarea" length="160"></textarea>
+                            <label for="textarea1">Please write more about it</label>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s12 m12 l6">
-                        <input id="last_name" type="text" class="validate">
-                        <label for="last_name">For who (email)</label>
+                    <div class="row">
+                        <div class="input-field col s12 m12 l6">
+                            <input id="last_name" type="text" class="validate">
+                            <label for="last_name">For who (email)</label>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s12 m12 l6">
-                        <div class="file-field input-field">
-                            <div class="btn">
-                                <span>Photo</span>
-                                <input type="file">
-                            </div>
-                            <div class="file-path-wrapper">
-                                <input class="file-path validate" type="text">
+                    <div class="row">
+                        <div class="input-field col s12 m12 l6">
+                            <div class="file-field input-field">
+                                <div class="btn">
+                                    <span>Photo</span>
+                                    <input type="file">
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate" type="text">
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s12 m12 l6">
-                        <input type="date" class="datepicker">
-                        <label for="email">When</label>
+                    <div class="row">
+                        <div class="input-field col s12 m12 l6">
+                            <input type="date" class="datepicker">
+                            <label for="email">When</label>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s12 m12 l6">
-                        <input id="last_name" type="text" class="validate">
-                        <label for="last_name">Where</label>
+                    <div class="row">
+                        <div class="input-field col s12 m12 l6">
+                            <input id="last_name" type="text" class="validate">
+                            <label for="last_name">Where</label>
+                        </div>
                     </div>
-                </div>
-                <div class="row ">
-                    <div class="input-field col s12 m12 l6">
-                        <a href="#" id="signup-button" class="btn-large waves-effect waves-light  green darken-1">Add</a>
+                    <div class="row ">
+                        <div class="input-field col s12 m12 l6">
+                            <a href="#" id="signup-button" class="btn-large waves-effect waves-light  green darken-1">Add</a>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 {% endblock %}

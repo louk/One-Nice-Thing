@@ -1,4 +1,5 @@
 <?php
+
     require 'js/parse/autoload.php';
     require_once "config.php";
     require_once "common.php";
@@ -8,7 +9,7 @@
     use Parse\ParseClient;
     use Parse\ParseQuery;
 
-   
+
     $func = $_POST['check'];
 
     if($func == 'guest'){
@@ -20,11 +21,11 @@
         $user->set("password", $uniq);
         $user->setArray("connected", []);
         $user->set("status", 0);
-        
+
         try{
             $user->signUp();
             $_SESSION['user'] = $user;
-            
+
             add_user_report($_SESSION['id'],$user);
 
         } catch (ParseException $ex) {
@@ -33,12 +34,11 @@
     }
 
     if($func == 'login'){
-       echo user_login_report($_POST['username'], $_POST['password'], $_SESSION['id']);
+        echo user_login_report($_POST['username'], $_POST['password'], $_SESSION['id']);
     }
 
     if($func == 'register'){
-       echo user_register_report($_POST['first'], $_POST['last'], $_POST['password'], $_POST['email'], $_SESSION['id']);
+        echo user_register_report($_POST['first'], $_POST['last'], $_POST['password'], $_POST['email'], $_SESSION['id']);
     }
-    
+
 ?>
-     

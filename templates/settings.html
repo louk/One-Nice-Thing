@@ -1,92 +1,92 @@
 {% extends "submain.html" %}
 {% block subcontent %}
-<div class="flex center">
-    <form id="settings" class="ui form edit">
-        <div class="flex xs-center">
-            <div class="title">Change Profile Picture</div>
-        </div>
-        <div class="flex xs-flex-col xs-center middle">
-            <div>
-                <img class="ui tiny circular image" src="img/placeholder.png">
+    <div class="flex center">
+        <form id="settings" class="ui form edit">
+            <div class="flex xs-center">
+                <div class="title">Change Profile Picture</div>
             </div>
-            <div class="margin-left">
-                <input type="file">
+            <div class="flex xs-flex-col xs-center middle">
+                <div>
+                    <img class="ui tiny circular image" src="img/placeholder.png">
+                </div>
+                <div class="margin-left">
+                    <input type="file">
+                </div>
             </div>
-        </div>
-        <div class="flex xs-center">
-            <div class="title">Change Name</div>
-        </div>
-        <div class="flex xs-flex-col xs-center between">
-            <div class='field flex-col'>
-                <input type="text" placeholder="First Name" name='first'>
+            <div class="flex xs-center">
+                <div class="title">Change Name</div>
             </div>
-            <div class="field flex-col">
-                <input type="text" placeholder="Last Name" name='last'>
+            <div class="flex xs-flex-col xs-center between">
+                <div class='field flex-col'>
+                    <input type="text" placeholder="First Name" name='first'>
+                </div>
+                <div class="field flex-col">
+                    <input type="text" placeholder="Last Name" name='last'>
+                </div>
             </div>
-        </div>
-        <div class="flex xs-center">
-            <div class="title">Change Password</div>
-        </div>
-        <div class="flex xs-center">
-            <div class="xs-flex12 field flex-col">
-                <input type="password" placeholder="Old Password" name='old_pass'>
+            <div class="flex xs-center">
+                <div class="title">Change Password</div>
             </div>
-        </div>
-        <div class="flex xs-flex-col margin-top xs-center between">
-            <div class='field flex-col'>
-                <input  type="password" placeholder="New Password" name='new_pass'>
+            <div class="flex xs-center">
+                <div class="xs-flex12 field flex-col">
+                    <input type="password" placeholder="Old Password" name='old_pass'>
+                </div>
             </div>
-            <div class="field flex-col">
-                <input  type="password" placeholder="New Password Again" name='new_pass2'>
+            <div class="flex xs-flex-col margin-top xs-center between">
+                <div class='field flex-col'>
+                    <input  type="password" placeholder="New Password" name='new_pass'>
+                </div>
+                <div class="field flex-col">
+                    <input  type="password" placeholder="New Password Again" name='new_pass2'>
+                </div>
+            </div>   
+            <div class="flex xs-flex-col middle between xs-center">
+                <div class="title">Change Email</div>
+                <div class="xs-flex12 field flex-col">
+                    <input type="email" placeholder="Email" name='email'>
+                </div>
             </div>
-        </div>   
-        <div class="flex xs-flex-col middle between xs-center">
-            <div class="title">Change Email</div>
-            <div class="xs-flex12 field flex-col">
-                <input type="email" placeholder="Email" name='email'>
+            <div class="flex middle between xs-around">
+                <div class="title">Account Public</div>
+                <div class="ui checkbox">
+                    <input type="checkbox">
+                    <label></label>
+                </div>
             </div>
-        </div>
-        <div class="flex middle between xs-around">
-            <div class="title">Account Public</div>
-            <div class="ui checkbox">
-                <input type="checkbox">
-                <label></label>
+            <div class="flex end">
+                <button class="ui green submit button">Save</button>
             </div>
-        </div>
-        <div class="flex end">
-            <button class="ui green submit button">Save</button>
-        </div>
-        <div class="ui error message"></div>
-    </form>
-</div>
+            <div class="ui error message"></div>
+        </form>
+    </div>
 {% endblock %}
 {% block scripting %}
 {{ parent() }}
-<script src="js/init.js"></script>  
-<script type="text/javascript">
-$(function() {
-  $('.ui.form.edit').form(settings_validate)
-  .api({
-    action: 'settings',
-    method: 'POST',
-    serializeForm: true,
-    data: {
-      check: 'settings'
-    },
-    beforeSend: function(settings) {
-      console.log(settings.data);
-      return settings;
-    },
-    onSuccess: function(response) {
-      console.log(response.message);
-      var url = "index.php?settings";
-      window.location.replace(url); 
-                      // valid response and response.success = true
-                  },
-                  onError: function(errorMessage) {
-                    console.log(errorMessage);
-                  }
-              });
-});
-</script>
+    <script src="js/init.js"></script>  
+    <script type="text/javascript">
+    $(function() {
+      $('.ui.form.edit').form(settings_validate)
+      .api({
+        action: 'settings',
+        method: 'POST',
+        serializeForm: true,
+        data: {
+          check: 'settings'
+        },
+        beforeSend: function(settings) {
+          console.log(settings.data);
+          return settings;
+        },
+        onSuccess: function(response) {
+          console.log(response.message);
+          var url = "index.php?settings";
+          window.location.replace(url); 
+                          // valid response and response.success = true
+                      },
+                      onError: function(errorMessage) {
+                        console.log(errorMessage);
+                      }
+                  });
+    });
+    </script>
 {% endblock %}

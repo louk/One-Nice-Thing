@@ -1,7 +1,7 @@
 <?php
 
-	require 'js/parse/autoload.php';
-	use Parse\ParseClient;
+    require 'js/parse/autoload.php';
+    use Parse\ParseClient;
 
     $app_id = 'rVPT2Mws2ylIGYxH7pkxKsX0z0ORWDOoJebHe95f';
     $rest_key = 'ULNpwIX1AfnGHEP0cRX6brWDVTjyzeLJnQCYx5uZ';

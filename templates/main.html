@@ -1,29 +1,29 @@
 {% extends "base.html" %}
 {% block content %}
-<div class='ui container'>
-    <div class="flex center">
-        <div id="home-image">
-            <img class="ui centered huge image" src="img/home.png">
+    <div class='ui container'>
+        <div class="flex center">
+            <div id="home-image">
+                <img class="ui centered huge image" src="img/home.png">
+            </div>
         </div>
     </div>
-</div>
-<div class="flex-col middle medium-font" id='home-text'>
-    <p>If you do something nice for someone and ask them to do the same...</p>
-    <div>
-        <span>How far it will go?</span>
-        <a href='index.php?login' class='green-text underline'>Let's find out</a>
-    </div>
-</div>
-<div class='ui container'>
-    <div class='flex center middle xs-wrap' id='home-report'>
+    <div class="flex-col middle medium-font" id='home-text'>
+        <p>If you do something nice for someone and ask them to do the same...</p>
         <div>
-            <img class="ui medium image" src="img/animate.gif">
-        </div>
-        <div class='medium-font flex-col middle'>
-            <p>Want to report a nice thing you've done?</p>
-            <a href="index.php?reportnicething" class='ui yellow button'>Click here</a>
-            <p>Does helping others really make the world a better place?</p>
+            <span>How far it will go?</span>
+            <a href='index.php?login' class='green-text underline'>Let's find out</a>
         </div>
     </div>
-</div>
+    <div class='ui container'>
+        <div class='flex center middle xs-wrap' id='home-report'>
+            <div>
+                <img class="ui medium image" src="img/animate.gif">
+            </div>
+            <div class='medium-font flex-col middle'>
+                <p>Want to report a nice thing you've done?</p>
+                <a href="index.php?reportnicething" class='ui yellow button'>Click here</a>
+                <p>Does helping others really make the world a better place?</p>
+            </div>
+        </div>
+    </div>
 {% endblock %}

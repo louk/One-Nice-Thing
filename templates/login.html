@@ -1,169 +1,183 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="ui container">
-    <div class="flex center">
-        <div id="login">
-            <div class="ui secondary menu">
-                <a class="item active" data-tab="login">Login</a>
-                <a class="item" data-tab="register">Register</a>
-                <a class="item" data-tab="forgot">Forgot password?</a>
-            </div>
-            <div class="ui bottom attached tab  active" data-tab="login">
-                <form class="ui form attached fluid segment login">
-                    <div class="field">
-                        <label>Username</label>
-                        <input placeholder="Username" name="username" type="text">
-                    </div>
-                    <div class="field">
-                        <label>Password</label>
-                        <input type="password" name="password">
-                    </div>             
-                    <div class="fluid ui green submit button">Login</div>
-                    <div class="ui error message">
-                        <div class="header">Check your username password !</div>
-                    </div>
-                </form>
-                <div class="ui bottom attached warning message">
-                    <i class="icon help"></i>
-                    <a href="#" class="ui guest">Login as guest</a> 
+    <div class="ui container">
+        <div class="flex center">
+            <div id="login">
+                <div class="ui secondary menu">
+                    <a class="item active" data-tab="login">Login</a>
+                    <a class="item" data-tab="register">Register</a>
+                    <a class="item" data-tab="forgot">Forgot password?</a>
                 </div>
-            </div>
-            <div class="ui bottom attached tab " data-tab="register">
-                <form class="ui form segment register" >
-                    <div class="field">
-                        <label>Firstname</label>
-                        <input placeholder="Name" name="first" type="text">
-                        <input type="hidden" name = "check" value= "register">
-                    </div>
-                    <div class="field">
-                        <label>Lastname</label>
-                        <input placeholder="Surname" name="last" type="text">
-                    </div>
-                    <div class="field">
-                        <label>Email</label>
-                        <input placeholder="Email" name="email" type="text">
-                    </div>
-                    <div class="field">
-                        <label>Password</label>
-                        <input type="password" name="password">
-                    </div>           
-                    <div class="fluid ui green submit button">Register</div>
-                    <div class="ui error message">
-                        <div class="header">Email or user name is already in the system!</div>
-                    </div>
-                </form>
-            </div>
-            <div class="ui bottom attached tab " data-tab="forgot">
-                <form class="ui form forget segment ">
-                    <div class="field">
-                        <label>We will send new pass to your email</label>
-                        <input type="text" name = "email" placeholder='Email'>
-                        <input type="hidden" name = "check" value= "forgot">
-                    </div>
-                    <div class="field">
-                        <div class="fluid ui green submit button">Send</div>
-                    </div>
-                    <div class="ui success message">
-                        <div class="header">
-                            Your password sent your email.
+                <div class="ui bottom attached tab  active" data-tab="login">
+                    <form class="ui form attached fluid segment login">
+                        <div class="field">
+                            <label>Username</label>
+                            <input placeholder="Username" name="username" type="text">
                         </div>
-                    </div>
-                     <div class="ui error message">
-                        <div class="header">
-                           Email is not recognized
+                        <div class="field">
+                            <label>Password</label>
+                            <input type="password" name="password">
+                        </div>             
+                        <div class="fluid ui green submit button">Login</div>
+                        <div class="ui error message">
+                            <div class="header">Check your username password !</div>
                         </div>
+                    </form>
+                    <div class="ui bottom attached warning message">
+                        <i class="icon help"></i>
+                        <a href="#" class="ui guest">Login as guest</a> 
                     </div>
-                </form>
+                </div>
+                <div class="ui bottom attached tab " data-tab="register">
+                    <form class="ui form segment register" >
+                        <div class="field">
+                            <label>Firstname</label>
+                            <input placeholder="Name" name="first" type="text">
+                            <input type="hidden" name = "check" value= "register">
+                        </div>
+                        <div class="field">
+                            <label>Lastname</label>
+                            <input placeholder="Surname" name="last" type="text">
+                        </div>
+                        <div class="details">
+                            <input type="hidden" data-geo="lat" name="lat" id="lat" value="" />
+                            <input type="hidden" data-geo="lng" name="lng" id="lng" value="" />
+                        </div>
+                        <div class="field">
+                            <label>Location</label>
+                            <input type="text" name="location" id="location">
+                        </div>
+                        <div class="field">
+                            <label>Email</label>
+                            <input placeholder="Email" name="email" type="text">
+                        </div>
+                        <div class="field">
+                            <label>Password</label>
+                            <input type="password" name="password">
+                        </div>           
+                        <div class="fluid ui green submit button">Register</div>
+                        <div class="ui error message">
+                            <div class="header">Email or user name is already in the system!</div>
+                        </div>
+                    </form>
+                </div>
+                <div class="ui bottom attached tab " data-tab="forgot">
+                    <form class="ui form forget segment ">
+                        <div class="field">
+                            <label>We will send new pass to your email</label>
+                            <input type="text" name = "email" placeholder='Email'>
+                            <input type="hidden" name = "check" value= "forgot">
+                        </div>
+                        <div class="field">
+                            <div class="fluid ui green submit button">Send</div>
+                        </div>
+                        <div class="ui success message">
+                            <div class="header">
+                                Your password sent your email.
+                            </div>
+                        </div>
+                         <div class="ui error message">
+                            <div class="header">
+                               Email is not recognized
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 {% endblock %}
 {% block scripting %}
-
-{{ parent() }}
-<script src="js/init.js"></script>  
-<script type="text/javascript">
-    $(function() {
-        $('.ui.form.login').form(login_validate)
-            .api({
-                action: 'login user',
-                method: 'POST',
-                serializeForm: true,
-                beforeSend: function(settings) {
-                    console.log(settings.data);
-                    return settings;
-                },
-                onSuccess: function(response) {
-                    console.log(response.message);
-                    var url = "index.php?dashboard";
-                    window.location.replace(url); 
-                },
-                onError: function(errorMessage) {
-                    console.log(errorMessage);
-                }
+    {{ parent() }}
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="js/init.js"></script>  
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+    <script src="js/jquery.geocomplete.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $("#location").geocomplete({
+              details: ".details",
+              detailsAttribute: "data-geo"
             });
-        $('.ui.form.register').form(register_validate)
-            .api({
-                action: 'register user',
-                method: 'POST',
-                serializeForm: true,
-                data:{
-                    check:'register'
-                }
-                ,
-                beforeSend: function(settings) {
-                    console.log(settings.data);
-                    return settings;
-                },
-                onSuccess: function(response) {
-                    console.log(response.message);
-                    var url = "index.php?dashboard";
-                    window.location.replace(url); 
-                              // valid response and response.success = true
-                },
-                onFailure: function(response) {
-                    console.log(response);
-                }
-            });
-
-        $('.ui.form.forget').form(forgot_validate)
-            .api({
-                action: 'forget user',
-                method: 'POST',
-                serializeForm: true,
-                beforeSend: function(settings) {
-                    console.log(settings.data);
-                    return settings;
-                },
-                onSuccess: function(response) {
-                    console.log("1");
-                    console.log(response);
-                },
-                onFailure: function(response) {
-                    console.log("2");
-                    console.log(response);
-                }
-            });
-        $('.ui.guest')
-            .api({
-                action: 'guest user',
-                method: 'POST',
-                data: {
-                    check: 'guest'
-                },
-                beforeSend: function(settings) {
-                    console.log(settings.data);
-                    return settings;
-                },
-                onSuccess: function(response) {
+            $('.ui.form.login').form(login_validate)
+                .api({
+                    action: 'login user',
+                    method: 'POST',
+                    serializeForm: true,
+                    beforeSend: function(settings) {
+                        console.log(settings.data);
+                        return settings;
+                    },
+                    onSuccess: function(response) {
+                        console.log(response.message);
                         var url = "index.php?dashboard";
                         window.location.replace(url); 
-                },
-                onFailure: function(response) {
-                    console.log(response);
-                }
-            });
-    });
-</script>
+                    },
+                    onError: function(errorMessage) {
+                        console.log(errorMessage);
+                    }
+                });
+            $('.ui.form.register').form(register_validate)
+                .api({
+                    action: 'register user',
+                    method: 'POST',
+                    serializeForm: true,
+                    data:{
+                        check:'register'
+                    }
+                    ,
+                    beforeSend: function(settings) {
+                        console.log(settings.data);
+                        return settings;
+                    },
+                    onSuccess: function(response) {
+                        console.log(response.message);
+                        var url = "index.php?dashboard";
+                        window.location.replace(url); 
+                                  // valid response and response.success = true
+                    },
+                    onFailure: function(response) {
+                        console.log(response);
+                    }
+                });
+
+            $('.ui.form.forget').form(forgot_validate)
+                .api({
+                    action: 'forget user',
+                    method: 'POST',
+                    serializeForm: true,
+                    beforeSend: function(settings) {
+                        console.log(settings.data);
+                        return settings;
+                    },
+                    onSuccess: function(response) {
+                        console.log("1");
+                        console.log(response);
+                    },
+                    onFailure: function(response) {
+                        console.log("2");
+                        console.log(response);
+                    }
+                });
+            $('.ui.guest')
+                .api({
+                    action: 'guest user',
+                    method: 'POST',
+                    data: {
+                        check: 'guest'
+                    },
+                    beforeSend: function(settings) {
+                        console.log(settings.data);
+                        return settings;
+                    },
+                    onSuccess: function(response) {
+                            var url = "index.php?dashboard";
+                            window.location.replace(url); 
+                    },
+                    onFailure: function(response) {
+                        console.log(response);
+                    }
+                });
+        });
+    </script>
 {% endblock %}

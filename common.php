@@ -1,6 +1,6 @@
-
 <?php
-	require 'js/parse/autoload.php';
+
+    require 'js/parse/autoload.php';
     require_once "config.php";
     use Parse\ParseException;
     use Parse\ParseUser;
@@ -8,19 +8,20 @@
     use Parse\ParseClient;
     use Parse\ParseQuery;
     use Parse\ParseObject;
+    use Parse\ParseGeoPoint;
 
     session_start();
 
-	class Response {};
-    
+    class Response {};
+
     function user_to_user($report_id){
-        
+
         $query = new ParseQuery("NiceThing");
         $query->equalTo("objectId",$report_id);
         $query->includeKey('User');
         $query->includeKey('refered_user');
         $nice_thing = $query->first();  
-        
+
         $ref_user = $nice_thing -> get('refered_user');
         $con_user = $nice_thing -> get('User');
 
@@ -46,8 +47,8 @@
         }
     }
 
-	function add_user_report($report_id, $user){
-	    
+    function add_user_report($report_id, $user){
+
         $query = new ParseQuery("NiceThing");
         $query->equalTo("objectId",$report_id);
         $nice_thing = $query->first();    
@@ -57,39 +58,39 @@
             $nice_thing->save();   
             echo user_to_user($report_id);
 
-   		} catch (ParseException $ex) {  
+        } catch (ParseException $ex) {  
             // Execute any logic that should take place if the save fails.
             // error is a ParseException object with an error code and message
             $response->success = false;
             $response->message = 'Error: Failed to create new object, with error message: ' . $ex->getMessage();
             echo $response;
-		}
-	}
+        }
+    }
 
-	function user_login($username, $pass){
-	    
-	    $response = new Response();
+    function user_login($username, $pass){
 
-	    try {
-	        $user = ParseUser::logIn($username, $pass);
-	        $user->save();
-	        $user = ParseUser::getCurrentUser();
-	        $_SESSION['user'] = $user;
+        $response = new Response();
+
+        try {
+            $user = ParseUser::logIn($username, $pass);
+            $user->save();
+            $user = ParseUser::getCurrentUser();
+            $_SESSION['user'] = $user;
 
             $response->success = true;
             $response->message = "Logged in";
             $response->data = $user->getObjectId();
             echo json_encode($response);
 
-	    } catch (ParseException $error) {
-	        $response->success = false;
+        } catch (ParseException $error) {
+            $response->success = false;
             $response->message = 'Error: Failed to login: ' . $error;
             echo json_encode($response); 
-	    } 
-	}
+        } 
+    }
 
     function user_forgot($email, $pass){
-        
+
         $response = new Response();
 
         $query = new ParseQuery("_User");
@@ -115,25 +116,25 @@
     }
 
     function user_register_create_chat( $user ){
-        
+
         $response = new Response();
 
         $query = new ParseQuery("_User");
         $query->equalTo("username",'admin');
         $admin = $query->first();
-        
+
         $chat = new ParseObject("Chat");
         $chat->set("user1", $admin);
         $chat->set("user2", $user);
 
         try {
             $chat->save();
-            
+
             $chatter = new ParseObject("ChatLogs");
             $chatter->set("speaker", $admin);
             $chatter->set("Chat", $chat);
             $chatter->set("message", 'Hello there? Have you done any nicething today ? We can talk about it');
-            
+
             try {
                 $chatter->save();
             } catch (ParseException $ex) {
@@ -150,17 +151,20 @@
 
     }
 
-	function user_register( $first, $last, $pass, $email ){
-	    
-	    $response = new Response();
+    function user_register( $first, $last, $pass, $email, $location, $lat, $lng ){
 
-	    $name = $first."_".$last;
+        $response = new Response();
+
+        $name = $first."_".$last;
         $user = new ParseUser();
         $user->set("username", strtolower($name));
         $user->set("email", $email );
         $user->set("first", $first );
         $user->set("last", $last );
         $user->set("password", $pass);
+        $user->set("location_name", $_POST['location']);
+        $point = new ParseGeoPoint(floatval($lat), floatval($lng));
+        $user->set("location", $point);
         $user->set("status", 1);
 
         try {
@@ -178,30 +182,30 @@
             $response->message = 'Error: Failed to register: ' . $error;
             echo json_encode($response); 
         } 
-	}
+    }
 
-	function user_login_report($username, $pass, $report_id){
-	    
-	    $response = new Response();
+    function user_login_report($username, $pass, $report_id){
 
-	    try {
-	        $user = ParseUser::logIn($username, $pass);
-	        $user->save();
-	        $user = ParseUser::getCurrentUser();
-	        $_SESSION['user'] = $user;
+        $response = new Response();
+
+        try {
+            $user = ParseUser::logIn($username, $pass);
+            $user->save();
+            $user = ParseUser::getCurrentUser();
+            $_SESSION['user'] = $user;
             echo add_user_report($report_id, $user);
-	    } catch (ParseException $error) {
-	        $response->success = false;
+        } catch (ParseException $error) {
+            $response->success = false;
             $response->message = 'Error: Failed to login: ' . $error;
             echo json_encode($response); 
-	    } 
-	}
+        } 
+    }
 
-	function user_register_report($first, $last, $pass, $email, $report_id){
-	    
-	   	$response = new Response();
+    function user_register_report($first, $last, $pass, $email, $report_id){
 
-	    $name = $first."_".$last;
+        $response = new Response();
+
+        $name = $first."_".$last;
         $user = new ParseUser();
         $user->set("username", strtolower($name));
         $user->set("email", $email );
@@ -210,16 +214,16 @@
         try {
             $user->signUp();
             $_SESSION['user'] = $user;
-           	echo add_user_report($report_id, $user);
+            echo add_user_report($report_id, $user);
         } catch (ParseException $ex) {
             $response->success = false;
             $response->message = 'Error: Failed to register: ' . $error;
             echo json_encode($response); 
         }  
-	}
+    }
 
     function mail_box($to, $header, $content, $type){
-        
+
         $mail = new ParseObject("Mails");
         $mail->set("to", $to);
         $mail->set("header", $header);

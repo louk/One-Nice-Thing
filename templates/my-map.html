@@ -1,10 +1,22 @@
 {% extends "submain.html" %}
 {% block subcontent %}
-<div id="map_canvas" style="width:100%; height:500px"></div> 
+    <div id="map_canvas" style="width:100%; height:500px"></div> 
 {% endblock %}
 {% block scripting %}
-{{ parent() }}
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
-<script type="text/javascript" src="js/v3_epoly.js"></script>
-<script type="text/javascript" src="js/custommap.js" charset="utf-8"></script>
+    {{ parent() }}
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
+    <script type="text/javascript" src="js/v3_epoly.js"></script>
+    <script type="text/javascript" charset="utf-8">
+    var userPoint = [];
+    userPoint.push({lat: '{{ user.location.latitude }}', lng: '{{ user.location.longitude }}', 
+            name:'{{ user.username }}', image: 'joe'});
+    var childPoint = [];
+        {% for nicething in nicethings %}
+            {% if nicething.location %}
+            childPoint.push({lat: '{{ nicething.location.latitude }}', lng: '{{ nicething.location.longitude }}', 
+                    name:'{{ nicething.refered_user.username }}', image: 'joe'});
+            {% endif %}
+        {% endfor %}
+    </script>
+    <script type="text/javascript" src="js/custommap.js" charset="utf-8"></script>
 {% endblock %}

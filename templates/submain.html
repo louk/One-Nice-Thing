@@ -1,25 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
-<div class='ui container'>
-    {% if user %}
-    <div class="flex xs-center">
-        <div class="xs-hide">
-            <div id='submenu' class='flex-col'>
-                <a class="{%if nav==5 %} active {%endif%}item" href="index.php?nicethings">My nice things</a>
-                <a class="{%if nav==7 %} active {%endif%}item" href="index.php?tree">My tree</a>
-                <a class="{%if nav==6 %} active {%endif%}item" href="index.php?mymap">My map</a>
-                <a class="{%if nav==8 %} active {%endif%}item" href="index.php?friends">My friends</a>
+    <div class='ui container'>
+        {% if user %}
+        <div class="flex xs-center">
+            <div class="xs-hide">
+                <div id='submenu' class='flex-col'>
+                    <a class="{%if nav==5 %} active {%endif%}item" href="index.php?nicethings">My nice things</a>
+                    <a class="{%if nav==7 %} active {%endif%}item" href="index.php?tree">My tree</a>
+                    <a class="{%if nav==6 %} active {%endif%}item" href="index.php?mymap">My map</a>
+                    <a class="{%if nav==8 %} active {%endif%}item" href="index.php?friends">My friends</a>
+                </div>
+            </div>
+            <div class="margin-left flex12">
+                {% block subcontent %}
+
+                {% endblock %}
             </div>
         </div>
-        <div class="margin-left flex12">
-            {% block subcontent %}
-
+        {% else %}
+            {% block subcontent1 %}
             {% endblock %}
-        </div>
+        {% endif %}
     </div>
-    {% else %}
-        {% block subcontent1 %}
-        {% endblock %}
-    {% endif %}
-</div>
 {% endblock %}

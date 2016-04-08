@@ -1,113 +1,112 @@
 {% extends "submain.html" %}
 {% block subcontent %}
-<div class='ui grid'>
-    <div class='four wide column'></div>
-    <div class='eight wide column'>
-        <div class="ui raised segment" id="loglabel" style="left: -5px;">
-            <a class="ui green ribbon label">My Nice Thing's name</a>
-            <span>Tell your story to one you know</span>
-            <p></p>
-        </div>
-        <div class="content">
-            <form class="ui form report">
-                <div class="field">
-                    <label>Username Lookup</label>
-                    <div class="ui search">
-                      <div class="ui icon input">
-                        <input class="prompt" type="text" placeholder="Search username..." name="username" value='FistName LastName'>
-                        <i class="search icon"></i>
+    <div class='ui grid'>
+        <div class='four wide column'></div>
+        <div class='eight wide column'>
+            <div class="ui raised segment" id="loglabel" style="left: -5px;">
+                <a class="ui green ribbon label">My Nice Thing's name</a>
+                <span>Tell your story to one you know</span>
+                <p></p>
+            </div>
+            <div class="content">
+                <form class="ui form report">
+                    <div class="field">
+                        <label>Username Lookup</label>
+                        <div class="ui search">
+                            <div class="ui icon input">
+                                <input class="prompt" type="text" placeholder="Search username..." name="username" value='FistName LastName'>
+                                <i class="search icon"></i>
+                            </div>
+                            <div class="results"></div>
+                        </div>
                     </div>
-                    <div class="results"></div>
-                </div>
-            </div>
-            <div class="field">
-                <label>Location where did you do your nice thing ?</label>
-                <input type="text" name="location" id="location" value='location'>
-            </div>
-            <div class="field">
-                <label>What nice thing did you do ?</label>
-                <textarea rows="2" name="content">nice things blablabal....</textarea>
-            </div>
-            <div class="field">
-                <label>Who did you do it for ?</label>
-                <input type="text" name="who" value='FirstName LastName'>
-            </div>
-            <div class="field">
-                <label>How did you respond, how did you feel ?</label>
-                <input type="text" name="feel" value='feeling'>
-            </div>
-            <div class="inline field">
-                <div class="ui checkbox">
-                    <input type="checkbox" name="remember_me">
-                    <label>Did you ask them to keep it going and did they agree?</label>
-                </div>
-            </div>
-            <div class="field">
-                <label>Would you like to leave any other message for this member?</label>
-                <textarea rows="2" name="message">My message....</textarea>
-            </div>
-            <div class="field">
-                <div class="ui selection dropdown">
-                    <input type="hidden" name="privacy">
-                    <i class="dropdown icon"></i>
-                    <div class="text" data-value='1'>Only me</div>
-                    <div class="menu">
-                        <div class="item" data-value="0">Public</div>
+                    <div class="field">
+                        <label>Location where did you do your nice thing ?</label>
+                        <input type="text" name="location" id="location" value='location'>
                     </div>
-                </div>
-            </div>
-            <div class="ui error message">
-                <div class="header">Email or user name is already in the system!</div>
-            </div>
-            <div class="field">
-                <input type="submit" class="ui large submit green button fluid" />
-            </div>
-        </form>
+                    <div class="field">
+                        <label>What nice thing did you do ?</label>
+                        <textarea rows="2" name="content">nice things blablabal....</textarea>
+                    </div>
+                    <div class="field">
+                        <label>Who did you do it for ?</label>
+                        <input type="text" name="who" value='FirstName LastName'>
+                    </div>
+                    <div class="field">
+                        <label>How did you respond, how did you feel ?</label>
+                        <input type="text" name="feel" value='feeling'>
+                    </div>
+                    <div class="inline field">
+                        <div class="ui checkbox">
+                            <input type="checkbox" name="remember_me">
+                            <label>Did you ask them to keep it going and did they agree?</label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>Would you like to leave any other message for this member?</label>
+                        <textarea rows="2" name="message">My message....</textarea>
+                    </div>
+                    <div class="field">
+                        <div class="ui selection dropdown">
+                            <input type="hidden" name="privacy">
+                            <i class="dropdown icon"></i>
+                            <div class="text" data-value='1'>Only me</div>
+                            <div class="menu">
+                                <div class="item" data-value="0">Public</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui error message">
+                        <div class="header">Email or user name is already in the system!</div>
+                    </div>
+                    <div class="field">
+                        <input type="submit" class="ui large submit green button fluid" />
+                    </div>
+                </form>
 
+            </div>
+        </div>
     </div>
-</div>
-</div>
 {% endblock %}
 {% block scripting %}
-{{ parent() }}
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<script src="js/init.js"></script>  
-<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
-<script src="js/jquery.geocomplete.js"></script>
-<script type="text/javascript">
-var content = [
-{% for user in users %}
-{ title: '{{user.username}}' },
-{% endfor %}
-{ title: 'travis' }
-              // etc
-              ];
-              $(function() {
-                $('.ui.search').search({ source: content });
-                $("#location").geocomplete();
-                $('.ui.form.report').form(report_validate)
-                .api({
-                    action: 'report nicething',
-                    method: 'POST',
-                    serializeForm: true,
-                    data: {
-                      name: 22
-                  },
-                  beforeSend: function(settings) {
-                    console.log(settings.data);
-                    return settings;
-                },
-                onSuccess: function(response) {
-                    var url = "index.php?choose="+response.data;  
-                    window.location.replace(url); 
-                },
-                onFailure: function(response) {
-                    console.log(response);
-                }
-            });
+    {{ parent() }}
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="js/init.js"></script>  
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+    <script src="js/jquery.geocomplete.js"></script>
+    <script type="text/javascript">
+    var content = [
+    {% for user in users %}
+    { title: '{{user.username}}' },
+    {% endfor %}
+    { title: 'travis' }
+    ];
+    $(function() {
+        $('.ui.search').search({ source: content });
+        $("#location").geocomplete();
+        $('.ui.form.report').form(report_validate)
+        .api({
+            action: 'report nicething',
+            method: 'POST',
+            serializeForm: true,
+            data: {
+                name: 22
+            },
+            beforeSend: function(settings) {
+                console.log(settings.data);
+                return settings;
+            },
+            onSuccess: function(response) {
+                var url = "index.php?choose="+response.data;  
+                window.location.replace(url); 
+            },
+            onFailure: function(response) {
+                console.log(response);
+            }
+        });
 
-            });
-              $('.ui.dropdown').dropdown();
-              </script>
-              {% endblock %}
+    });
+    $('.ui.dropdown').dropdown();
+    </script>
+{% endblock %}
 

@@ -1,4 +1,5 @@
-    <?php
+<?php
+
     require 'js/parse/autoload.php';
     require_once "common.php";
     use Parse\ParseException;
@@ -12,7 +13,7 @@
     ParseClient::initialize( $app_id, $rest_key, $master_key );
     $storage = new ParseSessionStorage();
     ParseClient::setStorage($storage);
-    
+
     echo user_login($_POST['username'], $_POST['password']);
-     
+
 ?>

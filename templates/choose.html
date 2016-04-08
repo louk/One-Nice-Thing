@@ -1,62 +1,62 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="ui container">
-    <div class="flex center">
-        <div id="login">
-            <div class="ui secondary menu">
-                <a class="item active" data-tab="login">Login</a>
-                <a class="item" data-tab="register">Register</a>
-            </div>
-            <div class="ui bottom attached tab  active" data-tab="login">
-                <form class="ui form attached fluid segment login2">
-                    <div class="field">
-                        <label>Username</label>
-                        <input placeholder="Username" name="username" type="text">
-                        <input name="check" type="hidden" value="login">
-                    </div>
-                    <div class="field">
-                        <label>Password</label>
-                        <input type="password" name="password">
-                    </div>             
-                    <div class="ui green submit button">Login</div>
-                    <div style="float:right" class="ui blue button guest">Login as guest</div>
-                    <div class="ui error message">
-                        <div class="header">Check your username password !</div>
-                    </div>
-                </form>
-                <div class="ui bottom attached warning message">
-                    <i class="icon help"></i>
-                    <a href="#">Forgot your password? </a> 
+    <div class="ui container">
+        <div class="flex center">
+            <div id="login">
+                <div class="ui secondary menu">
+                    <a class="item active" data-tab="login">Login</a>
+                    <a class="item" data-tab="register">Register</a>
                 </div>
-            </div>
-            <div class="ui bottom attached tab " data-tab="register">
-                <form class="ui form segment register2" >
-                    <div class="field">
-                        <label>Firstname</label>
-                        <input placeholder="Name" name="first" type="text">
-                        <input name="check" type="hidden" value="register">
+                <div class="ui bottom attached tab  active" data-tab="login">
+                    <form class="ui form attached fluid segment login2">
+                        <div class="field">
+                            <label>Username</label>
+                            <input placeholder="Username" name="username" type="text">
+                            <input name="check" type="hidden" value="login">
+                        </div>
+                        <div class="field">
+                            <label>Password</label>
+                            <input type="password" name="password">
+                        </div>             
+                        <div class="ui green submit button">Login</div>
+                        <div style="float:right" class="ui blue button guest">Login as guest</div>
+                        <div class="ui error message">
+                            <div class="header">Check your username password !</div>
+                        </div>
+                    </form>
+                    <div class="ui bottom attached warning message">
+                        <i class="icon help"></i>
+                        <a href="#">Forgot your password? </a> 
                     </div>
-                    <div class="field">
-                        <label>Lastname</label>
-                        <input placeholder="Surname" name="last" type="text">
-                    </div>
-                    <div class="field">
-                        <label>Email</label>
-                        <input placeholder="Email" name="email" type="text">
-                    </div>
-                    <div class="field">
-                        <label>Password</label>
-                        <input type="password" name="password">
-                    </div>           
-                    <div class="fluid ui green submit button">Register</div>
-                    <div class="ui error message">
-                        <div class="header">Email or user name is already in the system!</div>
-                    </div>
-                </form>
+                </div>
+                <div class="ui bottom attached tab " data-tab="register">
+                    <form class="ui form segment register2" >
+                        <div class="field">
+                            <label>Firstname</label>
+                            <input placeholder="Name" name="first" type="text">
+                            <input name="check" type="hidden" value="register">
+                        </div>
+                        <div class="field">
+                            <label>Lastname</label>
+                            <input placeholder="Surname" name="last" type="text">
+                        </div>
+                        <div class="field">
+                            <label>Email</label>
+                            <input placeholder="Email" name="email" type="text">
+                        </div>
+                        <div class="field">
+                            <label>Password</label>
+                            <input type="password" name="password">
+                        </div>           
+                        <div class="fluid ui green submit button">Register</div>
+                        <div class="ui error message">
+                            <div class="header">Email or user name is already in the system!</div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 {% endblock %}
 {% block scripting %}
     {{ parent() }}
@@ -96,7 +96,6 @@
                         console.log(response.message);
                         var url = "index.php?dashboard";
                         window.location.replace(url); 
-                      // valid response and response.success = true
                     },
                     onFailure: function(response) {
                         console.log(response);
@@ -115,7 +114,6 @@
                         console.log(response.message);
                         var url = "index.php?dashboard";
                         window.location.replace(url); 
-                      // valid response and response.success = true
                     },
                     onFailure: function(response) {
                         console.log(response);

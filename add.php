@@ -1,4 +1,5 @@
 <?php
+
     require 'js/parse/autoload.php';
     require_once "config.php";
     use Parse\ParseException;
@@ -7,6 +8,8 @@
     use Parse\ParseClient;
     use Parse\ParseObject;
     use Parse\ParseQuery;
+    use Parse\ParseGeoPoint;
+
 
     session_start();
 
@@ -25,12 +28,15 @@
     $nice_thing = new ParseObject("NiceThing");
     $nice_thing->set("nice_thing", $_POST['content']);
     $nice_thing->set("location_name", $_POST['location']);
+    $point = new ParseGeoPoint(floatval($_POST['lat']), floatval($_POST['lng']));
+    $nice_thing->set("location", $point);
     $nice_thing->set("nice_thing", $_POST['content']);
     $nice_thing->set("whom", $_POST['who']);
     $nice_thing->set("feel", $_POST['feel']);
     $nice_thing->set("message", $_POST['message']);
     $nice_thing->set("feel", $_POST['feel']);
     $nice_thing->set("refered_user", $user);
+    $nice_thing->set("User", $_SESSION['user']);
     $nice_thing->set("privacy", 1);
     $nice_thing->set("status", 0);
 
@@ -56,5 +62,5 @@
     }else{
         echo "Error: User please select valid username";
     }
- 
+
 ?>
