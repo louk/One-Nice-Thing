@@ -233,3 +233,40 @@ var settings_validate = {
     inline : true,
     on     : 'blur'
 }
+/* favorite js */
+$( ".heart" ).click(function() {
+    var thisid = "#"+$(this).attr('id');
+    if($(this).attr('class') == "heart like icon active online"){ 
+        $.ajax({
+            type: "POST",
+            url: "index.php",
+            data: {like: 0, user_id: $(this).attr('user-id'), friend_id: $(this).attr("friend-id")},
+            success: function(data, textStatus, jqXHR)
+        {
+            if(data[0].msg == 1){
+                $(thisid).next().text(data[0].fav);
+                $(thisid).addClass('outline');
+                $(thisid).removeClass('online');
+                $(thisid).toggleClass( "active" );
+            }
+        }
+        });
+    }
+    else{
+
+        $.ajax({
+            type: "POST",
+            url: "index.php",
+            data: {like: 1, user_id: $(this).attr('user-id'), friend_id: $(this).attr("friend-id")},
+            success: function(data, textStatus, jqXHR)
+        {
+            if(data[0].msg == 1){
+                $(thisid).next().text(data[0].fav);
+                $(thisid).toggleClass( "active" );
+                $(thisid).addClass('online');
+                $(thisid).removeClass('outline');
+            }
+        }
+        });
+    }
+});

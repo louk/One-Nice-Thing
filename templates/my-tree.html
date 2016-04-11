@@ -3,63 +3,16 @@
     <div class="tree dragscroll">
         <ul class='active'>
             <li>
-            <a data-show='1'><span><img src='img/placeholder.png'></span><span>dfgsdgsdfgsfdgsfdgdsfgd</span></a>
+            <a data-show='1'><span><img src='img/placeholder.png'></span><span>{{ user.username }}</span></a>
             <ul>
+                {% for tree in trees %}
                 <li>
-                <a data-show='2'><span><img src='img/placeholder.png'></span><span>FirstName</span></a>
-                <ul>
-                    <li>
-                    <a data-show='3'><span><img src='img/placeholder.png'></span><span>FirstName</span></a>
-                    </li>
-                    <li>
-                    <a data-show='4'><span><img src='img/placeholder.png'></span><span>FirstName</span></a>
-                    </li>
-                    <li>
-                    <a data-show='5'><span><img src='img/placeholder.png'></span><span>FirstName</span></a>
-                    </li>
-                    <li>
-                    <a data-show='6'><span><img src='img/placeholder.png'></span><span>FirstName</span></a>
-                    </li>
-                    <li>
-                    <a data-show='7'><span><img src='img/placeholder.png'></span><span>FirstName</span></a>
-                    </li>
-                    <li>
-                    <a data-show='8'><span><img src='img/placeholder.png'></span><span>FirstName</span></a>
-                    </li>
+                <a onclick="tree('{{ tree.refered_user.objectId }}');" data-show='2'><span><img src='img/placeholder.png'>
+                </span><span>{{ tree.refered_user.username }}</span></a>
+                <ul id="{{ tree.refered_user.objectId }}">
                 </ul>
                 </li>
-                <li>
-                <a data-show='9'><span><img src='img/placeholder.png'></span><span>FirstName</span></a>
-                <ul>
-                    <li><a><span><img src='img/placeholder.png'></span><span>FirstName</span></a></li>
-                    <li>
-                    <a data-show='10'><span><img src='img/placeholder.png'></span><span>FirstName</span></a>
-                    <ul>
-                        <li>
-                        <a data-show='11'><span><img src='img/placeholder.png'></span><span>FirstName</span></a>
-                        </li>
-                        <li>
-                        <a data-show='12'><span><img src='img/placeholder.png'></span><span>FirstNam</span></a>
-                        </li>
-                        <li>
-                        <a data-show='13'><span><img src='img/placeholder.png'></span><span>FirstName</span></a>
-                        <ul>
-                            <li>
-                            <a data-show='14'><span><img src='img/placeholder.png'></span><span>FirstName</span></a>
-                            </li>
-                            <li>
-                            <a data-show='15'><span><img src='img/placeholder.png'></span><span>FirstNam</span></a>
-                            </li>
-                            <li>
-                            <a data-show='16'><span><img src='img/placeholder.png'></span><span>FirstName</span></a>
-                            </li>
-                        </ul>
-                        </li>
-                    </ul>
-                    </li>
-                    <li><a><span><img src='img/placeholder.png'></span><span>FirstName</span></a></li>
-                </ul>
-                </li>
+                {% endfor %}
             </ul>
             </li>
         </ul>
@@ -77,44 +30,53 @@
             <div class='content'>Thank you</div>
         </div>
     </div>
+{% endblock %}
+{% block scripting %}
     <script src='js/dragscroll.js'></script>
     <script src='js/jquery-2.2.0.min.js'></script>
     <script>
-    $(function(){
-        $('.tree a').mouseenter(function(e){
-            e.preventDefault();
-            var data = $(this).data('show'),
-            append = $('.show'+data).html();
-
-        $(this).after('<span class="show"><div class="ui card">'+append+'</div></span>');
-        }).mouseout(function(){
-            $(this).next('.show').remove();
+    function tree(id){
+        $.ajax({
+            type: "POST",
+            url: "index.php",
+            data: {viewThings:id},
+            success: function(data, textStatus, jqXHR)
+            {
+                var nicething = data;
+                var content = "";
+                for(var i=0; i<nicething.length; i++){
+                    content +="<li><a onclick=tree('"+nicething[i].refered_user+"');><span><img src='img/placeholder.png'></span><span>"+
+                    nicething[i].name+"</span></a><ul id='"+nicething[i].refered_user+"'></ul></li>";
+                }
+                $("#"+id).empty();
+                $("#"+id).append(content);
+            }
         });
-
+    }
+    $(function(){
         function treeWidth(){
-            var window_w = $(window).width(),
+        var window_w = $(window).width(),
         menu_w =  $('#submenu').width(),
         container_w = $('.container').width(),
         margin_left = parseInt($('.margin-left').css('margin-left'),10),
         tree_w = container_w - menu_w - margin_left;
 
-    $('.tree').width(tree_w);
+        $('.tree').width(tree_w);
         }
         treeWidth();
         $(window).resize(function(){
-            treeWidth();
-        })
+                treeWidth();
+                })
 
         $(document).on('click','.active>li>a',function(){
-            $this = $(this).next('ul');
-            if($this.hasClass('active')){
+                $this = $(this).next('ul');
+                if($this.hasClass('active')){
                 $this.removeClass('active');
                 $this.find('ul').removeClass('active');
-            }else{
+                }else{
                 $this.addClass('active')
-            }
-        });
-
+                }
+                });
 
         var offset_element = $('.tree>ul>li>a').offset(),
             offset_tree = $('.tree').offset(),
@@ -130,4 +92,3 @@
     });
     </script>
 {% endblock %}
-

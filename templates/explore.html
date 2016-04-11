@@ -2,186 +2,26 @@
 {% block subcontent %}
     <div id='explore'>
         <div class="ui three stackable cards">
+            {% for nicething in nicethings %}
+                
             <div class="card">
                 <div class="content">
                     <img class="right floated mini ui image" src="img/profile_default_male.jpg">
                     <div class="header">
-                        Elliot Fu
+                        {{ nicething.message }} 
                     </div>
                     <div class="meta">
-                        Friends of Veronika
+                        <span class='value'><i class="location arrow icon"></i>{{nicething.location_name}}</span>
                     </div>
                     <div class="description">
-                        Elliot requested permission to view your contact details
+                        {{ nicething.nice_thing }}
                     </div>
                 </div>
                 <div class="extra content">
-                    <span class="right floated">
-                        <i class="heart outline like icon"></i>
-                        17 likes
-                    </span>
+                    <span class='value'><i class="calendar icon"></i>{{nicething.createdAt | date("F jS \\a\\t g:ia")}}</span>
                 </div>
             </div>
-            <div class="card">
-                <div class="content">
-                    <img class="right floated mini ui image" src="img/profile_default_female.jpg">
-                    <div class="header">
-                        Elliot Fu
-                    </div>
-                    <div class="meta">
-                        Friends of Veronika
-                    </div>
-                    <div class="description">
-                        Elliot requested permission to view your contact details
-                    </div>
-                </div>
-                <div class="extra content">
-                    <span class="right floated">
-                        <i class="heart outline like icon"></i>
-                        17 likes
-                    </span>
-                </div>
-            </div>
-            <div class="card">
-                <div class="content">
-                    <img class="right floated mini ui image" src="img/profile_default_male.jpg">
-                    <div class="header">
-                        Elliot Fu
-                    </div>
-                    <div class="meta">
-                        Friends of Veronika
-                    </div>
-                    <div class="description">
-                        Elliot requested permission to view your contact details
-                    </div>
-                </div>
-                <div class="extra content">
-                    <span class="right floated">
-                        <i class="heart outline like icon"></i>
-                        17 likes
-                    </span>
-                </div>
-            </div>
-            <div class="card">
-                <div class="content">
-                    <img class="right floated mini ui image" src="img/profile_default_female.jpg">
-                    <div class="header">
-                        Elliot Fu
-                    </div>
-                    <div class="meta">
-                        Friends of Veronika
-                    </div>
-                    <div class="description">
-                        Elliot requested permission to view your contact details
-                    </div>
-                </div>
-                <div class="extra content">
-                    <span class="right floated">
-                        <i class="heart outline like icon"></i>
-                        17 likes
-                    </span>
-                </div>
-            </div>
-            <div class="card">
-                <div class="content">
-                    <img class="right floated mini ui image" src="img/profile_default_male.jpg">
-                    <div class="header">
-                        Elliot Fu
-                    </div>
-                    <div class="meta">
-                        Friends of Veronika
-                    </div>
-                    <div class="description">
-                        Elliot requested permission to view your contact details
-                    </div>
-                </div>
-                <div class="extra content">
-                    <span class="right floated">
-                        <i class="heart outline like icon"></i>
-                        17 likes
-                    </span>
-                </div>
-            </div>
-            <div class="card">
-                <div class="content">
-                    <img class="right floated mini ui image" src="img/profile_default_male.jpg">
-                    <div class="header">
-                        Elliot Fu
-                    </div>
-                    <div class="meta">
-                        Friends of Veronika
-                    </div>
-                    <div class="description">
-                        Elliot requested permission to view your contact details
-                    </div>
-                </div>
-                <div class="extra content">
-                    <span class="right floated">
-                        <i class="heart outline like icon"></i>
-                        17 likes
-                    </span>
-                </div>
-            </div>
-            <div class="card">
-                <div class="content">
-                    <img class="right floated mini ui image" src="img/profile_default_male.jpg">
-                    <div class="header">
-                        Elliot Fu
-                    </div>
-                    <div class="meta">
-                        Friends of Veronika
-                    </div>
-                    <div class="description">
-                        Elliot requested permission to view your contact details
-                    </div>
-                </div>
-                <div class="extra content">
-                    <span class="right floated">
-                        <i class="heart outline like icon"></i>
-                        17 likes
-                    </span>
-                </div>
-            </div>
-            <div class="card">
-                <div class="content">
-                    <img class="right floated mini ui image" src="img/profile_default_female.jpg">
-                    <div class="header">
-                        Elliot Fu
-                    </div>
-                    <div class="meta">
-                        Friends of Veronika
-                    </div>
-                    <div class="description">
-                        Elliot requested permission to view your contact details
-                    </div>
-                </div>
-                <div class="extra content">
-                    <span class="right floated">
-                        <i class="heart outline like icon"></i>
-                        17 likes
-                    </span>
-                </div>
-            </div>
-            <div class="card">
-                <div class="content">
-                    <img class="right floated mini ui image" src="img/profile_default_male.jpg">
-                    <div class="header">
-                        Elliot Fu
-                    </div>
-                    <div class="meta">
-                        Friends of Veronika
-                    </div>
-                    <div class="description">
-                        Elliot requested permission to view your contact details
-                    </div>
-                </div>
-                <div class="extra content">
-                    <span class="right floated">
-                        <i class="heart outline like icon"></i>
-                        17 likes
-                    </span>
-                </div>
-            </div>
+            {% endfor %}
         </div>
         <div class='actions flex end'>
             <button class='ui green button'>Prev</button>

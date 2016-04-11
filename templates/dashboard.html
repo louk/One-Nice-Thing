@@ -6,12 +6,12 @@
                 <div class='flex md-wrap'>
                     <div class="stat flex-col center md-flex12">
                         <div class="label">Directed</div>
-                        <div class="value">0</div>
+                        <div class="value">{{ user.connected|length }}</div>
                         <div class="label">Nice things directed from you</div>
                     </div>
                     <div class="stat flex-col center md-flex12">
                         <div class="label">Originated</div>
-                        <div class="value ui yellow">0</div>
+                        <div class="value ui yellow">{{ originated }}</div>
                         <div class="label">Nice things originated from you</div>
                     </div>
                     <div class="stat flex-col center md-flex12">
@@ -24,8 +24,8 @@
             <div class='margin-left'>
                 <div class="ui vertical menu">
                     <a class="item"><strong>Inbox</strong><div class="ui yellow label">0</div></a>
-                    <a class="item"><strong>Updates</strong><div class="ui green label">0</div></a>
                     <a class="item"><strong>New</strong><div class="ui red label">0</div></a>
+                    <a class="item"><strong>Favorite</strong><div class="ui green label">{{ user.favorite }}</div></a>
                 </div>
             </div>
         </div>
@@ -34,12 +34,13 @@
         </div>
         <div class='margin-top'>
             <div class="ui three stackable cards">
+                {% for last_ in last3 %}
                 <div class="ui card">
                     <div class="content">
-                        <div class="header">Cute Dog</div>
-                        <div class="meta">2 days ago</div>
+                        <div class="header">{{ last_.whom }}</div>
+                        <div class="meta">{{ last_.createdAt | date("F jS \\a\\t g:ia")}}</div>
                         <div class="description">
-                            <p>Cute dogs come in a variety of shapes and...</p>
+                            <p>{{ last_.nice_thing }}</p>
                         </div>
                     </div>
                     <div class="extra content">
@@ -47,32 +48,7 @@
                         121 Votes
                     </div>
                 </div>
-                <div class="ui card">
-                    <div class="content">
-                        <div class="header">Cute Dog</div>
-                        <div class="meta">2 days ago</div>
-                        <div class="description">
-                            <p>Cute dogs come in a variety of shapes and...</p>
-                        </div>
-                    </div>
-                    <div class="extra content">
-                        <i class="check icon"></i>
-                        121 Votes
-                    </div>
-                </div>
-                <div class="ui card">
-                    <div class="content">
-                        <div class="header">Cute Dog</div>
-                        <div class="meta">2 days ago</div>
-                        <div class="description">
-                            <p>Cute dogs come in a variety of shapes and...</p>
-                        </div>
-                    </div>
-                    <div class="extra content">
-                        <i class="check icon"></i>
-                        121 Votes
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>

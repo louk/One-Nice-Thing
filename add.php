@@ -40,7 +40,23 @@
     $nice_thing->set("privacy", 1);
     $nice_thing->set("status", 0);
 
+    $currentUser = $_SESSION['user'];
+    $query = ParseUser::query();
+    $userAgain = $query->get($currentUser->getObjectId());
+
+    $connected = array();
+    for ($i = 0; $i < count($userAgain->get('connected')); $i++) {
+        array_push($connected, $userAgain->get('connected')[$i]);
+    }
+    $key = -1;
+    $key = array_search($user->getObjectId(), $connected);
+    if ($key == null) {
+        array_push($connected, $user->getObjectId());
+        $userAgain->setArray("connected", $connected);
+    }
+
     try {
+        $userAgain->save(true);
         $nice_thing->save();
         $result = true;
     } catch (ParseException $ex) {  
