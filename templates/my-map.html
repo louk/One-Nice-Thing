@@ -1,6 +1,12 @@
 {% extends "submain.html" %}
 {% block subcontent %}
-    <div id="map_canvas" style="width:100%; height:500px"></div> 
+<div class="ui segment"style="width:100%; height:500px">
+    <div class="ui active inverted dimmer">
+        <div id="map_canvas" style="width:100%; height:500px"></div> 
+        <div id="loading" class="ui text loader hidden">Loading</div>
+    </div>
+    <p></p>
+</div>
 {% endblock %}
     {% block scripting %}
     {{ parent() }}
@@ -24,7 +30,7 @@
 
         childPoint.push({lat: '{{ nicething.location.latitude }}', lng: '{{ nicething.location.longitude }}', 
                 name:'{{ nicething.refered_user.first }}',location:'{{
-                nicething.location_name }}', image: '{{ nicething.User.avatar }}', id:'{{ nicething.refered_user.objectId}}', 
+                nicething.location_name }}', image: '{{ nicething.refered_user.avatar }}', id:'{{ nicething.refered_user.objectId}}', 
                 thing:'{{ nicething.nice_thing }}'});
 
         {% endif %}

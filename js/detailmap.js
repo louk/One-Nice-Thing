@@ -85,6 +85,7 @@ function createMarker(latlng, id, html, bool) {
     }
     bounds.extend(latlng);
     google.maps.event.addListener(marker, 'click', function() {
+        $('#loading').show();
         $.ajax({
             type: "POST",
             url: "index.php",
@@ -110,6 +111,7 @@ function createMarker(latlng, id, html, bool) {
                 createMarker(new google.maps.LatLng(data[i].lat, data[i].lng), data[i].refered_user, "<img id='"+data[i].refered_user+ 
                         "' class='ui avatar image' src='"+data[i].avatar+"'><span>"+data[i].name+"</span>", true);
             }
+            $('#loading').hide();
             infowindow.setContent(contentString); 
             infowindow.open(map,marker);
             map.fitBounds(bounds);

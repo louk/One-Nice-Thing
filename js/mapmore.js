@@ -85,6 +85,7 @@ function createMarker(latlng, id, html, bool) {
     }
     bounds.extend(latlng);
     google.maps.event.addListener(marker, 'click', function() {
+        $('#loading').show();
         $.ajax({
             type: "POST",
             url: "index.php",
@@ -109,10 +110,10 @@ function createMarker(latlng, id, html, bool) {
             console.log(data.length);
             var content = "";
             for (var i = 0; i < data.length; i += 1) {
-console.log(data);
-                content = '<div class="ui card"><div class="card"><div class="content"><img class="right floated mini ui image" src="'+data[i].avatar+'"><div class="header">'+data[i].name+'</div><div class="meta">'+data[i].location_name+'</div><div class="description">'+data[i].nice_thing+'</div></div></div><div class="short_Info"><a href="index.php?explore='+data[i].id+'">Learn more</a></div></div>';
+                content = '<div class="ui card" style="padding: 5px;text-align: left;"><div class="card"><div class="content"><img class="right floated mini ui image" src="'+data[i].avatar+'"><div class="header">'+data[i].name+'</div><div class="meta">'+data[i].location_name+'</div><div class="description">'+data[i].nice_thing+'</div></div></div><div class="short_Info"><a href="index.php?explore='+data[i].id+'">Learn more</a></div></div>';
                 createMarker(new google.maps.LatLng(data[i].lat, data[i].lng), data[i].refered_user, content, true);
             }
+            $('#loading').hide();
             infowindow.setContent(contentString); 
             infowindow.open(map,marker);
             map.fitBounds(bounds);
@@ -183,11 +184,11 @@ function initialize() {
 
         geodesic = new google.maps.Polyline({
             path:[centerPoint, new google.maps.LatLng(childPoint[i].lat, childPoint[i].lng)],
-            strokeColor: "#40b553",
-            strokeOpacity: 0.8,
-            map: map,
-            geodesic:true,
-            strokeWeight: 4
+                 strokeColor: "#40b553",
+                 strokeOpacity: 0.8,
+                 map: map,
+                 geodesic:true,
+                 strokeWeight: 4
         });
 
     }
@@ -197,7 +198,8 @@ function initialize() {
 
     for (var i = 0; i < childPoint.length; i += 1) {
 
-        content = '<div class="ui card"><div class="card"><div class="content"><img class="right floated mini ui image" src="'+childPoint[i].image+'">'+
+        content = '<div class="ui card" style="padding: 5px;text-align: left;"><div class="card"><div class="content">'+
+            '<img class="right floated mini ui image" src="'+childPoint[i].image+'">'+
             '<div class="header">'+childPoint[i].name+'</div><div class="meta">'+childPoint[i].location+'</div><div class="description">'+
             childPoint[i].thing+'</div></div></div><div class="short_Info"><a href="index.php?explore='+childPoint[i].thing+'">Learn more</a></div></div>';
 
