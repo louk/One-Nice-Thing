@@ -21,13 +21,16 @@
                         <div class="content">
                             <div class="flex middle between">
                                 <span><i class="like icon"></i>{{ likes|length }} Favorite</span>
-                                <span>
-                                    <a class="twitter popup" href="http://twitter.com/share?text={{ nicething.nice_thing }}">
-                                        <i class="large twitter icon"></i>
-                                    </a>
-                                    <div class="fb-share-button" data-href="http://one.dev/one/index.php?explore={{ nicething.objectId }}" 
-                                        data-layout="icon" data-mobile-iframe="true">
-                                    </div>
+                                <span style="height: 18px">
+                                    <iframe
+                                        src="https://platform.twitter.com/widgets/tweet_button.html?size=m&url=http%3A%2F%2F1nicething.net%2Findex.php%3Fexplore%3D{{
+                                        nicething.objectId}}&text={{nicething.nice_thing}}"
+                                        width="140"
+                                        height="28"
+                                        style="border: 0; width:67px; overflow: hidden;">
+                                    </iframe>
+                                    <div class="fb-share-button" style="top:-12px" data-href="http://1nicething.net/index.php?explore=
+                                        {{nicething.objectId }}" data-layout="button" data-mobile-iframe="false"></div>
                                 </span>
                             </div>
                         </div>
@@ -41,27 +44,34 @@
     </div>
     <div id="fb-root"></div>
 {% endblock %}
-    {% block scripting %}
+{% block scripting %}
     {{ parent() }}
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=983693358346290";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
+    <script>
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=983693358346290";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
     <script type="text/javascript" src="js/v3_epoly.js"></script>
     <script type="text/javascript" charset="utf-8">
-    var userPoint = [];
-    userPoint.push({lat: '{{ nicething.location.latitude }}', lng: '{{ nicething.location.longitude }}', 
-            name:'{{ nicething.refered_user.first }}', id:'{{ nicething.objectId }}', image: '{{ nicething.User.avatar }}'});
-    var childPoint = [];
-    {% if nicething.location %}
-    childPoint.push({lat: '{{ nicething.location.latitude }}', lng: '{{ nicething.location.longitude }}', 
-            name:'{{ nicething.User.first }}', image:
-            '{{ nicething.User.avatar }}', id:'{{ nicething.refered_user.objectId}}'});
-    {% endif %}
+        var userPoint = [];
+
+        userPoint.push({lat: '{{ nicething.location.latitude }}', lng: '{{ nicething.location.longitude }}', 
+                name:'{{ nicething.refered_user.first }}', id:'{{ nicething.objectId }}', image: '{{ nicething.User.avatar }}'});
+
+        var childPoint = [];
+        {% if nicething.location %}
+
+            childPoint.push({lat: '{{ nicething.location.latitude }}', lng: '{{ nicething.location.longitude }}', 
+                    name:'{{ nicething.User.first }}', image:
+                    '{{ nicething.User.avatar }}', id:'{{ nicething.refered_user.objectId}}'});
+
+        {% endif %}
     </script>
     <script type="text/javascript" src="js/detailmap.js" charset="utf-8"></script>
 {% endblock %}

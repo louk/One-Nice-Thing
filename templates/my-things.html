@@ -42,13 +42,16 @@
                 </div>
             </div>
             <div class='extra content flex between middle'>
-                <div class="ui green icon dropdown button">
-                    <span class="text">Share</span>
-                    <div class='menu'>
-                        <div class="item"><a href='#'><i class='large twitter icon'></i>Twitter</a></div>
-                        <div class="item"><a href='#'><i class='large facebook square icon'></i>Facebook</a></div>
-                        <div class="item"><a href='#'><i class='large instagram icon'></i>Instagram</a></div>
-                    </div>
+                <div>
+                    <iframe
+                        src="https://platform.twitter.com/widgets/tweet_button.html?size=m&url=http%3A%2F%2F1nicething.net%2Findex.php%3Fexplore%3D{{
+                        nice.objectId}}&text={{nice.nice_thing}}"
+                        width="140"
+                        height="28"
+                        style="border: 0; width:67px; overflow: hidden;">
+                    </iframe>
+                    <div class="fb-share-button" style="top: -12px" data-href="http://1nicething.net/index.php?explore={{ nice.objectId }}" 
+                        data-layout="button" data-mobile-iframe="false"></div>
                 </div>
                 <button class='ui green button back'>Back</button>
                 <a class='ui green button edit' onclick="edit('{{nice.objectId }}');" >Edit</a>
@@ -151,6 +154,13 @@
 {% endblock %}
 {% block scripting %}
     {{ parent() }}
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=983693358346290";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script src="js/init.js"></script>  
     <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
