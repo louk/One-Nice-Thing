@@ -3,8 +3,7 @@
     require 'js/parse/autoload.php';
     require_once "config.php";
     use Parse\ParseException;
-    use Parse\ParseUser;
-    use Parse\ParseSessionStorage;
+    use Parse\ParseUser; use Parse\ParseSessionStorage;
     use Parse\ParseClient;
     use Parse\ParseQuery;
     use Parse\ParseObject;
@@ -238,6 +237,62 @@
             echo 'Error: Failed to create new object, with error message: ' . $ex->getMessage();
             return;
         }
+    }
+
+    function user_update($id, $first, $last, $email, $profile){
+
+        $response = new Response();
+        $query = new ParseQuery("_User");
+        $query->equalTo("objectId",$id);
+        $user = $query->first();
+        $user->set('first', $first);
+        $user->set('last', $last);
+        $user->set('email', $email);
+
+        if ($profile != null) {
+
+            $random = substr( md5(rand()), 0, 7);
+            $data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $profile));
+            file_put_contents('img/user/'.$random.'.png', $data);
+            $path = 'img/user/'.$random.'.png';
+            $user->set('avatar', $path);
+
+        }
+        try {
+            $user->save(true);
+            $_SESSION['user'] = $user;
+            $response->success = true;
+            $response->message = "changed profile";
+            echo json_encode($response); 
+        } catch (ParseException $ex) {
+            $response->success = false;
+            $response->message = 'Error: Failed to change: ' . $ex;
+            echo json_encode($response); 
+        } 
+
+    }
+
+    function change_password($id, $pass){
+
+        $response = new Response();
+        $query = new ParseQuery("_User");
+        $query->equalTo("objectId",$id);
+        $user = $query->first();
+        $user->set('password', $pass);
+
+        try {
+            $user->save(true);
+            session_unset();
+            session_destroy();
+            $response->success = true;
+            $response->message = "changed password";
+            echo json_encode($response); 
+        } catch (ParseException $ex) {
+            $response->success = false;
+            $response->message = 'Error: Failed to change: ' . $ex;
+            echo json_encode($response); 
+        } 
+
     }
 
 ?>

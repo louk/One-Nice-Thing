@@ -1,8 +1,9 @@
 
 $.fn.api.settings.api = {
 
+  'settings user'    : 'user.php',
+  'change_password user'    : 'user.php',
   'forget user'      : 'user.php',
-  'settings'         : 'user.php',
   'login user'       : 'login.php',
   'register user'    : 'user.php',
   'guest user'       : 'user.php',
@@ -37,6 +38,38 @@ var login_validate = {
     inline : true,
     on     : 'blur'
 }
+var cpassword_validate = {
+    fields: {
+        new_password: {
+            identifier: 'new_password',
+            rules: [
+            {
+                type   : 'empty',
+                prompt : 'Please enter a new password'
+            },
+            {
+                type   : 'minLength[6]',
+                prompt : 'Your password must be at least {ruleValue} characters'
+            }
+            ]
+        },
+        confirm_password: {
+            identifier: 'confirm_password',
+            rules: [
+            {
+                type   : 'empty',
+                prompt : 'Please enter a confirm password'
+            },
+            {
+                type   : 'minLength[6]',
+                prompt : 'Your password must be at least {ruleValue} characters'
+            }
+            ]
+        }
+    },
+    inline : true,
+    on     : 'blur'
+}
 var register_validate = {
     fields: {
         first: {
@@ -61,26 +94,34 @@ var register_validate = {
             identifier: 'password',
             rules: [
             {
-               type   : 'empty',
-               prompt : 'Please enter a password'
-           },
-           {
-               type   : 'minLength[6]',
-               prompt : 'Your password must be at least {ruleValue} characters'
-           }
-           ]
-       },
-       email: {
+                type   : 'empty',
+                prompt : 'Please enter a password'
+            },
+            {
+                type   : 'minLength[6]',
+                prompt : 'Your password must be at least {ruleValue} characters'
+            }
+            ]
+        },
+        location: {
+            identifier: 'location',
+            rules: [
+            {
+                type   : 'empty',
+                prompt : 'Please enter a location'
+            }]
+        },
+        email: {
             identifier: 'email',
             rules: [
-                {
-                    type   : 'empty',
-                    prompt : 'Please enter a email'
-                },
-                {
-                   type   : 'email',
-                   prompt : 'Please enter a valid e-mail' 
-               }
+            {
+                type   : 'empty',
+                prompt : 'Please enter a email'
+            },
+            {
+                type   : 'email',
+                prompt : 'Please enter a valid e-mail' 
+            }
             ]
         }
     }   ,
@@ -177,45 +218,6 @@ var settings_validate = {
                 }
             ]
         },
-        password: {
-            identifier: 'old_pass',
-            rules: [
-                {
-                   type   : 'empty',
-                   prompt : 'Please enter a password'
-               },
-               {
-                   type   : 'minLength[6]',
-                   prompt : 'Your password must be at least {ruleValue} characters'
-                }
-           ]
-        },
-        password2: {
-            identifier: 'new_pass',
-            rules: [
-                {
-                   type   : 'empty',
-                   prompt : 'Please enter a password'
-               },
-               {
-                   type   : 'minLength[6]',
-                   prompt : 'Your password must be at least {ruleValue} characters'
-               }
-           ]
-        },
-        password3: {
-            identifier: 'new_pass2',
-            rules: [
-                {
-                   type   : 'empty',
-                   prompt : 'Please enter a password'
-               },
-               {
-                   type   : 'match[new_pass]',
-                   prompt : 'Your password must be the same'
-               }
-            ]
-        },
         email: {
             identifier: 'email',
             rules: [
@@ -240,7 +242,7 @@ $( ".heart" ).click(function() {
         $.ajax({
             type: "POST",
             url: "index.php",
-            data: {like: 0, user_id: $(this).attr('user-id'), friend_id: $(this).attr("friend-id")},
+            data: {like: 0, user_id: $(this).attr('user-id'), thing_id: $(this).attr("thing-id")},
             success: function(data, textStatus, jqXHR)
         {
             if(data[0].msg == 1){
@@ -257,7 +259,7 @@ $( ".heart" ).click(function() {
         $.ajax({
             type: "POST",
             url: "index.php",
-            data: {like: 1, user_id: $(this).attr('user-id'), friend_id: $(this).attr("friend-id")},
+            data: {like: 1, user_id: $(this).attr('user-id'), thing_id: $(this).attr("thing-id")},
             success: function(data, textStatus, jqXHR)
         {
             if(data[0].msg == 1){

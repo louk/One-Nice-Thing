@@ -1,119 +1,73 @@
 {% extends "submain.html" %}
 {% block subcontent %}
-    <div class='ui three stackable cards'>
-        <div class="card">
-            <div class="extra content">
-                <div class="flex middle between">
-                    <span><img class="ui avatar image" src="img/placeholder.png"> Matt</span>
-                    <div class='flex-col'><span>Ulaanbaatar</span><span>2016/06/06</span></div>
+    <div id='explore'>
+        <div class="ui three stackable cards">
+            {% for nicething in nicethings %}
+                
+            <div class="card">
+                <div class="content">
+                    <a href="index.php?explore={{ nicething.objectId }}">
+                        <img class="right floated mini ui image" src="img/profile_default_male.jpg">
+                        <div class="header">
+                            {{ nicething.message }} 
+                        </div>
+                        <div class="meta">
+                            <span class='value'><i class="location arrow icon"></i>{{nicething.location_name}}</span>
+                        </div>
+                        <div class="description">
+                            {{ nicething.nice_thing }}
+                        </div>
+                    </a>
+                </div>
+                <div class="extra content">
+                    <span class='value'><i class="calendar icon"></i>{{nicething.createdAt | date("F jS \\a\\t g:ia")}}</span>
+                    <span class="right floated">
+                        <i id="{{ nicething.objectId }}" thing-id="{{ nicething.objectId }}" class="heart like icon outline"></i>
+                        <span>{{ nicething.likes|length }}</span>
+                    </span>
                 </div>
             </div>
-            <div class="content">
-                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
-            </div>
-            <div class="extra content">
-                <div class="flex middle between">
-                    <span><a href='#'><i class="like icon"></i>Like</a></span>
-                    <span><a href='#'><i class="large twitter icon"></i></a><a href='#'><i class="large facebook square icon"></i></a><a href='#'><i class="large instagram icon"></i></a></span>
-                </div>
-            </div>
+            {% endfor %}
         </div>
-        <div class="card">
-            <div class="extra content">
-                <div class="flex middle between">
-                    <span><img class="ui avatar image" src="img/placeholder.png"> Matt</span>
-                    <div class='flex-col'><span>Ulaanbaatar</span><span>2016/06/06</span></div>
-                </div>
-            </div>
-            <div class="content">
-                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
-            </div>
-            <div class="extra content">
-                <div class="flex middle between">
-                    <span><a href='#'><i class="like icon"></i>Like</a></span>
-                    <span><a href='#'><i class="large twitter icon"></i></a><a href='#'><i class="large facebook square icon"></i></a><a href='#'><i class="large instagram icon"></i></a></span>
-                </div>
-            </div>
+        <div class='actions flex end'>
+            <button class='ui green button'>Prev</button>
+            <button class='ui green button'>Next</button>
         </div>
-        <div class="card">
-            <div class="extra content">
-                <div class="flex middle between">
-                    <span><img class="ui avatar image" src="img/placeholder.png"> Matt</span>
-                    <div class='flex-col'><span>Ulaanbaatar</span><span>2016/06/06</span></div>
-                </div>
-            </div>
-            <div class="content">
-                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
-            </div>
-            <div class="extra content">
-                <div class="flex middle between">
-                    <span><a href='#'><i class="like icon"></i>Like</a></span>
-                    <span><a href='#'><i class="large twitter icon"></i></a><a href='#'><i class="large facebook square icon"></i></a><a href='#'><i class="large instagram icon"></i></a></span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class='actions flex end'>
-        <button class='ui green button'>Prev</button>
-        <button class='ui green button'>Next</button>
     </div>
 {% endblock %}
 {% block subcontent1 %}
-    <div class='ui four stackable cards'>
-        <div class="card">
-            <div class="extra content">
-                <div class="flex middle between">
-                    <span><img class="ui avatar image" src="img/placeholder.png"> Matt</span>
-                    <div class='flex-col'><span>Ulaanbaatar</span><span>2016/06/06</span></div>
+    <div id='explore'>
+        <div class="ui four stackable cards">
+            {% for nicething in nicethings %}
+                
+            <div class="card">
+                <div class="content">
+                    <a href="index.php?explore={{ nicething.objectId }}">
+                        <img class="right floated mini ui image" src="img/profile_default_male.jpg">
+                        <div class="header">
+                            {{ nicething.message }} 
+                        </div>
+                        <div class="meta">
+                            <span class='value'><i class="location arrow icon"></i>{{nicething.location_name}}</span>
+                        </div>
+                        <div class="description">
+                            {{ nicething.nice_thing }}
+                        </div>
+                    </a>
+                </div>
+                <div class="extra content">
+                    <span class='value'><i class="calendar icon"></i>{{nicething.createdAt | date("F jS \\a\\t g:ia")}}</span>
+                    <span class="right floated">
+                        <i id="{{ nicething.objectId }}" thing-id="{{ nicething.objectId }}" class="heart like icon outline"></i>
+                        <span>{{ nicething.likes|length }}</span>
+                    </span>
                 </div>
             </div>
-            <div class="content">
-                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
-            </div>
-            <div class="extra content">
-                <div class="flex middle between">
-                    <span><a href='#'><i class="like icon"></i>Like</a></span>
-                    <span><a href='#'><i class="large twitter icon"></i></a><a href='#'><i class="large facebook square icon"></i></a><a href='#'><i class="large instagram icon"></i></a></span>
-                </div>
-            </div>
+            {% endfor %}
         </div>
-        <div class="card">
-            <div class="extra content">
-                <div class="flex middle between">
-                    <span><img class="ui avatar image" src="img/placeholder.png"> Matt</span>
-                    <div class='flex-col'><span>Ulaanbaatar</span><span>2016/06/06</span></div>
-                </div>
-            </div>
-            <div class="content">
-                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
-            </div>
-            <div class="extra content">
-                <div class="flex middle between">
-                    <span><a href='#'><i class="like icon"></i>Like</a></span>
-                    <span><a href='#'><i class="large twitter icon"></i></a><a href='#'><i class="large facebook square icon"></i></a><a href='#'><i class="large instagram icon"></i></a></span>
-                </div>
-            </div>
+        <div class='actions flex end'>
+            <button class='ui green button'>Prev</button>
+            <button class='ui green button'>Next</button>
         </div>
-        <div class="card">
-            <div class="extra content">
-                <div class="flex middle between">
-                    <span><img class="ui avatar image" src="img/placeholder.png"> Matt</span>
-                    <div class='flex-col'><span>Ulaanbaatar</span><span>2016/06/06</span></div>
-                </div>
-            </div>
-            <div class="content">
-                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
-            </div>
-            <div class="extra content">
-                <div class="flex middle between">
-                    <span><a href='#'><i class="like icon"></i>Like</a></span>
-                    <span><a href='#'><i class="large twitter icon"></i></a><a href='#'><i class="large facebook square icon"></i></a><a href='#'><i class="large instagram icon"></i></a></span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class='actions flex end'>
-        <button class='ui green button'>Prev</button>
-        <button class='ui green button'>Next</button>
     </div>
 {% endblock %}

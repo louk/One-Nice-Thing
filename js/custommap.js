@@ -156,26 +156,25 @@ function initialize() {
             strokeWeight: 4
         });
     }
-    createMarker(centerPoint, "<img class='ui avatar image' src='img/joe.jpg'><span>"+userPoint[0].name+"</span>", false);
+    createMarker(centerPoint, "<img class='ui avatar image' src='"+userPoint[0].image+"'><span>"+userPoint[0].name+"</span>", false);
     for (var i = 0; i < childPoint.length; i += 1) {
-        createMarker(new google.maps.LatLng(childPoint[i].lat, childPoint[i].lng), "<img class='ui avatar image' src='img/"+
-                childPoint[i].image+".jpg'><span>"+childPoint[i].name+"</span>", true);
+        createMarker(new google.maps.LatLng(childPoint[i].lat, childPoint[i].lng), "<img class='ui avatar image' src='"+childPoint[i].image+"'><span>"+childPoint[i].name+"</span>", true);
     }
     map.fitBounds(bounds);
 }
 
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            centerPoint = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-            initialize();
-            bounds.extend(centerPoint);
-        }, function() {
-            centerPoint = new google.maps.LatLng(userPoint[0].lat, userPoint[0].lng);
-            initialize();
-            bounds.extend(centerPoint);
-        });
-    } else {
-            centerPoint = new google.maps.LatLng(userPoint[0].lat, userPoint[0].lng);
-            initialize();
-            bounds.extend(centerPoint);
-    }
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+        centerPoint = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        initialize();
+        bounds.extend(centerPoint);
+    }, function() {
+        centerPoint = new google.maps.LatLng(userPoint[0].lat, userPoint[0].lng);
+        initialize();
+        bounds.extend(centerPoint);
+    });
+} else {
+    centerPoint = new google.maps.LatLng(userPoint[0].lat, userPoint[0].lng);
+    initialize();
+    bounds.extend(centerPoint);
+}

@@ -3,32 +3,19 @@
     <div class="tree dragscroll">
         <ul class='active'>
             <li>
-            <a data-show='1'><span><img src='img/placeholder.png'></span><span>{{ user.username }}</span></a>
+            <a data-show='1'><span><img src='{{user.avatar}}'></span><span>{{ user.username }}</span></a>
             <ul>
                 {% for tree in trees %}
                 <li>
-                <a onclick="tree('{{ tree.refered_user.objectId }}');" data-show='2'><span><img src='img/placeholder.png'>
-                </span><span>{{ tree.refered_user.username }}</span></a>
-                <ul id="{{ tree.refered_user.objectId }}">
+                <a onclick="tree('{{ tree.id }}');"><span><img src='{{ tree.avatar }}'>
+                </span><span>{{ tree.username }}</span></a>
+                <ul id="{{ tree.id }}">
                 </ul>
                 </li>
                 {% endfor %}
             </ul>
             </li>
         </ul>
-    </div>
-    <div id='show'>
-        <div class="ui card show1">
-            <div class='content'>Everything the user has posted...</div>
-            <div class='content'>Thank you</div>
-        </div>
-        <div class="ui card show2">
-            <div class='content'><i class="user icon"></i>Svdsfjghsdfl</div>
-            <div class='content'><i class="location arrow icon"></i>17 Tsagdaa Street, Ulaanbaatar, Mongolia</div>
-            <div class='content'><i class="calendar icon"></i>February 2nd at 10:06am</div>
-            <div class='content'>Everything the user has posted is handled and posted using jQuery; it is written to the chat log with PHP. The only thing left to do is to display the updated chat log to the user.</div>
-            <div class='content'>Thank you</div>
-        </div>
     </div>
 {% endblock %}
 {% block scripting %}
@@ -39,14 +26,14 @@
         $.ajax({
             type: "POST",
             url: "index.php",
-            data: {viewThings:id},
+            data: {viewTree:id},
             success: function(data, textStatus, jqXHR)
             {
                 var nicething = data;
                 var content = "";
                 for(var i=0; i<nicething.length; i++){
-                    content +="<li><a onclick=tree('"+nicething[i].refered_user+"');><span><img src='img/placeholder.png'></span><span>"+
-                    nicething[i].name+"</span></a><ul id='"+nicething[i].refered_user+"'></ul></li>";
+                    content +="<li><a onclick=tree('"+nicething[i].id+"');><span><img src='"+nicething[i].avatar+"'></span><span>"+
+                    nicething[i].username+"</span></a><ul id='"+nicething[i].id+"'></ul></li>";
                 }
                 $("#"+id).empty();
                 $("#"+id).append(content);
@@ -59,8 +46,7 @@
         menu_w =  $('#submenu').width(),
         container_w = $('.container').width(),
         margin_left = parseInt($('.margin-left').css('margin-left'),10),
-        tree_w = container_w - menu_w - margin_left;
-
+        tree_w = container_w - menu_w - margin_left; 
         $('.tree').width(tree_w);
         }
         treeWidth();
@@ -90,5 +76,6 @@
         $('.tree').scrollLeft(offset_element.left - offset_tree.left - (tree_w - element_w)/2);
         $('.tree').scrollTop(offset_element.top - offset_tree.top - (tree_h - element_h)/2);
     });
+        $('.ui.dropdown').dropdown();
     </script>
 {% endblock %}

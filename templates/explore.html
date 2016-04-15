@@ -6,19 +6,40 @@
                 
             <div class="card">
                 <div class="content">
-                    <img class="right floated mini ui image" src="img/profile_default_male.jpg">
-                    <div class="header">
-                        {{ nicething.message }} 
-                    </div>
-                    <div class="meta">
-                        <span class='value'><i class="location arrow icon"></i>{{nicething.location_name}}</span>
-                    </div>
-                    <div class="description">
-                        {{ nicething.nice_thing }}
-                    </div>
+                    <a href="index.php?explore={{ nicething.objectId }}">
+                        <img class="right floated mini ui image" src="img/profile_default_male.jpg">
+                        <div class="header">
+                            {{ nicething.message }} 
+                        </div>
+                        <div class="meta">
+                            <span class='value'><i class="location arrow icon"></i>{{nicething.location_name}}</span>
+                        </div>
+                        <div class="description">
+                            {{ nicething.nice_thing }}
+                        </div>
+                    </a>
                 </div>
                 <div class="extra content">
                     <span class='value'><i class="calendar icon"></i>{{nicething.createdAt | date("F jS \\a\\t g:ia")}}</span>
+                    <span class="right floated">
+                        {% set foo = 'bar' %}
+                        {% for like in nicething.likes %}
+                        {% if like == user.objectId %}
+                        {% set foo = 'foo' %}
+                        <i id="{{ nicething.objectId }}"
+                            user-id="{{ user.objectId }}" thing-id="{{ nicething.objectId }}" class="heart like icon active online"></i>
+                        {% endif %}
+                        {% endfor %}
+                        {% if foo != 'foo' and nicething.likes %}
+                        <i id="{{ nicething.objectId }}"
+                            user-id="{{ user.objectId }}" thing-id="{{ nicething.objectId }}" class="heart like icon outline"></i>
+                        {% endif %}
+                        {% if not nicething.likes %}
+                        <i id="{{ nicething.objectId }}"
+                            user-id="{{ user.objectId }}" thing-id="{{ nicething.objectId }}" class="heart like icon outline"></i>
+                        {% endif %}
+                        <span>{{ nicething.likes|length }}</span>
+                    </span>
                 </div>
             </div>
             {% endfor %}
@@ -28,4 +49,8 @@
             <button class='ui green button'>Next</button>
         </div>
     </div>
+{% endblock %}
+{% block scripting %}
+{{ parent() }}
+<script src="js/init.js"></script>
 {% endblock %}

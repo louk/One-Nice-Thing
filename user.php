@@ -51,8 +51,11 @@
         mail_box($_POST['email'],'New password', $content, 'forgot');
     }
 
-    if($func == 'message'){
+    if($func == 'settings'){
+        echo user_update($_POST['user_id'], $_POST['first'], $_POST['last'], $_POST['email'], $_POST['profile']);
+    }
 
+    if($func == 'message'){
         $response = new Response();
 
         $query = new ParseQuery("Chat");
@@ -79,7 +82,18 @@
             $response->message = 'Error: Failed to chatter: ' . $ex;
             echo json_encode($response); 
         }
+    }
 
+    if($func == 'change_password'){
+        $response = new Response();
+        if ($_POST['new_password'] == $_POST['confirm_password']) {
+                echo change_password($_POST['user_id'], $_POST['new_password']);
+        }
+        else{
+            $response->success = false;
+            $response->message = 'matching password';
+            echo json_encode($response); 
+        }
     }
 
 ?>

@@ -1,0 +1,67 @@
+{% extends "submain.html" %}
+{% block subcontent1 %}
+    <div class="ui internally celled grid">
+        <div class="row">
+            <div class="five wide column">
+                <div class='ui stackable cards'>
+                    <div class="card">
+                        <div class="content">
+                            <div class="flex middle between">
+                                <span><img class="ui avatar image"
+                                    src="{{ nicething.User.avatar }}"> {{ nicething.User.first }}</span>
+                                <div class='flex-col right floated'>
+                                    <span>{{ nicething.location_name }}</span>
+                                    <span style='text-align: right'>{{nicething.createdAt | date("Y/m/d")}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content">
+                            {{ nicething.nice_thing }}
+                        </div>
+                        <div class="content">
+                            <div class="flex middle between">
+                                <span><i class="like icon"></i>{{ likes|length }} Favorite</span>
+                                <span>
+                                    <a class="twitter popup" href="http://twitter.com/share?text={{ nicething.nice_thing }}">
+                                        <i class="large twitter icon"></i>
+                                    </a>
+                                    <div class="fb-share-button" data-href="http://one.dev/one/index.php?explore={{ nicething.objectId }}" 
+                                        data-layout="icon" data-mobile-iframe="true">
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="eleven wide column">
+                <div id="map_canvas" style="width:100%; height:500px"></div> 
+            </div>
+        </div>
+    </div>
+    <div id="fb-root"></div>
+{% endblock %}
+    {% block scripting %}
+    {{ parent() }}
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=983693358346290";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
+    <script type="text/javascript" src="js/v3_epoly.js"></script>
+    <script type="text/javascript" charset="utf-8">
+    var userPoint = [];
+    userPoint.push({lat: '{{ nicething.location.latitude }}', lng: '{{ nicething.location.longitude }}', 
+            name:'{{ nicething.refered_user.first }}', id:'{{ nicething.objectId }}', image: '{{ nicething.User.avatar }}'});
+    var childPoint = [];
+    {% if nicething.location %}
+    childPoint.push({lat: '{{ nicething.location.latitude }}', lng: '{{ nicething.location.longitude }}', 
+            name:'{{ nicething.User.first }}', image:
+            '{{ nicething.User.avatar }}', id:'{{ nicething.refered_user.objectId}}'});
+    {% endif %}
+    </script>
+    <script type="text/javascript" src="js/detailmap.js" charset="utf-8"></script>
+{% endblock %}

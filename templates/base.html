@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/grid.css" />
     <link rel='shortcut icon' type='image/x-icon' href='img/favicon.ico' />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="{{ title }}" />
+    <meta property="og:image"         content="http://1nicething.net/img/favicon.ico" />
     <title>One Nice Thing {{ title }}</title>
     {% endblock %}
 </head>
@@ -50,10 +53,11 @@
                                 <a class="{%if nav==4 %} active {%endif%}item" href="index.php?explore">Explore</a>
                             </div>
                             <div class="ui inline dropdown" id='user'>
-                                <img class="ui avatar image" src="img/profile_default_male.jpg">{{user.username}}
+                                <img class="ui avatar image" src="{{ user.avatar }}">{{user.username}}
                                 <i class="dropdown icon"></i>
                                 <div class="menu">
                                     <a class="item" href="index.php?settings">Settings</a>
+                                    <a class="item" href="index.php?change_password">Change password</a>
                                     <a class="item" href="index.php?logout">Logout</a>
                                 </div>
                             </div>

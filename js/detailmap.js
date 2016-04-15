@@ -106,12 +106,9 @@ function createMarker(latlng, id, html, bool) {
                     strokeWeight: 4
                 });
             }
-            console.log(data.length);
-            var content = "";
             for (var i = 0; i < data.length; i += 1) {
-console.log(data);
-                content = '<div class="ui card"><div class="card"><div class="content"><img class="right floated mini ui image" src="'+data[i].avatar+'"><div class="header">'+data[i].name+'</div><div class="meta">'+data[i].location_name+'</div><div class="description">'+data[i].nice_thing+'</div></div></div><div class="short_Info"><a href="index.php?explore='+data[i].id+'">Learn more</a></div></div>';
-                createMarker(new google.maps.LatLng(data[i].lat, data[i].lng), data[i].refered_user, content, true);
+                createMarker(new google.maps.LatLng(data[i].lat, data[i].lng), data[i].refered_user, "<img id='"+data[i].refered_user+ 
+                        "' class='ui avatar image' src='"+data[i].avatar+"'><span>"+data[i].name+"</span>", true);
             }
             infowindow.setContent(contentString); 
             infowindow.open(map,marker);
@@ -180,49 +177,22 @@ function initialize() {
     }
 
     for (var i = 0; i < childPoint.length; i += 1) {
-
         geodesic = new google.maps.Polyline({
             path:[centerPoint, new google.maps.LatLng(childPoint[i].lat, childPoint[i].lng)],
             strokeColor: "#40b553",
-            strokeOpacity: 0.8,
+            strokeOpacity: 9,
             map: map,
             geodesic:true,
-            strokeWeight: 4
+            strokeWeight: 1
         });
-
     }
-    var content = "";
-
-    createMarker(centerPoint, userPoint[0].id, "<img class='ui avatar image' src='"+userPoint[0].image+"'><span>"+userPoint[0].name+"</span>", false);
-
+    //createMarker(centerPoint, userPoint[0].id, "<img class='ui avatar image' src='img/joe.jpg'><span>"+userPoint[0].name+"</span>", false);
     for (var i = 0; i < childPoint.length; i += 1) {
-
-        content = '<div class="ui card"><div class="card"><div class="content"><img class="right floated mini ui image" src="'+childPoint[i].image+'">'+
-            '<div class="header">'+childPoint[i].name+'</div><div class="meta">'+childPoint[i].location+'</div><div class="description">'+
-            childPoint[i].thing+'</div></div></div><div class="short_Info"><a href="index.php?explore='+childPoint[i].thing+'">Learn more</a></div></div>';
-
-        createMarker(new google.maps.LatLng(childPoint[i].lat, childPoint[i].lng), childPoint[i].id, content, true);
-
+        createMarker(new google.maps.LatLng(childPoint[i].lat, childPoint[i].lng), childPoint[i].id, "<img id='"+childPoint[i].id+
+                "' class='ui avatar image' src='"+childPoint[i].image+"'><span>"+childPoint[i].name+"</span>", true);
     }
-
     map.fitBounds(bounds);
 }
-if (navigator.geolocation) {
-
-    navigator.geolocation.getCurrentPosition(function(position) {
-        centerPoint = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-        initialize();
-        bounds.extend(centerPoint);
-    }, function() {
-        centerPoint = new google.maps.LatLng(userPoint[0].lat, userPoint[0].lng);
-        initialize();
-        bounds.extend(centerPoint);
-    });
-
-} else {
-
-    centerPoint = new google.maps.LatLng(userPoint[0].lat, userPoint[0].lng);
-    initialize();
-    bounds.extend(centerPoint);
-
-}
+centerPoint = new google.maps.LatLng(userPoint[0].lat, userPoint[0].lng);
+initialize();
+bounds.extend(centerPoint);

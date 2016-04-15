@@ -25,7 +25,7 @@
                 <div class="ui vertical menu">
                     <a class="item"><strong>Inbox</strong><div class="ui yellow label">0</div></a>
                     <a class="item"><strong>New</strong><div class="ui red label">0</div></a>
-                    <a class="item"><strong>Favorite</strong><div class="ui green label">{{ user.favorite }}</div></a>
+                    <a class="item"><strong>Favorite</strong><div class="ui green label">{{ user.favorite }}0</div></a>
                 </div>
             </div>
         </div>
@@ -60,12 +60,12 @@
     <script type="text/javascript" charset="utf-8">
     var userPoint = [];
     userPoint.push({lat: '{{ user.location.latitude }}', lng: '{{ user.location.longitude }}', 
-            name:'{{ user.username }}', image: 'joe'});
+            name:'{{ user.first }}', image: '{{ user.avatar }}'});
     var childPoint = [];
         {% for nicething in nicethings %}
             {% if nicething.location %}
             childPoint.push({lat: '{{ nicething.location.latitude }}', lng: '{{ nicething.location.longitude }}', 
-                    name:'{{ nicething.refered_user.username }}', image: 'joe'});
+                    name:'{{ nicething.refered_user.first }}', image: '{{ nicething.refered_user.avatar }}'});
             {% endif %}
         {% endfor %}
     </script>

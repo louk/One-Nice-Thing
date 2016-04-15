@@ -1,16 +1,16 @@
 {% extends "submain.html" %}
 {% block subcontent %}
     <div class="flex center">
-        <form id="settings" class="ui form edit">
+        <form id="settings" class="ui form edit settings">
             <div class="flex xs-center">
                 <div class="title">Change Profile Picture</div>
             </div>
             <div class="flex xs-flex-col xs-center middle">
                 <div>
-                    <img class="ui tiny circular image" src="img/placeholder.png">
+                    <img name="profile" value="" id="cover_imagePreview" class="ui tiny circular image" src="{{ user.avatar }}">
                 </div>
                 <div class="margin-left">
-                    <input type="file">
+                    <input id="image" type="file">
                 </div>
             </div>
             <div class="flex xs-center">
@@ -18,32 +18,16 @@
             </div>
             <div class="flex xs-flex-col xs-center between">
                 <div class='field flex-col'>
-                    <input type="text" placeholder="First Name" name='first'>
+                    <input type="text" placeholder="First Name" name='first' value="{{ user.first }}">
                 </div>
                 <div class="field flex-col">
-                    <input type="text" placeholder="Last Name" name='last'>
+                    <input type="text" placeholder="Last Name" name='last' value="{{ user.last }}">
                 </div>
             </div>
-            <div class="flex xs-center">
-                <div class="title">Change Password</div>
-            </div>
-            <div class="flex xs-center">
-                <div class="xs-flex12 field flex-col">
-                    <input type="password" placeholder="Old Password" name='old_pass'>
-                </div>
-            </div>
-            <div class="flex xs-flex-col margin-top xs-center between">
-                <div class='field flex-col'>
-                    <input  type="password" placeholder="New Password" name='new_pass'>
-                </div>
-                <div class="field flex-col">
-                    <input  type="password" placeholder="New Password Again" name='new_pass2'>
-                </div>
-            </div>   
             <div class="flex xs-flex-col middle between xs-center">
                 <div class="title">Change Email</div>
                 <div class="xs-flex12 field flex-col">
-                    <input type="email" placeholder="Email" name='email'>
+                    <input type="email" placeholder="Email" name='email' value="{{ user.email }}">
                 </div>
             </div>
             <div class="flex middle between xs-around">
@@ -53,8 +37,11 @@
                     <label></label>
                 </div>
             </div>
+            <textarea name="profile" id="profile_img" rows="100" cols="40" hidden ></textarea>
+            <input type="hidden" name="check" id="" value="settings" />
+            <input type="hidden" name="user_id" id="" value="{{ user.objectId }}" />
             <div class="flex end">
-                <button class="ui green submit button">Save</button>
+                <button class="ui green button">Save</button>
             </div>
             <div class="ui error message"></div>
         </form>
@@ -67,26 +54,42 @@
     $(function() {
       $('.ui.form.edit').form(settings_validate)
       .api({
-        action: 'settings',
+        action: 'settings user',
         method: 'POST',
         serializeForm: true,
         data: {
           check: 'settings'
         },
         beforeSend: function(settings) {
-          console.log(settings.data);
           return settings;
         },
         onSuccess: function(response) {
-          console.log(response.message);
-          var url = "index.php?settings";
-          window.location.replace(url); 
-                          // valid response and response.success = true
-                      },
-                      onError: function(errorMessage) {
-                        console.log(errorMessage);
-                      }
-                  });
+            var url = "index.php?settings";
+            window.location.replace(url); 
+            // valid response and response.success = true
+        },
+        onError: function(errorMessage) {
+        }
+        });
     });
+    $("#image").on("change", function(){
+        var files = !!this.files ? this.files : [];
+        if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
+
+        $.each( files, function( key, value ) {
+            if (/^image/.test( files[key].type)){ // only image file
+                var reader = new FileReader(); // instance of the FileReader
+                reader.readAsDataURL(files[key]); // read the local file
+                reader.onloadend = function(){ 
+                    var img = $('#cover_imagePreview'); //Equivalent: $(document.createElement('img'))
+                    img.attr('src', this.result);
+                    $("#profile_img").text(this.result);
+                }
+            }else{
+                alert("Зураг биш байна. Тохиромжтой зураг оруулна уу");
+            }
+        });
+    });
+
     </script>
 {% endblock %}

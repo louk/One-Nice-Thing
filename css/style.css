@@ -9,6 +9,22 @@
 a{
   color:#000;
 }
+.ui.three.cards>.card:hover{
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.05);
+}
+.ui.four.cards>.card:hover{
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.05);
+}
+.short_Info{
+    border-top: 1px dashed;
+    margin-top: 5px;
+    padding-top: 5px;
+}
+.short_Info>a{
+    color: green;
+}
 html,
 body {
   margin:0;
@@ -351,8 +367,9 @@ body {
   cursor: -webkit-grab;
 }
 .tree img{
-  width: 50px;
-  height:50px;
+  width: 32px;
+  height:32px;
+  margin: 10px;
   border-radius: 100%;
 }
 .tree ul li a, .tree ul li{
@@ -361,6 +378,9 @@ body {
 .tree .active>li>a, .tree .active>li{
   opacity: 1;
   transition:all 0.5s;
+}
+.tree .active>li>a, .tree .active>li>a:hover{
+    cursor: pointer;
 }
 .tree>ul>li{
   padding:500px;
