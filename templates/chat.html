@@ -1,137 +1,92 @@
 {% extends "submain.html" %}
 {% block subcontent %}
-    <div id="chat" class="flex">
-        <div id="chat-friends">
-            <div class="ui search">
-                <div class="ui icon input">
-                    <input class="prompt" type="text" placeholder="Search...">
-                    <i class="search icon"></i>
-                </div>
-                <div class="results"></div>
+<div id="chat" class="flex">
+    <div id="chat-friends">
+        <div class="flex middle section">
+            <div class="content">
+                <a id="direct" class="ui green label">Direct</a>
+                <a id="all" class="ui green label">All</a>
             </div>
-            {%for user_ in users%}
-                {% if user_.objectId != user.objectId %}
-                <div class="flex middle section{%if loop.index==1 %} active{% endif%}">
-                    <a href="#" onclick="refresh('{{user_.objectId}}', $(this) )"><img src="img/profile_default_{%if loop.index==1 %}female{%else%}male{% endif%}.jpg" width="50" height="50"></a>
-                    <div>
-                        <div class="flex between">
-                            <a href="#"  class="name">{{user_.first}}</a>
-                            <a href="#"  class="date">{%if loop.index==1 %} just now {%else%} never  {% endif%}</a>
-                        </div>
-                        
+        </div>
+        <div class="ui search">
+            <div class="ui icon input">
+                <input class="prompt" type="text" placeholder="Search...">
+                <i class="search icon"></i>
+            </div>
+            <div class="results"></div>
+        </div>
+        <div id="chat_list">
+            {% if last %}
+            <div class="flex middle section active">
+                <a onclick="refresh('{{last.objectId}}', $(this) )" style="cursor: pointer;">
+                    <img class="ui avatar image" src="{{last.avatar}}" width="50" height="50">
+                    <span>{{last.first}}</span>
+                </a>
+                <div>
+                    <div class="flex between">
+                        <a href="#"  class="name"></a>
+                        <a href="#"  class="date">never</a>
                     </div>
                 </div>
-                {%endif%}
+            </div>
+            {% endif %}
+            {%for user_ in users%}
+            {% if user_.objectId != user.objectId and user_.objectId != last.objectId %}
+            <div class="flex middle section{%if last == user_.objectId %} active{% endif%}">
+                <a onclick="refresh('{{user_.objectId}}', $(this) )" style="cursor: pointer;">
+                    <img class="ui avatar image" src="{{user_.avatar}}" width="50" height="50">
+                    <span>{{user_.first}}</span>
+                </a>
+                <div>
+                    <div class="flex between">
+                        <a href="#"  class="name"></a>
+                        <a href="#"  class="date">{%if loop.index==1 %} just now {%else%} never  {% endif%}</a>
+                    </div>
+
+                </div>
+            </div>
+            {%endif%}
             {%endfor%}
         </div>
-        <div id="chat-text">
-            <div class="ui comments">
-                <h3 class="ui dividing header">Conversations</h3>
-                <div id="conversations">
-                    {% for chatter in chatters%}
-                        {% if chatter.speaker.username == user.username%}
-                        <div class="comment">
-                            <div class="comments">
-                                <div class="comment">
-                                    <a class="avatar">
-                                        <img src="img/profile_default_male.jpg">
-                                    </a>
-                                    <div class="content">
-                                        <a class="author">Me</a>
-                                            <div class="metadata">
-                                                <span class="date">{{chatter.createdAt | date("F jS \\a\\t g:ia")}}</span>
-                                            </div>
-                                            <div class="text">
-                                                {{chatter.message}}
-                                            </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {% else%}
-                        <div class="comment">
-                            <a class="avatar">
-                                <img src="img/profile_default_female.jpg">
-                            </a>
-                            <div class="content">
-                                <a class="author">{{chatter.speaker.first}}</a>
-                                <div class="metadata">
-                                    <span class="date">{{chatter.createdAt | date("F jS \\a\\t g:ia")}}</span>
-                                </div>
-                                <div class="text">
-                                   {{chatter.message}}
-                                </div>
-                            </div>
-                        </div>
-                        {%endif%}
-                    {% endfor %}
+    </div>
+    <div id="chat-text">
+        <div class="ui comments">
+            <h3 class="ui dividing header">Conversations</h3>
+            <div id="conversations">
+                {% for chat in chatters %}
+                <div class="comment">
+                    <a class="avatar"><img src="{{chat.speaker.avatar}}"></a>
+                    <div class="content">
+                        <a class="author">{% if chat.speaker.first == user.first %}Me{% else %}{{chat.speaker.first}}{% endif %}</a>
+                        <div class="metadata"><span class="date">{{chat.createdAt | date("F jS \\a\\t g:ia")}}</span></div>
+                        <div class="text">{{chat.message}}</div>
+                    </div>
                 </div>
-                <form class="ui form reply">
-                    <div class="field">
-                        <input type="hidden" name="speaker" value="{{user.objectId}}">
-                        <input id="chat_id" type="hidden" name="chat" value="{{chat.objectId}}">
-                        <input type="hidden" name="check" value="message">
+                {% endfor %}
+            </div>
+            <form class="ui form reply">
+                <div class="field">
+                    <input type="hidden" name="speaker" value="{{user.objectId}}">
+                    <input id="chat_id" type="hidden" name="chat" value="{{chat}}">
+                    <input type="hidden" name="check" value="message">
+                    <div id="replay_message">
                         <textarea name="message"></textarea>
                     </div>
-                    <div class="ui yellow fluid labeled submit icon button">
-                        <i class="icon edit"></i> Write back
-                    </div>
-                </form>
-            </div>
+                </div>
+                <div class="ui yellow fluid labeled submit icon button">
+                    <i class="icon edit"></i> Write back
+                </div>
+            </form>
         </div>
     </div>
+</div>
 {% endblock %}
 {% block scripting %}
     {{ parent() }}
     <script src="js/init.js"></script>  
-    <script type="text/javascript">
-        
-        function refresh(id,ele){
-            $("#conversations").empty();
-            $(".section").removeClass("active");
-            $(ele).parent().addClass('active');
-            
-            $.ajax({
-                url : "chat.php",
-                type: "POST",
-                data : { user:id, check:'get_chatters'},
-                success: function(data, textStatus, jqXHR)
-                {
-                    var json = $.parseJSON(data);
-                    
-                    if(json.type==2){
-                        
-                    }
-                    $("chat_id").val(json.chat);
-                },
-                error: function (jqXHR, textStatus, errorThrown)
-                {
-             
-                }
-            });
-        }
-
-        $(function() {
-
-            $('.ui.form.reply').form(report_validate)
-            .api({
-                action: 'user message',
-                method: 'POST',
-                serializeForm: true,
-                data: {
-                  name: 22
-                },
-                beforeSend: function(settings) {
-                    console.log(settings.data);
-                    return settings;
-                },
-                onSuccess: function(response) {
-                     $("#conversations").append('<div class="comment"><div class="comments"><div class="comment"><a class="avatar"><img src="img/profile_default_male.jpg"></a><div><a class="author">Me</a><div class="metadata"><span class="date">just now</span></div><div class="text">'+response.message+'</div></div></div></div></div>');
-                },
-                onFailure: function(response) {
-                    console.log(response);
-                }
-            });
-        });
+    <script type="text/javascript" charset="utf-8">
+    var u_img = "{{ user.avatar }}";
+    var u_name = "{{ user.first }}";
     </script>
+    <script src="js/custom.js"></script>  
 {% endblock %}

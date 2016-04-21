@@ -105,16 +105,13 @@
                     method: 'POST',
                     serializeForm: true,
                     beforeSend: function(settings) {
-                        console.log(settings.data);
                         return settings;
                     },
                     onSuccess: function(response) {
-                        console.log(response.message);
                         var url = "index.php?dashboard";
                         window.location.replace(url); 
                     },
                     onError: function(errorMessage) {
-                        console.log(errorMessage);
                     }
                 });
             $('.ui.form.register').form(register_validate)
@@ -127,17 +124,14 @@
                     }
                     ,
                     beforeSend: function(settings) {
-                        console.log(settings.data);
                         return settings;
                     },
                     onSuccess: function(response) {
-                        console.log(response.message);
                         var url = "index.php?dashboard";
                         window.location.replace(url); 
                                   // valid response and response.success = true
                     },
                     onFailure: function(response) {
-                        console.log(response);
                     }
                 });
 
@@ -147,16 +141,11 @@
                     method: 'POST',
                     serializeForm: true,
                     beforeSend: function(settings) {
-                        console.log(settings.data);
                         return settings;
                     },
                     onSuccess: function(response) {
-                        console.log("1");
-                        console.log(response);
                     },
                     onFailure: function(response) {
-                        console.log("2");
-                        console.log(response);
                     }
                 });
             $('.ui.guest')
@@ -167,7 +156,6 @@
                         check: 'guest'
                     },
                     beforeSend: function(settings) {
-                        console.log(settings.data);
                         return settings;
                     },
                     onSuccess: function(response) {
@@ -175,7 +163,6 @@
                             window.location.replace(url); 
                     },
                     onFailure: function(response) {
-                        console.log(response);
                     }
                 });
         });

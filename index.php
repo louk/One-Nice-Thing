@@ -1,5 +1,4 @@
 <?php
-
     require_once 'includes/Twig/Autoloader.php';
     require_once "config.php";
 
@@ -24,7 +23,7 @@
     $userId = 0;
 
     class Event {}
-        $lists = array();
+    $lists = array();
 
     if (isset($_SESSION['user'])) {
         $user = $_SESSION['user'];
@@ -41,7 +40,6 @@
             $query->equalTo("objectId", $_GET['explore']);
             $query->includeKey("refered_user");
             $query->includeKey("User");
-            $query->limit(1000);
             $nicethings = $query->first();
 
             echo $template->render(array('title' => 'Nicething detail page', 'nicething' => $nicethings));
@@ -153,22 +151,41 @@
             $query->equalTo('status', 1);
             $users = $query->find();
 
-            $query = new ParseQuery("_User");
-            $query->equalTo('username', 'admin');
-            $admin = $query->first();
-
-            $query = new ParseQuery("Chat");
-            $query->equalTo('user1', $admin);
-            $query->equalTo('user2', $user);
+            $chat = 0;
+            $query = new ParseQuery("ChatLogs");
+            $query->equalTo('speaker', $user);
+            $query->descending('createdAt');
+            $query->includeKey('Chat');
             $chat = $query->first();
 
-            $query = new ParseQuery("ChatLogs");
-            $query->equalTo('Chat', $chat);
-            $query->includeKey('speaker');
-            $chatters = $query->find();
+            $chatters = "";
+            $lastUserId = "";
+            if(count($chat)>0){
+                $query = new ParseQuery("Chat");
+                $query->equalTo('objectId', $chat->get('Chat')->getObjectId());
+                $last = $query->first();
+
+                if ($user->getObjectId() == $last->get('users')[0]) {
+                    $lastUserId = $last->get('users')[1];
+                }else{
+                    $lastUserId = $last->get('users')[0];
+                }
+
+                $query = new ParseQuery("_User");
+                $query->equalTo('objectId', $lastUserId);
+                $lastUserId = $query->first();
+
+                $query = new ParseQuery("ChatLogs");
+                $query->equalTo('Chat', $chat->get('Chat'));
+                $query->ascending('createdAt');
+                $query->includeKey('speaker');
+                $chatters = $query->find();
+                $chat = $chat->get('Chat')->getObjectId();
+            }
 
             $template = $twig->loadTemplate('chat.html');
-            echo $template->render(array('title' => 'Inbox', 'user' => $user, 'nav' => 3,'users' =>$users, 'chatters' =>$chatters, 'chat' => $chat ));
+            echo $template->render(array('title' => 'Inbox', 'user' => $user, 'nav' => 3,'users' =>$users, 'chatters' =>$chatters, 
+                'chat' => $chat, 'last' =>$lastUserId));
         }else if (isset($_GET['explore'])) {
             $template = $twig->loadTemplate('explore.html');
 
@@ -367,7 +384,6 @@
             $query->equalTo("objectId", $_GET['explore']);
             $query->includeKey("refered_user");
             $query->includeKey("User");
-            $query->limit(1000);
             $nicethings = $query->first();
 
             echo $template->render(array('title' => 'Nicething detail page', 'nicething' => $nicethings));
@@ -386,6 +402,45 @@
             $nice_things = $query->find();
 
             echo $template->render(array('title' => 'Explore', 'nicethings' => $nice_things));
+
+        }else if (isset($_POST['viewThings'])) {
+
+            $query = new ParseQuery("_User");
+            $query->equalTo('objectId', $_POST['viewThings']);
+            $userThings = $query->first();
+
+            $query = new ParseQuery("NiceThing");
+            $query->equalTo("User", $userThings);
+            $query->includeKey("refered_user");
+            $query->includeKey("User");
+            $query->limit(1000);
+            $nicethings = $query->find();
+
+            $events = array();
+
+            foreach ($nicethings as $nicething) {
+                $e = new Event();
+                $e->id = $nicething->getObjectId();
+                $e->user = $nicething->get('User')->getObjectId();
+                $e->name = $nicething->get('refered_user')->get('first');
+                $e->date = $nicething->get('date');
+                $e->feel = $nicething->get('feel');
+                $e->location_name = $nicething->get('location_name');
+                $e->message = $nicething->get('message');
+                $e->nice_thing = $nicething->get('nice_thing');
+                $e->privacy = $nicething->get('privacy');
+                $e->refered_user = $nicething->get('refered_user')->getObjectId();
+                $e->status = $nicething->get('status');
+                $e->whom = $nicething->get('whom');
+                $e->lat = $nicething->get('location')->getLatitude();
+                $e->lng = $nicething->get('location')->getLongitude();
+                $e->createdAt = $nicething->getCreatedAt();
+                $e->avatar = $nicething->get('refered_user')->get('avatar');
+                $events[] = $e; 
+            }
+            header('Content-Type: application/json');
+            echo json_encode($events);
+
         }else if (isset($_GET['help'])) {
             $template = $twig->loadTemplate('help.html');
             echo $template->render(array('title' => 'Help'));
@@ -441,4 +496,3 @@
 
     }
 ?>
-

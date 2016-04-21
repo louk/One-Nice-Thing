@@ -1,13 +1,13 @@
 <?php
 
     require 'js/parse/autoload.php';
+    require 'lib/Mailer/PHPMailerAutoload.php';
     require_once "config.php";
     use Parse\ParseException;
     use Parse\ParseUser; use Parse\ParseSessionStorage;
     use Parse\ParseClient;
     use Parse\ParseQuery;
-    use Parse\ParseObject;
-    use Parse\ParseGeoPoint;
+    use Parse\ParseObject; use Parse\ParseGeoPoint;
 
     session_start();
 
@@ -170,8 +170,6 @@
             $user->signUp();
             $_SESSION['user'] = $user;
 
-            user_register_create_chat($user);
-
             $response->success = true;
             $response->message = "Signed";
             $response->data = $user->getObjectId();
@@ -293,6 +291,26 @@
             echo json_encode($response); 
         } 
 
+    }
+
+    function sendmail($user, $message){
+        $body = $message;
+        date_default_timezone_set('Etc/UTC');
+        $mail = new PHPMailer;
+        $mail->isSMTP();
+        //      $mail->SMTPDebug = 2;
+        $mail->Debugoutput = 'html';
+        $mail->Host = '1nicethingnet.domain.com';
+        $mail->Port = 587;
+        $mail->SMTPSecure = '';
+        $mail->SMTPAuth = true;
+        $mail->Username = "info@1nicething.net";
+        $mail->Password = "1Nicething";
+        $mail->setFrom('info@1nicething.net', 'One Nice Thing');
+        $mail->addAddress($user, 'Customer');
+        $mail->Subject = 'Chat message';
+        $mail->msgHTML($body);
+        $mail->AltBody = '';
     }
 
 ?>

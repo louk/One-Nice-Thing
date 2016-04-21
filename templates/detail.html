@@ -9,6 +9,14 @@
                             <div class="flex middle between">
                                 <span><img class="ui avatar image"
                                     src="{{ nicething.User.avatar }}"> {{ nicething.User.first }}</span>
+                                <span><i class="arrow right icon"></i></span>
+                                <div class='flex-col right floated'>
+                                    <span><img class="ui avatar image"
+                                        src="{{ nicething.refered_user.avatar }}"> {{ nicething.refered_user.first }}</span>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="flex middle between">
                                 <div class='flex-col right floated'>
                                     <span>{{ nicething.location_name }}</span>
                                     <span style='text-align: right'>{{nicething.createdAt | date("Y/m/d")}}</span>

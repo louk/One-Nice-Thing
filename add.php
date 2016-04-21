@@ -2,6 +2,7 @@
 
     require 'js/parse/autoload.php';
     require_once "config.php";
+    require 'lib/Mailer/PHPMailerAutoload.php';
     use Parse\ParseException;
     use Parse\ParseUser;
     use Parse\ParseSessionStorage;
@@ -54,8 +55,12 @@
         array_push($connected, $user->getObjectId());
         $userAgain->setArray("connected", $connected);
     }
-
+    $messageTo = $currentUser->get('first')." added nice thing for you ".date("Y/m/d");
+    $messageFrom = "You added nice thing for ".$user->get('first')."  ".date("Y/m/d");
     try {
+        
+        sendmail($user->get('email'), $messageTo);
+        sendmail($currentUser->get('email'), $messageFrom);
         $userAgain->save(true);
         $nice_thing->save();
         $result = true;
@@ -77,6 +82,31 @@
         echo json_encode($response); 
     }else{
         echo "Error: User please select valid username";
+    }
+
+    function sendmail($user, $message){
+        $body = $message;
+        date_default_timezone_set('Etc/UTC');
+        $mail = new PHPMailer;
+        $mail->isSMTP();
+        //      $mail->SMTPDebug = 2;
+        $mail->Debugoutput = 'html';
+        $mail->Host = '1nicethingnet.domain.com';
+        $mail->Port = 587;
+        $mail->SMTPSecure = '';
+        $mail->SMTPAuth = true;
+        $mail->Username = "info@1nicething.net";
+        $mail->Password = "1Nicething";
+        $mail->setFrom('info@1nicething.net', 'One Nice Thing');
+        $mail->addAddress($user, 'Customer');
+        $mail->Subject = "";
+        $mail->msgHTML($body);
+        $mail->AltBody = '';
+          //if (!$mail->send()) {
+          //    echo "Mailer Error: " . $mail->ErrorInfo;
+          //} else {
+          //    echo "Message sent!";
+          //}
     }
 
 ?>

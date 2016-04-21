@@ -179,6 +179,39 @@ var report_validate = {
     inline : true,
     on     : 'blur'
 }
+var message_validate = {
+    fields:{
+        speaker:{
+            identifier: 'speaker',
+            rules: [
+            {
+                type: 'empty',
+                prompt: 'Please enter speaker'
+            },
+            ]
+        },
+        chat:{
+            identifier: 'chat',
+            rules: [
+            {
+                type: 'empty',
+                prompt: 'Please enter your chat'
+            },
+            ]
+        },
+        message:{
+            identifier: 'message',
+            rules:[
+            {
+                type: 'empty',
+                prompt: 'Do not blank this field'
+            }
+            ]
+        }
+    },
+    inline : true,
+    on     : 'blur'
+}
 var forgot_validate = {
     fields:{
         email:{

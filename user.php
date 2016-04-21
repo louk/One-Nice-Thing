@@ -72,7 +72,29 @@
         $chatter->set("Chat", $chat);
         $chatter->set("message", $_POST['message']);
 
+        $messageTo = "New message ".$_POST['message']." from ".$user->get('first')."  ".date("Y/m/d");
+
         try {
+
+            $query = new ParseQuery("Chat");
+            $query->equalTo('objectId', $chat->getObjectId());
+            $last = $query->first();
+
+            $lastUserId = "";
+
+            if ($user->getObjectId() == $last->get('users')[0]) {
+                $lastUserId = $last->get('users')[1];
+            }else{
+                $lastUserId = $last->get('users')[0];
+            }
+
+            $query = new ParseQuery("_User");
+            $query->equalTo('objectId', $lastUserId);
+            $lastUser = $query->first();
+            $messageFrom = "You send message ".$_POST['message']." to ".$lastUser->get('first')."  ".date("Y/m/d");
+
+            sendmail($lastUser->get('email'), $messageTo);
+            sendmail($user->get('email'), $messageFrom);
             $chatter->save();
             $response->success = true;
             $response->message = $_POST['message'];

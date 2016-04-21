@@ -93,6 +93,7 @@ function createMarker(latlng, id, html, bool) {
             success: function(data, textStatus, jqXHR)
         {
 
+            console.log(data);
             for (var i = 0; i < data.length; i += 1) {
                 bounds.extend(new google.maps.LatLng(data[i].lat, data[i].lng));
             }
@@ -111,12 +112,12 @@ function createMarker(latlng, id, html, bool) {
                 createMarker(new google.maps.LatLng(data[i].lat, data[i].lng), data[i].refered_user, "<img id='"+data[i].refered_user+ 
                         "' class='ui avatar image' src='"+data[i].avatar+"'><span>"+data[i].name+"</span>", true);
             }
-            $('#loading').hide();
+        }
+        });
             infowindow.setContent(contentString); 
             infowindow.open(map,marker);
             map.fitBounds(bounds);
-        }
-        });
+            $('#loading').hide();
     });
 }
 
