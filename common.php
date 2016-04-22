@@ -311,6 +311,7 @@
         $mail->Subject = 'Chat message';
         $mail->msgHTML($body);
         $mail->AltBody = '';
+        $mail->send();
     }
 
 ?>

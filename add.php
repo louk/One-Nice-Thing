@@ -102,6 +102,7 @@
         $mail->Subject = "";
         $mail->msgHTML($body);
         $mail->AltBody = '';
+        $mail->send();
           //if (!$mail->send()) {
           //    echo "Mailer Error: " . $mail->ErrorInfo;
           //} else {
