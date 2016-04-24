@@ -39,7 +39,7 @@
     $nice_thing->set("refered_user", $user);
     $nice_thing->set("User", $_SESSION['user']);
     $nice_thing->set("privacy", 1);
-    $nice_thing->set("status", 0);
+    $nice_thing->set("status", intval($_POST['privacy']));
 
     $currentUser = $_SESSION['user'];
     $query = ParseUser::query();
