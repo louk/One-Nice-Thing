@@ -201,7 +201,7 @@ function initialize() {
         content = '<div class="ui card" style="padding: 5px;text-align: left;"><div class="card"><div class="content">'+
             '<img class="right floated mini ui image" src="'+childPoint[i].image+'">'+
             '<div class="header">'+childPoint[i].name+'</div><div class="meta">'+childPoint[i].location+'</div><div class="description">'+
-            childPoint[i].thing+'</div></div></div><div class="short_Info"><a href="index.php?explore='+childPoint[i].thing+'">Learn more</a></div></div>';
+            childPoint[i].thing+'</div></div></div><div class="short_Info"><a href="index.php?explore='+childPoint[i].thing_id+'">Learn more</a></div></div>';
 
         createMarker(new google.maps.LatLng(childPoint[i].lat, childPoint[i].lng), childPoint[i].id, content, true);
 

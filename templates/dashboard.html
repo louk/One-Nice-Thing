@@ -37,15 +37,17 @@
                 {% for last_ in last3 %}
                 <div class="ui card">
                     <div class="content">
-                        <div class="header">{{ last_.whom }}</div>
-                        <div class="meta">{{ last_.createdAt | date("F jS \\a\\t g:ia")}}</div>
-                        <div class="description">
-                            <p>{{ last_.nice_thing }}</p>
-                        </div>
+                        <a href="index.php?explore={{ last_.objectId }}">
+                            <div class="header">{{ last_.whom }}</div>
+                            <div class="meta">{{ last_.createdAt | date("F jS \\a\\t g:ia")}}</div>
+                            <div class="description">
+                                <p>{{ last_.nice_thing }}</p>
+                            </div>
+                        </a>
                     </div>
                     <div class="extra content">
                         <i class="check icon"></i>
-                        121 Votes
+                        {{ last_.likes | length }} favorite 
                     </div>
                 </div>
                 {% endfor %}

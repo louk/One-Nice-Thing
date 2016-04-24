@@ -115,3 +115,89 @@ setTimeout(explode, 60000);
 $(".ui.search").keypress(function(event){
     $(".section").removeClass("active");
 });
+
+$('.message .close')
+.on('click', function() {
+    $(this)
+    .closest('.message')
+    .transition('fade');
+});
+
+$(function() {
+    $("#location").geocomplete({
+        details: ".details",
+        detailsAttribute: "data-geo"
+    });
+    $('.ui.form.login').form(login_validate)
+    .api({
+        action: 'login user',
+        method: 'POST',
+        serializeForm: true,
+        beforeSend: function(settings) {
+            return settings;
+        },
+        onSuccess: function(response) {
+            if(response.success){
+                $("#success-message").removeClass("hidden");
+                var url = "index.php?dashboard";
+                window.location.replace(url); 
+            }
+            else{
+                $("#warning-message").removeClass("hidden");
+            }
+        },
+        onError: function(errorMessage) {
+        }
+    });
+$('.ui.form.register').form(register_validate)
+    .api({
+        action: 'register user',
+        method: 'POST',
+        serializeForm: true,
+        data:{
+            check:'register'
+        }
+    ,
+        beforeSend: function(settings) {
+            return settings;
+        },
+        onSuccess: function(response) {
+            var url = "index.php?dashboard";
+            window.location.replace(url); 
+            // valid response and response.success = true
+        },
+        onFailure: function(response) {
+        }
+    });
+
+$('.ui.form.forget').form(forgot_validate)
+    .api({
+        action: 'forget user',
+        method: 'POST',
+        serializeForm: true,
+        beforeSend: function(settings) {
+            return settings;
+        },
+        onSuccess: function(response) {
+        },
+        onFailure: function(response) {
+        }
+    });
+$('.ui.guest')
+    .api({
+        action: 'guest user',
+        method: 'POST',
+        data: {
+            check: 'guest'
+        },
+        beforeSend: function(settings) {
+            return settings;
+        },
+        onSuccess: function(response) {
+            var url = "index.php?dashboard";
+            window.location.replace(url); 
+        },
+        onFailure: function(response) {
+        }
+    });
+});

@@ -63,7 +63,6 @@
             $user = $query->first();
 
             $query = new ParseQuery("NiceThing");
-            $query->equalTo("User", $user);
             $query->includeKey("refered_user");
             $query->descending("createdAt");
             $query->limit(3);
@@ -365,7 +364,6 @@
             $user = $query->first();
 
             $query = new ParseQuery("NiceThing");
-            $query->equalTo("User", $user);
             $query->includeKey("refered_user");
             $query->descending("createdAt");
             $query->limit(3);
