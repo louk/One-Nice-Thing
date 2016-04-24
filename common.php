@@ -165,6 +165,7 @@
         $point = new ParseGeoPoint(floatval($lat), floatval($lng));
         $user->set("location", $point);
         $user->set("status", 1);
+        $user->set("avatar", "profile_default_male.jpg");
 
         try {
             $user->signUp();
@@ -246,6 +247,12 @@
         $user->set('first', $first);
         $user->set('last', $last);
         $user->set('email', $email);
+        if (isset($_POST["account_public"])) {
+            $user->set('status', 1);
+        }
+        else{
+            $user->set('status', 0);
+        }
 
         if ($profile != null) {
 
@@ -308,7 +315,7 @@
         $mail->Password = "1Nicething";
         $mail->setFrom('info@1nicething.net', 'One Nice Thing');
         $mail->addAddress($user, 'Customer');
-        $mail->Subject = 'Chat message';
+        $mail->Subject = 'Nice thing';
         $mail->msgHTML($body);
         $mail->AltBody = '';
         $mail->send();

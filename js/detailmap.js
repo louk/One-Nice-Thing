@@ -159,7 +159,7 @@ var centerPoint;
 var current = false;
 function initialize() {
     var myOptions = {
-        zoom: 1,
+        zoom: 0,
         center: new google.maps.LatLng(userPoint[0].lat, userPoint[0].lng),
         mapTypeControl: true,
         navigationControl: true,

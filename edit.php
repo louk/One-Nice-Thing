@@ -53,7 +53,7 @@
         $nice_thing->set("refered_user", $user);
         $nice_thing->set("User", $_SESSION['user']);
         $nice_thing->set("privacy", 1);
-        $nice_thing->set("status", 0);
+        $nice_thing->set("status", intval($_POST['privacy']));
 
         $currentUser = $_SESSION['user'];
         $query = ParseUser::query();
@@ -83,20 +83,9 @@
         class Response {};
 
         if($result){
-            $query = new ParseQuery("NiceThing");
-            $query->equalTo('User', $currentUser);
-            $query->includeKey('refered_user');
-            $query->includeKey('User');
-            $nice_things = $query->find();
-
-            $query = new ParseQuery("_User");
-            $query->equalTo('status', 1);
-            $users = $query->find();
-
-            $template = $twig->loadTemplate('my-things.html');
-            echo $template->render(array('title' => 'My nice things', 'user' => $user, 'nav' => 5, 'nices' => $nice_things, 'users' => $users));
+            echo 1;
         }else{
-            echo "Error: User please select valid username";
+            echo 0;
         }
     }
 

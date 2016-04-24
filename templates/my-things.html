@@ -29,15 +29,14 @@
                 <div class='field'><textarea placeholder='What did you feel?'>{{nice.feel}}</textarea></div>
             </div>
             <div class='extra content'>
-                <span class='value'><i class='lock icon'></i>Only me</span>
-                <div class="ui selection dropdown field">
-                    <input type="hidden" name="gender">
+                <div class="ui selection dropdown">
+                    <input type="hidden" name="gender" value={{nice.status}}>
                     <i class="dropdown icon"></i>
-                    <div class="default text">Only me</div>
+                    <div class="text">Only me</div>
                     <div class="menu">
-                        <div class="item" data-value="2">Only me</div>
-                        <div class="item" data-value="1">Public</div>
-                        <div class="item" data-value="0">Friends</div>
+                        <div class="item" data-value="0">Only me</div>
+                        <div class="item" data-value="1">Friends</div>
+                        <div class="item" data-value="2">Public</div>
                     </div>
                 </div>
             </div>
@@ -54,7 +53,7 @@
                         data-layout="button" data-mobile-iframe="false"></div>
                 </div>
                 <button class='ui green button back'>Back</button>
-                <a class='ui green button edit' onclick="edit('{{nice.objectId }}');" >Edit</a>
+                <a class='ui mini green button edit' onclick="edit('{{nice.objectId }}');" >Edit</a>
             </div>
         </form>
     </div>
@@ -70,7 +69,7 @@
                         <p></p>
                     </div>
                     <div class="content">
-                        <form action="edit.php"class="ui form report" method="POST">
+                        <form class="ui form edit">
                             <input type="hidden" name="update" id="" value="{{ nice.objectId }}" />
                             <div class="details">
                                 <input type="hidden" data-geo="lat" name="lat" id="lat" value="{{ nice.location.latitude }}" />
@@ -116,12 +115,13 @@
                             </div>
                             <div class="field">
                                 <div class="ui selection dropdown">
-                                    <input type="hidden" name="privacy">
+                                    <input type="hidden" name="privacy" value="{{nice.status}}">
                                     <i class="dropdown icon"></i>
-                                    <div class="default text">Privacy</div>
+                                    <div class="text">Friends</div>
                                     <div class="menu">
-                                        <div class="item" data-value="1">Only me</div>
-                                        <div class="item" data-value="0">Public</div>
+                                        <div class="item" data-value="0">Only me</div>
+                                        <div class="item" data-value="1">Friends</div>
+                                        <div class="item" data-value="2">Public</div>
                                     </div>
                                 </div>
                             </div>
@@ -129,10 +129,15 @@
                                 <div class="header">Email or user name is already in the system!</div>
                             </div>
                             <div class="field">
-                                <input type="submit" class="ui large submit green button fluid" />
+                                <input type="submit" class="ui large submit green button fluid" value="Save" />
                             </div>
                         </form>
-
+                        <div id="success" class="ui success message hidden">
+                            <i class="close icon"></i>
+                            <div class="header">
+                                Your things edit was successful.
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -175,8 +180,33 @@
         ];
         $(function() {
             $('.ui.search').search({ source: content });
-            $('.ui.form.report').form(report_validate);
+            $('.ui.form.edit').form(report_validate)
+            .api({
+                action: 'edit thing',
+                method: 'POST',
+                serializeForm: true,
+                data: {
+                    name: 22
+                },
+                beforeSend: function(settings) {
+                    console.log(settings.data);
+                    return settings;
+                },
+                onSuccess: function(response) {
+                    var url = "index.php?nicethings";
+                    console.log(response);
+                    if(response == 1){
+                        $("#success").removeClass("hidden");
+                        setTimeout(function(){ window.location.replace(url); }, 3000);
+                         
+                    }
+                },
+                onFailure: function(response) {
+                    console.log(response);
+                }
+            });
         });
+
         $('.ui.dropdown').dropdown();
         function edit(id){
             $('#'+id)
@@ -189,5 +219,11 @@
               details: ".details",
               detailsAttribute: "data-geo"
             });
+        $('.message .close')
+          .on('click', function() {
+            $(this)
+              .closest('.message')
+              .transition('fade');
+          });
     </script>
 {% endblock %}

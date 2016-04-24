@@ -22,6 +22,10 @@
                         <div class="ui error message">
                             <div class="header">Check your username password !</div>
                         </div>
+                        <div id="warning-message" class="ui negative message hidden">
+                            <i class="close icon"></i>
+                            <div class="header">Check your username password !</div>
+                        </div>
                     </form>
                     <div class="ui bottom attached warning message">
                         <i class="icon help"></i>
@@ -94,77 +98,89 @@
     <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
     <script src="js/jquery.geocomplete.js"></script>
     <script type="text/javascript">
-        $(function() {
-            $("#location").geocomplete({
-              details: ".details",
-              detailsAttribute: "data-geo"
-            });
-            $('.ui.form.login').form(login_validate)
-                .api({
-                    action: 'login user',
-                    method: 'POST',
-                    serializeForm: true,
-                    beforeSend: function(settings) {
-                        return settings;
-                    },
-                    onSuccess: function(response) {
-                        var url = "index.php?dashboard";
-                        window.location.replace(url); 
-                    },
-                    onError: function(errorMessage) {
-                    }
-                });
-            $('.ui.form.register').form(register_validate)
-                .api({
-                    action: 'register user',
-                    method: 'POST',
-                    serializeForm: true,
-                    data:{
-                        check:'register'
-                    }
-                    ,
-                    beforeSend: function(settings) {
-                        return settings;
-                    },
-                    onSuccess: function(response) {
-                        var url = "index.php?dashboard";
-                        window.location.replace(url); 
-                                  // valid response and response.success = true
-                    },
-                    onFailure: function(response) {
-                    }
-                });
-
-            $('.ui.form.forget').form(forgot_validate)
-                .api({
-                    action: 'forget user',
-                    method: 'POST',
-                    serializeForm: true,
-                    beforeSend: function(settings) {
-                        return settings;
-                    },
-                    onSuccess: function(response) {
-                    },
-                    onFailure: function(response) {
-                    }
-                });
-            $('.ui.guest')
-                .api({
-                    action: 'guest user',
-                    method: 'POST',
-                    data: {
-                        check: 'guest'
-                    },
-                    beforeSend: function(settings) {
-                        return settings;
-                    },
-                    onSuccess: function(response) {
-                            var url = "index.php?dashboard";
-                            window.location.replace(url); 
-                    },
-                    onFailure: function(response) {
-                    }
-                });
+    $('.message .close')
+    .on('click', function() {
+        $(this)
+        .closest('.message')
+        .transition('fade')
+        ;
+    });
+    $(function() {
+        $("#location").geocomplete({
+            details: ".details",
+            detailsAttribute: "data-geo"
         });
+        $('.ui.form.login').form(login_validate)
+        .api({
+            action: 'login user',
+            method: 'POST',
+            serializeForm: true,
+            beforeSend: function(settings) {
+                return settings;
+            },
+            onSuccess: function(response) {
+                if(response.success){
+                    var url = "index.php?dashboard";
+                    window.location.replace(url); 
+                }
+                else{
+                    $("#warning-message").removeClass("hidden");
+                }
+            },
+            onError: function(errorMessage) {
+            }
+        });
+    $('.ui.form.register').form(register_validate)
+        .api({
+            action: 'register user',
+            method: 'POST',
+            serializeForm: true,
+            data:{
+                check:'register'
+            }
+        ,
+            beforeSend: function(settings) {
+                return settings;
+            },
+            onSuccess: function(response) {
+                var url = "index.php?dashboard";
+                window.location.replace(url); 
+                // valid response and response.success = true
+            },
+            onFailure: function(response) {
+            }
+        });
+
+    $('.ui.form.forget').form(forgot_validate)
+        .api({
+            action: 'forget user',
+            method: 'POST',
+            serializeForm: true,
+            beforeSend: function(settings) {
+                return settings;
+            },
+            onSuccess: function(response) {
+            },
+            onFailure: function(response) {
+            }
+        });
+    $('.ui.guest')
+        .api({
+            action: 'guest user',
+            method: 'POST',
+            data: {
+                check: 'guest'
+            },
+            beforeSend: function(settings) {
+                return settings;
+            },
+            onSuccess: function(response) {
+                var url = "index.php?dashboard";
+                window.location.replace(url); 
+            },
+            onFailure: function(response) {
+            }
+        });
+    });
     </script>
 {% endblock %}

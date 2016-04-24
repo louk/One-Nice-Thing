@@ -33,7 +33,7 @@
             <div class="flex middle between xs-around">
                 <div class="title">Account Public</div>
                 <div class="ui checkbox">
-                    <input type="checkbox">
+                    <input name="account_public" type="checkbox"{% if user.status == 1 %}checked{% endif %}>
                     <label></label>
                 </div>
             </div>

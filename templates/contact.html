@@ -3,14 +3,45 @@
     <div class="flex center">
         <div id='contact' class='flex-col middle'>
             <h1>CONTACT US</h1>
-            <form class='ui form'>
-                <input type='text' placeholder='Name'>
-                <input type='email' placeholder='email'>
-                <textarea></textarea>
+            <form class="ui form contactus">
+                <div class="field">
+                    <input type='text' name="name" placeholder='Name'>
+                </div>
+                <div class="field">
+                    <input type='email' name="email" placeholder='email'>
+                </div>
+                <div class="field">
+                    <textarea name="message"></textarea>
+                </div>
                 <div class='flex end'>
-                    <button class='ui yellow button'>Send</button>
+                    <input type="submit" class="ui large submit green button fluid" value="Send">
                 </div>
             </form>
         </div>
     </div>
+{% endblock %}
+{% block scripting %}
+    {{ parent() }}
+    <script src="js/init.js"></script>  
+    <script type="text/javascript">
+    $(function() {
+      $('.ui.form.contactus').form(contact_validate)
+      .api({
+        action: 'contact us',
+        method: 'POST',
+        serializeForm: true,
+        beforeSend: function(settings) {
+          return settings;
+        },
+        onSuccess: function(response) {
+            var url = "index.php?settings";
+            window.location.replace(url); 
+            // valid response and response.success = true
+        },
+        onError: function(errorMessage) {
+        }
+        });
+    });
+    </script>
+ 
 {% endblock %}

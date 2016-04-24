@@ -9,6 +9,9 @@
 a{
   color:#000;
 }
+.contactus{
+    width: 280px;
+}
 .ui.three.cards>.card:hover{
     cursor: pointer;
     background: rgba(0, 0, 0, 0.05);

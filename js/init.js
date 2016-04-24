@@ -8,9 +8,11 @@ $.fn.api.settings.api = {
   'register user'    : 'user.php',
   'guest user'       : 'user.php',
   'guest report'     : 'report.php',
+  'contact us'       : 'contact.php',
   'user report'      : 'report.php',
   'register report'  : 'report.php',
   'user message'     : 'user.php',
+  'edit thing'       : 'edit.php',
   'report nicething' : 'add.php'
 };
 
@@ -225,6 +227,43 @@ var forgot_validate = {
                     type:'email',
                     prompt:'Please enter a valid e-mail'
                 }
+            ]
+        }
+    },
+    inline : true,
+    on     : 'blur'
+}
+var contact_validate = {
+    fields:{
+        name:{
+            identifier: 'name',
+            rules:[
+            {
+                type: 'empty',
+                prompt: 'Do not blank this field'
+            }
+            ]
+        },
+        email:{
+            identifier:'email',
+            rules:[
+                {
+                    type:'empty',
+                    prompt:'Please enter your email',
+                },
+                {
+                    type:'email',
+                    prompt:'Please enter a valid e-mail'
+                }
+            ]
+        },
+        message:{
+            identifier: 'message',
+            rules:[
+            {
+                type: 'empty',
+                prompt: 'Do not blank this field'
+            }
             ]
         }
     },

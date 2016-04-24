@@ -26,12 +26,13 @@
         $user->set("password", $uniq);
         $user->setArray("connected", []);
         $user->set("status", 0);
+        $user->set("avatar", "img/profile_default_male.jpg");
 
         $response = new Response();
 
         try{
             $user->signUp();
-            user_register_create_chat($user);
+            //user_register_create_chat($user);
             $_SESSION['user'] = $user;
             $response->success = true;
             $response->message = "Logged in";
