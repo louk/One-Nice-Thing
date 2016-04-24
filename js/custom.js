@@ -102,6 +102,7 @@ $("#all").click(function(){
     }
     });
 });
+
 function explode(){
     $('.flex.middle.section.active').each(function(i, obj) {
         $(this).children('a').trigger( "click" );
@@ -110,3 +111,7 @@ function explode(){
     setTimeout(explode, 60000);
 }
 setTimeout(explode, 60000);
+
+$(".ui.search").keypress(function(event){
+    $(".section").removeClass("active");
+});
