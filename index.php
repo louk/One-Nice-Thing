@@ -1,4 +1,5 @@
 <?php
+
     require_once 'includes/Twig/Autoloader.php';
     require_once "config.php";
 
@@ -68,8 +69,42 @@
             $query->limit(3);
             $lastthreethings = $query->find();
 
+            $new = 0; $inbox = 0;
+
+            if ($_SESSION['notification']) {
+
+                $query = new ParseQuery("_Session");
+                $query->equalTo("user", $user);
+                $query->includeKey("user");
+                $query->descending("createdAt");
+                $query->skip(1);
+                $query->limit(1);
+
+                $new = $query->find(true);
+
+                $query = new ParseQuery("ChatLogs");
+                $query->greaterThan('createdAt', date_format($new[0]->getCreatedAt(), 'Y-m-d\TH:i:s.u\Z'));
+                $inbox = count($query->find());
+
+                $query = new ParseQuery("NiceThing");
+                $query->greaterThan('createdAt', $new[0]->getCreatedAt());
+                $query->equalTo("refered_user", $user);
+
+                $new = count($query->find());
+                $_SESSION['notification'] = false;
+                echo "asd";
+            }
+
+            $query = new ParseQuery("NiceThing");
+            $query->equalTo("User", $user);
+            $favorite = $query->find();
+            $sum_fav = 0;
+            foreach ($favorite as $fav) {
+                $sum_fav += count($fav->get('likes'));
+            }
+
             echo $template->render(array('title' => 'Dashboard', 'user' => $user, 'nav' => 1, 'nicethings' => $nicethings, 'last3' => $lastthreethings,
-                'originated' => $originated));
+                'originated' => $originated, 'inbox'=>$inbox, 'new'=>$new, 'favorite'=>$sum_fav));
 
         }else if (isset($_POST['viewTree'])) {
 
@@ -368,8 +403,43 @@
             $query->descending("createdAt");
             $query->limit(3);
             $lastthreethings = $query->find();
+
+            $new = 0; $inbox = 0;
+
+            if ($_SESSION['notification']) {
+
+                $query = new ParseQuery("_Session");
+                $query->equalTo("user", $user);
+                $query->includeKey("user");
+                $query->descending("createdAt");
+                $query->skip(1);
+                $query->limit(1);
+
+                $new = $query->find(true);
+
+                $query = new ParseQuery("ChatLogs");
+                $query->greaterThan('createdAt', date_format($new[0]->getCreatedAt(), 'Y-m-d\TH:i:s.u\Z'));
+                $inbox = count($query->find());
+
+                $query = new ParseQuery("NiceThing");
+                $query->greaterThan('createdAt', $new[0]->getCreatedAt());
+                $query->equalTo("refered_user", $user);
+
+                $new = count($query->find());
+                $_SESSION['notification'] = false;
+                echo "asd";
+            }
+
+            $query = new ParseQuery("NiceThing");
+            $query->equalTo("User", $user);
+            $favorite = $query->find();
+            $sum_fav = 0;
+            foreach ($favorite as $fav) {
+                $sum_fav += count($fav->get('likes'));
+            }
+
             echo $template->render(array('title' => 'Dashboard', 'user' => $user, 'nav' => 1, 'nicethings' => $nicethings, 'last3' => $lastthreethings,
-                'originated' => $originated));
+                'originated' => $originated, 'inbox'=>$inbox, 'new'=>$new, 'favorite'=>$sum_fav));
         }
     } else {
         if (isset($_GET['login'])) {
@@ -493,4 +563,5 @@
         }
 
     }
+
 ?>

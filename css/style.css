@@ -12,6 +12,27 @@ a{
 .contactus{
     width: 280px;
 }
+#conversations{
+    height:300px;
+    overflow:auto;
+    scrollbar-base-color:gold;
+}
+/* Scrollbar styles */
+::-webkit-scrollbar {
+width: 12px;
+height: 12px;
+}
+
+::-webkit-scrollbar-track {
+border: 1px solid #40B553;
+border-radius: 10px;
+background: white;
+}
+
+::-webkit-scrollbar-thumb {
+background: #40B553;
+border-radius: 10px;
+}
 .ui.three.cards>.card:hover{
     cursor: pointer;
     background: rgba(0, 0, 0, 0.05);

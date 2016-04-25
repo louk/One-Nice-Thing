@@ -69,7 +69,7 @@
                         <input id="chat_id" type="hidden" name="chat" value="{{chat}}">
                         <input type="hidden" name="check" value="message">
                         <div id="replay_message">
-                            <textarea name="message"></textarea>
+                            <textarea name="message" style="height: 0px;"></textarea>
                         </div>
                     </div>
                     <div class="ui yellow fluid labeled submit icon button">
@@ -92,6 +92,7 @@
     var userList = new List('chat-friends', options);
     var u_img = "{{ user.avatar }}";
     var u_name = "{{ user.first }}";
+    $('#conversations').scrollTop($('#conversations')[0].scrollHeight);
     </script>
     <script src="js/custom.js"></script>  
 {% endblock %}

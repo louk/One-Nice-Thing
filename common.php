@@ -75,6 +75,7 @@
             $user->save();
             $user = ParseUser::getCurrentUser();
             $_SESSION['user'] = $user;
+            $_SESSION['notification'] = true;
 
             $response->success = true;
             $response->message = "Logged in";
