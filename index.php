@@ -92,7 +92,6 @@
 
                 $new = count($query->find());
                 $_SESSION['notification'] = false;
-                echo "asd";
             }
 
             $query = new ParseQuery("NiceThing");
