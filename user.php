@@ -85,8 +85,10 @@
 
             if ($user->getObjectId() == $last->get('users')[0]) {
                 $lastUserId = $last->get('users')[1];
+                $chatter->set("reciever", $chat->get('users')[1]);
             }else{
                 $lastUserId = $last->get('users')[0];
+                $chatter->set("reciever", $chat->get('users')[0]);
             }
 
             $query = new ParseQuery("_User");

@@ -77,6 +77,16 @@
             $_SESSION['user'] = $user;
             $_SESSION['notification'] = true;
 
+            $query = new ParseQuery("_Session");
+            $query->equalTo("user", $user);
+            $query->includeKey("user");
+            $query->descending("createdAt");
+            $query->limit(1);
+
+            $new = $query->find(true);
+
+            $_SESSION['last_date'] = date_format($new[0]->getCreatedAt(), 'Y-m-d\TH:i:s.u\Z');
+
             $response->success = true;
             $response->message = "Logged in";
             $response->data = $user->getObjectId();

@@ -47,6 +47,7 @@ $(function() {
     onSuccess: function(response) {
         $("#conversations").append('<div class="comment"><a class="avatar"><img src="'+u_img+'"></a><div class="content"><a class="author">Me</a><div class="metadata"><span class="date">just now</span></div><div class="text">'+response.message+'</div></div></div>');
         document.getElementById("replay_message").innerHTML = '<textarea name="message" required ></textarea>';
+        $('#conversations').scrollTop($('#conversations')[0].scrollHeight);
     },
     onFailure: function(response) {
     }

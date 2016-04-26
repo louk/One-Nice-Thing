@@ -71,16 +71,16 @@
 
             $new = 0; $inbox = 0;
 
+            $query = new ParseQuery("_Session");
+            $query->equalTo("user", $user);
+            $query->includeKey("user");
+            $query->descending("createdAt");
+            $query->skip(1);
+            $query->limit(1);
+
+            $new = $query->find(true);
+
             if ($_SESSION['notification']) {
-
-                $query = new ParseQuery("_Session");
-                $query->equalTo("user", $user);
-                $query->includeKey("user");
-                $query->descending("createdAt");
-                $query->skip(1);
-                $query->limit(1);
-
-                $new = $query->find(true);
 
                 $query = new ParseQuery("ChatLogs");
                 $query->greaterThan('createdAt', date_format($new[0]->getCreatedAt(), 'Y-m-d\TH:i:s.u\Z'));
@@ -92,6 +92,21 @@
 
                 $new = count($query->find());
                 $_SESSION['notification'] = false;
+
+            }
+            else{ 
+                $query = new ParseQuery("ChatLogs");
+                $query->equalTo('reciever', $user->getObjectId());
+                $query->greaterThan('createdAt', $_SESSION['last_date']);
+
+                $inbox = count($query->find());
+
+                $query = new ParseQuery("NiceThing");
+                $query->greaterThan('createdAt', $_SESSION['last_date']);
+                $query->equalTo("refered_user", $user);
+
+                $new = count($query->find());
+
             }
 
             $query = new ParseQuery("NiceThing");
@@ -184,6 +199,16 @@
             $query->equalTo('status', 1);
             $users = $query->find();
 
+            $query = new ParseQuery("ChatLogs");
+            $query->equalTo('reciever', $user->getObjectId());
+            $query->greaterThan('createdAt', $_SESSION['last_date']);
+            $query->descending('createdAt');
+            $last_date = $query->find();
+
+            if (count($last_date)!=0) {
+                $_SESSION['last_date'] = date_format($last_date[0]->getCreatedAt(), 'Y-m-d\TH:i:s.u\Z');
+            }
+
             $chat = 0;
             $query = new ParseQuery("ChatLogs");
             $query->equalTo('speaker', $user);
@@ -220,7 +245,18 @@
             echo $template->render(array('title' => 'Inbox', 'user' => $user, 'nav' => 3,'users' =>$users, 'chatters' =>$chatters, 
                 'chat' => $chat, 'last' =>$lastUserId));
         }else if (isset($_GET['explore'])) {
+
             $template = $twig->loadTemplate('explore.html');
+
+            $query = new ParseQuery("NiceThing");
+            $query->equalTo('refered_user', $user->getObjectId());
+            $query->greaterThan('createdAt', $_SESSION['last_date']);
+            $query->descending('createdAt');
+            $last_date = $query->find();
+
+            if (count($last_date)!=0) {
+                $_SESSION['last_date'] = date_format($last_date[0]->getCreatedAt(), 'Y-m-d\TH:i:s.u\Z');
+            }
 
             $query = new ParseQuery("NiceThing");
             $query->limit(1000);
@@ -405,16 +441,16 @@
 
             $new = 0; $inbox = 0;
 
+            $query = new ParseQuery("_Session");
+            $query->equalTo("user", $user);
+            $query->includeKey("user");
+            $query->descending("createdAt");
+            $query->skip(1);
+            $query->limit(1);
+
+            $new = $query->find(true);
+
             if ($_SESSION['notification']) {
-
-                $query = new ParseQuery("_Session");
-                $query->equalTo("user", $user);
-                $query->includeKey("user");
-                $query->descending("createdAt");
-                $query->skip(1);
-                $query->limit(1);
-
-                $new = $query->find(true);
 
                 $query = new ParseQuery("ChatLogs");
                 $query->greaterThan('createdAt', date_format($new[0]->getCreatedAt(), 'Y-m-d\TH:i:s.u\Z'));
@@ -426,7 +462,20 @@
 
                 $new = count($query->find());
                 $_SESSION['notification'] = false;
-                echo "asd";
+
+            }
+            else{ 
+                $query = new ParseQuery("ChatLogs");
+                $query->equalTo('reciever', $user->getObjectId());
+                $query->greaterThan('createdAt', $_SESSION['last_date']);
+
+                $inbox = count($query->find());
+
+                $query = new ParseQuery("NiceThing");
+                $query->greaterThan('createdAt', $_SESSION['last_date']);
+                $query->equalTo("refered_user", $user);
+
+                $new = count($query->find());
             }
 
             $query = new ParseQuery("NiceThing");
