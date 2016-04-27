@@ -83,11 +83,11 @@
             if ($_SESSION['notification']) {
 
                 $query = new ParseQuery("ChatLogs");
-                $query->greaterThan('createdAt', date_format($new[0]->getCreatedAt(), 'Y-m-d\TH:i:s.u\Z'));
+                $query->greaterThan('createdAt', $_SESSION['last_date']);
                 $inbox = count($query->find());
 
                 $query = new ParseQuery("NiceThing");
-                $query->greaterThan('createdAt', $new[0]->getCreatedAt());
+                $query->greaterThan('createdAt', $_SESSION['last_date']);
                 $query->equalTo("refered_user", $user);
 
                 $new = count($query->find());
