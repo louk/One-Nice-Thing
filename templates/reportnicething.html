@@ -106,15 +106,18 @@
                   name: 22
                 },
                 beforeSend: function(settings) {
-                    console.log(settings.data);
                     return settings;
                 },
                 onSuccess: function(response) {
                     var url = "index.php?nicethings";  
-                    window.location.replace(url); 
+                    if(response.success){
+                        if(response.user == 0){
+                            url = "index.php?choose="+response.data;
+                        } 
+                        window.location.replace(url); 
+                    } 
                 },
                 onFailure: function(response) {
-                    console.log(response);
                 }
             });
         });

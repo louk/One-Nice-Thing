@@ -74,6 +74,14 @@ var cpassword_validate = {
 }
 var register_validate = {
     fields: {
+        username:{
+            identifier: 'username',
+            rules: [
+            {
+                type   : 'empty',
+                prompt : 'Please enter your username'
+            }]
+        },
         first: {
             identifier: 'first',
             rules: [

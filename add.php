@@ -37,31 +37,36 @@
     $nice_thing->set("message", $_POST['message']);
     $nice_thing->set("feel", $_POST['feel']);
     $nice_thing->set("refered_user", $user);
-    $nice_thing->set("User", $_SESSION['user']);
     $nice_thing->set("privacy", 1);
     $nice_thing->set("status", intval($_POST['privacy']));
 
-    $currentUser = $_SESSION['user'];
-    $query = ParseUser::query();
-    $userAgain = $query->get($currentUser->getObjectId());
+    $res_user = 0;
+    if (isset($_SESSION['user'])) {
+        $nice_thing->set("User", $_SESSION['user']);
+        $currentUser = $_SESSION['user'];
+        $query = ParseUser::query();
+        $userAgain = $query->get($currentUser->getObjectId());
 
-    $connected = array();
-    for ($i = 0; $i < count($userAgain->get('connected')); $i++) {
-        array_push($connected, $userAgain->get('connected')[$i]);
-    }
-    $key = -1;
-    $key = array_search($user->getObjectId(), $connected);
-    if ($key == null) {
-        array_push($connected, $user->getObjectId());
-        $userAgain->setArray("connected", $connected);
-    }
-    $messageTo = $currentUser->get('first')." added nice thing for you ".date("Y/m/d");
-    $messageFrom = "You added nice thing for ".$user->get('first')."  ".date("Y/m/d");
-    try {
-        
+        $connected = array();
+        for ($i = 0; $i < count($userAgain->get('connected')); $i++) {
+            array_push($connected, $userAgain->get('connected')[$i]);
+        }
+        $key = -1;
+        $key = array_search($user->getObjectId(), $connected);
+        if ($key == null) {
+            array_push($connected, $user->getObjectId());
+            $userAgain->setArray("connected", $connected);
+        }
+
+        $messageTo = $currentUser->get('first')." added nice thing for you ".date("Y/m/d");
+        $messageFrom = "You added nice thing for ".$user->get('first')."  ".date("Y/m/d");
+
         sendmail($user->get('email'), $messageTo);
         sendmail($currentUser->get('email'), $messageFrom);
         $userAgain->save(true);
+        $user = 1;
+    }
+    try {
         $nice_thing->save();
         $result = true;
     } catch (ParseException $ex) {  
@@ -77,6 +82,7 @@
         $response = new Response();
         $response->success = true;
         $response->message = "Your nice thing is added";
+        $response->user = $res_user;
         $response->data = $nice_thing->getObjectId();
         $_SESSION['id'] = $nice_thing->getObjectId();
         echo json_encode($response); 

@@ -3,9 +3,7 @@
     require_once 'includes/Twig/Autoloader.php';
     require_once "config.php";
 
-    use Parse\ParseObject;
-    use Parse\ParseClient;
-    use Parse\ParseQuery;
+    use Parse\ParseObject; use Parse\ParseClient; use Parse\ParseQuery;
     use Parse\ParseUser;
 
     session_start();
@@ -509,7 +507,7 @@
             $query->equalTo('status', 1);
             $users = $query->find();
             $template = $twig->loadTemplate('reportnicething.html');
-            echo $template->render(array('title' => 'Report Nice Thing', 'users' =>$users));
+            echo $template->render(array('title' => 'Report Nice Thing', 'users' =>$users, 'not' => 1));
         }else if (isset($_GET['success'])) {
             $template = $twig->loadTemplate('success.html');
 

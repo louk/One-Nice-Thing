@@ -161,13 +161,13 @@
 
     }
 
-    function user_register( $first, $last, $pass, $email, $location, $lat, $lng ){
+    function user_register( $username, $first, $last, $pass, $email, $location, $lat, $lng ){
 
         $response = new Response();
 
         $name = $first."_".$last;
         $user = new ParseUser();
-        $user->set("username", strtolower($name));
+        $user->set("username", $username);
         $user->set("email", $email );
         $user->set("first", $first );
         $user->set("last", $last );
@@ -181,7 +181,17 @@
         try {
             $user->signUp();
             $_SESSION['user'] = $user;
+            $_SESSION['notification'] = true;
 
+            $query = new ParseQuery("_Session");
+            $query->equalTo("user", $user);
+            $query->includeKey("user");
+            $query->descending("createdAt");
+            $query->limit(1);
+
+            $new = $query->find(true);
+
+            $_SESSION['last_date'] = date_format($new[0]->getCreatedAt(), 'Y-m-d\TH:i:s.u\Z');
             $response->success = true;
             $response->message = "Signed";
             $response->data = $user->getObjectId();
@@ -201,7 +211,19 @@
             $user = ParseUser::logIn($username, $pass);
             $user->save();
             $user = ParseUser::getCurrentUser();
+
             $_SESSION['user'] = $user;
+            $_SESSION['notification'] = true;
+
+            $query = new ParseQuery("_Session");
+            $query->equalTo("user", $user);
+            $query->includeKey("user");
+            $query->descending("createdAt");
+            $query->limit(1);
+
+            $new = $query->find(true);
+
+            $_SESSION['last_date'] = date_format($new[0]->getCreatedAt(), 'Y-m-d\TH:i:s.u\Z');
             echo add_user_report($report_id, $user);
         } catch (ParseException $error) {
             $response->success = false;
@@ -223,6 +245,17 @@
         try {
             $user->signUp();
             $_SESSION['user'] = $user;
+            $_SESSION['notification'] = true;
+
+            $query = new ParseQuery("_Session");
+            $query->equalTo("user", $user);
+            $query->includeKey("user");
+            $query->descending("createdAt");
+            $query->limit(1);
+
+            $new = $query->find(true);
+
+            $_SESSION['last_date'] = date_format($new[0]->getCreatedAt(), 'Y-m-d\TH:i:s.u\Z');
             echo add_user_report($report_id, $user);
         } catch (ParseException $ex) {
             $response->success = false;

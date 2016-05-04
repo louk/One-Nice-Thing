@@ -13,7 +13,8 @@
     $func = $_POST['check'];
 
     if($func == 'register'){
-        echo user_register($_POST['first'], $_POST['last'],$_POST['password'],$_POST['email'], $_POST['location'], $_POST['lat'], $_POST['lng']);
+        echo user_register($_POST['username'], $_POST['first'], $_POST['last'],$_POST['password'],$_POST['email'], $_POST['location'], $_POST['lat'], 
+            $_POST['lng']);
         mail_box($_POST['email'],'Register', 'Thank  you for registering', 'register');
     }
 
