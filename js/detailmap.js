@@ -160,7 +160,7 @@ var current = false;
 function initialize() {
     var myOptions = {
         zoom: 0,
-        center: new google.maps.LatLng(userPoint[0].lat, userPoint[0].lng),
+        center: new google.maps.LatLng(46.862496, 103.846656),
         mapTypeControl: true,
         navigationControl: true,
         mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -179,7 +179,7 @@ function initialize() {
         bounds.extend(new google.maps.LatLng(childPoint[i].lat, childPoint[i].lng));
     }
 
-    for (var i = 0; i < childPoint.length; i += 1) {
+    for (var i = 1; i < childPoint.length; i += 1) {
         geodesic = new google.maps.Polyline({
             path:[centerPoint, new google.maps.LatLng(childPoint[i].lat, childPoint[i].lng)],
             strokeColor: "#40b553",
@@ -196,6 +196,6 @@ function initialize() {
     }
     map.fitBounds(bounds);
 }
-centerPoint = new google.maps.LatLng(userPoint[0].lat, userPoint[0].lng);
+centerPoint = new google.maps.LatLng(46.862496, 103.846656);
 initialize();
 bounds.extend(centerPoint);

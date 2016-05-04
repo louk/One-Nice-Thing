@@ -247,7 +247,7 @@
             $template = $twig->loadTemplate('explore.html');
 
             $query = new ParseQuery("NiceThing");
-            $query->equalTo('refered_user', $user->getObjectId());
+            $query->equalTo('refered_user', $user);
             $query->greaterThan('createdAt', $_SESSION['last_date']);
             $query->descending('createdAt');
             $last_date = $query->find();
