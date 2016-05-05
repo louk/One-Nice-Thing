@@ -3,24 +3,26 @@
     <div id='friends'>
         <div class="ui four column grid">
             {% for friend in friends %}
-            <div class="ui card column">
-                <div class="image">
-                    <img src="{{ friend.avatar }}">
-                </div>
-                <div class="content">
-                    <a class="header">{{ friend.name }}</a>
-                    <div class="meta">
-                        <span class="date">Joined in {{ friend.createdAt|date("F jS \\a\\t g:ia") }}</span>
+            <div class="column">
+                <div class="ui card">
+                    <div class="image">
+                        <img src="{{ friend.avatar }}">
                     </div>
-                    <div class="description">
-                        {{ friend.name }} is living in {{ friend.location_name }}
+                    <div class="content">
+                        <a class="header">{{ friend.name }}</a>
+                        <div class="meta">
+                            <span class="date">Joined in {{ friend.createdAt|date("F jS \\a\\t g:ia") }}</span>
+                        </div>
+                        <div class="description">
+                            {{ friend.name }} is living in {{ friend.location_name }}
+                        </div>
                     </div>
-                </div>
-                <div class="extra content">
-                    <a href="index.php?chat">
-                        <i class="comments outline icon"></i>
-                        Chat
-                    </a>
+                    <div class="extra content">
+                        <a href="index.php?chat">
+                            <i class="comments outline icon"></i>
+                            Chat
+                        </a>
+                    </div>
                 </div>
             </div>
             {% endfor %}
