@@ -302,8 +302,8 @@
 
             $random = substr( md5(rand()), 0, 7);
             $data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $profile));
-            file_put_contents('img/user/'.$random.'.png', $data);
-            $path = 'img/user/'.$random.'.png';
+            file_put_contents('img/user/'.$random.'.jpg', $data);
+            $path = 'img/user/'.$random.'.jpg';
             $user->set('avatar', $path);
 
         }
