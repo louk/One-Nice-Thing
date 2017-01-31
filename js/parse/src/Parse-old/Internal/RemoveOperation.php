@@ -4,32 +4,34 @@ namespace Parse\Internal;
 
 use Parse\ParseClient;
 use Parse\ParseException;
+use Parse\ParseObject;
 
 /**
- * Class AddOperation - FieldOperation for adding object(s) to array fields.
+ * Class RemoveOperation - FieldOperation for removing object(s) from array
+ * fields.
  *
  * @author Fosco Marotto <fjm@fb.com>
  */
-class AddOperation implements FieldOperation
+class RemoveOperation implements FieldOperation
 {
     /**
-     * Array with objects to add.
+     * Array with objects to remove.
      *
      * @var array
      */
     private $objects;
 
     /**
-     * Creates an AddOperation with the provided objects.
+     * Creates an RemoveOperation with the provided objects.
      *
-     * @param array $objects Objects to add.
+     * @param array $objects Objects to remove.
      *
      * @throws ParseException
      */
     public function __construct($objects)
     {
         if (!is_array($objects)) {
-            throw new ParseException('AddOperation requires an array.');
+            throw new ParseException("RemoveOperation requires an array.");
         }
         $this->objects = $objects;
     }
@@ -51,8 +53,8 @@ class AddOperation implements FieldOperation
      */
     public function _encode()
     {
-        return ['__op' => 'Add',
-            'objects'  => ParseClient::_encode($this->objects, true), ];
+        return ['__op'                     => 'Remove',
+                                 'objects' => ParseClient::_encode($this->objects, true), ];
     }
 
     /**
@@ -70,19 +72,17 @@ class AddOperation implements FieldOperation
             return $this;
         }
         if ($previous instanceof DeleteOperation) {
-            return new SetOperation($this->objects);
+            return $previous;
         }
         if ($previous instanceof SetOperation) {
-            $oldList = $previous->getValue();
-
             return new SetOperation(
-                array_merge((array) $oldList, (array) $this->objects)
+                $this->_apply($previous->getValue(), $this->objects, null)
             );
         }
-        if ($previous instanceof self) {
+        if ($previous instanceof RemoveOperation) {
             $oldList = $previous->getValue();
 
-            return new SetOperation(
+            return new RemoveOperation(
                 array_merge((array) $oldList, (array) $this->objects)
             );
         }
@@ -102,10 +102,29 @@ class AddOperation implements FieldOperation
      */
     public function _apply($oldValue, $obj, $key)
     {
-        if (!$oldValue) {
-            return $this->objects;
+        if (empty($oldValue)) {
+            return [];
+        }
+        $newValue = [];
+        foreach ($oldValue as $oldObject) {
+            foreach ($this->objects as $newObject) {
+                if ($oldObject instanceof ParseObject) {
+                    if ($newObject instanceof ParseObject
+                        && !$oldObject->isDirty()
+                        && $oldObject->getObjectId() == $newObject->getObjectId()
+                    ) {
+                        // found the object, won't add it.
+                    } else {
+                        $newValue[] = $oldObject;
+                    }
+                } else {
+                    if ($oldObject !== $newObject) {
+                        $newValue[] = $oldObject;
+                    }
+                }
+            }
         }
 
-        return array_merge((array) $oldValue, (array) $this->objects);
+        return $newValue;
     }
 }

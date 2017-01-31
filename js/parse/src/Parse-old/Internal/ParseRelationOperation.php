@@ -2,7 +2,6 @@
 
 namespace Parse\Internal;
 
-use Exception;
 use Parse\ParseClient;
 use Parse\ParseObject;
 use Parse\ParseRelation;
@@ -12,7 +11,7 @@ use Parse\ParseRelation;
  *
  * @author Mohamed Madbouli <mohamedmadbouli@fb.com>
  */
-class ParseRelationOperation implements FieldOperation
+class ParseRelationOperation implements    FieldOperation
 {
     /**
      * The className of the target objects.
@@ -49,7 +48,7 @@ class ParseRelationOperation implements FieldOperation
             $this->addObjects($objectsToRemove, $this->relationsToRemove);
         }
         if ($this->targetClassName === null) {
-            throw new Exception('Cannot create a ParseRelationOperation with no objects.');
+            throw new \Exception('Cannot create a ParseRelationOperation with no objects.');
         }
     }
 
@@ -68,7 +67,7 @@ class ParseRelationOperation implements FieldOperation
                 $this->targetClassName = $object->getClassName();
             }
             if ($this->targetClassName != $object->getClassName()) {
-                throw new Exception('All objects in a relation must be of the same class.');
+                throw new \Exception('All objects in a relation must be of the same class.');
             }
         }
     }
@@ -137,7 +136,7 @@ class ParseRelationOperation implements FieldOperation
             if ($this->targetClassName != null
                 && $oldValue->getTargetClass() !== $this->targetClassName
             ) {
-                throw new Exception(
+                throw new \Exception(
                     'Related object object must be of class '
                     .$this->targetClassName.', but '.$oldValue->getTargetClass()
                     .' was passed in.'
@@ -146,7 +145,7 @@ class ParseRelationOperation implements FieldOperation
 
             return $oldValue;
         } else {
-            throw new Exception('Operation is invalid after previous operation.');
+            throw new \Exception("Operation is invalid after previous operation.");
         }
     }
 
@@ -165,11 +164,11 @@ class ParseRelationOperation implements FieldOperation
         if ($previous == null) {
             return $this;
         }
-        if ($previous instanceof self) {
+        if ($previous instanceof ParseRelationOperation) {
             if ($previous->targetClassName != null
                 && $previous->targetClassName != $this->targetClassName
             ) {
-                throw new Exception(
+                throw new \Exception(
                     'Related object object must be of class '
                     .$this->targetClassName.', but '.$previous->targetClassName
                     .' was passed in.'
@@ -207,12 +206,12 @@ class ParseRelationOperation implements FieldOperation
                 $previous->relationsToRemove
             );
 
-            return new self(
+            return new ParseRelationOperation(
                 $newRelationToAdd,
                 $newRelationToRemove
             );
         }
-        throw new Exception('Operation is invalid after previous operation.');
+        throw new \Exception('Operation is invalid after previous operation.');
     }
 
     /**
@@ -244,14 +243,14 @@ class ParseRelationOperation implements FieldOperation
                 ),
             ];
         }
-        if (!empty($addRelation['objects']) && !empty($removeRelation['objects'])) {
+        if (!empty($addRelation) && !empty($removeRelation)) {
             return [
                 '__op' => 'Batch',
                 'ops'  => [$addRelation, $removeRelation],
             ];
         }
 
-        return empty($addRelation['objects']) ? $removeRelation : $addRelation;
+        return empty($addRelation) ? $removeRelation : $addRelation;
     }
 
     public function _getTargetClass()

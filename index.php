@@ -2,9 +2,13 @@
 
     require_once 'includes/Twig/Autoloader.php';
     require_once "config.php";
+    require 'js/parse/autoload.php';
 
-    use Parse\ParseObject; use Parse\ParseClient; use Parse\ParseQuery;
+    use Parse\ParseObject; 
+    use Parse\ParseClient; 
+    use Parse\ParseQuery;
     use Parse\ParseUser;
+
 
     session_start();
     //register autoloader
@@ -418,6 +422,11 @@
             echo $template->render(array('title' => 'About us')); 
         }else{
             $template = $twig->loadTemplate('dashboard.html');
+            
+            $testObject = ParseObject::create("TestObject");
+    $testObject->set("foo", "bar");
+    $testObject->save();
+
             $query = new ParseQuery("NiceThing");
             $query->equalTo("User", $user);
             $query->includeKey("refered_user");

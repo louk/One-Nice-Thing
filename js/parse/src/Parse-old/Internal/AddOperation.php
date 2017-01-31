@@ -29,7 +29,7 @@ class AddOperation implements FieldOperation
     public function __construct($objects)
     {
         if (!is_array($objects)) {
-            throw new ParseException('AddOperation requires an array.');
+            throw new ParseException("AddOperation requires an array.");
         }
         $this->objects = $objects;
     }
@@ -79,7 +79,7 @@ class AddOperation implements FieldOperation
                 array_merge((array) $oldList, (array) $this->objects)
             );
         }
-        if ($previous instanceof self) {
+        if ($previous instanceof AddOperation) {
             $oldList = $previous->getValue();
 
             return new SetOperation(

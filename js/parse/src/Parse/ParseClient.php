@@ -2,6 +2,8 @@
 
 namespace Parse;
 
+use Exception;
+use InvalidArgumentException;
 use Parse\Internal\Encodable;
 
 /**
@@ -12,9 +14,18 @@ use Parse\Internal\Encodable;
 final class ParseClient
 {
     /**
-     * Constant for the API Server Host Address.
+     * The remote Parse Server to communicate with
+     *
+     * @var string
      */
-    const HOST_NAME = 'https://api.parse.com';
+    private static $serverURL = 'https://parseapi.back4app.com/';
+
+    /**
+     * The mount path for the current parse server
+     *
+     * @var string
+     */
+    private static $mountPath = "/";
 
     /**
      * The application id.
@@ -26,7 +37,7 @@ final class ParseClient
     /**
      * The REST API Key.
      *
-     * @var string
+     * @var string|null
      */
     private static $restKey;
 
@@ -45,6 +56,13 @@ final class ParseClient
     private static $enableCurlExceptions;
 
     /**
+     * The account key.
+     *
+     * @var string
+     */
+    private static $accountKey;
+
+    /**
      * The object for managing persistence.
      *
      * @var ParseStorageInterface
@@ -59,33 +77,48 @@ final class ParseClient
     private static $forceRevocableSession = false;
 
     /**
+     * Number of seconds to wait while trying to connect. Use 0 to wait indefinitely.
+     *
+     * @var int
+     */
+    private static $connectionTimeout;
+
+    /**
+     * Maximum number of seconds of request/response operation.
+     *
+     * @var int
+     */
+    private static $timeout;
+
+    /**
      * Constant for version string to include with requests.
      *
      * @var string
      */
-    const VERSION_STRING = 'php1.1.0';
+    const VERSION_STRING = 'php1.2.1';
 
     /**
      * Parse\Client::initialize, must be called before using Parse features.
      *
-     * @param string  $app_id               Parse Application ID
-     * @param string  $rest_key             Parse REST API Key
-     * @param string  $master_key           Parse Master Key
-     * @param boolean $enableCurlExceptions Enable or disable Parse curl exceptions
+     * @param string $app_id               Parse Application ID
+     * @param string $rest_key             Parse REST API Key
+     * @param string $master_key           Parse Master Key
+     * @param bool   $enableCurlExceptions Enable or disable Parse curl exceptions
+     * @param string $account_key          An account key from Parse.com can enable creating apps via API.
      *
-     * @return null
+     * @throws Exception
      */
-    public static function initialize($app_id, $rest_key, $master_key, $enableCurlExceptions = true)
+    public static function initialize($app_id, $rest_key, $master_key, $enableCurlExceptions = true, $account_key = null)
     {
-        if (! ParseObject::hasRegisteredSubclass('_User')) {
+        if (!ParseObject::hasRegisteredSubclass('_User')) {
             ParseUser::registerSubclass();
         }
 
-        if (! ParseObject::hasRegisteredSubclass('_Role')) {
+        if (!ParseObject::hasRegisteredSubclass('_Role')) {
             ParseRole::registerSubclass();
         }
 
-        if (! ParseObject::hasRegisteredSubclass('_Installation')) {
+        if (!ParseObject::hasRegisteredSubclass('_Installation')) {
             ParseInstallation::registerSubclass();
         }
 
@@ -94,12 +127,39 @@ final class ParseClient
         self::$restKey = $rest_key;
         self::$masterKey = $master_key;
         self::$enableCurlExceptions = $enableCurlExceptions;
+        self::$accountKey = $account_key;
         if (!static::$storage) {
             if (session_status() === PHP_SESSION_ACTIVE) {
                 self::setStorage(new ParseSessionStorage());
             } else {
                 self::setStorage(new ParseMemoryStorage());
             }
+        }
+    }
+
+    /**
+     * ParseClient::setServerURL, to change the Parse Server address & mount path for this app
+     * @param string $serverUrl     The remote server url
+     * @param string $mountPath     The mount path for this server
+     *
+     * @throws \Exception
+     *
+     */
+    public static function setServerURL($serverURL, $mountPath) {
+        if (!$serverURL) {
+            throw new Exception('Invalid Server URL.');
+        }
+        if( !$mountPath) {
+            throw new Exception('Invalid Mount Path.');
+        }
+
+        self::$serverURL = rtrim($serverURL,'/');
+        self::$mountPath = trim($mountPath,'/') . '/';
+
+        // check if mount path is root
+        if(self::$mountPath == "/") {
+            // root path should have no mount path
+            self::$mountPath = "";
         }
     }
 
@@ -127,7 +187,7 @@ final class ParseClient
 
         if ($value instanceof ParseObject) {
             if (!$allowParseObjects) {
-                throw new \Exception('ParseObjects not allowed here.');
+                throw new Exception('ParseObjects not allowed here.');
             }
 
             return $value->_toPointer();
@@ -142,7 +202,7 @@ final class ParseClient
         }
 
         if (!is_scalar($value) && $value !== null) {
-            throw new \Exception('Invalid type encountered.');
+            throw new Exception('Invalid type encountered.');
         }
 
         return $value;
@@ -236,47 +296,82 @@ final class ParseClient
     /**
      * Parse\Client::_request, internal method for communicating with Parse.
      *
-     * @param string $method       HTTP Method for this request.
-     * @param string $relativeUrl  REST API Path.
-     * @param null   $sessionToken Session Token.
-     * @param null   $data         Data to provide with the request.
-     * @param bool   $useMasterKey Whether to use the Master Key.
+     * @param string $method        HTTP Method for this request.
+     * @param string $relativeUrl   REST API Path.
+     * @param null   $sessionToken  Session Token.
+     * @param null   $data          Data to provide with the request.
+     * @param bool   $useMasterKey  Whether to use the Master Key.
+     * @param bool   $appRequest    App request to create or modify a application
+     * @param string $contentType   The content type for this request, default is application/json
+     * @param bool   $returnHeaders Allow to return response headers
      *
      * @throws \Exception
      *
      * @return mixed Result from Parse API Call.
      */
-    public static function _request($method, $relativeUrl, $sessionToken = null,
-        $data = null, $useMasterKey = false
+    public static function _request(
+        $method,
+        $relativeUrl,
+        $sessionToken = null,
+        $data = null,
+        $useMasterKey = false,
+        $appRequest = false,
+        $contentType = 'application/json',
+        $returnHeaders = false
     ) {
         if ($data === '[]') {
             $data = '{}';
         }
-        self::assertParseInitialized();
-        $headers = self::_getRequestHeaders($sessionToken, $useMasterKey);
+        if ($appRequest) {
+            self::assertAppInitialized();
+            $headers = self::_getAppRequestHeaders();
+        } else {
+            self::assertParseInitialized();
+            $headers = self::_getRequestHeaders($sessionToken, $useMasterKey);
+        }
 
-        $url = self::HOST_NAME.$relativeUrl;
+        $url = self::$serverURL.'/'.self::$mountPath.ltrim($relativeUrl, '/');
+
         if ($method === 'GET' && !empty($data)) {
             $url .= '?'.http_build_query($data);
         }
+
         $rest = curl_init();
-        curl_setopt($rest, CURLOPT_URL, $url);
         curl_setopt($rest, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($rest, CURLOPT_URL, $url);
         curl_setopt($rest, CURLOPT_RETURNTRANSFER, 1);
+
         if ($method === 'POST') {
-            $headers[] = 'Content-Type: application/json';
+            $headers[] = 'Content-Type: '.$contentType;
             curl_setopt($rest, CURLOPT_POST, 1);
             curl_setopt($rest, CURLOPT_POSTFIELDS, $data);
         }
+
         if ($method === 'PUT') {
-            $headers[] = 'Content-Type: application/json';
+            $headers[] = 'Content-Type: '.$contentType;
             curl_setopt($rest, CURLOPT_CUSTOMREQUEST, $method);
             curl_setopt($rest, CURLOPT_POSTFIELDS, $data);
         }
+
         if ($method === 'DELETE') {
             curl_setopt($rest, CURLOPT_CUSTOMREQUEST, $method);
         }
+
         curl_setopt($rest, CURLOPT_HTTPHEADER, $headers);
+
+        if (!is_null(self::$connectionTimeout)) {
+            curl_setopt($rest, CURLOPT_CONNECTTIMEOUT, self::$connectionTimeout);
+        }
+
+        if (!is_null(self::$timeout)) {
+            curl_setopt($rest, CURLOPT_TIMEOUT, self::$timeout);
+        }
+
+        if ($returnHeaders) {
+            curl_setopt($rest, CURLOPT_HEADER, 1);
+            curl_setopt($rest, CURLOPT_FOLLOWLOCATION, true);
+        }
+
         $response = curl_exec($rest);
         $status = curl_getinfo($rest, CURLINFO_HTTP_CODE);
         $contentType = curl_getinfo($rest, CURLINFO_CONTENT_TYPE);
@@ -287,6 +382,16 @@ final class ParseClient
                 return false;
             }
         }
+
+        $headerData = [];
+
+        if ($returnHeaders) {
+            $headerSize = curl_getinfo($rest, CURLINFO_HEADER_SIZE);
+            $headerContent = substr($response, 0, $headerSize);
+            $headerData = self::parseCurlHeaders($headerContent);
+            $response = substr($response, $headerSize);
+        }
+
         curl_close($rest);
         if (strpos($contentType, 'text/html') !== false) {
             throw new ParseException('Bad Request', -1);
@@ -294,13 +399,64 @@ final class ParseClient
 
         $decoded = json_decode($response, true);
         if (isset($decoded['error'])) {
+            // check to convert error to a string, if an array
+            // used to handle an Array 'error' from back4app.com
+            $errorMessage = is_array($decoded['error']) ? json_encode($decoded['error']) : $decoded['error'];
             throw new ParseException(
-                $decoded['error'],
+                $errorMessage,
                 isset($decoded['code']) ? $decoded['code'] : 0
             );
         }
 
+        if ($returnHeaders) {
+            $decoded['_headers'] = $headerData;
+        }
+
         return $decoded;
+    }
+
+    /**
+     * ParseClient::parseCurlHeaders, will parse headers data and returns it as array.
+     * @param $headerContent
+     *
+     * @return array
+     */
+    private static function parseCurlHeaders($headerContent)
+    {
+        $headers = [];
+        $headersContentSet = explode("\r\n\r\n", $headerContent);
+        $withRedirect = count($headersContentSet) > 2;
+
+        if ($withRedirect) {
+            $headers['_previous'] = [];
+        }
+
+        foreach ($headersContentSet as $headerIndex => $headersData) {
+            if (empty($headersData)) {
+                continue;
+            }
+
+            if ($withRedirect && $headerIndex === 0) {
+                $storage = &$headers['_previous'];
+            } else {
+                $storage = &$headers;
+            }
+
+            $exploded = explode("\r\n", $headersData);
+
+            foreach ($exploded as $i => $line) {
+                if (empty($line)) {
+                    continue;
+                } elseif ($i === 0) {
+                    $storage['http_status'] = $line;
+                } else {
+                    list ($headerName, $headerValue) = explode(': ', $line);
+                    $storage[$headerName] = $headerValue;
+                }
+            }
+        }
+
+        return $headers;
     }
 
     /**
@@ -308,8 +464,6 @@ final class ParseClient
      * persistence.
      *
      * @param ParseStorageInterface $storageObject
-     *
-     * @return null
      */
     public static function setStorage(ParseStorageInterface $storageObject)
     {
@@ -332,8 +486,6 @@ final class ParseClient
      *
      * Without some ability to clear the storage objects, all test cases would
      *     use the first assigned storage object.
-     *
-     * @return null
      */
     public static function _unsetStorage()
     {
@@ -343,8 +495,20 @@ final class ParseClient
     private static function assertParseInitialized()
     {
         if (self::$applicationId === null) {
-            throw new \Exception(
+            throw new Exception(
                 'You must call Parse::initialize() before making any requests.'
+            );
+        }
+    }
+
+    /**
+     * @throws Exception
+     */
+    private static function assertAppInitialized()
+    {
+        if (self::$accountKey === null) {
+            throw new Exception(
+                'You must call Parse::initialize(..., $accountKey) before making any requests.'
             );
         }
     }
@@ -364,7 +528,7 @@ final class ParseClient
         }
         if ($useMasterKey) {
             $headers[] = 'X-Parse-Master-Key: '.self::$masterKey;
-        } else {
+        } else if(isset(self::$restKey)) {
             $headers[] = 'X-Parse-REST-API-Key: '.self::$restKey;
         }
         if (self::$forceRevocableSession) {
@@ -378,6 +542,47 @@ final class ParseClient
         $headers[] = 'Expect: ';
 
         return $headers;
+    }
+
+    /**
+     * @return array
+     */
+    public static function _getAppRequestHeaders()
+    {
+        if (is_null(self::$accountKey) || empty(self::$accountKey)) {
+            throw new InvalidArgumentException('A account key is required and can not be null or empty');
+        } else {
+            $headers[] = 'X-Parse-Account-Key: '.self::$accountKey;
+        }
+
+        /*
+         * Set an empty Expect header to stop the 100-continue behavior for post
+         *     data greater than 1024 bytes.
+         *     http://pilif.github.io/2007/02/the-return-of-except-100-continue/
+         */
+        $headers[] = 'Expect: ';
+
+        return $headers;
+    }
+
+    /**
+     * Get remote Parse API url.
+     *
+     * @return string
+     */
+    public static function getAPIUrl()
+    {
+        return self::$serverURL.'/'.self::$mountPath;
+    }
+
+    /**
+     * Get remote Parse API mount path
+     *
+     * @return string
+     */
+    public static function getMountPath()
+    {
+        return self::$mountPath;
     }
 
     /**
@@ -406,14 +611,16 @@ final class ParseClient
      * Format from Parse doc: an ISO 8601 date without a time zone, i.e. 2014-10-16T12:00:00 .
      *
      * @param \DateTime $value DateTime value to format.
-     * @param boolean $local Whether to return the local push time
+     * @param bool      $local Whether to return the local push time
      *
      * @return string
      */
     public static function getPushDateFormat($value, $local = false)
     {
         $dateFormatString = 'Y-m-d\TH:i:s';
-        if (!$local) $dateFormatString .= '\Z';
+        if (!$local) {
+            $dateFormatString .= '\Z';
+        }
         $date = date_format($value, $dateFormatString);
 
         return $date;
@@ -423,11 +630,30 @@ final class ParseClient
      * Allows an existing application to start using revocable sessions, without forcing
      * all requests for the app to use them.    After calling this method, login & signup requests
      * will be returned a unique and revocable session token.
-     *
-     * @return null
      */
     public static function enableRevocableSessions()
     {
         self::$forceRevocableSession = true;
+    }
+
+    /**
+     * Sets number of seconds to wait while trying to connect. Use 0 to wait indefinitely, null to default behaviour.
+     *
+     * @param int|null $connectionTimeout
+     */
+    public static function setConnectionTimeout($connectionTimeout)
+    {
+        self::$connectionTimeout = $connectionTimeout;
+    }
+
+    /**
+     * Sets maximum number of seconds of request/response operation.
+     * Use 0 to wait indefinitely, null to default behaviour.
+     *
+     * @param int|null $timeout
+     */
+    public static function setTimeout($timeout)
+    {
+        self::$timeout = $timeout;
     }
 }
